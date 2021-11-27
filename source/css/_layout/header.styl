@@ -1,23 +1,33 @@
-#header[header="home"]
+.header[header="home"]
   background-color: var(--main-color)
   height: 100vh
   // background-image: hexo-config('custom.index_banner_img') ? convert(hexo-config('custom.index_banner_img'))
-#header[header="archive"]
+.header[header="archive"]
   // background-color: var(--main-color)
   height: 61px
 
-#navbar
+div.navbar
   backdrop-filter: saturate(180%) blur(20px)
   position: fixed
   top: 0
   padding: 20px 0
   width: 100%
-#menu-items
-  box-sizing: border-box;
-  width: 100%
+div.navmenu
+  float: right
+ul.navbar
+  // box-sizing: border-box;
+  // width: 100%
   padding: 0 36px
-  text-align: right
-#menu-items a
+  display: flex
+  // align: center
+  // justify-conent: flex-start
+  // flex-direction: row
+  // text-align: right
+  list-style-type: none
+  margin: 0
+  // margin-left: auto
+ul.navbar li
+  display: block
   padding: 0 16px
   text-decoration: none
   color: var(--text-color)

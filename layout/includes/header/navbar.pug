@@ -1,4 +1,4 @@
-#navbar
+.navbar
   //- nav#menu-items
   //-   each url, label in theme.menu
   //-     a(href=url)= label
@@ -18,32 +18,61 @@
   //-         i(class=item.icon)
   //-         span=item.name
 
-  nav#menu-items
-    each content, label in theme.menu
-      if typeof content == 'object'
-        div(class='bin_menu')
-          i(class=label.split(', ')[1])
-          span=label.split(', ')[0]
-          div(class='sub_menu_item')
-            each subcontent, sublabel in content
-              a(href=subcontent.split(', ')[0])
-                i(class=subcontent.split(', ')[1])
-                span=sublabel
-      else
-        a(href=content.split(', ')[0])
-          i(class=content.split(', ')[1])
-          span=label
+  //- nav#menu-items
+  //-   each content, label in theme.menu
+  //-     if typeof content == 'object'
+  //-       div(class='bin_menu')
+  //-         i(class=label.split(', ')[1])
+  //-         span=label.split(', ')[0]
+  //-         div(class='sub_menu_item')
+  //-           each subcontent, sublabel in content
+  //-             a(href=subcontent.split(', ')[0])
+  //-               i(class=subcontent.split(', ')[1])
+  //-               span=sublabel
+  //-     else
+  //-       a(href=content.split(', ')[0])
+  //-         i(class=content.split(', ')[1])
+  //-         span=label
+  
+  span
+    a(hrel='/')=config.title
+
+  .nav_menu
+    ul(class='navbar')
+      each content, label in theme.menu
+        if typeof content == 'object'
+          li
+            a
+              i(class=label.split(', ')[1])
+              span=label.split(', ')[0]
+              div(class='sub_menu')
+                each subcontent, sublabel in content
+                  a(href=subcontent.split(', ')[0])
+                    i(class=subcontent.split(', ')[1])
+                    span=sublabel
+        else
+          li
+            a(href=content.split(', ')[0])
+              i(class=content.split(', ')[1])
+              span=label
 
 
 
 
 
 
-//- <div class="dropdown">
-//-   <button class="dropbtn">Dropdown</button>
-//-   <div class="dropdown-content">
-//-     <a href="#">Link 1</a>
-//-     <a href="#">Link 2</a>
-//-     <a href="#">Link 3</a>
-//-   </div>
-//- </div>
+//- ul
+//-   //- 一般
+//-   li
+//-     a(href="") 
+//-       i 
+//-       span 
+//-   //- 子菜单
+//-   li 
+//-     a(href="") 
+//-       i 
+//-       span 
+//-       div sub 
+//-         a(href="") 
+//-           i 
+//-           span 
