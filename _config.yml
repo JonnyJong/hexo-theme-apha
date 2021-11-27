@@ -1,14 +1,27 @@
 # 导航栏 main menu navigation
 menu:
-  - name: 主页 # 名称
-    link: / # 链接
-    icon: fas fa-home # 图标（选填 Optional）
-  - name: 关于
-    link: /about/
-    icon: fa fa-heart
-  - name: 归档
-    link: /archives/
-    icon: fa fa-folder-open
+  主页: /, fas fa-home
+  关于: /about/, fa fa-heart
+  归档: /archives/, fa fa-folder-open
+  文章, fa fa-graduation-cap:
+    标签: /tags/, fa fa-tags
+    归类: /categories/, fa fa-archive
+  # - name: 主页 # 名称
+  #   link: / # 链接
+  #   icon: fas fa-home # 图标（选填 Optional）
+  # - name: 关于
+  #   link: /about/
+  #   icon: fa fa-heart
+  # - name: 归档
+  #   link: /archives/
+  #   icon: fa fa-folder-open
+  # - name: 文章
+  #   link:
+  #   icon: fa fa-graduation-cap
+  #   sub: true
+  #   subitem:
+  #   - name: 标签
+  #   - name: 归类
 
 # 自定义外观
 custom:
