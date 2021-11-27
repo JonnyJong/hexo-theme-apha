@@ -12,15 +12,12 @@ html(lang=config.language)
   head
     meta(charset='UTF-8')
     title= pageTitle
-    if theme.stylesheets !== undefined && theme.stylesheets.length > 0
-      //- stylesheets list from _config.yml
-      each url in theme.stylesheets
-        link(rel='stylesheet', href=url)
+    //- 引用CDN
+    link(rel='stylesheet', href=theme.CDN.mainCss)
+    link(rel='stylesheet', href=theme.CDN.mainJs)
+    link(rel='stylesheet', href=theme.CDN.fontawesome)
   body
-    #menu-outer
-      nav#menu-inner
-        each url, label in theme.menu
-          a(href=url)= label
+    include ./header/header.pug
     #content-outer
       #content-inner
         if body

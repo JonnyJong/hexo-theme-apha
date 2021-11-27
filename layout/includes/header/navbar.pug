@@ -1,0 +1,9 @@
+#navbar
+  //- nav#menu-items
+  //-   each url, label in theme.menu
+  //-     a(href=url)= label
+  nav#menu-items
+    each item in theme.menu
+      a(href=item.link)
+        i(class=item.icon)
+        span=' ' + item.name

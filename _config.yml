@@ -1,18 +1,38 @@
-
-# html lang
-language: en
-
-# main menu navigation
+# 导航栏 main menu navigation
 menu:
-  Home: /
-  About: /about
-  Contact: /contact
-  Archives: /archives
+  - name: 主页 # 名称
+    link: / # 链接
+    icon: fas fa-home # 图标（选填 Optional）
+  - name: 关于
+    link: /about/
+    icon: fa fa-heart
+  - name: 归档
+    link: /archives/
+    icon: fa fa-folder-open
 
-# stylesheets loaded in the <head>
-stylesheets:
-- /css/hexo-theme-apha.css
+# 自定义外观
+custom:
+  # 主题色
+  theme_color:
+    enable: false
+    main: "#009688" 
 
-# scripts loaded in the end of the body
-scripts:
-- /js/hexo-theme-apha.js
+  # 字体
+  font:
+    enable: false
+    font-family: ''
+    font-url: ''
+
+  # 主页横幅图像
+  index_banner_img:
+  # 板块外边框
+  block-margin:
+  # 板块内边框
+  block-padding:
+
+CDN:
+  # 主要引入 Mainly introduced
+  mainCss: /css/hexo-theme-apha.css
+  mainJs: /js/hexo-theme-apha.js
+
+  fontawesome: https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css

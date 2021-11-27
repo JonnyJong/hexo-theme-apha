@@ -1,0 +1,14 @@
+// $border-box = hexo-config('theme_color.code_background') ? convert(hexo-config('theme_color.code_background')) : rgba(27, 31, 35, .05)
+// $main-color = hexo-config('custom.theme_color.main') ? convert(hexo-config('custom.theme_color.main')) : #009688
+// $text-white = #1a1a1a
+
+:root
+  if hexo-config('custom.theme_color.enable')
+    --main-color hexo-config('custom.theme_color.main') ? convert(hexo-config('custom.theme_color.main')) : #009688
+  else
+    --main-color #009688
+
+  --text-color #f7f7f7
+  --shadow-color #000e
+
+  --global-font hexo-config('custom.theme_color.main') ? convert(hexo-config('custom.theme_color.main')) : UbuntuMono
