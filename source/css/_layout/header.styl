@@ -1,39 +1,84 @@
+// 整体
 .header[header="home"]
   background-color: var(--main-color)
-  height: 100vh
+  if hexo-config('custom.ui.navbar.downside')
+    if hexo-config('custom.ui.navbar.move_to_top')
+      height 100vh
+      margin-top -60px
+      transform: translate(0px, 60px);
+    else
+      height 100vh
+      margin-top -60px
+      transform: translate(0px, 60px);
+      margin-bottom 60px
+  else
+    margin-top -60px
+    height 100vh
+  background-image: url(https://api.dujin.org/bing/1920.php)
   // background-image: hexo-config('custom.index_banner_img') ? convert(hexo-config('custom.index_banner_img'))
 .header[header="archive"]
-  // background-color: var(--main-color)
-  height: 61px
+  background-color: var(--main-color)
+  height 50vh
+  unless hexo-config('custom.ui.navbar.downside') 
+    margin-top -60px 0px 0px 0px
 
-div.navbar
+// 导航栏
+#navbar
+  if hexo-config('custom.ui.navbar.move_to_top') 
+    position -webkit-sticky
+    position sticky
+    top 0
+  else
+    position fixed
+    bottom 0
+  display flex
+  align-items center
+  width 100%
+  height 60px
+  color var(--text-color)
+  text-shadow: 0px 0px 4px var(--shadow-color)
+  background rgba(255,255,255,.8)
   backdrop-filter: saturate(180%) blur(20px)
-  position: fixed
-  top: 0
-  padding: 20px 0
-  width: 100%
-div.navmenu
-  float: right
-ul.navbar
-  // box-sizing: border-box;
-  // width: 100%
-  padding: 0 36px
-  display: flex
-  // align: center
-  // justify-conent: flex-start
-  // flex-direction: row
-  // text-align: right
-  list-style-type: none
-  margin: 0
-  // margin-left: auto
-ul.navbar li
-  display: block
-  padding: 0 16px
-  text-decoration: none
-  color: var(--text-color)
-  text-shadow: 0px 0px 5px var(--shadow-color)
+  box-shadow 0px 0px 16px var(--shadow-color)
+#navbar a
+  color var(--text-color)
+  text-decoration none
+#navbar i
+  padding-right 8px
+span#sitetitle
+  if hexo-config('custom.ui.navbar.separate') 
+    flex 1
+  padding 0 18px 0px 36px
+#navbar div.nav_menu
+  padding 0 36px 0px 18px
+#navbar div.menu_items
+  display inline
+#navbar div.menu_item
+  position relative
+  display inline-block
+  padding 20px 8px 0px 8px
+  height 40px
+  cursor pointer
+#navbar div.menu_item div.sub_menu 
+  display none
+  position absolute
+  width max-content
+  background rgba(255,255,255,0.9)
+  margin 20px 0px
+  left 50%
+  top 50%
+  transform: translate(-50%, 10px)
+  box-shadow: 0px 0px 16px var(--shadow-color)
+#navbar div.menu_item:hover div.sub_menu
+  display block
+#navbar div.sub_menu_item
+  padding 10px 16px
+#navbar div.sub_menu_item:hover
+  background var(--main-color-fade)
 
-// #menu-items a:visited
-// #menu-items a:hover
-// #menu-items a:active
-    
+// 大标题
+.header[header="home"] .site_big_title
+  height calc(100vh - 60px)
+
+.header[header="archive"] .site_big_title
+  height calc(50vh - 60px)

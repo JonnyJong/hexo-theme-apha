@@ -25,6 +25,17 @@ menu:
 
 # 自定义外观
 custom:
+  # 界面
+  ui:
+    # 导航栏
+    navbar:
+      # 导航栏在屏幕下方
+      downside: true
+      # 跟随滚动到上方（只有 downside 为 true 时有效）
+      move_to_top: true
+      # 分离标题按钮
+      separate: true
+
   # 主题色
   theme_color:
     enable: false
@@ -32,7 +43,6 @@ custom:
 
   # 字体
   font:
-    enable: false
     font-family: ''
     font-url: ''
 

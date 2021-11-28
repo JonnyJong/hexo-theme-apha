@@ -1,6 +1,18 @@
-if is_home() 
-  .header(header='home')
+if theme.custom.ui.navbar.downside
+  if is_home() 
+    .header(header='home')
+      include ./site_big_title.pug
     include ./navbar.pug
-if is_archive() 
-  .header(header='archive')
+  if is_archive() 
+    .header(header='archive')
+      include ./site_big_title.pug
     include ./navbar.pug
+else
+  if is_home() 
+    include ./navbar.pug
+    .header(header='home')
+      include ./site_big_title.pug
+  if is_archive() 
+    include ./navbar.pug
+    .header(header='archive')
+      include ./site_big_title.pug

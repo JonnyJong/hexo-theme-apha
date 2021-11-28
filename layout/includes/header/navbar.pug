@@ -1,4 +1,4 @@
-.navbar
+nav#navbar
   //- nav#menu-items
   //-   each url, label in theme.menu
   //-     a(href=url)= label
@@ -34,24 +34,25 @@
   //-         i(class=content.split(', ')[1])
   //-         span=label
   
-  span
+  span#sitetitle
     a(hrel='/')=config.title
 
   .nav_menu
-    ul(class='navbar')
+    div(class='menu_items')
       each content, label in theme.menu
         if typeof content == 'object'
-          li
+          div(class='menu_item')
             a
               i(class=label.split(', ')[1])
               span=label.split(', ')[0]
               div(class='sub_menu')
                 each subcontent, sublabel in content
-                  a(href=subcontent.split(', ')[0])
-                    i(class=subcontent.split(', ')[1])
-                    span=sublabel
+                  div(class='sub_menu_item')
+                    a(href=subcontent.split(', ')[0])
+                      i(class=subcontent.split(', ')[1])
+                      span=sublabel
         else
-          li
+          div(class='menu_item')
             a(href=content.split(', ')[0])
               i(class=content.split(', ')[1])
               span=label
