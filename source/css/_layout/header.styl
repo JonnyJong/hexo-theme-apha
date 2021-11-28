@@ -1,4 +1,6 @@
 // 整体
+.header
+  background-image: url(https://api.dujin.org/bing/1920.php) // 用于测试
 .header[header="home"]
   background-color: var(--main-color)
   if hexo-config('custom.ui.navbar.downside')
@@ -14,13 +16,16 @@
   else
     margin-top -60px
     height 100vh
-  background-image: url(https://api.dujin.org/bing/1920.php)
+  // background-image: url(https://api.dujin.org/bing/1920.php)
   // background-image: hexo-config('custom.index_banner_img') ? convert(hexo-config('custom.index_banner_img'))
 .header[header="archive"]
   background-color: var(--main-color)
-  height 50vh
-  unless hexo-config('custom.ui.navbar.downside') 
-    margin-top -60px 0px 0px 0px
+  // background-image: url(https://api.dujin.org/bing/1920.php)
+  if hexo-config('custom.ui.navbar.downside') 
+    height calc(50vh - 60px)
+  else
+    height 50vh
+    margin-top -60px
 
 // 导航栏
 #navbar

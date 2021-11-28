@@ -30,7 +30,7 @@ custom:
     # 导航栏
     navbar:
       # 导航栏在屏幕下方
-      downside: true
+      downside: false
       # 跟随滚动到上方（只有 downside 为 true 时有效）
       move_to_top: true
       # 分离标题按钮
