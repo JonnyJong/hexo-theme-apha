@@ -1,18 +1,18 @@
 if theme.custom.ui.navbar.downside
   if is_home() 
     .header(header='home')
-      include ./site_big_title.pug
+      include ./header_info.pug
     include ./navbar.pug
   else
     .header(header='page')
-      include ./site_big_title.pug
+      include ./header_info.pug
     include ./navbar.pug
 else
   if is_home() 
     include ./navbar.pug
     .header(header='home')
-      include ./site_big_title.pug
+      include ./header_info.pug
   else
     include ./navbar.pug
     .header(header='page')
-      include ./site_big_title.pug
+      include ./header_info.pug

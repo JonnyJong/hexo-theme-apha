@@ -1,6 +1,10 @@
 // 整体
 .header
-  background-image: url(https://api.dujin.org/bing/1920.php) // 用于测试
+  background-image url(https://www.dmoe.cc/random.php) // 用于测试
+  if hexo-config('custom.index_banner_img_parallax')
+    background-attachment fixed
+  background-repeat: no-repeat
+  object-fit: cover;
 .header[header="home"]
   background-color: var(--main-color)
   if hexo-config('custom.ui.navbar.downside')
@@ -57,6 +61,7 @@
   if hexo-config('custom.ui.navbar.center') 
     justify-content center
   border-radius hexo-config('custom.ui.navbar.border_radius') ? convert(hexo-config('custom.ui.navbar.border_radius')) : 0px
+  z-index 100
 #navbar a
   color var(--text-color)
   text-decoration none
@@ -73,6 +78,9 @@
   padding 20px 8px 0px 8px
   height 40px
   cursor pointer
+#navbar div.menu_item
+  font-size 1em
+  font-weight lighter
 #navbar div.menu_item div.sub_menu 
   display none
   position absolute
@@ -97,15 +105,31 @@
   display inline
 #navbar div.sitetitle span
   vertical-align middle
-  font-size 1.2em
+  font-size 1.3em
+  font-weight 600
 #navbar div.sitetitle img
   height 40px
   vertical-align middle
   margin-right 8px
 
 // 大标题
-.header[header="home"] .site_big_title
-  height calc(100vh - 60px)
+div.header_info
+  width 1400px
+  height 100vh
+  position relative
+  margin auto
 
-.header[header="page"] .site_big_title
-  height calc(50vh - 60px)
+div.header_info div.site_big_title
+  position relative
+  padding 50vh 0
+  width max-content
+
+div.header_info div.site_big_title span.title
+  font-size 6rem
+  font-weight bold
+  color #fffe
+  text-shadow: 0 0 1.5rem #000d
+div.header_info div.site_big_title span.subtitle
+  font-size 2rem
+  color #fffe
+  text-shadow: 0 0 0.5rem #000d

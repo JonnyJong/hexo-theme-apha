@@ -9,10 +9,10 @@ menu:
 
 # 信息
 info:
-  # 首页大标题（默认使用站点名 config.site.title）
-  big_title:
-  # 首页副标题（默认使用站点副标题 config.site.subtitle）
-  big_subtitle:
+  # 首页大标题（false、default、value；关闭、默认、值。）
+  big_title: default
+  # 首页副标题（false、default、value；关闭、默认、值。）
+  big_subtitle: hello world
   # 站点图标
   favicon: '/favicon.png'
   # 头像（默认使用站点图标）
@@ -56,10 +56,13 @@ custom:
 
   # 主页横幅图像
   index_banner_img:
+  # 滚动视差
+  index_banner_img_parallax: true
   # 板块外边框
   block-margin:
   # 板块内边框
   block-padding:
+  # 模板圆角
 
 CDN:
   # 主要引入 Mainly introduced
