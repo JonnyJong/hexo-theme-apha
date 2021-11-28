@@ -3,25 +3,20 @@ menu:
   主页: /, fas fa-home
   关于: /about/, fa fa-heart
   归档: /archives/, fa fa-folder-open
-  文章, fa fa-graduation-cap:
+  文章, fa fa-graduation-cap, '':
     标签: /tags/, fa fa-tags
     归类: /categories/, fa fa-archive
-  # - name: 主页 # 名称
-  #   link: / # 链接
-  #   icon: fas fa-home # 图标（选填 Optional）
-  # - name: 关于
-  #   link: /about/
-  #   icon: fa fa-heart
-  # - name: 归档
-  #   link: /archives/
-  #   icon: fa fa-folder-open
-  # - name: 文章
-  #   link:
-  #   icon: fa fa-graduation-cap
-  #   sub: true
-  #   subitem:
-  #   - name: 标签
-  #   - name: 归类
+
+# 信息
+info:
+  # 首页大标题（默认使用站点名 config.site.title）
+  big_title:
+  # 首页副标题（默认使用站点副标题 config.site.subtitle）
+  big_subtitle:
+  # 站点图标
+  favicon: '/favicon.png'
+  # 头像（默认使用站点图标）
+  avatar: '/avatar.png'
 
 # 自定义外观
 custom:
@@ -32,9 +27,22 @@ custom:
       # 导航栏在屏幕下方
       downside: false
       # 跟随滚动到上方（只有 downside 为 true 时有效）
-      move_to_top: true
+      move_to_top: false
       # 分离标题按钮
       separate: true
+      # 按钮居中（只有 separate 为 false 时有效）
+      center: false
+      # 与屏幕底部边缘距离（只有 downside 为 true 时有效。false、value；无、数值。支持 % px vw em 等单位）
+        # （与 move_to_top: false, min_weight: 0%, border_radius: 10px 共同使用可形成 docker 效果）
+      distance:
+      # 图标（false、favicon、avatar、url；关闭、站点图标、头像）
+      icon: /logo.png
+      # 文字（false、default、custom；关闭、站点名、自定义）
+      text: default
+      # 导航栏宽度（100% ~ 0%、支持 % px vw em 等单位）
+      width:
+      # 导航栏圆角（none、default、value；无、默认、数值。只有 顶栏最小宽度 <100% 时有效）
+      border_radius:
 
   # 主题色
   theme_color:

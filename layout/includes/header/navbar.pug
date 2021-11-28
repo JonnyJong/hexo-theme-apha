@@ -34,15 +34,25 @@ nav#navbar
   //-         i(class=content.split(', ')[1])
   //-         span=label
   
-  span#sitetitle
-    a(hrel='/')=config.title
+  .sitetitle
+    a(href=config.root)
+      if theme.custom.ui.navbar.icon == 'favicon'
+        img(src=url_for(theme.info.favicon) alt='sitetitle_img')
+      else if theme.custom.ui.navbar.icon == 'avatar'
+        img(src=url_for(theme.info.avatar) alt='sitetitle_img')
+      else if theme.custom.ui.navbar.icon
+        img(src=url_for(theme.custom.ui.navbar.icon) alt='sitetitle_img')
+      if theme.custom.ui.navbar.text == 'default'
+        span=config.title
+      else if theme.custom.ui.navbar.text
+        span=theme.custom.ui.navbar.text
 
   .nav_menu
     div(class='menu_items')
       each content, label in theme.menu
         if typeof content == 'object'
           div(class='menu_item')
-            a
+            a(class=label.split(', ')[2])
               i(class=label.split(', ')[1])
               span=label.split(', ')[0]
               div(class='sub_menu')

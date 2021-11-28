@@ -14,11 +14,10 @@
       transform: translate(0px, 60px);
       margin-bottom 60px
   else
-    margin-top -60px
     height 100vh
   // background-image: url(https://api.dujin.org/bing/1920.php)
   // background-image: hexo-config('custom.index_banner_img') ? convert(hexo-config('custom.index_banner_img'))
-.header[header="archive"]
+.header[header="page"]
   background-color: var(--main-color)
   // background-image: url(https://api.dujin.org/bing/1920.php)
   if hexo-config('custom.ui.navbar.downside') 
@@ -29,33 +28,43 @@
 
 // 导航栏
 #navbar
-  if hexo-config('custom.ui.navbar.move_to_top') 
-    position -webkit-sticky
-    position sticky
-    top 0
+  if hexo-config('custom.ui.navbar.downside') 
+    if hexo-config('custom.ui.navbar.move_to_top') 
+      position -webkit-sticky
+      position sticky
+      top hexo-config('custom.ui.navbar.distance') ? convert(hexo-config('custom.ui.navbar.distance')) : 0
+    else
+      position fixed
+      bottom hexo-config('custom.ui.navbar.distance') ? convert(hexo-config('custom.ui.navbar.distance')) : 0
+      left 0
+      right 0
   else
     position fixed
-    bottom 0
+    top hexo-config('custom.ui.navbar.distance') ? convert(hexo-config('custom.ui.navbar.distance')) : 0
+    left 0
+    right 0
   display flex
   align-items center
-  width 100%
+  width hexo-config('custom.ui.navbar.width') ? convert(hexo-config('custom.ui.navbar.width')) : 100%
+  margin auto
+  min-width max-content
   height 60px
   color var(--text-color)
   text-shadow: 0px 0px 4px var(--shadow-color)
   background rgba(255,255,255,.8)
   backdrop-filter: saturate(180%) blur(20px)
   box-shadow 0px 0px 16px var(--shadow-color)
+  if hexo-config('custom.ui.navbar.center') 
+    justify-content center
+  border-radius hexo-config('custom.ui.navbar.border_radius') ? convert(hexo-config('custom.ui.navbar.border_radius')) : 0px
 #navbar a
   color var(--text-color)
   text-decoration none
 #navbar i
   padding-right 8px
-span#sitetitle
-  if hexo-config('custom.ui.navbar.separate') 
-    flex 1
-  padding 0 18px 0px 36px
+
 #navbar div.nav_menu
-  padding 0 36px 0px 18px
+  padding 0 36px 0px 8px
 #navbar div.menu_items
   display inline
 #navbar div.menu_item
@@ -81,9 +90,22 @@ span#sitetitle
 #navbar div.sub_menu_item:hover
   background var(--main-color-fade)
 
+#navbar .sitetitle
+  if hexo-config('custom.ui.navbar.separate') 
+    flex 1
+  padding 0 8px 0px 36px
+  display inline
+#navbar div.sitetitle span
+  vertical-align middle
+  font-size 1.2em
+#navbar div.sitetitle img
+  height 40px
+  vertical-align middle
+  margin-right 8px
+
 // 大标题
 .header[header="home"] .site_big_title
   height calc(100vh - 60px)
 
-.header[header="archive"] .site_big_title
+.header[header="page"] .site_big_title
   height calc(50vh - 60px)

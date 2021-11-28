@@ -3,8 +3,8 @@ if theme.custom.ui.navbar.downside
     .header(header='home')
       include ./site_big_title.pug
     include ./navbar.pug
-  if is_archive() 
-    .header(header='archive')
+  else
+    .header(header='page')
       include ./site_big_title.pug
     include ./navbar.pug
 else
@@ -12,7 +12,7 @@ else
     include ./navbar.pug
     .header(header='home')
       include ./site_big_title.pug
-  if is_archive() 
+  else
     include ./navbar.pug
-    .header(header='archive')
+    .header(header='page')
       include ./site_big_title.pug
