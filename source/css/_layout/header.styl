@@ -3,8 +3,9 @@
   background-image url(https://www.dmoe.cc/random.php) // 用于测试
   if hexo-config('custom.index_banner_img_parallax')
     background-attachment fixed
+    background-position center center
+    background-size cover
   background-repeat: no-repeat
-  object-fit: cover;
 .header[header="home"]
   background-color: var(--main-color)
   if hexo-config('custom.ui.navbar.downside')
@@ -25,9 +26,9 @@
   background-color: var(--main-color)
   // background-image: url(https://api.dujin.org/bing/1920.php)
   if hexo-config('custom.ui.navbar.downside') 
-    height calc(50vh - 60px)
+    height calc(30rem - 60px)
   else
-    height 50vh
+    height 30rem
     margin-top -60px
 
 // 导航栏
@@ -69,7 +70,7 @@
   padding-right 8px
 
 #navbar div.nav_menu
-  padding 0 36px 0px 8px
+  padding 0 $navbar-LR-padding 0px 8px
 #navbar div.menu_items
   display inline
 #navbar div.menu_item
@@ -101,7 +102,7 @@
 #navbar .sitetitle
   if hexo-config('custom.ui.navbar.separate') 
     flex 1
-  padding 0 8px 0px 36px
+  padding 0 8px 0px $navbar-LR-padding
   display inline
 #navbar div.sitetitle span
   vertical-align middle
@@ -114,14 +115,30 @@
 
 // 大标题
 div.header_info
-  width 1400px
   height 100vh
   position relative
-  margin auto
+
+@media screen and (min-width: $max-width){
+  div.header_info{
+    width $header-min-width
+    margin auto
+  }
+}
+
+@media screen and (max-width: $max-width){
+  div.header_info{
+    margin auto auto auto 100px
+  }
+}
 
 div.header_info div.site_big_title
   position relative
-  padding 50vh 0
+  padding calc(50vh - 4rem) 0
+  width max-content
+
+div.header[header="page"] div.header_info div.site_big_title
+  position relative
+  padding 14rem 0
   width max-content
 
 div.header_info div.site_big_title span.title

@@ -10,3 +10,8 @@
     else if theme.info.big_subtitle
       br
       span.subtitle=theme.info.big_subtitle
+
+if is_home() 
+  if theme.quick_entrance.enable
+    .quick_entrance
+    include ./quick_entrance.pug

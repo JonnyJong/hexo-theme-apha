@@ -1,39 +1,4 @@
 nav#navbar
-  //- nav#menu-items
-  //-   each url, label in theme.menu
-  //-     a(href=url)= label
-
-  //- nav#menu-items
-  //-   each item in theme.menu
-  //-     if sub == true
-  //-       div(class='bin_menu')
-  //-         buttom(class='sub_menu')=item.name
-  //-         div(class='sub_menu_item')
-  //-       each subitem in item.subitem
-  //-         a(href=subitem.link)
-  //-           i(class=item.icon)
-  //-           span=subitem.name
-  //-     else
-  //-       a(href=item.link)
-  //-         i(class=item.icon)
-  //-         span=item.name
-
-  //- nav#menu-items
-  //-   each content, label in theme.menu
-  //-     if typeof content == 'object'
-  //-       div(class='bin_menu')
-  //-         i(class=label.split(', ')[1])
-  //-         span=label.split(', ')[0]
-  //-         div(class='sub_menu_item')
-  //-           each subcontent, sublabel in content
-  //-             a(href=subcontent.split(', ')[0])
-  //-               i(class=subcontent.split(', ')[1])
-  //-               span=sublabel
-  //-     else
-  //-       a(href=content.split(', ')[0])
-  //-         i(class=content.split(', ')[1])
-  //-         span=label
-  
   .sitetitle
     a(href=config.root)
       if theme.custom.ui.navbar.icon == 'favicon'
@@ -66,24 +31,3 @@ nav#navbar
             a(href=content.split(', ')[0])
               i(class=content.split(', ')[1])
               span=label
-
-
-
-
-
-
-//- ul
-//-   //- 一般
-//-   li
-//-     a(href="") 
-//-       i 
-//-       span 
-//-   //- 子菜单
-//-   li 
-//-     a(href="") 
-//-       i 
-//-       span 
-//-       div sub 
-//-         a(href="") 
-//-           i 
-//-           span 
