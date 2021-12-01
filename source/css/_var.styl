@@ -4,8 +4,11 @@
 
 //不需要作为 css 变量写入 css 文件的变量
 $max-width = hexo-config('custom.max-width') ? convert(hexo-config('custom.max-width')) : 1600px
+//header
 $header-min-width = $max-width - 200px
 $navbar-LR-padding = hexo-config('custom.ui.navbar.lr_distance') ? convert(hexo-config('custom.ui.navbar.lr_distance')) : 36px
+$navbar-opacity = hexo-config('custom.ui.navbar.opacity') ? convert(hexo-config('custom.ui.navbar.opacity')) : .8
+$navbar-blur = hexo-config('custom.ui.navbar.blur') ? convert(hexo-config('custom.ui.navbar.blur')) : 20px
 
 :root
   if hexo-config('custom.theme_color.enable')

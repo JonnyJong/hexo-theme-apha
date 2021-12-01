@@ -1,17 +1,18 @@
 .header_info
-  .site_big_title
-    if theme.info.big_title == 'default'
-      span.title=config.title
-    else if theme.info.big_title
-      span.title=theme.info.big_title
-    if theme.info.big_subtitle == 'default'
-      br
-      span.subtitle=config.subtitle
-    else if theme.info.big_subtitle
-      br
-      span.subtitle=theme.info.big_subtitle
+  if is_home() 
+    .site_big_title
+      if theme.info.big_title == 'default'
+        span.title=config.title
+      else if theme.info.big_title
+        span.title=theme.info.big_title
+      if theme.info.big_subtitle == 'default'
+        br
+        span.subtitle=config.subtitle
+      else if theme.info.big_subtitle
+        br
+        span.subtitle=theme.info.big_subtitle
 
-if is_home() 
-  if theme.quick_entrance.enable
-    .quick_entrance
-    include ./quick_entrance.pug
+  if is_home() 
+    if theme.quick_entrance.enable
+      .quick_entrance
+        include ./quick_entrance.pug

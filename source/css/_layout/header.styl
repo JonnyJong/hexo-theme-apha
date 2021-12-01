@@ -20,8 +20,7 @@
       margin-bottom 60px
   else
     height 100vh
-  // background-image: url(https://api.dujin.org/bing/1920.php)
-  // background-image: hexo-config('custom.index_banner_img') ? convert(hexo-config('custom.index_banner_img'))
+  // background-image: hexo-config('custom.index_banner_img') ? convert(hexo-config('custom.index_banner_img')) : none
 .header[header="page"]
   background-color: var(--main-color)
   // background-image: url(https://api.dujin.org/bing/1920.php)
@@ -56,8 +55,8 @@
   height 60px
   color var(--text-color)
   text-shadow: 0px 0px 4px var(--shadow-color)
-  background rgba(255,255,255,.8)
-  backdrop-filter: saturate(180%) blur(20px)
+  background rgba(255,255,255,$navbar-opacity)
+  backdrop-filter: saturate(180%) blur($navbar-blur)
   box-shadow 0px 0px 16px var(--shadow-color)
   if hexo-config('custom.ui.navbar.center') 
     justify-content center

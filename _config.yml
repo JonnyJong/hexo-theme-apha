@@ -22,25 +22,32 @@ info:
 # 只制作基本的框架，等待制作各种风格的模板插件。故暂时停工
 quick_entrance:
   # 是否开启（true/false）
-  enable: true
+  enable: false
   # 组件（不建议设置过多的组件）
-  item:
+  items:
+      # 组件 id（作用于页面排版、不可见）
+    - id: 
+      # 自定义 html + css（开启后下列选项除 content 外均无效）
+      custom:
       # 组件名
-    - name:
+      name: 
       # 链接
-      url:
-      # 样式（突起：下图上文背景、上图下文背景、左上图上文背景内容；凹下：下图上文背景、上图下文背景、左上图上文背景内容）
-      style:
+      url: 
+      # 样式（突起：下图上文背景、上图下文背景、左上图上文背景内容；凹下：下图上文背景、上图下文背景、左上图上文背景内容） 
+      # 暂时不可用：由风格插件决定
+      # style: 
+      # 类型
+      type:
       # 尺寸（1x1、1x2、2x2）
-      size:
+      size: 
       # 图标
-      img:
+      img: 
       # 背景图片
-      background_img:
+      background_img: 
       # 颜色
       color:
-      # 内容（支持 markdown 与 html + css）
-      content:
+      # 内容（支持 html + css）
+      content: 
 
 
 # 自定义外观
@@ -71,7 +78,9 @@ custom:
       # 圆角（none、default、value；无、默认、数值。只有 顶栏最小宽度 <100% 时有效）
       border_radius:
       # 不透明度（较低的背景模糊度建议使用较高的不透明度，较低的不透明度建议使用较高的背景模糊度）
-      # 背景模糊度（建议不要使用过高的数值，这可能会导致卡顿）
+      opacity: ''
+      # 背景模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿）
+      blur: 
 
   # 全局
   
@@ -80,20 +89,20 @@ custom:
     enable: false
     main: "#009688" 
 
-  # 字体
+  # 字体（暂未完成）
   font:
     font-family: ''
     font-url: ''
 
-  # 主页横幅图像
-  index_banner_img:
+  # 主页横幅图像（故障的）
+  index_banner_img: "https://www.dmoe.cc/random.php"
   # 滚动视差
   index_banner_img_parallax: true
-  # 板块外边框
+  # 板块外边框（未配置）
   block-margin:
-  # 板块内边框
+  # 板块内边框（未配置）
   block-padding:
-  # 模块圆角
+  # 模块圆角（未配置）
   border_radius:
   # 最大宽度（单位：px。默认：1600px。过小的值会导致排版错乱。当设置的值极大时，约等于满屏幕宽度）
   max-width: 
