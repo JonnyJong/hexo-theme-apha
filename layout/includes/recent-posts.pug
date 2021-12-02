@@ -6,29 +6,39 @@ if page.posts.length > 0
           if post.cover
             case post.cover_type
               when 'side'
-                a.post_cover_a.side(href=url_for(post.path))
-                  img.post_cover(src=url_for(post.cover) alt=post.title)
+                div.post_cover.side
+                  a(href=url_for(post.path))
+                    img.post_cover(src=url_for(post.cover) alt=post.title)
               when 'top'
-                a.post_cover_a.top(href=url_for(post.path))
-                  img.post_cover(src=url_for(post.cover) alt=post.title)
+                div.post_cover.top
+                  a(href=url_for(post.path))
+                    img.post_cover(src=url_for(post.cover) alt=post.title)
               when 'down'
-                a.post_cover_a.down(href=url_for(post.path))
-                  img.post_cover(src=url_for(post.cover) alt=post.title)
+                div.post_cover.down
+                  a(href=url_for(post.path))
+                    img.post_cover(src=url_for(post.cover) alt=post.title)
               default
                 case theme.custom.ui.index_posts.cover_default_style
                   when 'side'
-                    a.post_cover_a.side(href=url_for(post.path))
-                      img.post_cover(src=url_for(post.cover) alt=post.title)
+                    div.post_cover.side
+                      a(href=url_for(post.path))
+                        img.post_cover(src=url_for(post.cover) alt=post.title)
                   when 'top'
-                    a.post_cover_a.top(href=url_for(post.path))
-                      img.post_cover(src=url_for(post.cover) alt=post.title)
+                    div.post_cover.top
+                      a(href=url_for(post.path))
+                        img.post_cover(src=url_for(post.cover) alt=post.title)
                   when 'down'
-                    a.post_cover_a.down(href=url_for(post.path))
-                      img.post_cover(src=url_for(post.cover) alt=post.title)
+                    div.post_cover.down
+                      a(href=url_for(post.path))
+                        img.post_cover(src=url_for(post.cover) alt=post.title)
                   default
                     - let = if_cover = 'no_cover'
           .post_info(class=if_cover class=cover_type)
-            a.post_title(href=url_for(post.path))= post.title
+            if post.title
+              a.post_title(href=url_for(post.path))= post.title
+            else
+              a.post_title(href=url_for(post.path))=_p('post_item.notitle')
+            p
             if post.date
               time(datetime=post.date.toJSON())= _p('post_item.date') + ' ' + date(post.date, date_format)
             if post.updated
@@ -41,9 +51,10 @@ if page.posts.length > 0
                 a.post_cate(href=url_for(cate.path))=cate.name
                 if (count < post.categories.data.length - 1)
                   span=' / '
+            p
             if post.description
               span.post_description=post.description
             else if post.excerpt
-              span.post_description=post.excerpt
+              span.post_description=strip_html(post.excerpt)
             else
               span.post_description=truncate(strip_html(post.content), {length: theme.custom.ui.index_posts.description.max_length})

@@ -103,7 +103,6 @@ custom:
   
   # 主题色
   theme_color:
-    enable: false
     main: "#009688" 
 
   # 字体（暂未完成）
@@ -119,8 +118,12 @@ custom:
   block-margin: 
   # 板块内边框（未配置）
   block-padding:
-  # 模块圆角（未配置）
-  border_radius:
+  # 模块圆角（单位：px rem em）（未完成）
+  border-radius:
+  # 模块背景不透明度（较低的背景模糊度建议使用较高的不透明度，较低的不透明度建议使用较高的背景模糊度）
+  global-opacity: ''
+  # 模块背景高斯模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿。设置 0 可关闭。）
+  global-blur: 
   # 最大宽度（单位：px。默认：1600px。过小的值会导致排版错乱。当设置的值极大时，约等于满屏幕宽度）
   max-width: 
 
