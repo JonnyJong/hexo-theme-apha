@@ -4,6 +4,13 @@
 body
   margin 0
 
+@media screen and (min-width: $max-width - 200px){
+  div#content-outer{
+    width $header-min-width
+    margin auto
+  }
+}
+
 @font-face {
   font-family: UbuntuMono
   src:url('https://cdn.jsdelivr.net/gh/JonnyJong/blogStaticResource@main/fonts/UbuntuMono-R.woff2') format('woff2'),
@@ -15,6 +22,3 @@ body
 
 :root
   font-family: UbuntuMono, "PingFang SC", "Microsoft YaHei", Arial, Monaco, monospace, sans-serif
-
-.test
-  height 200vh

@@ -79,8 +79,25 @@ custom:
       border_radius:
       # 不透明度（较低的背景模糊度建议使用较高的不透明度，较低的不透明度建议使用较高的背景模糊度）
       opacity: ''
-      # 背景模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿）
+      # 背景模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿。设置 0 可关闭。）
       blur: 
+    
+    # 首页文章
+    index_posts:
+      # 封面默认样式【false、side、top、down；关闭、侧边（手机上将显示在上方）、顶部、文章信息下层】（未完成）
+      cover_default_style: side
+      # 封面位置（both、left、right。当 cover_default_style 为 side 时有效）（未配置）
+      position:
+      # 封面高度（单位：px。当 cover_default_style 为 top 或 down 时有效）（未配置）
+      top_default_height:
+      # 文章概要、描述
+      description:
+        # 类型【false、description、excerpt、content、auto；关闭、描述、概要、选取文章内容、自动（优先级：描述 > 概要 > 文章内容）】（未配置）
+        type:
+        # 无概要、描述时显示（当 type 为 description 或 excerpt 时有效）（未配置）
+        default_description:
+        # 最大长度（当 type 为 content 或 auto 时有效）
+        max_length: 500
 
   # 全局
   
@@ -98,8 +115,8 @@ custom:
   index_banner_img: "https://www.dmoe.cc/random.php"
   # 滚动视差
   index_banner_img_parallax: true
-  # 板块外边框（未配置）
-  block-margin:
+  # 板块外边框（单位：px、rem、em）（未完成）
+  block-margin: 
   # 板块内边框（未配置）
   block-padding:
   # 模块圆角（未配置）

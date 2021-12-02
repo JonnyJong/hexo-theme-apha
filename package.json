@@ -1,5 +1,29 @@
 {
   "name": "hexo-theme-apha",
   "version": "0.0.0",
-  "description": ""
+  "description": "a hexo theme.",
+  "author": "jonnyjonny",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JonnyJong/hexo-theme-apha.git"
+  },
+  "keywords": [
+    "hexo",
+    "theme",
+    "hexo-theme-apha",
+    "apha"
+  ],
+  "bugs": {
+    "url": "https://github.com/JonnyJong/hexo-theme-apha/issues"
+  },
+  "homepage": "https://github.com/JonnyJong/hexo-theme-apha",
+  "dependencies": {
+    "hexo-renderer-pug": "^2.0.0",
+    "hexo-renderer-stylus": "^2.0.1",
+    "hexo-renderer-markdown-it-plus": "^1.0.4"
+  }
 }

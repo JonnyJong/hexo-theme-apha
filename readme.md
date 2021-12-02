@@ -8,3 +8,11 @@ A Hexo theme. Stay tuned...
 - [ ] 增加各种功能
 - [ ] 增强自定义
 - [ ] ……
+
+# 安装
+```bash
+npm un hexo-renderer-marked --save
+npm i hexo-renderer-markdown-it-plus --save
+npm i hexo-renderer-pug --save
+npm i hexo-renderer-stylus --save
+```
