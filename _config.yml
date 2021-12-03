@@ -126,6 +126,8 @@ custom:
   global-blur: 
   # 最大宽度（单位：px。默认：1600px。过小的值会导致排版错乱。当设置的值极大时，约等于满屏幕宽度）
   max-width: 
+  # 模块风格（flat、soft；平面、拟态）
+  block-style:
 
 CDN:
   # 主要引入 Mainly introduced

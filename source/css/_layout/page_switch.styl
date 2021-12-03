@@ -1,0 +1,33 @@
+// div.page_switch
+// #page_switch .page-number.current
+nav#page_switch
+  margin-top $block-margin
+
+div.page_switch .extend,
+div.page_switch .page-number
+  display inline-block
+  height 1.6rem
+  width 1.6rem
+  color var(--global-text-color)
+  background-color var(--global-background-color)
+  margin-right $block-margin
+  line-height 1.7 rem
+  text-align center
+  overflow hidden
+  border-radius $border-radius
+  transition all 0.1s
+
+div.page_switch .extend:hover,
+div.page_switch .page-number:hover
+  background-color var(--main-color)
+  box-shadow 0px 0px 1rem var(--shadow-color-deep)
+
+div.page_switch .page-number.current
+  cursor default
+  background-color var(--main-color-fade)
+  box-shadow 0px 0px 1rem var(--shadow-color)
+  
+div.page_switch .extend
+  line-height 1.8rem
+
+// div.page_switch a

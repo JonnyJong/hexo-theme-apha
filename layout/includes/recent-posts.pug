@@ -40,17 +40,26 @@ if page.posts.length > 0
               a.post_title(href=url_for(post.path))=_p('post_item.notitle')
             p
             if post.date
-              time(datetime=post.date.toJSON())= _p('post_item.date') + ' ' + date(post.date, date_format)
+              i.fas.fa-pencil-alt.fa-fw
+              time(datetime=post.date.toJSON())= _p('post_item.date') + ' ' + date(post.date, date_format) + ' '
             if post.updated
-              time(datetime=post.updated.toJSON())= _p('post_item.updated') + ' ' + date(post.updated, date_format)
-            if post.tags
-              each tag in post.tags.data
-                a.post_tag(href=url_for(tag.path))=tag.name
-            if post.categories
+              i.fas.fa-history.fa-fw
+              time(datetime=post.updated.toJSON())= _p('post_item.updated') + ' ' + date(post.updated, date_format) + ' '
+            if (post.categories.data.length > 0)
+              i.fas.fa-folder.fa-fw
               each cate, count in post.categories.data
                 a.post_cate(href=url_for(cate.path))=cate.name
                 if (count < post.categories.data.length - 1)
-                  span=' / '
+                  span='/'
+            if (post.tags.data.length > 0)
+              span=' '
+              if (post.tags.data.length > 1)
+                i.fas.fa-tags.fa-fw
+              else
+                i.fas.fa-tag.fa-fw
+              each tag in post.tags.data
+                a.post_tag(href=url_for(tag.path))=tag.name
+                span=' '
             p
             if post.description
               span.post_description=post.description
