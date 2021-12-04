@@ -1,7 +1,43 @@
 extends includes/layout.pug
 
 block content
-  article#post
-    h1= page.title
-    != page.content
-  #paginator!= paginator()
+  .main_column#post
+    if theme.custom.ui.post.cover_style != 'banner'
+      .post_info
+        .post_cover
+          if page.cover
+            img.header_img(src=url_for(page.cover) alt='banner')
+          else
+            span
+        .post_info_oncover_positon_fix
+          .post_info_oncover
+            if page.title
+              span.post_title= page.title
+            else
+              span.post_title=_p('post_item.notitle')
+            p
+            if page.date
+              i.fas.fa-pencil-alt.fa-fw
+              time(datetime=page.date.toJSON())= _p('post_item.date') + ' ' + date(page.date, date_format) + ' '
+            if page.updated
+              i.fas.fa-history.fa-fw
+              time(datetime=page.updated.toJSON())= _p('post_item.updated') + ' ' + date(page.updated, date_format) + ' '
+            if (page.categories.data.length > 0)
+              i.fas.fa-folder.fa-fw
+              each cate, count in page.categories.data
+                a.page_cate(href=url_for(cate.path))=cate.name
+                if (count < page.categories.data.length - 1)
+                  span='/'
+            if (page.tags.data.length > 0)
+              span=' '
+              if (page.tags.data.length > 1)
+                i.fas.fa-tags.fa-fw
+              else
+                i.fas.fa-tag.fa-fw
+              each tag in page.tags.data
+                a.page_tag(href=url_for(tag.path))=tag.name
+                span=' '
+    article#post
+      //- h1= page.title
+      != page.content
+  include includes/page_switch.pug

@@ -1,35 +1,40 @@
 // 整体
-.header
-  background-image url(https://www.dmoe.cc/random.php) // 用于测试
-  if hexo-config('custom.index_banner_img_parallax')
-    background-attachment fixed
-    background-position center center
-    background-size cover
-  background-repeat: no-repeat
+$banner_height = hexo-config('custom.index_banner_height') ? convert(hexo-config('custom.index_banner_height')) : 100vh
 .header[header="home"]
-  background-color: var(--main-color)
+  height $banner_height
   if hexo-config('custom.ui.navbar.downside')
     if hexo-config('custom.ui.navbar.move_to_top')
-      height 100vh
       margin-top -60px
       transform: translate(0px, 60px);
     else
-      height 100vh
       margin-top -60px
       transform: translate(0px, 60px);
       margin-bottom 60px
-  else
-    height 100vh
   // background-image: hexo-config('custom.index_banner_img') ? convert(hexo-config('custom.index_banner_img')) : none
+.header[header="post"]
 .header[header="page"]
-  background-color: var(--main-color)
-  // background-image: url(https://api.dujin.org/bing/1920.php)
   if hexo-config('custom.ui.navbar.downside') 
     height calc(30rem - 60px)
   else
     height 30rem
     margin-top -60px
 
+//banner 图
+.header[header="post"] .header_img
+.header[header="page"] .header_img
+  height calc(30rem - 60px)
+.header .header_img
+  overflow hidden
+  position absolute
+  height 100%
+  width 100%
+  top 0px
+  z-index -1
+.header .header_img img
+  height 100%
+  width 100%
+  object-fit cover
+  background-color: var(--main-color)
 // 导航栏
 #navbar
   if hexo-config('custom.ui.navbar.downside') 
@@ -114,25 +119,29 @@
 
 // 大标题
 div.header_info
-  height 100vh
+  height 100%
   position relative
 
 @media screen and (min-width: $max-width){
-  div.header_info{
+  .header[header="home"] div.header_info{
     width $header-min-width
     margin auto
   }
 }
 
 @media screen and (max-width: $max-width){
-  div.header_info{
+  .header[header="home"] div.header_info{
     margin auto auto auto 100px
+  }
+  .header[header="page"] div.header_info,
+  .header[header="post"] div.header_info{
+    margin auto 100px
   }
 }
 
 div.header_info div.site_big_title
   position relative
-  padding calc(50vh - 4rem) 0 0 0
+  top 40%
   width max-content
 
 div.header[header="page"] div.header_info div.site_big_title
@@ -149,3 +158,20 @@ div.header_info div.site_big_title span.subtitle
   font-size 2rem
   color #fffe
   text-shadow: 0 0 0.5rem #000d
+
+div.header_info div.post_info
+  position absolute
+  top calc(50% + 30px)
+  width 100%
+  text-align center
+div.header_info div.post_info span.post_title
+  font-size 2rem
+  font-weight bold
+  color #fffe
+  text-shadow: 0 0 1.5rem #000d
+div.header_info div.post_info a
+div.header_info div.post_info i
+div.header_info div.post_info time
+div.header_info div.post_info span
+  color #fffe
+  text-shadow: 0 0 1.5rem #000d

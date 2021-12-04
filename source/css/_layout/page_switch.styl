@@ -1,7 +1,7 @@
-// div.page_switch
-// #page_switch .page-number.current
 nav#page_switch
   margin-top $block-margin
+  display flex
+  gap $block-margin
 
 div.page_switch .extend,
 div.page_switch .page-number
@@ -30,4 +30,59 @@ div.page_switch .page-number.current
 div.page_switch .extend
   line-height 1.8rem
 
-// div.page_switch a
+// 文章页中
+nav#page_switch div.prev-post.pull-left
+nav#page_switch div.next-post.pull-right
+  flex-grow 1
+  background-color var(--global-background-color)
+  if hexo-config('custom.global-blur') != 0
+    backdrop-filter: saturate(180%) blur($global-blur)
+  width 50%
+  border-radius $border-radius
+  min-height 100px // 待更改
+  transition all 0.5s
+nav#page_switch div.prev-post.pull-left:hover
+nav#page_switch div.next-post.pull-right:hover
+  box-shadow 0px 0px 1rem var(--shadow-color-deep)
+nav#page_switch div.prev-post.pull-left a
+nav#page_switch div.next-post.pull-right a
+  color var(--global-text-color)
+  padding $block-padding
+  box-sizing border-box
+  position absolute
+  width 100%
+  height 100%
+  text-shadow 0px 0px 1rem var(--shadow-color)
+
+nav#page_switch div.prev-post.pull-left span#post_title
+nav#page_switch div.next-post.pull-right span#post_title
+  font-size 1.4rem
+  transition all 0.5s
+nav#page_switch div.prev-post.pull-left span#post_title:hover
+nav#page_switch div.next-post.pull-right span#post_title:hover
+  color var(--main-color)
+  font-size 1.8rem
+  text-shadow 0px 0px 0.5rem var(--shadow-color)
+
+nav#page_switch div.prev-post.pull-left a#img
+nav#page_switch div.next-post.pull-right a#img
+  height 100px
+  padding 0px
+  overflow hidden
+  border-radius $border-radius
+  z-index: -1
+  opacity .5
+nav#page_switch div.prev-post.pull-left img
+nav#page_switch div.next-post.pull-right img
+  // height 
+  // position absolute
+  height 100%
+  width 100%
+  object-fit cover
+  transform none
+  transition all 3s
+nav#page_switch div.prev-post.pull-left:hover img
+nav#page_switch div.next-post.pull-right:hover img
+  transform scale(1.1)
+  transition all 0.5s
+  opacity .4

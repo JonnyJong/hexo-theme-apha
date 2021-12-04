@@ -16,6 +16,10 @@ body
 a
   text-decoration none
 
+#content-outer
+  if hexo-config('custom.ui.post.cover_style') != 'banner'
+    padding-top 60px
+
 @font-face {
   font-family: UbuntuMono
   src:url('https://cdn.jsdelivr.net/gh/JonnyJong/blogStaticResource@main/fonts/UbuntuMono-R.woff2') format('woff2'),

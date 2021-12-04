@@ -81,6 +81,10 @@ custom:
       opacity: ''
       # 背景模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿。设置 0 可关闭。）
       blur: 
+
+    # 侧边栏
+    sidebar:
+      enable: true
     
     # 首页文章
     index_posts:
@@ -90,6 +94,21 @@ custom:
       position:
       # 封面高度（单位：px。当 cover_default_style 为 top 或 down 时有效）（未配置）
       top_default_height:
+      
+      # 信息样式（false、gradient、block；无、渐变、块状。当 cover_default_style 为 down 时有效）（未配置）
+      incard_info_bg:
+      # block 背景样式（未配置）
+      incard_info_bg_block:
+        # 不透明度（默认 .2）（未配置）
+        opacity: ''
+        # 不透明度（默认 10px）（未配置）
+        blur: 
+      # gradient 背景样式（未配置）
+      incard_info_bg_gradient:
+        # 开始和结束颜色（色值必须用英文引号包括，例：'#2333'）（未配置）
+        begin_color: ''
+        end_color: ''
+      
       # 文章概要、描述
       description:
         # 类型【false、description、excerpt、content、auto；关闭、描述、概要、选取文章内容、自动（优先级：描述 > 概要 > 文章内容）】（未配置）
@@ -98,6 +117,29 @@ custom:
         default_description:
         # 最大长度（当 type 为 content 或 auto 时有效）
         max_length: 500
+
+    # 文章页样式
+    post:
+      # 封面样式（banner、incard；横幅、卡片中。默认：incard）
+      cover_style:
+      # 信息样式（false、gradient、block；无、渐变、块状。当 cover_style 为 incard 时有效）
+      incard_info_bg: gradient
+      # block 背景样式
+      incard_info_bg_block:
+        # 不透明度（默认 .2）
+        opacity: ''
+        # 不透明度（默认 10px）
+        blur: 
+      # gradient 背景样式
+      incard_info_bg_gradient:
+        # 开始和结束颜色（色值必须用英文引号包括，例：'#2333'）
+        begin_color: ''
+        end_color: ''
+
+    # 页面样式
+    page:
+      # 封面样式（banner、incard；横幅、卡片中。默认：incard）（未配置）
+      cover_style:
 
   # 全局
   
@@ -112,7 +154,9 @@ custom:
 
   # 主页横幅图像（故障的）
   index_banner_img: "https://www.dmoe.cc/random.php"
-  # 滚动视差
+  # 主页横幅高度（单位：px、vh、em、rem）
+  index_banner_height:
+  # 滚动视差（损坏于重写banner后）
   index_banner_img_parallax: true
   # 板块外边框（单位：px、rem、em）（未完成）
   block-margin: 
@@ -126,7 +170,7 @@ custom:
   global-blur: 
   # 最大宽度（单位：px。默认：1600px。过小的值会导致排版错乱。当设置的值极大时，约等于满屏幕宽度）
   max-width: 
-  # 模块风格（flat、soft；平面、拟态）
+  # 模块风格（flat、soft；平面、拟态）（未配置）
   block-style:
 
 CDN:
