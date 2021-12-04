@@ -63,3 +63,78 @@ if hexo-config('custom.ui.post.cover_style') != 'banner'
 // 文章内容
 .main_column#post article#post
   padding $block-padding
+
+.main_column#post article#post p
+  line-height 1.3rem
+
+h1
+  font-size 30px
+h2
+  font-size 26px
+h3
+  font-size 23px
+h4
+  font-size 20px
+h5
+  font-size 18px
+h6
+  font-size 18px
+if hexo-config('custom.ui.post.paragraph_title_readability')
+  article#post h1:before{
+      content:"H1"
+      font-size:25px
+  }
+  article#post h2:before{
+      content:"H2"
+      font-size:23px
+  }
+  article#post h3:before{
+      content:"H3"
+      font-size:21px
+  }
+  article#post h4:before{
+      content:"H4"
+      font-size:18px
+  }
+  article#post h5:before{
+      content:"H5"
+      font-size:16px
+  }
+  article#post h6:before{
+      content:"H6"
+      font-size:16px
+  }
+  article#post h1:before
+  article#post h2:before
+  article#post h3:before
+  article#post h4:before
+  article#post h5:before
+  article#post h6:before
+    margin-right 0.5rem
+    color var(--main-color)
+
+article#post a:hover
+  text-decoration underline
+  text-decoration-thickness 2px
+
+// figure
+article#post figure.highlight span
+  font-family UbuntuMono, "PingFang SC", "Microsoft YaHei", Arial, Monaco, monospace, sans-serif
+
+article#post kbd
+  border-radius: 4px;
+  background: linear-gradient(145deg, #ffffff, #d6d6d6);
+  box-shadow:  2px 2px 1px #626262ee,
+              -2px -2px 1px #ffffffee;
+  border solid 2px #0008
+  font-family UbuntuMono, "PingFang SC", "Microsoft YaHei", Arial, Monaco, monospace, sans-serif
+  padding 4px
+  margin 0 4px
+
+article#post code
+  font-family UbuntuMono, "PingFang SC", "Microsoft YaHei", Arial, Monaco, monospace, sans-serif
+  background-color #f001
+  color #f44
+
+article#post img
+  max-width 100%

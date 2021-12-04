@@ -28,9 +28,15 @@ body
   }
 }
 
-// 清除所有 a 标签下划线
 a
+  // 清除所有 a 标签下划线
   text-decoration none
+  // 自定义链接颜色
+  color var(--main-color)
+
+// 选中颜色
+::selection
+  background var(--selection-color)
 
 // 页面主要部分与上方间隔
 #content-outer

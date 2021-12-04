@@ -14,7 +14,8 @@ nav#page_switch
     if(page.prev)
       .prev-post.pull-left
         a(href=url_for(page.prev.path))
-          span=_p('post.prev_post')
+          i.fa.fa-chevron-left.fa-tw
+          span=' ' + _p('post.prev_post')
           br
           if page.prev.title
             span#post_title=page.prev.title
@@ -26,7 +27,8 @@ nav#page_switch
     if(page.next)
       .next-post.pull-right
         a(href=url_for(page.next.path))
-          sapn=_p('post.next_post')
+          sapn=_p('post.next_post') + ' '
+          i.fa.fa-chevron-right.fa-tw
           br
           if page.next.title
             span#post_title= page.next.title

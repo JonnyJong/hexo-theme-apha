@@ -2,10 +2,11 @@
 menu:
   主页: /, fas fa-home
   关于: /about/, fa fa-heart
-  归档: /archives/, fa fa-folder-open
+  友情链接: /link/, fa fa-link
   文章, fa fa-graduation-cap, '':
     标签: /tags/, fa fa-tags
     归类: /categories/, fa fa-archive
+    归档: /archives/, fa fa-folder-open
 
 # 信息
 info:
@@ -135,6 +136,21 @@ custom:
         # 开始和结束颜色（色值必须用英文引号包括，例：'#2333'）
         begin_color: ''
         end_color: ''
+
+      # 段落标题易读性增强
+      paragraph_title_readability: true
+
+      # 代码高亮样式（未配置，将允许用户插入自己在 highlightjs 选择的样式）
+      code_highlight_style:
+        light:
+        dark:
+      # 复制按钮
+      copy_button:
+      # 自动换行
+      word_warp:
+      # 折叠按钮
+
+      # 折叠（默认折叠、超过长度隐藏）
 
     # 页面样式
     page:
