@@ -9,51 +9,57 @@
 .main_column#post:hover
   box-shadow 0px 0px 1rem var(--shadow-color-deep)
 
-.main_column#post div.post_info div.post_cover
-  width 100%
-  height 20rem
-  overflow hidden
-  border-radius $border-radius $border-radius 0 0
-  position relative
-  background-color var(--main-color)
-.main_column#post div.post_info div.post_cover img
-  height 100%
-  width 100%
-  object-fit cover
+// 文章封面样式不为 banner 时生效（若有其他样式再做处理）
+if hexo-config('custom.ui.post.cover_style') != 'banner'
+  .main_column#post div.post_info
+    position relative
 
-.main_column#post div.post_info div.post_info_oncover_positon_fix
-  height 20rem
-  width 100%
-  position absolute
-  top 0px
-.main_column#post div.post_info div.post_info_oncover
-  position absolute
-  padding $block-margin + $block-padding
-  width 100%
-  bottom 0px
-  box-sizing border-box
-  if hexo-config('custom.ui.post.incard_info_bg') == 'block'
-    $info-oncover-opacity = hexo-config('custom.ui.post.incard_info_bg_block.opacity') ? convert(hexo-config('custom.ui.post.incard_info_bg_block.opacity')) : .2
-    $info-oncover-blur = hexo-config('custom.ui.post.incard_info_bg_block.blur') ? convert(hexo-config('custom.ui.post.incard_info_bg_block.blur')) : 2px
-    background rgba(0,0,0,$info-oncover-opacity)
-    if hexo-config('custom.ui.post.incard_info_bg_block.blur') != 0
-      backdrop-filter: saturate(180%) blur($info-oncover-blur)
-  else if hexo-config('custom.ui.post.incard_info_bg') == 'gradient'
-    $info-begin-color = hexo-config('custom.ui.post.incard_info_bg_gradient.begin_color') ? convert(hexo-config('custom.ui.post.incard_info_bg_gradient.begin_color')) : #0000
-    $info-end-color = hexo-config('custom.ui.post.incard_info_bg_gradient.end_color') ? convert(hexo-config('custom.ui.post.incard_info_bg_gradient.end_color')) : #000f
-    background-image linear-gradient($info-begin-color, $info-end-color)
-.main_column#post div.post_info div.post_info_oncover span.post_title
-  font-size 2rem
-  font-weight bold
-  color #fffe
-  text-shadow: 0 0 1.5rem #000d
+  .main_column#post div.post_info div.post_cover
+    width 100%
+    height 20rem
+    overflow hidden
+    border-radius $border-radius $border-radius 0 0
+    position relative
+    background-color var(--main-color)
+  .main_column#post div.post_info div.post_cover img
+    height 100%
+    width 100%
+    object-fit cover
 
-.main_column#post div.post_info div.post_info_oncover a
-.main_column#post div.post_info div.post_info_oncover i
-.main_column#post div.post_info div.post_info_oncover time
-.main_column#post div.post_info div.post_info_oncover span
-  color #fffe
-  text-shadow: 0 0 1.5rem #000d
+  .main_column#post div.post_info div.post_info_oncover_positon_fix
+    height 20rem
+    width 100%
+    position absolute
+    top 0px
+  .main_column#post div.post_info div.post_info_oncover
+    position absolute
+    padding $block-margin + $block-padding
+    width 100%
+    bottom 0px
+    box-sizing border-box
+    if hexo-config('custom.ui.post.incard_info_bg') == 'block'
+      $info-oncover-opacity = hexo-config('custom.ui.post.incard_info_bg_block.opacity') ? convert(hexo-config('custom.ui.post.incard_info_bg_block.opacity')) : .2
+      $info-oncover-blur = hexo-config('custom.ui.post.incard_info_bg_block.blur') ? convert(hexo-config('custom.ui.post.incard_info_bg_block.blur')) : 2px
+      background rgba(0,0,0,$info-oncover-opacity)
+      if hexo-config('custom.ui.post.incard_info_bg_block.blur') != 0
+        backdrop-filter: saturate(180%) blur($info-oncover-blur)
+    else if hexo-config('custom.ui.post.incard_info_bg') == 'gradient'
+      $info-begin-color = hexo-config('custom.ui.post.incard_info_bg_gradient.begin_color') ? convert(hexo-config('custom.ui.post.incard_info_bg_gradient.begin_color')) : #0000
+      $info-end-color = hexo-config('custom.ui.post.incard_info_bg_gradient.end_color') ? convert(hexo-config('custom.ui.post.incard_info_bg_gradient.end_color')) : #000f
+      background-image linear-gradient($info-begin-color, $info-end-color)
+  .main_column#post div.post_info div.post_info_oncover span.post_title
+    font-size 2rem
+    font-weight bold
+    color #fffe
+    text-shadow: 0 0 1.5rem #000d
 
+  .main_column#post div.post_info div.post_info_oncover a
+  .main_column#post div.post_info div.post_info_oncover i
+  .main_column#post div.post_info div.post_info_oncover time
+  .main_column#post div.post_info div.post_info_oncover span
+    color #fffe
+    text-shadow: 0 0 1.5rem #000d
+
+// 文章内容
 .main_column#post article#post
   padding $block-padding

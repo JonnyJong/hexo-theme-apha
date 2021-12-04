@@ -1,25 +1,3 @@
-@import '_var'
-@import "_layout/*"
-
-body
-  margin 0
-  // background rgba(240, 61, 61, 0.1)
-  background-image: url(https://api.dujin.org/bing/1920.php); // 用于测试
-
-@media screen and (min-width: $max-width - 200px){
-  div#content-outer{
-    width $header-min-width
-    margin auto
-  }
-}
-
-a
-  text-decoration none
-
-#content-outer
-  if hexo-config('custom.ui.post.cover_style') != 'banner'
-    padding-top 60px
-
 @font-face {
   font-family: UbuntuMono
   src:url('https://cdn.jsdelivr.net/gh/JonnyJong/blogStaticResource@main/fonts/UbuntuMono-R.woff2') format('woff2'),
@@ -31,3 +9,30 @@ a
 
 :root
   font-family: UbuntuMono, "PingFang SC", "Microsoft YaHei", Arial, Monaco, monospace, sans-serif
+  // 用于修复页面加载瞬间的排版错乱
+  font-size: 16px
+
+body
+  margin 0
+  // background rgba(240, 61, 61, 0.1)
+  background-image: url(https://api.dujin.org/bing/1920.php); // 用于测试
+
+@import '_var'
+@import "_layout/*"
+
+// 页面主要部分的自适应
+@media screen and (min-width: $max-width - 200px){
+  div#content-outer{
+    width $header-min-width
+    margin auto
+  }
+}
+
+// 清除所有 a 标签下划线
+a
+  text-decoration none
+
+// 页面主要部分与上方间隔
+#content-outer
+  if hexo-config('custom.ui.post.cover_style') != 'banner'
+    padding-top 60px

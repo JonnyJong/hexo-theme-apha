@@ -14,7 +14,7 @@ html(lang=config.language)
     title= pageTitle
     //- 引用CDN
     link(rel='stylesheet', href=theme.CDN.mainCss)
-    link(rel='stylesheet', href=theme.CDN.mainJs)
+    script(type="text/javascript" src=theme.CDN.mainJs)
     link(rel='stylesheet', href=theme.CDN.fontawesome)
   body
     include ./header/header.pug
@@ -24,6 +24,7 @@ html(lang=config.language)
           div!= body
         else
           block content
+    .before_footer
     footer
       span Site construction by
       span= ' ' + config.author + ' '

@@ -159,19 +159,21 @@ div.header_info div.site_big_title span.subtitle
   color #fffe
   text-shadow: 0 0 0.5rem #000d
 
-div.header_info div.post_info
-  position absolute
-  top calc(50% + 30px)
-  width 100%
-  text-align center
-div.header_info div.post_info span.post_title
-  font-size 2rem
-  font-weight bold
-  color #fffe
-  text-shadow: 0 0 1.5rem #000d
-div.header_info div.post_info a
-div.header_info div.post_info i
-div.header_info div.post_info time
-div.header_info div.post_info span
-  color #fffe
-  text-shadow: 0 0 1.5rem #000d
+//仅在文章封面样式为 banner 时生效
+if hexo-config('custom.ui.post.cover_style') == 'banner'
+  div.header_info div.post_info
+    position absolute
+    top calc(50% + 30px)
+    width 100%
+    text-align center
+  div.header_info div.post_info span.post_title
+    font-size 2rem
+    font-weight bold
+    color #fffe
+    text-shadow: 0 0 1.5rem #000d
+  div.header_info div.post_info a
+  div.header_info div.post_info i
+  div.header_info div.post_info time
+  div.header_info div.post_info span
+    color #fffe
+    text-shadow: 0 0 1.5rem #000d

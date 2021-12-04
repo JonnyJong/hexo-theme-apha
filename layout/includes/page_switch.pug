@@ -20,7 +20,7 @@ nav#page_switch
             span#post_title=page.prev.title
           else
             span#post_title=_p('post_item.notitle')
-        a#img(href=url_for(page.prev.path))
+        a.img(href=url_for(page.prev.path))
           if page.prev.cover
             img.post_img(src=url_for(page.prev.cover) alt='post_img')
     if(page.next)
@@ -32,6 +32,6 @@ nav#page_switch
             span#post_title= page.next.title
           else
             span#post_title=_p('post_item.notitle')
-        a#img(href=url_for(page.next.path))
+        a.img(href=url_for(page.next.path))
           if page.next.cover
             img.post_img(src=url_for(page.next.cover) alt='post_img')
