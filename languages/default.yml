@@ -8,3 +8,5 @@ footer:
 post:
   next_post: 下一篇文章
   prev_post: 上一篇文章
+page:
+  archive: 归档

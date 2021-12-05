@@ -8,7 +8,6 @@ div.recent-post-item
     backdrop-filter: saturate(180%) blur($global-blur)
   transition all 0.5s
 div.recent-post-item:hover
-  // box-shadow 0px 0px 1rem var(--shadow-color-deep), inset 2rem 2rem 4rem #fff1, inset -2rem -2rem 4rem #0001 // 两种阴影样式（待处理）
   box-shadow 0px 0px 1rem var(--shadow-color-deep)
 
 div.recent-post-item div.post_cover.side
@@ -16,7 +15,7 @@ div.recent-post-item div.post_cover.side
   width 30rem
   max-width 40%
   overflow hidden
-  border-radius $border-radius 0 0 $border-radius //当前为仅为左侧
+  border-radius $border-radius 0 0 $border-radius
 
 div.recent-post-item div.post_cover.side img
   height 100%
@@ -33,6 +32,9 @@ div.recent-post-item div.post_cover.side img:hover
 div.recent-post-item div.post_info
   margin auto 0
   padding $block-padding
+div.recent-post-item div.post_info a.post_title i.fa.fa-link.fa-tw
+  font-size 1.4rem
+  transition all 0.1s
 div.recent-post-item div.post_info a.post_title
   font-size 1.8rem
   color var(--global-text-color)
@@ -41,6 +43,8 @@ div.recent-post-item div.post_info a.post_title
 div.recent-post-item div.post_info a.post_title:hover
   color var(--main-color)
   font-size 2rem
+div.recent-post-item div.post_info a.post_title:hover i.fa.fa-link.fa-tw
+  font-size 1.6rem
 
 div.recent-post-item div.post_info p
   margin 0.4rem
@@ -53,7 +57,6 @@ div.recent-post-item div.post_info a:hover
 
 div.recent-post-item div.post_info span.post_description
   line-height 1.5rem
-  // -webkit-line-clamp 6
   display -webkit-box
   -webkit-box-orient vertical
   -webkit-line-clamp 8

@@ -19,38 +19,6 @@ info:
   # 头像（默认使用站点图标）
   avatar: '/avatar.png'
 
-# 快捷入口（首页标题旁）
-# 只制作基本的框架，等待制作各种风格的模板插件。故暂时停工
-quick_entrance:
-  # 是否开启（true/false）
-  enable: false
-  # 组件（不建议设置过多的组件）
-  items:
-      # 组件 id（作用于页面排版、不可见）
-    - id: 
-      # 自定义 html + css（开启后下列选项除 content 外均无效）
-      custom:
-      # 组件名
-      name: 
-      # 链接
-      url: 
-      # 样式（突起：下图上文背景、上图下文背景、左上图上文背景内容；凹下：下图上文背景、上图下文背景、左上图上文背景内容） 
-      # 暂时不可用：由风格插件决定
-      # style: 
-      # 类型
-      type:
-      # 尺寸（1x1、1x2、2x2）
-      size: 
-      # 图标
-      img: 
-      # 背景图片
-      background_img: 
-      # 颜色
-      color:
-      # 内容（支持 html + css）
-      content: 
-
-
 # 自定义外观
 custom:
   # 界面
@@ -82,40 +50,14 @@ custom:
       opacity: ''
       # 背景模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿。设置 0 可关闭。）
       blur: 
-
-    # 侧边栏
-    sidebar:
-      enable: true
     
     # 首页文章
     index_posts:
-      # 封面默认样式【false、side、top、down；关闭、侧边（手机上将显示在上方）、顶部、文章信息下层】（未完成）
+      # 封面默认样式【false、side；关闭、侧边】
       cover_default_style: side
-      # 封面位置（both、left、right。当 cover_default_style 为 side 时有效）（未配置）
-      position:
-      # 封面高度（单位：px。当 cover_default_style 为 top 或 down 时有效）（未配置）
-      top_default_height:
-      
-      # 信息样式（false、gradient、block；无、渐变、块状。当 cover_default_style 为 down 时有效）（未配置）
-      incard_info_bg:
-      # block 背景样式（未配置）
-      incard_info_bg_block:
-        # 不透明度（默认 .2）（未配置）
-        opacity: ''
-        # 不透明度（默认 10px）（未配置）
-        blur: 
-      # gradient 背景样式（未配置）
-      incard_info_bg_gradient:
-        # 开始和结束颜色（色值必须用英文引号包括，例：'#2333'）（未配置）
-        begin_color: ''
-        end_color: ''
       
       # 文章概要、描述
       description:
-        # 类型【false、description、excerpt、content、auto；关闭、描述、概要、选取文章内容、自动（优先级：描述 > 概要 > 文章内容）】（未配置）
-        type:
-        # 无概要、描述时显示（当 type 为 description 或 excerpt 时有效）（未配置）
-        default_description:
         # 最大长度（当 type 为 content 或 auto 时有效）
         max_length: 500
 
@@ -140,54 +82,18 @@ custom:
       # 段落标题易读性增强
       paragraph_title_readability: true
 
-      # 代码高亮样式（未配置，将允许用户插入自己在 highlightjs 选择的样式）
-      code_highlight_style:
-        light:
-        dark:
-      # 复制按钮
-      copy_button:
-      # 自动换行
-      word_warp:
-      # 折叠按钮
-
-      # 折叠（默认折叠、超过长度隐藏）
-
-    # 页面样式
-    page:
-      # 封面样式（banner、incard；横幅、卡片中。默认：incard）（未配置）
-      cover_style:
-
   # 全局
   
   # 主题色
   theme_color:
     main: "#009688" 
 
-  # 字体（暂未完成）
-  font:
-    font-family: ''
-    font-url: ''
-
-  # 主页横幅图像（故障的）
-  index_banner_img: "https://www.dmoe.cc/random.php"
-  # 主页横幅高度（单位：px、vh、em、rem）
-  index_banner_height:
-  # 滚动视差（损坏于重写banner后）
-  index_banner_img_parallax: true
-  # 板块外边框（单位：px、rem、em）（未完成）
-  block-margin: 
-  # 板块内边框（未配置）
-  block-padding:
-  # 模块圆角（单位：px rem em）（未完成）
-  border-radius:
   # 模块背景不透明度（较低的背景模糊度建议使用较高的不透明度，较低的不透明度建议使用较高的背景模糊度）
   global-opacity: ''
   # 模块背景高斯模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿。设置 0 可关闭。）
   global-blur: 
   # 最大宽度（单位：px。默认：1600px。过小的值会导致排版错乱。当设置的值极大时，约等于满屏幕宽度）
   max-width: 
-  # 模块风格（flat、soft；平面、拟态）（未配置）
-  block-style:
 
 CDN:
   # 主要引入 Mainly introduced

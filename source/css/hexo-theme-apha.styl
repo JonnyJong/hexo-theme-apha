@@ -14,8 +14,6 @@
 
 body
   margin 0
-  // background rgba(240, 61, 61, 0.1)
-  background-image: url(https://api.dujin.org/bing/1920.php); // 用于测试
 
 @import '_var'
 @import "_layout/*"
@@ -36,9 +34,25 @@ a
 
 // 选中颜色
 ::selection
-  background var(--selection-color)
+  background var(--main-color)
+  color var(--selection-text-color)
 
 // 页面主要部分与上方间隔
 #content-outer
   if hexo-config('custom.ui.post.cover_style') != 'banner'
     padding-top 60px
+
+// hr
+hr
+  border-top 4px dashed var(--main-color)
+
+// 滚动条
+::-webkit-scrollbar
+  // background #8881
+  height 14px
+  width 14px
+::-webkit-scrollbar-thumb
+  background #0002
+::-webkit-scrollbar-thumb:hover
+  background #0004
+  

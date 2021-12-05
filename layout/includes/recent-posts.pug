@@ -34,10 +34,16 @@ if page.posts.length > 0
                   default
                     - let = if_cover = 'no_cover'
           .post_info(class=if_cover class=cover_type)
-            if post.title
-              a.post_title(href=url_for(post.path))= post.title
+            if post.link
+              
+              a.post_title(href=url_for(post.link))
+                i.fa.fa-link.fa-tw
+                span=post.title
             else
-              a.post_title(href=url_for(post.path))=_p('post_item.notitle')
+              if post.title
+                a.post_title(href=url_for(post.path))= post.title
+              else
+                a.post_title(href=url_for(post.path))=_p('post_item.notitle')
             p
             if post.date
               i.fas.fa-pencil-alt.fa-fw
