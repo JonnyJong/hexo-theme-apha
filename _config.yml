@@ -83,7 +83,7 @@ custom:
       # 背景模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿。设置 0 可关闭。）
       blur: 
 
-    # 侧边栏
+    # 侧边栏（未完成）
     sidebar:
       enable: true
     
@@ -149,8 +149,10 @@ custom:
       # 自动换行
       word_warp:
       # 折叠按钮
-
       # 折叠（默认折叠、超过长度隐藏）
+
+      # 图册样式（未配置，@http://localhost:4000/2013/12/25/gallery-post/）（文章开头、文章底、侧栏、封面）
+      gallery_style:
 
     # 页面样式
     page:
@@ -195,3 +197,6 @@ CDN:
   mainJs: /js/hexo-theme-apha.js
 
   fontawesome: https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css
+
+  # highlight_js_css: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/styles/default.min.css
+  # highlight_js_js: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/highlight.min.js
