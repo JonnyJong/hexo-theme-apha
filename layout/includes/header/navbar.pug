@@ -12,22 +12,23 @@ nav#navbar
       else if theme.custom.ui.navbar.text
         span=theme.custom.ui.navbar.text
 
-  .nav_menu
-    div(class='menu_items')
-      each content, label in theme.menu
-        if typeof content == 'object'
-          div(class='menu_item')
-            a(class=label.split(', ')[2])
-              i(class=label.split(', ')[1]+' fa-fw')
-              span=label.split(', ')[0]
-              div(class='sub_menu')
-                each subcontent, sublabel in content
-                  div(class='sub_menu_item')
-                    a(href=subcontent.split(', ')[0])
-                      i(class=subcontent.split(', ')[1]+' fa-fw')
-                      span=sublabel
-        else
-          div(class='menu_item')
-            a(href=content.split(', ')[0])
-              i(class=content.split(', ')[1]+' fa-fw')
-              span=label
+  if theme.menu
+    .nav_menu
+      div(class='menu_items')
+        each content, label in theme.menu
+          if typeof content == 'object'
+            div(class='menu_item')
+              a(class=label.split(', ')[2])
+                i(class=label.split(', ')[1]+' fa-fw')
+                span=label.split(', ')[0]
+                div(class='sub_menu')
+                  each subcontent, sublabel in content
+                    div(class='sub_menu_item')
+                      a(href=subcontent.split(', ')[0])
+                        i(class=subcontent.split(', ')[1]+' fa-fw')
+                        span=sublabel
+          else
+            div(class='menu_item')
+              a(href=content.split(', ')[0])
+                i(class=content.split(', ')[1]+' fa-fw')
+                span=label
