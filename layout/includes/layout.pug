@@ -7,6 +7,10 @@
 - if (is_year()) pageTitle += ': ' + page.year
 - pageTitle += ' [ ' + config.title + ' ]'
 
+- var what_is_this_page = 'page'
+- if (is_home()) what_is_this_page = 'home'
+- if (is_post()) what_is_this_page = 'post'
+
 doctype html
 html(lang=config.language)
   head
@@ -18,7 +22,7 @@ html(lang=config.language)
     link(rel='stylesheet', href=theme.CDN.fontawesome)
     //- link(rel='stylesheet', href=theme.CDN.highlight_js_css)
     //- script(src=theme.CDN.highlight_js_js)
-  body
+  body(where=what_is_this_page)
     include ./header/header.pug
     #content-outer
       #content-inner

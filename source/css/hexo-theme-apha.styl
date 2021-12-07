@@ -12,17 +12,41 @@
   // 用于修复页面加载瞬间的排版错乱
   font-size: 16px
 
+// 自定义背景
 body
   margin 0
-  // background rgba(240, 61, 61, 0.1)
-  background-image: url(https://api.dujin.org/bing/1920.php); // 用于测试
+  position relative
+  background hexo-config("custom.background.background") ? convert(hexo-config("custom.background.background")) : var(--bg-color)
+if hexo-config("custom.background.style") == 'blur'
+  body::after
+    background-image hexo-config("custom.background.blur.img") ? convert(hexo-config("custom.background.blur.img")) : none
+    $bg_style_blur_filter = hexo-config("custom.background.blur.blur") ? convert(hexo-config("custom.background.blur.blur")) : 20px
+    filter saturate(180%) blur($bg_style_blur_filter)
+    content ""
+    position absolute
+    top 0
+    left 0
+    width 100%
+    height 100%
+    z-index -1
+    if hexo-config("custom.background.blur.scroll")
+      background-attachment scroll
+    else
+      background-attachment fixed
+    opacity hexo-config("custom.background.blur.opacity") ? convert(hexo-config("custom.background.blur.opacity")) : 30%
+    background-position center center
+else if hexo-config("custom.background.style") == 'bg_img'
+  body
+    background-image hexo-config("custom.background.bg_img") ? convert(hexo-config("custom.background.bg_img")) : none
 
 @import '_var'
 @import "_layout/*"
 
+// 自定义背景
+
 // 页面主要部分的自适应
 @media screen and (min-width: $max-width - 200px){
-  div#content-outer{
+  div#content-inner{
     width $header-min-width
     margin auto
   }
@@ -40,7 +64,11 @@ a
   color var(--selection-text-color)
 
 // 页面主要部分与上方间隔
-#content-outer
+#content-inner
+  padding-top $block-margin
+  padding-bottom $block-margin
+body[where='post'] #content-inner
+  padding-bottom calc(var(--post-bottom-margin) + 140px)
   if hexo-config('custom.ui.post.cover_style') != 'banner'
     padding-top 60px
 

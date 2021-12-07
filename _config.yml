@@ -65,23 +65,27 @@ custom:
       separate: true
       # 按钮居中（只有 separate 为 false 时有效）
       center: false
-      # 与屏幕底部边缘距离（只有 downside 为 true 时有效。false、value；无、数值。支持 % px vw em 等单位）
+      # 与屏幕底部边缘距离（false、value；无、数值。支持 % px vw em 等单位）
         # （与 move_to_top: false, min_weight: 0%, border_radius: 10px 共同使用可形成 docker 效果）
       distance:
       # 两端与屏幕间隔（当 width 不留空时不建议设置此项。建议大于 36px。默认：36px）
-      lr_distance: 36px
+      lr_distance:
       # 图标（false、favicon、avatar、url；关闭、站点图标、头像）
       icon: /logo.png
       # 文字（false、default、custom；关闭、站点名、自定义）
       text: default
       # 宽度（100% ~ 0%、支持 % px vw em 等单位）
       width:
-      # 圆角（none、default、value；无、默认、数值。只有 顶栏最小宽度 <100% 时有效）
+      # 圆角（none、default、value；无、默认、数值。建议使用 px 而不是 %，使用 % 会导致变为椭圆）
       border_radius:
       # 不透明度（较低的背景模糊度建议使用较高的不透明度，较低的不透明度建议使用较高的背景模糊度）
       opacity: ''
       # 背景模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿。设置 0 可关闭。）
+        # 一般情况下，Firefox 浏览器中 backdrop-filter 有限制
       blur: 
+      # 高度（未配置）
+      height:
+      # 多行（未设计）
 
     # 侧边栏（未完成）
     sidebar:
@@ -140,16 +144,16 @@ custom:
       # 段落标题易读性增强
       paragraph_title_readability: true
 
-      # 代码高亮样式（未配置，将允许用户插入自己在 highlightjs 选择的样式）
+      # 代码高亮样式（未配置，将允许用户插入自己在 highlightjs 选择的样式）（未配置）
       code_highlight_style:
         light:
         dark:
-      # 复制按钮
+      # 复制按钮（未配置）
       copy_button:
-      # 自动换行
+      # 自动换行（未配置）
       word_warp:
-      # 折叠按钮
-      # 折叠（默认折叠、超过长度隐藏）
+      # 折叠按钮（未配置）
+      # 折叠（默认折叠、超过长度隐藏）（未配置）
 
       # 图册样式（未配置，@http://localhost:4000/2013/12/25/gallery-post/）（文章开头、文章底、侧栏、封面）
       gallery_style:
@@ -163,24 +167,40 @@ custom:
   
   # 主题色
   theme_color:
-    main: "#009688" 
+    main: "#009688"
 
   # 字体（暂未完成）
   font:
     font-family: ''
     font-url: ''
 
-  # 主页横幅图像（故障的）
-  index_banner_img: "https://www.dmoe.cc/random.php"
+  # 自定义背景（均遵照 css 语法）
+  background:
+    # 类型（none、blur、bg_img；无、朦胧、自定义背景）
+    style: blur
+    blur:
+      # 图片
+      img: 'url(https://www.dmoe.cc/random.php)' # 按照 css 语法
+      # 跟随滚动
+      scroll: false
+      # 模糊度（单位：px）
+      blur:
+      # 不透明度
+      opacity:
+    bg_img: '' # 按照 css 语法，作用于 background-image
+
+
+  # 主页横幅图像
+  index_banner_img: 'url(https://www.dmoe.cc/random.php)'
   # 主页横幅高度（单位：px、vh、em、rem）
-  index_banner_height:
-  # 滚动视差（损坏于重写banner后）
+  index_banner_height: 
+  # 滚动视差
   index_banner_img_parallax: true
-  # 板块外边框（单位：px、rem、em）（未完成）
+  # 板块外边框（单位：px、rem、em）
   block-margin: 
-  # 板块内边框（未配置）
-  block-padding:
-  # 模块圆角（单位：px rem em）（未完成）
+  # 板块内边框
+  block-padding: 
+  # 模块圆角（单位：px rem em）
   border-radius:
   # 模块背景不透明度（较低的背景模糊度建议使用较高的不透明度，较低的不透明度建议使用较高的背景模糊度）
   global-opacity: ''
@@ -188,8 +208,8 @@ custom:
   global-blur: 
   # 最大宽度（单位：px。默认：1600px。过小的值会导致排版错乱。当设置的值极大时，约等于满屏幕宽度）
   max-width: 
-  # 模块风格（flat、soft；平面、拟态）（未配置）
-  block-style:
+  # 模块风格（flat、soft；平面、拟态）
+  block-style: soft
 
 CDN:
   # 主要引入 Mainly introduced

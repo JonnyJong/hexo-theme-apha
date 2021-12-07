@@ -3,13 +3,19 @@ div.recent-post-item
   margin-top $block-margin
   height 20rem
   border-radius $border-radius
-  background-color var(--global-background-color)
   if hexo-config('custom.global-blur') != 0
     backdrop-filter: saturate(180%) blur($global-blur)
   transition all 0.5s
+  if hexo-config('custom.block-style') == 'soft'
+    box-shadow $soft_block_style_shadow
+    background $soft_block_style_bg
+  else
+    background var(--global-background-color)
 div.recent-post-item:hover
-  // box-shadow 0px 0px 1rem var(--shadow-color-deep), inset 2rem 2rem 4rem #fff1, inset -2rem -2rem 4rem #0001 // 两种阴影样式（待处理）
-  box-shadow 0px 0px 1rem var(--shadow-color-deep)
+  if hexo-config('custom.block-style') == 'soft'
+    box-shadow $soft_block_style_shadow_hover
+  else
+    box-shadow $flat_block_style_shadow
 
 div.recent-post-item div.post_cover.side
   height 100%

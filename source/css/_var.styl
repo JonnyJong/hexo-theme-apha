@@ -7,8 +7,12 @@ $max-width = hexo-config('custom.max-width') ? convert(hexo-config('custom.max-w
 $block-margin = hexo-config('custom.block-margin') ? convert(hexo-config('custom.block-margin')) : 1rem
 $block-padding = hexo-config('custom.block-padding') ? convert(hexo-config('custom.block-padding')) : 1rem
 $border-radius = hexo-config('custom.border-radius') ? convert(hexo-config('custom.border-radius')) : 1rem
-$global-opacity = hexo-config('custom.global-opacity') ? convert(hexo-config('custom.global-opacity')) : .9
+$global-opacity = hexo-config('custom.global-opacity') ? convert(hexo-config('custom.global-opacity')) : .5
 $global-blur = hexo-config('custom.global-blur') ? convert(hexo-config('custom.global-blur')) : 20px
+$flat_block_style_shadow = 0px 0px 1rem var(--shadow-color-deep)
+$soft_block_style_shadow_hover = inset 2rem 2rem 4rem #fff1, inset -2rem -2rem 4rem #0001, 0px 0px 1rem var(--shadow-color-deep)
+$soft_block_style_shadow = inset 2rem 2rem 4rem #fff1, inset -2rem -2rem 4rem #0001
+$soft_block_style_bg = linear-gradient(145deg, rgba(255,255,255,$global-opacity), rgba(200,200,200,$global-opacity))
 //header
 $header-min-width = $max-width - 200px
 $navbar-LR-padding = hexo-config('custom.ui.navbar.lr_distance') ? convert(hexo-config('custom.ui.navbar.lr_distance')) : 36px
@@ -17,7 +21,6 @@ $navbar-blur = hexo-config('custom.ui.navbar.blur') ? convert(hexo-config('custo
 
 :root
   --main-color hexo-config('custom.theme_color.main') ? convert(hexo-config('custom.theme_color.main')) : #009688
-  $global-blur = hexo-config('custom.theme_color.main') ? convert(hexo-config('custom.theme_color.main')) : #009688 // 待处理
   --main-color-fade #009688ee
   --selection-text-color #eee
 
@@ -30,3 +33,7 @@ $navbar-blur = hexo-config('custom.ui.navbar.blur') ? convert(hexo-config('custo
 
   --global-font hexo-config('custom.font.font-family') ? convert(hexo-config('custom.font,font-family')) : UbuntuMono
 
+  --post-bottom-margin $block-margin
+
+  --bg-color #fff
+  --bg-color-tran #fffd

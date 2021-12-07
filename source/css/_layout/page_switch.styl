@@ -18,13 +18,14 @@ div.page_switch .page-number
 
 div.page_switch .extend:hover,
 div.page_switch .page-number:hover
-  background-color var(--main-color)
-  box-shadow 0px 0px 1rem var(--shadow-color-deep)
+  // background-color var(--main-color)
+  box-shadow 0px 0px 1rem var(--shadow-color-deep), inset 0px 0px 4px 4px var(--main-color)
 
 div.page_switch .page-number.current
-  cursor default
   background-color var(--main-color-fade)
   box-shadow 0px 0px 1rem var(--shadow-color)
+div.page_switch .page-number.current:hover
+  cursor default
   
 div.page_switch .extend
   line-height 1.8rem
@@ -32,7 +33,6 @@ div.page_switch .extend
 // 文章页中
 nav#page_switch div.prev-post.pull-left
 nav#page_switch div.next-post.pull-right
-  background-color var(--global-background-color)
   if hexo-config('custom.global-blur') != 0
     backdrop-filter: saturate(180%) blur($global-blur)
   --switch-page-in-post $block-margin / 2
@@ -42,13 +42,21 @@ nav#page_switch div.next-post.pull-right
   transition all 0.5s
   overflow hidden
   position relative
+  if hexo-config('custom.block-style') == 'soft'
+    box-shadow $soft_block_style_shadow
+    background $soft_block_style_bg
+  else
+    background var(--global-background-color)
 nav#page_switch div.prev-post.pull-left
   float left
 nav#page_switch div.next-post.pull-right
   float right
 nav#page_switch div.prev-post.pull-left:hover
 nav#page_switch div.next-post.pull-right:hover
-  box-shadow 0px 0px 1rem var(--shadow-color-deep)
+  if hexo-config('custom.block-style') == 'soft'
+    box-shadow $soft_block_style_shadow_hover
+  else
+    box-shadow $flat_block_style_shadow
 nav#page_switch div.prev-post.pull-left a
 nav#page_switch div.next-post.pull-right a
   color var(--global-text-color)
