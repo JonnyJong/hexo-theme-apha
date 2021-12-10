@@ -67,7 +67,7 @@ custom:
       center: false
       # 与屏幕底部边缘距离（false、value；无、数值。支持 % px vw em 等单位）
         # （与 move_to_top: false, min_weight: 0%, border_radius: 10px 共同使用可形成 docker 效果）
-      distance:
+      distance: 20px
       # 两端与屏幕间隔（当 width 不留空时不建议设置此项。建议大于 36px。默认：36px）
       lr_distance:
       # 图标（false、favicon、avatar、url；关闭、站点图标、头像）
@@ -75,9 +75,9 @@ custom:
       # 文字（false、default、custom；关闭、站点名、自定义）
       text: default
       # 宽度（100% ~ 0%、支持 % px vw em 等单位）
-      width:
+      width: 80%
       # 圆角（none、default、value；无、默认、数值。建议使用 px 而不是 %，使用 % 会导致变为椭圆）
-      border_radius:
+      border_radius: 1000px
       # 不透明度（较低的背景模糊度建议使用较高的不透明度，较低的不透明度建议使用较高的背景模糊度）
       opacity: ''
       # 背景模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿。设置 0 可关闭。）
@@ -180,18 +180,18 @@ custom:
     style: blur
     blur:
       # 图片
-      img: 'url(https://www.dmoe.cc/random.php)' # 按照 css 语法
+      img: 'url(https://api.dujin.org/bing/1920.php)' # 按照 css 语法
       # 跟随滚动
       scroll: false
       # 模糊度（单位：px）
-      blur:
+      blur: '0px'
       # 不透明度
-      opacity:
+      opacity: '1'
     bg_img: '' # 按照 css 语法，作用于 background-image
 
 
   # 主页横幅图像
-  index_banner_img: 'url(https://www.dmoe.cc/random.php)'
+  index_banner_img: 'url(https://api.dujin.org/bing/1920.php)'
   # 主页横幅高度（单位：px、vh、em、rem）
   index_banner_height: 
   # 滚动视差

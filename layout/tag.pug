@@ -8,4 +8,5 @@ block content
       time(datetime=date_xml(article.date))= date(article.date)
       br.clear
     - })
-  #paginator!= paginator()
+  //- #paginator!= paginator()  
+  include includes/page_switch.pug

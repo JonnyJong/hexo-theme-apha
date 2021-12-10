@@ -67,10 +67,12 @@ a
 #content-inner
   padding-top $block-margin
   padding-bottom $block-margin
+body[where='page'] #content-inner
 body[where='post'] #content-inner
-  padding-bottom calc(var(--post-bottom-margin) + 140px)
   if hexo-config('custom.ui.post.cover_style') != 'banner'
     padding-top 60px
+body[where='post'] #content-inner
+  padding-bottom calc(var(--post-bottom-margin) + 140px)
 
 // hr
 hr
@@ -85,4 +87,3 @@ hr
   background #0002
 ::-webkit-scrollbar-thumb:hover
   background #0004
-  

@@ -50,16 +50,6 @@ if hexo-config('custom.ui.post.cover_style') != 'banner'
     text-shadow: 0 0 1.5rem #000d
 
 // 文章内容
-.main_column#post
-  if hexo-config('custom.block-style') == 'soft'
-    box-shadow $soft_block_style_shadow
-    background $soft_block_style_bg
-.main_column#post:hover
-  if hexo-config('custom.block-style') == 'soft'
-    box-shadow $soft_block_style_shadow_hover
-.main_column#post article#post
-  padding $block-padding
-
 .main_column#post article#post p
   line-height 1.3rem
 
