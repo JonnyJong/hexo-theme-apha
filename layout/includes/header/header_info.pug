@@ -19,6 +19,8 @@ if is_home()
     //- .header_img_inside
 else if is_post()
   .header_info
+    .header_img
+      img.header_img(src=url_for(page.cover) alt='banner')
     .post_info
       if page.title
         span.post_title= page.title
@@ -46,5 +48,12 @@ else if is_post()
         each tag in page.tags.data
           a.page_tag(href=url_for(tag.path))=tag.name
           span=' '
-  .header_img
-    img.header_img(src=url_for(page.cover) alt='banner')
+else if is_page()
+  .header_info
+    .header_img
+      img.header_img(src=url_for(page.cover) alt='banner')
+    .page_info
+      if page.title
+        span.page_title= page.title
+      else
+        span.page_title= page.title=_p('page_item.notitle')

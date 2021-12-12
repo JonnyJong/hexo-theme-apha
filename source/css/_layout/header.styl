@@ -16,7 +16,7 @@ $banner_height = hexo-config('custom.index_banner_height') ? convert(hexo-config
   if hexo-config('custom.ui.navbar.downside') 
     height calc(30rem - 60px)
   else
-    height 30rem
+    // height 30rem
     margin-top -60px
 div.header_img
   background hexo-config('custom.index_banner_img') ? convert(hexo-config('custom.index_banner_img')) : var(--main-color)
@@ -176,7 +176,7 @@ if hexo-config('custom.ui.post.cover_style') == 'banner'
     width 100%
     text-align center
   div.header_info div.post_info span.post_title
-    font-size 2rem
+    font-size 2.4rem
     font-weight bold
     color #fffe
     text-shadow: 0 0 1.5rem #000d
@@ -184,5 +184,24 @@ if hexo-config('custom.ui.post.cover_style') == 'banner'
   div.header_info div.post_info i
   div.header_info div.post_info time
   div.header_info div.post_info span
+    color #fffe
+    text-shadow: 0 0 1.5rem #000d
+
+//仅在页面封面样式为 banner 时生效
+if hexo-config('custom.ui.page.cover_style') == 'banner'
+  div.header_info div.page_info
+    position absolute
+    top calc(50% + 30px)
+    width 100%
+    text-align center
+  div.header_info div.page_info span.page_title
+    font-size 2.4rem
+    font-weight bold
+    color #fffe
+    text-shadow: 0 0 1.5rem #000d
+  div.header_info div.page_info a
+  div.header_info div.page_info i
+  div.header_info div.page_info time
+  div.header_info div.page_info span
     color #fffe
     text-shadow: 0 0 1.5rem #000d

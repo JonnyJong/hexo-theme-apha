@@ -1,2 +1,74 @@
-.main_column#page span.title
+// .main_column#page span.title
+//     font-size 2rem
+// 页面封面样式不为 banner 时生效（若有其他样式再做处理）
+if hexo-config('custom.ui.page.cover_style') != 'banner'
+  .main_column#page div.page_info
+    position relative
+
+  .main_column#page div.page_info div.page_cover
+    width 100%
+    height 20rem
+    overflow hidden
+    border-radius $border-radius $border-radius 0 0
+    position relative
+    background-color var(--main-color)
+  .main_column#page div.page_info[nocover="true"] div.page_cover
+    background-color #0000
+    height 0
+  .main_column#page div.page_info div.page_cover img
+    height 100%
+    width 100%
+    object-fit cover
+
+  .main_column#page div.page_info div.page_info_oncover_positon_fix
+    width 100%
+    position absolute
+    top 0px
+  .main_column#page div.page_info[nocover="false"] div.page_info_oncover_positon_fix
+    height 20rem
+  .main_column#page div.page_info[nocover="true"] div.page_info_oncover_positon_fix
+    position relative
+  .main_column#page div.page_info div.page_info_oncover
+    position absolute
+    padding $block-margin + $block-padding
+    width 100%
+    bottom 0px
+    box-sizing border-box
+    if hexo-config('custom.ui.page.incard_info_bg') == 'block'
+      $info-oncover-opacity = hexo-config('custom.ui.page.incard_info_bg_block.opacity') ? convert(hexo-config('custom.ui.page.incard_info_bg_block.opacity')) : .2
+      $info-oncover-blur = hexo-config('custom.ui.page.incard_info_bg_block.blur') ? convert(hexo-config('custom.ui.page.incard_info_bg_block.blur')) : 2px
+      background rgba(0,0,0,$info-oncover-opacity)
+      if hexo-config('custom.ui.page.incard_info_bg_block.blur') != 0
+        backdrop-filter: saturate(180%) blur($info-oncover-blur)
+    else if hexo-config('custom.ui.page.incard_info_bg') == 'gradient'
+      $info-begin-color = hexo-config('custom.ui.page.incard_info_bg_gradient.begin_color') ? convert(hexo-config('custom.ui.page.incard_info_bg_gradient.begin_color')) : #0000
+      $info-end-color = hexo-config('custom.ui.page.incard_info_bg_gradient.end_color') ? convert(hexo-config('custom.ui.page.incard_info_bg_gradient.end_color')) : #000f
+      background-image linear-gradient($info-begin-color, $info-end-color)
+  .main_column#page div.page_info[nocover="true"] div.page_info_oncover
+    position relative
+    background-image none
+    background none
+    backdrop-filter none
+    padding $block-margin + $block-padding $block-margin + $block-padding 0px $block-margin + $block-padding
+  .main_column#page div.page_info div.page_info_oncover span.page_title
     font-size 2rem
+    font-weight bold
+    color #fffe
+    text-shadow: 0 0 1.5rem #000d
+  .main_column#page div.page_info[nocover="true"] div.page_info_oncover span.page_title
+    color var(--global-text-color )
+    text-shadow none
+  .main_column#page div.page_info 
+    div.page_info_oncover a
+    div.page_info_oncover i
+    div.page_info_oncover time
+    div.page_info_oncover span
+      color #fffe
+      text-shadow: 0 0 1.5rem #000d
+  .main_column#page div.page_info[nocover="true"]
+    div.page_info_oncover a
+    div.page_info_oncover i
+    div.page_info_oncover time
+    div.page_info_oncover span
+      color var(--global-text-color )
+      text-shadow none

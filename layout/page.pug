@@ -1,7 +1,21 @@
 extends includes/layout.pug
 
 block content
-  article#page
-    h1= page.title
-    != page.content
-  #paginator!= paginator()
+  .main_column#page
+    if theme.custom.ui.page.cover_style != 'banner'
+      - let ifNocover = page.cover ? 'false' : 'true'
+      .page_info(nocover=ifNocover)
+        if page.cover
+          .page_cover
+            img.header_img(src=url_for(page.cover) alt='banner')
+        else
+          .page_cover
+        .page_info_oncover_positon_fix
+          .page_info_oncover
+            if page.title
+              span.page_title= page.title
+            else
+              span.page_title=_p('page_item.notitle')
+    article#page
+      //- h1= page.title
+      != page.content

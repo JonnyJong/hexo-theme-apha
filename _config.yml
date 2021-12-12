@@ -67,17 +67,18 @@ custom:
       center: false
       # 与屏幕底部边缘距离（false、value；无、数值。支持 % px vw em 等单位）
         # （与 move_to_top: false, min_weight: 0%, border_radius: 10px 共同使用可形成 docker 效果）
-      distance: 20px
-      # 两端与屏幕间隔（当 width 不留空时不建议设置此项。建议大于 36px。默认：36px）
+      distance:
+      # 元素与两端间隔（当 width 不留空时不建议设置此项。建议大于 36px。默认：36px）
       lr_distance:
       # 图标（false、favicon、avatar、url；关闭、站点图标、头像）
       icon: /logo.png
       # 文字（false、default、custom；关闭、站点名、自定义）
       text: default
+      # 最大宽度（未配置）
       # 宽度（100% ~ 0%、支持 % px vw em 等单位）
-      width: 80%
+      width:
       # 圆角（none、default、value；无、默认、数值。建议使用 px 而不是 %，使用 % 会导致变为椭圆）
-      border_radius: 1000px
+      border_radius:
       # 不透明度（较低的背景模糊度建议使用较高的不透明度，较低的不透明度建议使用较高的背景模糊度）
       opacity: ''
       # 背景模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿。设置 0 可关闭。）
@@ -126,7 +127,7 @@ custom:
     # 文章页样式
     post:
       # 封面样式（banner、incard；横幅、卡片中。默认：incard）
-      cover_style:
+      cover_style: incard
       # 信息样式（false、gradient、block；无、渐变、块状。当 cover_style 为 incard 时有效）
       incard_info_bg: gradient
       # block 背景样式
@@ -161,7 +162,20 @@ custom:
     # 页面样式
     page:
       # 封面样式（banner、incard；横幅、卡片中。默认：incard）（未配置）
-      cover_style:
+      cover_style: incard
+      # 信息样式（false、gradient、block；无、渐变、块状。当 cover_style 为 incard 时有效）
+      incard_info_bg: gradient
+      # block 背景样式
+      incard_info_bg_block:
+        # 不透明度（默认 .2）
+        opacity: ''
+        # 不透明度（默认 10px）
+        blur: 
+      # gradient 背景样式
+      incard_info_bg_gradient:
+        # 开始和结束颜色（色值必须用英文引号包括，例：'#2333'）
+        begin_color: ''
+        end_color: ''
 
   # 全局
   
@@ -184,9 +198,9 @@ custom:
       # 跟随滚动
       scroll: false
       # 模糊度（单位：px）
-      blur: '0px'
+      blur: '20px'
       # 不透明度
-      opacity: '1'
+      opacity: '.3'
     bg_img: '' # 按照 css 语法，作用于 background-image
 
 
@@ -205,7 +219,7 @@ custom:
   # 模块背景不透明度（较低的背景模糊度建议使用较高的不透明度，较低的不透明度建议使用较高的背景模糊度）
   global-opacity: ''
   # 模块背景高斯模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿。设置 0 可关闭。）
-  global-blur: 
+  global-blur: 0
   # 最大宽度（单位：px。默认：1600px。过小的值会导致排版错乱。当设置的值极大时，约等于满屏幕宽度）
   max-width: 
   # 模块风格（flat、soft；平面、拟态）

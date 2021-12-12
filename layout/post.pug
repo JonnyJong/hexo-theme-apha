@@ -1,14 +1,14 @@
 extends includes/layout.pug
-
 block content
   .main_column#post
     if theme.custom.ui.post.cover_style != 'banner'
-      .post_info
-        .post_cover
-          if page.cover
+      - let ifNocover = page.cover ? "false" : "true"
+      .post_info(nocover=ifNocover)
+        if page.cover
+          .post_cover
             img.header_img(src=url_for(page.cover) alt='banner')
-          else
-            span
+        else
+          .post_cover
         .post_info_oncover_positon_fix
           .post_info_oncover
             if page.title
