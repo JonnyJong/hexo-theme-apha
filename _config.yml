@@ -61,6 +61,12 @@ archive:
   show_count: true
   # 显示总数
   show_total: true
+  # 显示文章（数字，按照 hexo 配置文件中设定的数目，当大于时）（未配置）
+  show_post:
+  # 按月份
+  monthly: true
+  # 日期格式（默认：YYYY MMMM ）
+  format:
 # 分类
 category:
   # 显示数量
