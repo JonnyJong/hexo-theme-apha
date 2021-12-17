@@ -50,6 +50,31 @@ quick_entrance:
       # 内容（支持 html + css）
       content: 
 
+# 归档
+archive:
+  # 归档页展示（你可以将归档、归类、标签全部集中到这个页面来显示，你可以自定义展示顺序，最少需要展示一项）
+  show:
+    - archive 
+    - category
+    - tag
+  # 显示数量
+  show_count: true
+  # 显示总数
+  show_total: true
+# 分类
+category:
+  # 显示数量
+  show_count: true
+  # 显示总数
+  show_total: true
+  # 显示为矩形树图（未配置）
+  rectangle_treemap: true
+# 标签
+tag:
+  # 显示数量
+  show_count: true
+  # 显示总数
+  show_total: true
 
 # 自定义外观
 custom:

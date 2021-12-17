@@ -10,3 +10,8 @@ post:
   prev_post: 上一篇文章
 page:
   archive: 归档
+  category: 分类
+  tag: 标签
+  no_category: 暂无归类。
+  no_tag: 暂无标签。
+  no_archive: 暂无。
