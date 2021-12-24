@@ -52,6 +52,8 @@ quick_entrance:
 
 # 归档
 archive:
+  # 页面仅展示归档（开启后归档页的展示方式将改变，且 show 失效）
+  only_archive: 
   # 归档页展示（你可以将归档、归类、标签全部集中到这个页面来显示，你可以自定义展示顺序，最少需要展示一项）
   show:
     - archive 
@@ -65,8 +67,9 @@ archive:
   show_post:
   # 按月份
   monthly: true
-  # 日期格式（默认：YYYY MMMM ）
+  # 日期格式（默认：YYYY MMMM）
   format:
+  cover: https://api.timecdn.cn/libs/wallpaper/v1
 # 分类
 category:
   # 显示数量
@@ -225,7 +228,7 @@ custom:
     style: blur
     blur:
       # 图片
-      img: 'url(https://api.dujin.org/bing/1920.php)' # 按照 css 语法
+      img: 'url(https://api.timecdn.cn/libs/wallpaper/v1)' # 按照 css 语法
       # 跟随滚动
       scroll: false
       # 模糊度（单位：px）
@@ -236,7 +239,7 @@ custom:
 
 
   # 主页横幅图像
-  index_banner_img: 'url(https://api.dujin.org/bing/1920.php)'
+  index_banner_img: 'url(https://api.timecdn.cn/libs/wallpaper/v1)'
   # 主页横幅高度（单位：px、vh、em、rem）
   index_banner_height: 
   # 滚动视差

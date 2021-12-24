@@ -88,6 +88,8 @@ h5
   font-size 18px
 h6
   font-size 18px
+#alt-h1,#alt-h2,#alt-h3,#alt-h4,#alt-h5,#alt-h6
+  text-decoration underline dotted
 if hexo-config('custom.ui.post.paragraph_title_readability')
   article#post h1:before{
       content:"H1"
@@ -121,6 +123,7 @@ if hexo-config('custom.ui.post.paragraph_title_readability')
   article#post h6:before
     margin-right 0.5rem
     color var(--main-color)
+    text-decoration none
 
 // 当鼠标移动到链接上时
 article#post a:hover
