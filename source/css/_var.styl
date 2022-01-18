@@ -3,7 +3,7 @@
 // $text-white = #1a1a1a
 
 //不需要作为 css 变量写入 css 文件的变量
-$max-width = hexo-config('custom.max-width') ? convert(hexo-config('custom.max-width')) : 1600px
+$max-width = hexo-config('custom.max-width') ? (convert(hexo-config('custom.max-width')) + 200px) : 1600px
 $block-margin = hexo-config('custom.block-margin') ? convert(hexo-config('custom.block-margin')) : 1rem
 $block-padding = hexo-config('custom.block-padding') ? convert(hexo-config('custom.block-padding')) : 1rem
 $border-radius = hexo-config('custom.border-radius') ? convert(hexo-config('custom.border-radius')) : 1rem
@@ -13,6 +13,7 @@ $flat_block_style_shadow = 0px 0px 1rem var(--shadow-color-deep)
 $soft_block_style_shadow_hover = inset 2rem 2rem 4rem #fff1, inset -2rem -2rem 4rem #0001, 0px 0px 1rem var(--shadow-color-deep)
 $soft_block_style_shadow = inset 2rem 2rem 4rem #fff1, inset -2rem -2rem 4rem #0001
 $soft_block_style_bg = linear-gradient(145deg, rgba(255,255,255,$global-opacity), rgba(200,200,200,$global-opacity))
+$main_content_margin = (hexo-config("custom.min_margin") ? convert(hexo-config("custom.min_margin")) : 16px)
 //header
 $header-min-width = $max-width - 200px
 $navbar-LR-padding = hexo-config('custom.ui.navbar.lr_distance') ? convert(hexo-config('custom.ui.navbar.lr_distance')) : 36px

@@ -47,10 +47,9 @@ else if hexo-config("custom.background.style") == 'bg_img'
 // 自定义背景
 
 // 页面主要部分的自适应
-@media screen and (min-width: $max-width - 200px){
+@media screen and (min-width: $max-width - 200px + ($main_content_margin*2)){
   div#content-inner{
     width $header-min-width
-    margin auto
   }
 }
 
@@ -67,8 +66,8 @@ a
 
 // 页面主要部分与上方间隔
 #content-inner
-  padding-top $block-margin
-  padding-bottom $block-margin
+  padding $block-margin $main_content_margin
+  margin auto
 body[where='page'] #content-inner
 body[where='post'] #content-inner
   if hexo-config('custom.ui.post.cover_style') != 'banner'

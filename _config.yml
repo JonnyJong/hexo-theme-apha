@@ -108,7 +108,8 @@ custom:
       icon: /logo.png
       # 文字（false、default、custom；关闭、站点名、自定义）
       text: default
-      # 最大宽度（未配置）
+      # 最大宽度（推荐：1400px）
+      max_width:
       # 宽度（100% ~ 0%、支持 % px vw em 等单位）
       width:
       # 圆角（none、default、value；无、默认、数值。建议使用 px 而不是 %，使用 % 会导致变为椭圆）
@@ -121,6 +122,8 @@ custom:
       # 高度（未配置）
       height:
       # 多行（未设计）
+      # 自动收起（未配置）
+      auto_folding: true
 
     # 侧边栏（未完成）
     sidebar:
@@ -254,10 +257,12 @@ custom:
   global-opacity: ''
   # 模块背景高斯模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿。设置 0 可关闭。）
   global-blur: 0
-  # 最大宽度（单位：px。默认：1600px。过小的值会导致排版错乱。当设置的值极大时，约等于满屏幕宽度）
+  # 最大宽度（单位：px。默认：1400px。过小的值会导致排版错乱。设置为 none 关闭。）
   max-width: 
   # 模块风格（flat、soft；平面、拟态）
   block-style: soft
+  # 最小边界（当屏幕宽度小于最大宽度时，默认 px）
+  min_margin: 32px
 
 CDN:
   # 主要引入 Mainly introduced
