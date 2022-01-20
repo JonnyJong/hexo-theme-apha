@@ -5,7 +5,7 @@
     mid_size: 1,
     escape: false
   }
-nav#page_switch
+nav.page_switch
   if(!is_post())
     div.page_switch
       - options.format = 'page/%d/#content-outer'
@@ -18,9 +18,9 @@ nav#page_switch
           span=' ' + _p('post.prev_post')
           br
           if page.prev.title
-            span#post_title=page.prev.title
+            span.post_title=page.prev.title
           else
-            span#post_title=_p('post_item.notitle')
+            span.post_title=_p('post_item.notitle')
         a.img(href=url_for(page.prev.path))
           if page.prev.cover
             img.post_img(src=url_for(page.prev.cover) alt='post_img')
@@ -31,9 +31,9 @@ nav#page_switch
           i.fa.fa-chevron-right.fa-tw
           br
           if page.next.title
-            span#post_title= page.next.title
+            span.post_title= page.next.title
           else
-            span#post_title=_p('post_item.notitle')
+            span.post_title=_p('post_item.notitle')
         a.img(href=url_for(page.next.path))
           if page.next.cover
             img.post_img(src=url_for(page.next.cover) alt='post_img')

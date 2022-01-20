@@ -1,4 +1,4 @@
-nav#page_switch
+nav.page_switch
   margin-top $block-margin
   width 100%
 
@@ -31,8 +31,8 @@ div.page_switch .extend
   line-height 1.8rem
 
 // 文章页中
-nav#page_switch div.prev-post.pull-left
-nav#page_switch div.next-post.pull-right
+nav.page_switch div.prev-post.pull-left
+nav.page_switch div.next-post.pull-right
   if hexo-config('custom.global-blur') != 0
     backdrop-filter: saturate(180%) blur($global-blur)
   --switch-page-in-post $block-margin / 2
@@ -47,18 +47,18 @@ nav#page_switch div.next-post.pull-right
     background $soft_block_style_bg
   else
     background var(--global-background-color)
-nav#page_switch div.prev-post.pull-left
+nav.page_switch div.prev-post.pull-left
   float left
-nav#page_switch div.next-post.pull-right
+nav.page_switch div.next-post.pull-right
   float right
-nav#page_switch div.prev-post.pull-left:hover
-nav#page_switch div.next-post.pull-right:hover
+nav.page_switch div.prev-post.pull-left:hover
+nav.page_switch div.next-post.pull-right:hover
   if hexo-config('custom.block-style') == 'soft'
     box-shadow $soft_block_style_shadow_hover
   else
     box-shadow $flat_block_style_shadow
-nav#page_switch div.prev-post.pull-left a
-nav#page_switch div.next-post.pull-right a
+nav.page_switch div.prev-post.pull-left a
+nav.page_switch div.next-post.pull-right a
   color var(--global-text-color)
   padding $block-padding
   box-sizing border-box
@@ -68,42 +68,42 @@ nav#page_switch div.next-post.pull-right a
 // 原来这是一个因 position relative 引发的血案（不是），所以下面的不用了（难受）
 // 火狐和铬的引擎在某些渲染不一样，找了半天终于找到这样一个好的解决方法了（感动）
 // @-moz-document url-prefix(){
-//   nav#page_switch{
+//   nav.page_switch{
 //     margin-top 0px
 //   }
-//   nav#page_switch div.prev-post.pull-left
-//   nav#page_switch div.next-post.pull-right{
+//   nav.page_switch div.prev-post.pull-left
+//   nav.page_switch div.next-post.pull-right{
 //     float none
 //     margin-top $block-margin
 //     width 100%
 //   }
-  // nav#page_switch div.prev-post.pull-left a,
-  // nav#page_switch div.next-post.pull-right a{
+  // nav.page_switch div.prev-post.pull-left a,
+  // nav.page_switch div.next-post.pull-right a{
   //   --main-part-href-width-a $header-min-width / 2
   //   width calc(var(--main-part-href-width-a) - var(--switch-page-in-post))
   //   display block
   //   overflow hidden
   // }
-  // nav#page_switch div.prev-post.pull-left span#post_title,
-  // nav#page_switch div.next-post.pull-right span#post_title{
+  // nav.page_switch div.prev-post.pull-left span.post_title,
+  // nav.page_switch div.next-post.pull-right span.post_title{
   //   --main-part-href-width-a $header-min-width / 2
   //   width calc(var(--main-part-href-width-a) - var(--switch-page-in-post))
   //   display block
   // }
 // }
 
-nav#page_switch div.prev-post.pull-left span#post_title
-nav#page_switch div.next-post.pull-right span#post_title
+nav.page_switch div.prev-post.pull-left span.post_title
+nav.page_switch div.next-post.pull-right span.post_title
   font-size 1.4rem
   transition all 0.1s
-nav#page_switch div.prev-post.pull-left:hover span#post_title
-nav#page_switch div.next-post.pull-right:hover span#post_title
+nav.page_switch div.prev-post.pull-left:hover span.post_title
+nav.page_switch div.next-post.pull-right:hover span.post_title
   color var(--main-color)
   font-size 1.6rem
   text-shadow 0px 0px 0.5rem var(--shadow-color)
 
-nav#page_switch div.prev-post.pull-left a.img
-nav#page_switch div.next-post.pull-right a.img
+nav.page_switch div.prev-post.pull-left a.img
+nav.page_switch div.next-post.pull-right a.img
   min-height max-content
   height 140px
   padding 0px
@@ -111,8 +111,8 @@ nav#page_switch div.next-post.pull-right a.img
   border-radius $border-radius
   z-index: -1
   opacity .8
-nav#page_switch div.prev-post.pull-left img
-nav#page_switch div.next-post.pull-right img
+nav.page_switch div.prev-post.pull-left img
+nav.page_switch div.next-post.pull-right img
   // height 
   // position absolute
   height 100%
@@ -120,8 +120,8 @@ nav#page_switch div.next-post.pull-right img
   object-fit cover
   transform none
   transition all 3s
-nav#page_switch div.prev-post.pull-left:hover img
-nav#page_switch div.next-post.pull-right:hover img
+nav.page_switch div.prev-post.pull-left:hover img
+nav.page_switch div.next-post.pull-right:hover img
   transform scale(1.1)
   transition all 0.5s
   opacity .2

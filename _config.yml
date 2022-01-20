@@ -3,7 +3,8 @@ menu:
   主页: /, fas fa-home
   关于: /about/, fa fa-heart
   友情链接: /link/, fa fa-link
-  文章, fa fa-graduation-cap, '':
+  # 文章, fa fa-graduation-cap, linkHere:（菜单链接未完成）
+  文章, fa fa-graduation-cap:
     标签: /tags/, fa fa-tags
     归类: /categories/, fa fa-archive
     归档: /archives/, fa fa-folder-open
@@ -69,7 +70,7 @@ archive:
   monthly: true
   # 日期格式（默认：YYYY MMMM）
   format:
-  cover: https://api.timecdn.cn/libs/wallpaper/v1
+  cover: /448.jpg
 # 分类
 category:
   # 显示数量
@@ -231,7 +232,7 @@ custom:
     style: blur
     blur:
       # 图片
-      img: 'url(https://api.timecdn.cn/libs/wallpaper/v1)' # 按照 css 语法
+      img: 'url(/448.jpg)' # 按照 css 语法
       # 跟随滚动
       scroll: false
       # 模糊度（单位：px）
@@ -242,7 +243,7 @@ custom:
 
 
   # 主页横幅图像
-  index_banner_img: 'url(https://api.timecdn.cn/libs/wallpaper/v1)'
+  index_banner_img: 'url(/448.jpg)'
   # 主页横幅高度（单位：px、vh、em、rem）
   index_banner_height: 
   # 滚动视差

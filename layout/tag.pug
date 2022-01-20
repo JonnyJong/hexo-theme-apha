@@ -1,7 +1,7 @@
 extends includes/layout.pug
 
 block content
-  div#tag
+  div.tag
     h1= 'Tag: ' + page.tag
     - page.posts.each(function(article){
       a(href=url_for(article.path))= article.title

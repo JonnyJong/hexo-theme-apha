@@ -44,7 +44,7 @@ div.header_img
   object-fit cover
   // background-color: var(--main-color)
 // 导航栏
-#navbar
+.navbar
   if hexo-config('custom.ui.navbar.downside') 
     if hexo-config('custom.ui.navbar.move_to_top') 
       position -webkit-sticky
@@ -77,25 +77,25 @@ div.header_img
   $custom-ui-navbar-border-radius = hexo-config('custom.ui.navbar.border_radius') ? convert(hexo-config('custom.ui.navbar.border_radius')) : 0px
   border-radius hexo-config('custom.ui.navbar.border_radius') ? convert(hexo-config('custom.ui.navbar.border_radius')) : 0px
   z-index 100
-#navbar a
+.navbar a
   color var(--re-text-color)
-#navbar i
+.navbar i
   padding-right 8px
 
-#navbar div.nav_menu
+.navbar div.nav_menu
   padding 0 $navbar-LR-padding 0px 8px
-#navbar div.menu_items
+.navbar div.menu_items
   display inline
-#navbar div.menu_item
+.navbar div.menu_item
   position relative
   display inline-block
   padding 20px 8px 0px 8px
   height 40px
   cursor pointer
-#navbar div.menu_item
+.navbar div.menu_item
   font-size 1em
   font-weight lighter
-#navbar div.menu_item div.sub_menu 
+.navbar div.menu_item div.sub_menu 
   display none
   position absolute
   width max-content
@@ -105,23 +105,23 @@ div.header_img
   top 50%
   transform: translate(-50%, 10px)
   box-shadow: 0px 0px 16px var(--shadow-color)
-#navbar div.menu_item:hover div.sub_menu
+.navbar div.menu_item:hover div.sub_menu
   display block
-#navbar div.sub_menu_item
+.navbar div.sub_menu_item
   padding 10px 16px
-#navbar div.sub_menu_item:hover
+.navbar div.sub_menu_item:hover
   background var(--main-color-fade)
 
-#navbar .sitetitle
+.navbar .sitetitle
   if hexo-config('custom.ui.navbar.separate') 
     flex 1
   padding 0 8px 0px $navbar-LR-padding
   display inline
-#navbar div.sitetitle span
+.navbar div.sitetitle span
   vertical-align middle
   font-size 1.3em
   font-weight 600
-#navbar div.sitetitle img
+.navbar div.sitetitle img
   height 40px
   vertical-align middle
   margin-right 8px

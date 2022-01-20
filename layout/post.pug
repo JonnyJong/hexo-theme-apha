@@ -1,6 +1,6 @@
 extends includes/layout.pug
 block content
-  .main_column#post
+  .main_column.page
     if theme.custom.ui.post.cover_style != 'banner'
       - let ifNocover = page.cover ? "false" : "true"
       .post_info(nocover=ifNocover)
@@ -37,7 +37,7 @@ block content
               each tag in page.tags.data
                 a.page_tag(href=url_for(tag.path))=tag.name
                 span=' '
-    article#post
+    article.page
       //- h1= page.title
       != page.content
   include includes/page_switch.pug

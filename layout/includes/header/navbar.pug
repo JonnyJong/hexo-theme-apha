@@ -1,16 +1,22 @@
-nav#navbar
+nav.navbar
   .sitetitle
     a(href=config.root)
-      if theme.custom.ui.navbar.icon == 'favicon'
-        img(src=url_for(theme.info.favicon) alt='sitetitle_img')
-      else if theme.custom.ui.navbar.icon == 'avatar'
-        img(src=url_for(theme.info.avatar) alt='sitetitle_img')
-      else if theme.custom.ui.navbar.icon
-        img(src=url_for(theme.custom.ui.navbar.icon) alt='sitetitle_img')
-      if theme.custom.ui.navbar.text == 'default'
-        span=config.title
-      else if theme.custom.ui.navbar.text
-        span=theme.custom.ui.navbar.text
+      case theme.custom.ui.navbar.icon
+        when 'favicon'
+          img(src=url_for(theme.info.favicon) alt='sitetitle_img')
+        when 'avatar'
+          img(src=url_for(theme.info.favicon) alt='sitetitle_img')
+        when false
+          div
+        default
+          img(src=url_for(theme.custom.ui.navbar.icon) alt='sitetitle_img')
+      case theme.custom.ui.navbar.text
+        when 'default'
+          span=config.title
+        when false
+          span
+        default
+          span=theme.custom.ui.navbar.text
 
   if theme.menu
     .nav_menu
@@ -18,7 +24,10 @@ nav#navbar
         each content, label in theme.menu
           if typeof content == 'object'
             div(class='menu_item')
-              a(class=label.split(', ')[2])
+              //- - var nextThing = label.split(', ')[2] ? href=label.split(', ')[2] : ''
+              //- a(nextThing)
+              //- a(class=label.split(', ')[2])
+              div
                 i(class=label.split(', ')[1]+' fa-fw')
                 span=label.split(', ')[0]
                 div(class='sub_menu')

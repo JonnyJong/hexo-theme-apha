@@ -1,7 +1,7 @@
 extends includes/layout.pug
 
 block content
-  .main_column#page
+  .main_column.page
     if theme.custom.ui.page.cover_style != 'banner'
       - let ifNocover = page.cover ? 'false' : 'true'
       .page_info(nocover=ifNocover)
@@ -16,6 +16,6 @@ block content
               span.page_title= page.title
             else
               span.page_title=_p('page_item.notitle')
-    article#page
+    article.page
       //- h1= page.title
       != page.content

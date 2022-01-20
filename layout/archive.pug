@@ -6,7 +6,7 @@ block content
   - var tagsList = list_tags({ show_count: theme.tag.show_count })
   - var archivesList = list_archives({ show_count: theme.archive.show_count , type: (theme.archive.monthly ? 'monthly' : 'yearly') , format: (theme.archive.format ? theme.archive.format : 'YYYY MMMM') })
 
-  .main_column#page
+  .main_column.page
     if theme.custom.ui.page.cover_style != 'banner'
       if theme.archive.cover
         .page_info(nocover=false)
