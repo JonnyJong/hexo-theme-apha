@@ -53,7 +53,7 @@ quick_entrance:
 
 # 归档
 archive:
-  # 页面仅展示归档（开启后归档页的展示方式将改变，且 show 失效）
+  # 页面仅展示归档（开启后归档页的展示方式将改变，且 show 失效）（未配置）
   only_archive: 
   # 归档页展示（你可以将归档、归类、标签全部集中到这个页面来显示，你可以自定义展示顺序，最少需要展示一项）
   show:
@@ -92,39 +92,50 @@ custom:
   ui:
     # 导航栏
     navbar:
-      # 在屏幕下方
-      downside: false
-      # 跟随滚动到上方（只有 downside 为 true 时有效）
-      move_to_top: false
-      # 分离标题按钮
-      separate: true
-      # 按钮居中（只有 separate 为 false 时有效）
-      center: false
-      # 与屏幕底部边缘距离（false、value；无、数值。支持 % px vw em 等单位）
-        # （与 move_to_top: false, min_weight: 0%, border_radius: 10px 共同使用可形成 docker 效果）
-      distance:
-      # 元素与两端间隔（当 width 不留空时不建议设置此项。建议大于 36px。默认：36px）
-      lr_distance:
-      # 图标（false、favicon、avatar、url；关闭、站点图标、头像）
-      icon: /logo.png
-      # 文字（false、default、custom；关闭、站点名、自定义）
-      text: default
-      # 最大宽度（推荐：1400px）
-      max_width:
-      # 宽度（100% ~ 0%、支持 % px vw em 等单位）
-      width:
-      # 圆角（none、default、value；无、默认、数值。建议使用 px 而不是 %，使用 % 会导致变为椭圆）
-      border_radius:
-      # 不透明度（较低的背景模糊度建议使用较高的不透明度，较低的不透明度建议使用较高的背景模糊度）
+      # 自定义组件（允许自由调整顺序）（未完成）
+      items:
+        site, 0: /logo.png, default, root
+        img, 0: /logo.png, /
+        text, 0: hello world!, /
+        placeholder, 0: 
+        menu, 主页, fas fa-home, /:
+        menu, 关于, fa fa-heart, /about/:
+        menu, 友情链接, fa fa-link, /link/:
+        # 此处有bug，如果 none 换成链接，会出现奇怪的层次渲染错误
+        menu, 文章, fa fa-graduation-cap, none:
+          标签: /tags/, fa fa-tags
+          归类: /categories/, fa fa-archive
+          归档: /archives/, fa fa-folder-open
+      
+      # 导航栏高度（默认 60px）
+      height: 
+      # 导航栏外部宽度（默认 100%）
+      outer_width:
+      # 导航栏外部最大宽度 （默认 100%）
+      outer_max_width:
+      # 导航栏内部宽度 （默认 90%）
+      inner_width: 
+      # 导航栏内部最大宽度 （默认 1400px。推荐值：100%）
+      inner_max_width: 1400px
+      # 导航栏与顶部距离（top 和 bottom 建议只设置其中一个）
+      top: none
+      # 导航栏与底部距离
+      bottom: none
+      # 自动收起（未配置）*
+      auto_folding: true
+
+      # 元素间距（默认 0px）
+      item_distance: 
+      # 元素内横向间距（默认 8px）
+      item_inside_distance: 
+
+      # 不透明度（较低的背景模糊度建议使用较高的不透明度，较低的不透明度建议使用较高的背景模糊度。默认 0.8）
       opacity: ''
       # 背景模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿。设置 0 可关闭。）
         # 一般情况下，Firefox 浏览器中 backdrop-filter 有限制
       blur: 
-      # 高度（未配置）
-      height:
-      # 多行（未设计）
-      # 自动收起（未配置）
-      auto_folding: true
+      # 导航栏圆角（none、default、value；无、默认、数值。建议使用 px 而不是 %，使用 % 会导致变为椭圆）
+      border_radius:
 
     # 侧边栏（未完成）
     sidebar:
