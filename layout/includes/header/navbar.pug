@@ -6,7 +6,7 @@ mixin siteInfo(value)
       img(src=url_for(theme.info.favicon) alt='site_icon')
     when 'avatar'
       img(src=url_for(theme.info.avatar) alt='site_icon')
-    when 'false'
+    when 'none'
       - break
     default
       img(src=url_for(value[0]) alt='site_icon')
@@ -17,7 +17,7 @@ mixin siteInfo(value)
   case value[1]
     when 'default'
       span.site_title=config.title
-    when 'false'
+    when 'none'
       - break
     default
       span.site_title=value[1]
@@ -49,37 +49,41 @@ nav.navbar
       case item[0]
         //- 站点信息
         when 'site'
-          .nav_item_outer
-            case value[2]
-              when 'root'
+          case value[2]
+            when 'root'
+              .nav_item_outer
                 a(href=config.root)
                   .nav_item_inner
                     +siteInfo(value)
-              when 'false'
+            when 'none'
+              .nav_item_outer.noLink
                 .nav_item_inner
                   +siteInfo(value)
-              default
+            default
+              .nav_item_outer
                 a(href=value[2])
                   .nav_item_inner
                     +siteInfo(value)
         //- 图片
         when 'img'
-          .nav_item_outer
-            if value[1]
+          if value[1] != 'none'
+            .nav_item_outer
               a(href=url_for(value[1]))
                 .nav_item_inner
                   img(src=url_for(value[0]) alt='img')
-            else
+          else
+            .nav_item_outer.noLink
               .nav_item_inner
                 img(src=url_for(value[0]) alt='img')
         //- 文本
         when 'text'
-          .nav_item_outer
-            if value[1]
+          if value[1] != 'none'
+            .nav_item_outer
               a(href=url_for(value[1]))
                 .nav_item_inner
                   span=value[0]
-            else
+          else
+            .nav_item_outer.noLink
               .nav_item_inner
                 span=value[0]
         //- 占位符
