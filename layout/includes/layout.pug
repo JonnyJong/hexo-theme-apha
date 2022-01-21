@@ -16,6 +16,7 @@ html(lang=config.language)
   head
     meta(charset='UTF-8')
     title= pageTitle
+    link(rel="icon" href=theme.info.favicon)
     //- 引用CDN
     link(rel='stylesheet', href=theme.CDN.mainCss)
     script(type="text/javascript" src=theme.CDN.mainJs)
@@ -23,6 +24,7 @@ html(lang=config.language)
     //- link(rel='stylesheet', href=theme.CDN.highlight_js_css)
     //- script(src=theme.CDN.highlight_js_js)
   body(where=what_is_this_page)
+    include ./skipToContentButtom.pug
     include ./header/header.pug
     #content-outer
       #content-inner

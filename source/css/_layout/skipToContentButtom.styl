@@ -1,0 +1,13 @@
+if hexo-config('custom.skip_to_content_buttom')
+  .skip
+    position fixed
+    display block
+    z-index 101
+    height (hexo-config('custom.ui.navbar.height') ? convert(hexo-config('custom.ui.navbar.height')) : 60px)
+    line-height (hexo-config('custom.ui.navbar.height') ? convert(hexo-config('custom.ui.navbar.height')) : 60px)
+    top ((hexo-config('custom.ui.navbar.height') ? convert(hexo-config('custom.ui.navbar.height')) : 60px)*-1)
+    width 100vw
+    text-align center
+    background var(--bg-color-tran)
+  .skip:focus
+    top 0

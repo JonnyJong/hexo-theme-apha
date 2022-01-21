@@ -12,7 +12,7 @@ block content
         .page_info(nocover=false)
           .page_cover
             img.header_img(src=url_for(theme.archive.cover) alt='banner')
-    article#page.archive
+    article.page.archive#main
       if !is_year()
         each item in theme.archive.show
           case item

@@ -37,7 +37,7 @@ block content
               each tag in page.tags.data
                 a.page_tag(href=url_for(tag.path))=tag.name
                 span=' '
-    article.page
+    article.page#main
       //- h1= page.title
       != page.content
   include includes/page_switch.pug

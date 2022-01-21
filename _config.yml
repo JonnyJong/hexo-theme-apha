@@ -263,6 +263,7 @@ custom:
   index_banner_height: 
   # 滚动视差
   index_banner_img_parallax: true
+
   # 板块外边框（单位：px、rem、em）
   block-margin: 
   # 板块内边框
@@ -279,6 +280,9 @@ custom:
   block-style: soft
   # 最小边界（当屏幕宽度小于最大宽度时，默认 px）
   min_margin: 32px
+
+  # 转跳到内容按钮（进入页面后按下 Tab，将会在屏幕顶部出现此按钮）
+  skip_to_content_buttom: true
 
 CDN:
   # 主要引入 Mainly introduced
