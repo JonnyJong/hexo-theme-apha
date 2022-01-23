@@ -1,30 +1,86 @@
 article.archive
-  ul
-    list-style none
-    padding-left 1rem
-    // position relative
-    padding-top 0.4rem
-    li
-      position relative
-      padding 0.4rem 0 0.4rem 1.5rem 
-      // margin 0.4rem 0
-      span::before
-        content ' - '
-        border none
-        position static
-      a:hover
-        text-decoration underline
-        text-decoration-thickness 2px
-      ::before
-        // font-family 'Font Awesome 5 Free'
-        // content '\f187'
-        content ''
-        width .4rem
-        height .4rem
+  .tag-list
+    margin 0
+    padding 0
+    .tag-list-item
+      display inline-block
+      margin-right 16px
+      margin-bottom 32px
+      max-width 100%
+      a.tag-list-link
+        color black
+        padding 8px 32px 8px 8px
+        background alpha($main_color 25%)
+        border-radius $border-radius
+        box-sizing border-box
+        transition 0.1s
+        border 1px solid alpha($main_color 0%)
+        line-height 16px
+        word-wrap break-all
+        max-width 100%
+      a.tag-list-link:hover
+        text-decoration none
+        border 3px solid $main_color
+      a.tag-list-link:before
+        content '# '
+      .tag-list-count
         position absolute
-        left 0
-        top .5rem
-        border 4px solid var(--main-color)
-        border-radius 100%
-      ul
-        padding-left 0rem
+        transform translateX(-26px)
+  .category-list
+    padding 0
+    margin 0 16px
+    height max-content
+    max-width 100%
+    ul
+      margin 0
+      // margin-top 16px
+      padding 0
+    li
+      display inline-block
+      vertical-align top
+      // text-align left
+      margin 8px
+      background saturation(alpha($main_color 10%) 75%)
+    a
+      padding 8px
+      padding-right 24px
+      display inline-block
+      // width 80%
+      // background #f00
+      color black
+      transition 0.1s
+    a:hover
+      color $main_color
+      transform scale(1.1)
+      text-decoration none
+    a:before
+      content "\f07c"
+      font-family: "Font Awesome 5 Free"
+      font-weight 900
+      margin-right 4px
+    .category-list-count
+      display inline
+      position absolute
+      transform translateX(-18px) translateY(9px)
+      // position absolute
+    // .category-list-count::before
+    //   content " "
+  // .archive-list
+  //   li
+  //     display inline-block
+  //     width 100px
+  //     height 100px
+  //     background #fffa
+  //     word-wrap break-word
+  //     text-align center
+  //   li:after
+  //     content "\f187"
+  //     font-family: "Font Awesome 5 Free"
+  //     font-weight 900
+  //     margin-right 4px
+  //     position absolute
+      
+  //   a
+  //     display block
+  //   span
+  //     display block

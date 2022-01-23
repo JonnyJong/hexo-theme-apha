@@ -1,5 +1,7 @@
 extends includes/layout.pug
 
+include includes/post_info.pug
+
 block content
   - var categoriesList = list_categories({ show_count: theme.category.show_count })
 
@@ -17,11 +19,9 @@ block content
         if global_back_btn
           include includes/global_back_btn.pug
 
-        h1= page.category
+        h1= ' '+page.category
         - page.posts.each(function(article){
-          .category-item
-            a(href=url_for(article.path))= article.title
-            time(datetime=date_xml(article.date))= date(article.date)
+            +post_info(article)
         - })
         include includes/page_switch.pug
 

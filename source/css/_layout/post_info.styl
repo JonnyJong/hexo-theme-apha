@@ -1,0 +1,45 @@
+.main_column.page
+  .post_item
+    position relative
+    border-radius $border-radius
+    margin-bottom 16px
+    transition 0.3s
+    a
+      display block
+      height max-content
+      position relative
+      border-radius $border-radius
+      img.post_cover
+        height 100%
+        width 128px
+        object-fit cover
+        margin 0
+        display inline-block
+        position absolute
+        border-radius $border-radius 0 0 $border-radius
+      .post_info
+        display inline-block
+        margin 16px 16px 16px 142px
+        p.post_title
+          font-size 26px
+          margin 0
+          line-height 34px
+          font-weight bold
+          transition 0.1s
+          color var(--global-text-color)
+      time
+        color var(--global-text-color)
+    a:hover
+    a:focus
+      background alpha($main_color 25%)
+      p.post_title
+        font-size 32px
+        line-height 40px
+        color var(--main-color)
+  // .post_item:before
+  //   content ''
+  //   background linear-gradient(to right, #fff8, #fff0)
+  //   position absolute
+  //   left 128px
+  //   width 30%
+  //   height 100%
