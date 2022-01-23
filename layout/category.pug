@@ -9,18 +9,26 @@ block content
         .page_info(nocover=false)
           .page_cover
             img.header_img(src=url_for(theme.archive.cover) alt='banner')
+
     article.page.archive#main
-      if !(theme.category.after_content)
-        != page.content
-      include includes/archive/category.pug
-      if theme.category.after_content
-        != page.content
-  //- .category
-  //-   h1= page.category
-  //-   - page.posts.each(function(article){
-  //-     .category-item
-  //-       a(href=url_for(article.path))= article.title
-  //-       time(datetime=date_xml(article.date))= date(article.date)
-  //-   - })
-  //- #paginator!= paginator()
-  include includes/page_switch.pug
+
+      if is_category(page.category)
+
+        if global_back_btn
+          include includes/global_back_btn.pug
+
+        h1= page.category
+        - page.posts.each(function(article){
+          .category-item
+            a(href=url_for(article.path))= article.title
+            time(datetime=date_xml(article.date))= date(article.date)
+        - })
+        include includes/page_switch.pug
+
+      else
+
+        if !(theme.category.after_content)
+          != page.content
+        include includes/archive/category.pug
+        if theme.category.after_content
+          != page.content
