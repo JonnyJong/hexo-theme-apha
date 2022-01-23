@@ -1,12 +1,26 @@
 extends includes/layout.pug
 
 block content
-  div.tag
-    h1= 'Tag: ' + page.tag
-    - page.posts.each(function(article){
-      a(href=url_for(article.path))= article.title
-      time(datetime=date_xml(article.date))= date(article.date)
-      br.clear
-    - })
+  - var tagsList = list_tags({ show_count: theme.tag.show_count })
+
+  .main_column.page
+    if theme.custom.ui.page.cover_style != 'banner'
+      if theme.archive.cover
+        .page_info(nocover=false)
+          .page_cover
+            img.header_img(src=url_for(theme.archive.cover) alt='banner')
+    article.page.archive#main
+      if !(theme.tag.after_content)
+        != page.content
+      include includes/archive/tag.pug
+      if theme.tag.after_content
+        != page.content
+  //- div.tag
+  //-   h1= 'Tag: ' + page.tag
+  //-   - page.posts.each(function(article){
+  //-     a(href=url_for(article.path))= article.title
+  //-     time(datetime=date_xml(article.date))= date(article.date)
+  //-     br.clear
+  //-   - })
   //- #paginator!= paginator()  
   include includes/page_switch.pug

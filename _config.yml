@@ -70,6 +70,7 @@ archive:
   monthly: true
   # 日期格式（默认：YYYY MMMM）
   format:
+  # 封面图
   cover: /448.jpg
 # 分类
 category:
@@ -79,12 +80,20 @@ category:
   show_total: true
   # 显示为矩形树图（未配置）
   rectangle_treemap: true
+  # 封面图
+  cover: /448.jpg
+  # 将内容渲染到分类之后
+  after_content: true
 # 标签
 tag:
   # 显示数量
   show_count: true
   # 显示总数
   show_total: true
+  # 封面图
+  cover: /448.jpg
+  # 将内容渲染到标签之后
+  after_content: true
 
 # 自定义外观
 custom:
@@ -283,6 +292,11 @@ custom:
 
   # 转跳到内容按钮（进入页面后按下 Tab，将会在屏幕顶部出现此按钮）
   skip_to_content_buttom: true
+  # 在适当的区域增加返回按钮
+  back_buttom: true
+
+  # 动画效果（false、slow、normal、fast；关闭、慢、中等、快）（未配置）
+  animation:
 
 CDN:
   # 主要引入 Mainly introduced

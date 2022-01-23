@@ -25,6 +25,9 @@ block content
 
       else
 
+        if global_back_btn
+          include includes/global_back_btn.pug
+
         h1= page.month + '/' + page.year
 
         - page.posts.each(function(article){
