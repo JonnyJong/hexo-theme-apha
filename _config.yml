@@ -185,9 +185,7 @@ custom:
 
     # 文章页样式
     post:
-      # 封面样式（banner、incard；横幅、卡片中。默认：incard）（banner 将砍掉）*
-      cover_style: incard
-      # 信息样式（false、gradient、block；无、渐变、块状。当 cover_style 为 incard 时有效）
+      # 信息样式（false、gradient、block；无、渐变、块状。）
       incard_info_bg: gradient
       # block 背景样式
       incard_info_bg_block:
@@ -220,9 +218,7 @@ custom:
 
     # 页面样式
     page:
-      # 封面样式（banner、incard；横幅、卡片中。默认：incard）（未配置）
-      cover_style: incard
-      # 信息样式（false、gradient、block；无、渐变、块状。当 cover_style 为 incard 时有效）
+      # 信息样式（false、gradient、block；无、渐变、块状。）
       incard_info_bg: gradient
       # block 背景样式
       incard_info_bg_block:
@@ -289,8 +285,6 @@ custom:
   global-blur: 0
   # 最大宽度（单位：px。默认：1400px。过小的值会导致排版错乱。设置为 none 关闭。）
   max-width: 
-  # 模块风格（flat、soft；平面、拟态）（将砍掉，替换为整体的预置风格，用于类似在 fluent design、material design 间切换）*
-  block-style: soft
   # 最小边界（当屏幕宽度小于最大宽度时，默认 px）
   min_margin: 32px
 

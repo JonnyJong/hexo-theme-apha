@@ -9,11 +9,10 @@ block content
   - var archivesList = list_archives({ show_count: theme.archive.show_count , type: (theme.archive.monthly ? 'monthly' : 'yearly') , format: (theme.archive.format ? theme.archive.format : 'YYYY MMMM') })
 
   .main_column.page
-    if theme.custom.ui.page.cover_style != 'banner'
-      if theme.archive.cover
-        .page_info(nocover=false)
-          .page_cover
-            img.header_img(src=url_for(theme.archive.cover) alt='banner')
+    if theme.archive.cover
+      .page_info(nocover=false)
+        .page_cover
+          img.header_img(src=url_for(theme.archive.cover) alt='banner')
     article.page.archive#main
       if !is_year()
         each item in theme.archive.show

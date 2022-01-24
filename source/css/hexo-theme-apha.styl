@@ -70,8 +70,7 @@ a
   margin auto
 body[where='page'] #content-inner
 body[where='post'] #content-inner
-  if (hexo-config('custom.ui.post.cover_style') != 'banner') && hexo-config('custom.ui.navbar.bottom') == 'none'
-    padding-top (hexo-config('custom.ui.navbar.height') ? convert(hexo-config('custom.ui.navbar.height')) : 60px)+(hexo-config('custom.ui.navbar.top') != 'none' ? convert(hexo-config('custom.ui.navbar.top')) : 0px)
+  padding-top (hexo-config('custom.ui.navbar.height') ? convert(hexo-config('custom.ui.navbar.height')) : 60px)+(hexo-config('custom.ui.navbar.top') != 'none' ? convert(hexo-config('custom.ui.navbar.top')) : 0px)
 body[where='post'] #content-inner
   padding-bottom ($block-margin + 140px)
 

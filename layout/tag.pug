@@ -6,11 +6,10 @@ block content
   - var tagsList = list_tags({ show_count: theme.tag.show_count })
 
   .main_column.page
-    if theme.custom.ui.page.cover_style != 'banner'
-      if theme.archive.cover
-        .page_info(nocover=false)
-          .page_cover
-            img.header_img(src=url_for(theme.archive.cover) alt='banner')
+    if theme.archive.cover
+      .page_info(nocover=false)
+        .page_cover
+          img.header_img(src=url_for(theme.archive.cover) alt='banner')
 
     article.page.archive#main
 

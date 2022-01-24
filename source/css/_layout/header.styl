@@ -1,6 +1,6 @@
 // 整体
 $banner_height = hexo-config('custom.index_banner_height') ? convert(hexo-config('custom.index_banner_height')) : 100vh
-.header[header="home"]
+.header
   height $banner_height
   position relative
   if hexo-config('custom.ui.navbar.downside')
@@ -11,9 +11,6 @@ $banner_height = hexo-config('custom.index_banner_height') ? convert(hexo-config
       margin-top -60px
       transform: translate(0px, 60px);
       margin-bottom 60px
-.header[header="post"]
-.header[header="page"]
-  margin-top -60px
 div.header_img
   background hexo-config('custom.index_banner_img') ? convert(hexo-config('custom.index_banner_img')) : var(--main-color)
   // height 100%
@@ -24,9 +21,6 @@ div.header_img
     background-attachment fixed
 
 //banner 图
-.header[header="post"] .header_img
-.header[header="page"] .header_img
-  height 420px
 .header .header_img
   overflow hidden
   position relative
@@ -145,30 +139,21 @@ div.header_info
   position relative
 
 @media screen and (min-width: $max-width){
-  .header[header="home"] div.header_info{
+  .header div.header_info{
     width $header-min-width
     margin auto
   }
 }
 
 @media screen and (max-width: $max-width){
-  .header[header="home"] div.header_info{
+  .header div.header_info{
     margin auto auto auto 100px
-  }
-  .header[header="page"] div.header_info,
-  .header[header="post"] div.header_info{
-    margin auto 100px
   }
 }
 
 div.header_info div.site_big_title
   position relative
   top 40%
-  width max-content
-
-div.header[header="page"] div.header_info div.site_big_title
-  position relative
-  padding 224px 0
   width max-content
 
 div.header_info div.site_big_title span.title
@@ -180,41 +165,3 @@ div.header_info div.site_big_title span.subtitle
   font-size 2rem
   color #fffe
   text-shadow: 0 0 8px #000d
-
-//仅在文章封面样式为 banner 时生效
-if hexo-config('custom.ui.post.cover_style') == 'banner'
-  div.header_info div.post_info
-    position absolute
-    top calc(50% + 30px)
-    width 100%
-    text-align center
-  div.header_info div.post_info span.post_title
-    font-size 2.4rem
-    font-weight bold
-    color #fffe
-    text-shadow: 0 0 1.5rem #000d
-  div.header_info div.post_info a
-  div.header_info div.post_info i
-  div.header_info div.post_info time
-  div.header_info div.post_info span
-    color #fffe
-    text-shadow: 0 0 1.5rem #000d
-
-//仅在页面封面样式为 banner 时生效
-if hexo-config('custom.ui.page.cover_style') == 'banner'
-  div.header_info div.page_info
-    position absolute
-    top calc(50% + 30px)
-    width 100%
-    text-align center
-  div.header_info div.page_info span.page_title
-    font-size 2.4rem
-    font-weight bold
-    color #fffe
-    text-shadow: 0 0 1.5rem #000d
-  div.header_info div.page_info a
-  div.header_info div.page_info i
-  div.header_info div.page_info time
-  div.header_info div.page_info span
-    color #fffe
-    text-shadow: 0 0 1.5rem #000d
