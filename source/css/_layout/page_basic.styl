@@ -1,20 +1,13 @@
 .main_column.page
-  if hexo-config('custom.block-style') == 'soft'
-    box-shadow $soft_block_style_shadow_main_column
-    background $soft_block_style_bg
-  else
-    background-color var(--global-background-color)
-    box-shadow 0px 0px 1rem var(--shadow-color)
+  background-color var(--bg-color)
+  box-shadow var(--b-shadow-lite)
   if hexo-config('custom.global-blur') != 0
     backdrop-filter: saturate(180%) blur($global-blur)
   border-radius $border-radius
   margin-top $block-margin
   transition all 0.5s
 .main_column.page:hover
-  if hexo-config('custom.block-style') == 'soft'
-    box-shadow $soft_block_style_shadow_hover
-  else
-    box-shadow 0px 0px 1rem var(--shadow-color-deep)
+  box-shadow var(--b-shadow)
 
 .main_column.page article
   padding $block-padding

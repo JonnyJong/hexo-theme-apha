@@ -5,12 +5,12 @@ nav.page_switch
 div.page_switch .extend,
 div.page_switch .page-number
   display inline-block
-  height 1.6rem
-  width 1.6rem
-  color var(--global-text-color)
-  background-color var(--global-background-color)
+  height 26px
+  width 26px
+  color var(--text-color-r)
+  background-color var(--bg-color)
   margin-right $block-margin
-  line-height 1.7 rem
+  line-height 26px
   text-align center
   overflow hidden
   border-radius $border-radius
@@ -19,16 +19,17 @@ div.page_switch .page-number
 div.page_switch .extend:hover,
 div.page_switch .page-number:hover
   // background-color var(--main-color)
-  box-shadow 0px 0px 1rem var(--shadow-color-deep), inset 0px 0px 4px 4px var(--main-color)
+  box-shadow var(--b-shadow-lite)
+  background-color var(--main-color-nbgh)
 
 div.page_switch .page-number.current
-  background-color var(--main-color-fade)
-  box-shadow 0px 0px 1rem var(--shadow-color)
+  background-color var(--main-color)
+  box-shadow var(--b-shadow)
 div.page_switch .page-number.current:hover
   cursor default
   
 div.page_switch .extend
-  line-height 1.8rem
+  line-height 28px
 
 // 文章页中
 nav.page_switch div.prev-post.pull-left
@@ -42,29 +43,25 @@ nav.page_switch div.next-post.pull-right
   transition all 0.5s
   overflow hidden
   position relative
-  if hexo-config('custom.block-style') == 'soft'
-    box-shadow $soft_block_style_shadow
-    background $soft_block_style_bg
-  else
-    background var(--global-background-color)
+  background var(--bg-color)
 nav.page_switch div.prev-post.pull-left
   float left
 nav.page_switch div.next-post.pull-right
   float right
 nav.page_switch div.prev-post.pull-left:hover
 nav.page_switch div.next-post.pull-right:hover
-  if hexo-config('custom.block-style') == 'soft'
-    box-shadow $soft_block_style_shadow_hover
-  else
-    box-shadow $flat_block_style_shadow
+  box-shadow var(--b-shadow)
 nav.page_switch div.prev-post.pull-left a
 nav.page_switch div.next-post.pull-right a
-  color var(--global-text-color)
+  color var(--text-color-r)
   padding $block-padding
   box-sizing border-box
   position absolute
   width 100%
-  text-shadow 0px 0px 1rem var(--shadow-color)
+  text-shadow var(--b-shadow-lite)
+  height 100%
+nav.page_switch div.prev-post.pull-left a
+  text-align right
 // 原来这是一个因 position relative 引发的血案（不是），所以下面的不用了（难受）
 // 火狐和铬的引擎在某些渲染不一样，找了半天终于找到这样一个好的解决方法了（感动）
 // @-moz-document url-prefix(){
@@ -94,13 +91,13 @@ nav.page_switch div.next-post.pull-right a
 
 nav.page_switch div.prev-post.pull-left span.post_title
 nav.page_switch div.next-post.pull-right span.post_title
-  font-size 1.4rem
+  font-size 22px
   transition all 0.1s
 nav.page_switch div.prev-post.pull-left:hover span.post_title
 nav.page_switch div.next-post.pull-right:hover span.post_title
   color var(--main-color)
-  font-size 1.6rem
-  text-shadow 0px 0px 0.5rem var(--shadow-color)
+  font-size 26px
+  text-shadow var(--b-shadow)
 
 nav.page_switch div.prev-post.pull-left a.img
 nav.page_switch div.next-post.pull-right a.img

@@ -185,7 +185,7 @@ custom:
 
     # 文章页样式
     post:
-      # 封面样式（banner、incard；横幅、卡片中。默认：incard）
+      # 封面样式（banner、incard；横幅、卡片中。默认：incard）（banner 将砍掉）*
       cover_style: incard
       # 信息样式（false、gradient、block；无、渐变、块状。当 cover_style 为 incard 时有效）
       incard_info_bg: gradient
@@ -241,7 +241,13 @@ custom:
   # 主题色
   theme_color:
     main: "#009688"
-    highlight:
+    highlight: "#ff6977"
+
+    # 色相配色（0~360、false；选择色相、关闭。由主题根据色相调整颜色）*
+    hue: false
+
+    # 随机色相（将无法自定义，每次刷新更换颜色）*
+    random_color: true
 
   # 字体（暂未完成）
   font:
@@ -266,16 +272,16 @@ custom:
 
   # 主页横幅图像
   index_banner_img: 'url(/448.jpg)'
-  # 主页横幅高度（单位：px、vh、em、rem）
+  # 主页横幅高度（单位：px、vh）
   index_banner_height: 
   # 滚动视差
   index_banner_img_parallax: true
 
-  # 板块外边框（单位：px、rem、em）
+  # 板块外边框（单位：px）
   block-margin: 
   # 板块内边框
   block-padding: 
-  # 模块圆角（单位：px rem em）
+  # 模块圆角（单位：px）
   border-radius:
   # 模块背景不透明度（较低的背景模糊度建议使用较高的不透明度，较低的不透明度建议使用较高的背景模糊度）
   global-opacity: ''
@@ -283,7 +289,7 @@ custom:
   global-blur: 0
   # 最大宽度（单位：px。默认：1400px。过小的值会导致排版错乱。设置为 none 关闭。）
   max-width: 
-  # 模块风格（flat、soft；平面、拟态）
+  # 模块风格（flat、soft；平面、拟态）（将砍掉，替换为整体的预置风格，用于类似在 fluent design、material design 间切换）*
   block-style: soft
   # 最小边界（当屏幕宽度小于最大宽度时，默认 px）
   min_margin: 32px
@@ -292,6 +298,9 @@ custom:
   skip_to_content_buttom: true
   # 在适当的区域增加返回按钮
   back_buttom: true
+
+  # 文章外禁用选中*
+  # 文章禁用选中*
 
   # 动画效果（false、slow、normal、fast；关闭、慢、中等、快）（未配置）
   animation:

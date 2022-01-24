@@ -1,25 +1,18 @@
 div.recent-post-item
   display flex
   margin-top $block-margin
-  height 20rem
+  height 320px
   border-radius $border-radius
   if hexo-config('custom.global-blur') != 0
     backdrop-filter: saturate(180%) blur($global-blur)
   transition all 0.5s
-  if hexo-config('custom.block-style') == 'soft'
-    box-shadow $soft_block_style_shadow
-    background $soft_block_style_bg
-  else
-    background var(--global-background-color)
+  background var(--bg-color)
 div.recent-post-item:hover
-  if hexo-config('custom.block-style') == 'soft'
-    box-shadow $soft_block_style_shadow_hover
-  else
-    box-shadow $flat_block_style_shadow
+  box-shadow var(--b-shadow)
 
 div.recent-post-item div.post_cover.side
   height 100%
-  width 30rem
+  width 480px
   max-width 40%
   overflow hidden
   border-radius $border-radius 0 0 $border-radius //当前为仅为左侧
@@ -39,31 +32,32 @@ div.recent-post-item div.post_cover.side img:hover
 div.recent-post-item div.post_info
   margin auto 0
   padding $block-padding
+  max-width $max-width - 700px
 div.recent-post-item div.post_info a.post_title i.fa.fa-link.fa-tw
-  font-size 1.4rem
+  font-size 24px
   transition all 0.1s
 div.recent-post-item div.post_info a.post_title
-  font-size 1.8rem
-  color var(--global-text-color)
+  font-size 28px
+  color var(--text-color-r)
   font-weight 600
   transition all 0.1s
 div.recent-post-item div.post_info a.post_title:hover
   color var(--main-color)
-  font-size 2rem
+  font-size 32px
 div.recent-post-item div.post_info a.post_title:hover i.fa.fa-link.fa-tw
-  font-size 1.6rem
+  font-size 25px
 
 div.recent-post-item div.post_info p
-  margin 0.4rem
+  margin 6px
 
 div.recent-post-item div.post_info a
-  color var(--global-text-color)
+  color var(--text-color-r)
   transition all 0.1s
 div.recent-post-item div.post_info a:hover
   color var(--main-color)
 
 div.recent-post-item div.post_info span.post_description
-  line-height 1.5rem
+  line-height 24px
   // -webkit-line-clamp 6
   display -webkit-box
   -webkit-box-orient vertical

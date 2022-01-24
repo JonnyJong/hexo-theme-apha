@@ -14,11 +14,11 @@
 
 // 自定义背景
 body
-  min-height calc(100vh - 8rem)
-  padding-bottom 8rem
+  min-height calc(100vh - 128px)
+  padding-bottom 128px
   margin 0
   position relative
-  background hexo-config("custom.background.background") ? convert(hexo-config("custom.background.background")) : var(--bg-color)
+  background hexo-config("custom.background.background") ? convert(hexo-config("custom.background.background")) : var(--body-color)
 if hexo-config("custom.background.style") == 'blur'
   body::after
     background-image hexo-config("custom.background.blur.img") ? convert(hexo-config("custom.background.blur.img")) : none
@@ -62,7 +62,7 @@ a
 // 选中颜色
 ::selection
   background var(--main-color)
-  color var(--selection-text-color)
+  color var(--text-color)
 
 // 页面主要部分与上方间隔
 #content-inner
@@ -73,7 +73,7 @@ body[where='post'] #content-inner
   if (hexo-config('custom.ui.post.cover_style') != 'banner') && hexo-config('custom.ui.navbar.bottom') == 'none'
     padding-top (hexo-config('custom.ui.navbar.height') ? convert(hexo-config('custom.ui.navbar.height')) : 60px)+(hexo-config('custom.ui.navbar.top') != 'none' ? convert(hexo-config('custom.ui.navbar.top')) : 0px)
 body[where='post'] #content-inner
-  padding-bottom calc(var(--post-bottom-margin) + 140px)
+  padding-bottom ($block-margin + 140px)
 
 // hr
 hr

@@ -5,7 +5,7 @@ if hexo-config('custom.ui.post.cover_style') != 'banner'
 
   .main_column.page div.post_info div.post_cover
     width 100%
-    height 20rem
+    height 320px
     overflow hidden
     border-radius $border-radius $border-radius 0 0
     position relative
@@ -23,7 +23,7 @@ if hexo-config('custom.ui.post.cover_style') != 'banner'
     position absolute
     top 0px
   .main_column.page div.post_info[nocover="false"] div.post_info_oncover_positon_fix
-    height 20rem
+    height 320px
   .main_column.page div.post_info[nocover="true"] div.post_info_oncover_positon_fix
     position relative
   .main_column.page div.post_info div.post_info_oncover
@@ -49,26 +49,26 @@ if hexo-config('custom.ui.post.cover_style') != 'banner'
     backdrop-filter none
     padding $block-margin + $block-padding $block-margin + $block-padding 0px $block-margin + $block-padding
   .main_column.page div.post_info div.post_info_oncover span.post_title
-    font-size 2rem
+    font-size 32px
     font-weight bold
-    color #fffe
-    text-shadow: 0 0 1.5rem #000d
+    color var(--text-color)
+    text-shadow: 0 0 24px #000d
   .main_column.page div.post_info[nocover="true"] div.post_info_oncover span.post_title
-    color var(--global-text-color )
+    color var(--text-color-r)
     text-shadow none
   .main_column.page div.post_info 
     div.post_info_oncover a
     div.post_info_oncover i
     div.post_info_oncover time
     div.post_info_oncover span
-      color #fffe
-      text-shadow: 0 0 1.5rem #000d
+      color var(--text-color)
+      text-shadow: 0 0 24px #000d
   .main_column.page div.post_info[nocover="true"]
     div.post_info_oncover a
     div.post_info_oncover i
     div.post_info_oncover time
     div.post_info_oncover span
-      color var(--global-text-color )
+      color var(--text-color-r)
       text-shadow none
 
 // 文章内容
@@ -119,7 +119,7 @@ article.page
   
   // 行高
   p
-    line-height 1.3rem
+    line-height 20px
 
   // 当鼠标移动到链接上时
   a:hover

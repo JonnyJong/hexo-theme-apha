@@ -63,3 +63,9 @@ window.onscroll = function () {undefined
   //   }
   // }
 };
+
+// 随机色相
+/* window.onload = function() {
+  var hue = parseInt(Math.random()*360);
+  document.documentElement.style.setProperty('--main-color', "hsl("+hue+", 100%, 29%)");
+}; */

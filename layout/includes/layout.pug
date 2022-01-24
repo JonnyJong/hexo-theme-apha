@@ -13,8 +13,11 @@
 
 - var global_back_btn = theme.custom.back_buttom
 
+//- 颜色模式
+- var color_scheme = no-preference //- light dark
+
 doctype html
-html(lang=config.language)
+html(lang=config.language prefers-color-scheme=color_scheme)
   head
     meta(charset='UTF-8')
     title= pageTitle
