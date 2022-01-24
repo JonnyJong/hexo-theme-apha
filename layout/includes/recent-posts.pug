@@ -40,10 +40,7 @@ if page.posts.length > 0
                 i.fa.fa-link.fa-tw
                 span=post.title
             else
-              if post.title
-                a.post_title(href=url_for(post.path))= post.title
-              else
-                a.post_title(href=url_for(post.path))=_p('post_item.notitle')
+              a.post_title(href=url_for(post.path))= post.title ? post.title : _p('post_item.notitle')
             p
             if post.date
               i.fas.fa-pencil-alt.fa-fw

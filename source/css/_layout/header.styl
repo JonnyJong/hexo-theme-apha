@@ -1,7 +1,8 @@
 // 整体
 $banner_height = hexo-config('custom.index_banner_height') ? convert(hexo-config('custom.index_banner_height')) : 100vh
-.header[header="home"]
+.header
   height $banner_height
+  position relative
   if hexo-config('custom.ui.navbar.downside')
     if hexo-config('custom.ui.navbar.move_to_top')
       margin-top -60px
@@ -10,111 +11,127 @@ $banner_height = hexo-config('custom.index_banner_height') ? convert(hexo-config
       margin-top -60px
       transform: translate(0px, 60px);
       margin-bottom 60px
-.header[header="post"]
-.header[header="page"]
-  if hexo-config('custom.ui.navbar.downside') 
-    height calc(30rem - 60px)
-  else
-    height 30rem
-    margin-top -60px
+div.header_img
+  background hexo-config('custom.index_banner_img') ? convert(hexo-config('custom.index_banner_img')) : var(--main-color)
+  // height 100%
+  // width 100%
+  background-position center center
+  background-size cover
+  if hexo-config('custom.index_banner_img_parallax')
+    background-attachment fixed
 
 //banner 图
-.header[header="post"] .header_img
-.header[header="page"] .header_img
-  height calc(30rem - 60px)
 .header .header_img
   overflow hidden
-  position absolute
+  position relative
   height 100%
   width 100%
   top 0px
-  z-index -1
+  // z-index -1
 .header .header_img img
   height 100%
   width 100%
   object-fit cover
-  background-color: var(--main-color)
+  // background-color: var(--main-color)
+
 // 导航栏
-#navbar
-  if hexo-config('custom.ui.navbar.downside') 
-    if hexo-config('custom.ui.navbar.move_to_top') 
-      position -webkit-sticky
-      position sticky
-      top hexo-config('custom.ui.navbar.distance') ? convert(hexo-config('custom.ui.navbar.distance')) : 0
-    else
-      position fixed
-      bottom hexo-config('custom.ui.navbar.distance') ? convert(hexo-config('custom.ui.navbar.distance')) : 0
-      left 0
-      right 0
-  else
-    position fixed
-    top hexo-config('custom.ui.navbar.distance') ? convert(hexo-config('custom.ui.navbar.distance')) : 0
-    left 0
-    right 0
-  display flex
-  align-items center
-  width hexo-config('custom.ui.navbar.width') ? convert(hexo-config('custom.ui.navbar.width')) : 100%
-  margin auto
-  min-width max-content
-  height 60px
-  color var(--re-text-color)
-  text-shadow: 0px 0px 4px var(--shadow-color)
+.navbar
+  // 基本
+  width hexo-config('custom.ui.navbar.outer_width') ? convert(hexo-config('custom.ui.navbar.outer_width')) : 100%
+  max-width hexo-config('custom.ui.navbar.outer_max_width') ? convert(hexo-config('custom.ui.navbar.outer_max_width')) : 100%
+  height hexo-config('custom.ui.navbar.height') ? convert(hexo-config('custom.ui.navbar.height')) : 60px
+  color var(--text-color-r)
+  user-select none
+  // text-shadow: 0px 0px 4px var(--shadow-color)
   background rgba(255,255,255,$navbar-opacity)
   if hexo-config('custom.ui.navbar.blur') != 0
     backdrop-filter: saturate(180%) blur($navbar-blur)
-  box-shadow 0px 0px 16px var(--shadow-color)
-  if hexo-config('custom.ui.navbar.center') 
-    justify-content center
+  box-shadow var(--b-shadow-lite)
   border-radius hexo-config('custom.ui.navbar.border_radius') ? convert(hexo-config('custom.ui.navbar.border_radius')) : 0px
   z-index 100
-#navbar a
-  color var(--re-text-color)
-#navbar i
-  padding-right 8px
+  position fixed
+  if hexo-config('custom.ui.navbar.top') != 'none'
+    top hexo-config('custom.ui.navbar.top') ? convert(hexo-config('custom.ui.navbar.top')) : 0px
+  if hexo-config('custom.ui.navbar.bottom') != 'none'
+    bottom hexo-config('custom.ui.navbar.bottom') ? convert(hexo-config('custom.ui.navbar.bottom')) : 0px
+.navbar_inner
+  display flex
+  height 100%
+  width hexo-config('custom.ui.navbar.inner_width') ? convert(hexo-config('custom.ui.navbar.inner_width')) : 90%
+  max-width hexo-config('custom.ui.navbar.inner_max_width') ? convert(hexo-config('custom.ui.navbar.inner_max_width')) : 100%
+  margin auto
 
-#navbar div.nav_menu
-  padding 0 $navbar-LR-padding 0px 8px
-#navbar div.menu_items
-  display inline
-#navbar div.menu_item
+.nav_item_outer
+  height 100%
+  margin 0 hexo-config('custom.ui.navbar.item_distance') ? convert(hexo-config('custom.ui.navbar.item_distance')) : 0px
   position relative
-  display inline-block
-  padding 20px 8px 0px 8px
-  height 40px
-  cursor pointer
-#navbar div.menu_item
-  font-size 1em
-  font-weight lighter
-#navbar div.menu_item div.sub_menu 
-  display none
-  position absolute
-  width max-content
-  background rgba(255,255,255,0.9)
-  margin 20px 0px
-  left 50%
-  top 50%
-  transform: translate(-50%, 10px)
-  box-shadow: 0px 0px 16px var(--shadow-color)
-#navbar div.menu_item:hover div.sub_menu
-  display block
-#navbar div.sub_menu_item
-  padding 10px 16px
-#navbar div.sub_menu_item:hover
-  background var(--main-color-fade)
+  transition all 0.1s
+.nav_item_inner
+  display flex
+  align-items center
+  height 100%
+  padding 0 hexo-config('custom.ui.navbar.item_inside_distance') ? convert(hexo-config('custom.ui.navbar.item_inside_distance')) : 8px
 
-#navbar .sitetitle
-  if hexo-config('custom.ui.navbar.separate') 
-    flex 1
-  padding 0 8px 0px $navbar-LR-padding
-  display inline
-#navbar div.sitetitle span
-  vertical-align middle
-  font-size 1.3em
-  font-weight 600
-#navbar div.sitetitle img
-  height 40px
-  vertical-align middle
-  margin-right 8px
+.navbar img
+  height (hexo-config('custom.ui.navbar.height') ? convert(hexo-config('custom.ui.navbar.height')) : 60px)*0.6
+.navbar a
+  color var(--text-color-r)
+.navbar i
+  margin-right 4px
+.navbar i.ho_rotate_90
+  transition all 0.1s
+  margin 0 0 0 4px
+.navbar .fakeA
+  cursor pointer
+  display unset
+.navbar .site_title
+  font-size 26px
+  font-weight bold
+.navbar .placeholder
+  flex auto
+.navbar .placeholder:hover
+.nav_item_outer.noLink:hover
+  background none
+.nav_item_outer.noLink
+  background none
+.nav_item_outer.noLink span
+  cursor default
+
+.nav_sub_menu
+  position absolute
+  display none
+  max-width max-content
+  background #fff
+  box-shadow var(--b-shadow-lite)
+  top hexo-config('custom.ui.navbar.height') ? convert(hexo-config('custom.ui.navbar.height')) : 60px
+  right 0
+  animation nav_sub_menu .2s ease
+  border-radius hexo-config('custom.ui.navbar.sub_menu_border_radius') ? convert(hexo-config('custom.ui.navbar.sub_menu_border_radius')) : 8px
+.nav_sub_item
+  width 100%
+  min-width max-content
+.nav_sub_item:hover
+  background var(--main-color-bgh)
+.nav_sub_item a
+  display block
+  height 48px
+  display flex
+  align-items center
+  padding 0 16px
+.nav_item_outer:hover
+  background var(--main-color-bgh)
+  .nav_sub_menu
+    display block
+  .ho_rotate_90
+    transform: rotate(90deg)
+    
+@keyframes nav_sub_menu
+  0%
+    opacity: 0
+    transform: translateY(-10px)
+  100%
+    opacity: 1
+    transform: translateY(0)
 
 // 大标题
 div.header_info
@@ -122,19 +139,15 @@ div.header_info
   position relative
 
 @media screen and (min-width: $max-width){
-  .header[header="home"] div.header_info{
+  .header div.header_info{
     width $header-min-width
     margin auto
   }
 }
 
 @media screen and (max-width: $max-width){
-  .header[header="home"] div.header_info{
+  .header div.header_info{
     margin auto auto auto 100px
-  }
-  .header[header="page"] div.header_info,
-  .header[header="post"] div.header_info{
-    margin auto 100px
   }
 }
 
@@ -143,36 +156,12 @@ div.header_info div.site_big_title
   top 40%
   width max-content
 
-div.header[header="page"] div.header_info div.site_big_title
-  position relative
-  padding 14rem 0
-  width max-content
-
 div.header_info div.site_big_title span.title
-  font-size 6rem
+  font-size 96px
   font-weight bold
   color #fffe
-  text-shadow: 0 0 1.5rem #000d
+  text-shadow: 0 0 24px #000d
 div.header_info div.site_big_title span.subtitle
   font-size 2rem
   color #fffe
-  text-shadow: 0 0 0.5rem #000d
-
-//仅在文章封面样式为 banner 时生效
-if hexo-config('custom.ui.post.cover_style') == 'banner'
-  div.header_info div.post_info
-    position absolute
-    top calc(50% + 30px)
-    width 100%
-    text-align center
-  div.header_info div.post_info span.post_title
-    font-size 2rem
-    font-weight bold
-    color #fffe
-    text-shadow: 0 0 1.5rem #000d
-  div.header_info div.post_info a
-  div.header_info div.post_info i
-  div.header_info div.post_info time
-  div.header_info div.post_info span
-    color #fffe
-    text-shadow: 0 0 1.5rem #000d
+  text-shadow: 0 0 8px #000d

@@ -1,28 +1,4 @@
-if theme.custom.ui.navbar.downside
-  if is_home() 
-    .header(header='home')
-      include ./header_info.pug
-    include ./navbar.pug
-  else if is_post()
-    .header(header='post')
-      include ./header_info.pug
-    include ./navbar.pug
-  else
-    .header(header='page')
-      include ./header_info.pug
-    include ./navbar.pug
-else
-  if is_home() 
-    include ./navbar.pug
-    .header(header='home')
-      include ./header_info.pug
-  else if is_post()
-    include ./navbar.pug
-    if theme.custom.ui.post.cover_style == 'banner'
-      .header(header='post')
-        include ./header_info.pug
-  else
-    include ./navbar.pug
-    if theme.custom.ui.page.cover_style == 'banner'
-      .header(header='page')
-        include ./header_info.pug
+include ./navbar.pug
+if is_home() 
+  .header
+    include ./header_info.pug

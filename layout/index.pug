@@ -1,10 +1,7 @@
 extends includes/layout.pug
 
 block content
-  .main_column
+  .main_column#main
     include includes/recent-posts.pug
     include includes/page_switch.pug
-  if (theme.custom.ui.sidebar.enable)
-    .side_column
-      include includes/sidebar/sidebar.pug
   //- #paginator!= paginator()

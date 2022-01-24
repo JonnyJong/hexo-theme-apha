@@ -1,11 +1,34 @@
 extends includes/layout.pug
 
+include includes/post_info.pug
+
 block content
-  div#tag
-    h1= 'Tag: ' + page.tag
-    - page.posts.each(function(article){
-      a(href=url_for(article.path))= article.title
-      time(datetime=date_xml(article.date))= date(article.date)
-      br.clear
-    - })
-  #paginator!= paginator()
+  - var tagsList = list_tags({ show_count: theme.tag.show_count })
+
+  .main_column.page
+    if theme.archive.cover
+      .page_info(nocover=false)
+        .page_cover
+          img.header_img(src=url_for(theme.archive.cover) alt='banner')
+
+    article.page.archive#main
+
+      if is_tag(page.tag)
+
+        if global_back_btn
+          include includes/global_back_btn.pug
+
+        h1= ' ' + page.tag
+        - page.posts.each(function(article){
+            +post_info(article)
+        - })
+        include includes/page_switch.pug
+
+      else
+
+        if !(theme.tag.after_content)
+          != page.content
+        include includes/archive/tag.pug
+        if theme.tag.after_content
+          != page.content
+

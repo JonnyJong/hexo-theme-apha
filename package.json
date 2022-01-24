@@ -1,6 +1,7 @@
 {
   "name": "hexo-theme-apha",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "build": "2.40",
   "description": "a hexo theme.",
   "author": "jonnyjonny",
   "license": "MIT",
@@ -20,10 +21,5 @@
   "bugs": {
     "url": "https://github.com/JonnyJong/hexo-theme-apha/issues"
   },
-  "homepage": "https://github.com/JonnyJong/hexo-theme-apha",
-  "dependencies": {
-    "hexo-renderer-pug": "^2.0.0",
-    "hexo-renderer-stylus": "^2.0.1",
-    "hexo-renderer-markdown-it-plus": "^1.0.4"
-  }
+  "homepage": "https://github.com/JonnyJong/hexo-theme-apha"
 }

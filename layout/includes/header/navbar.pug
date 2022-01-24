@@ -1,33 +1,101 @@
-nav#navbar
-  .sitetitle
-    a(href=config.root)
-      if theme.custom.ui.navbar.icon == 'favicon'
-        img(src=url_for(theme.info.favicon) alt='sitetitle_img')
-      else if theme.custom.ui.navbar.icon == 'avatar'
-        img(src=url_for(theme.info.avatar) alt='sitetitle_img')
-      else if theme.custom.ui.navbar.icon
-        img(src=url_for(theme.custom.ui.navbar.icon) alt='sitetitle_img')
-      if theme.custom.ui.navbar.text == 'default'
-        span=config.title
-      else if theme.custom.ui.navbar.text
-        span=theme.custom.ui.navbar.text
+//- 站点信息
+mixin siteInfo(value)
+  //- 图标
+  case value[0]
+    when 'favicon'
+      img(src=url_for(theme.info.favicon) alt='site_icon')
+    when 'avatar'
+      img(src=url_for(theme.info.avatar) alt='site_icon')
+    when 'none'
+      - break
+    default
+      img(src=url_for(value[0]) alt='site_icon')
+  //- 间隔
+  if value[0] && value[1]
+    div(style="width: 16px;")
+  //- 标题
+  case value[1]
+    when 'default'
+      span.site_title=config.title
+    when 'none'
+      - break
+    default
+      span.site_title=value[1]
 
-  .nav_menu
-    div(class='menu_items')
-      each content, label in theme.menu
-        if typeof content == 'object'
-          div(class='menu_item')
-            a(class=label.split(', ')[2])
-              i(class=label.split(', ')[1]+' fa-fw')
-              span=label.split(', ')[0]
-              div(class='sub_menu')
-                each subcontent, sublabel in content
-                  div(class='sub_menu_item')
-                    a(href=subcontent.split(', ')[0])
-                      i(class=subcontent.split(', ')[1]+' fa-fw')
-                      span=sublabel
-        else
-          div(class='menu_item')
-            a(href=content.split(', ')[0])
-              i(class=content.split(', ')[1]+' fa-fw')
-              span=label
+//- 菜单
+mixin navMenu(body, item)
+  .nav_item_inner
+    i(class=item[2])
+    span=item[1]
+    if (typeof body == 'object') && body
+      i.fa.fa-chevron-right.ho_rotate_90
+      .nav_sub_menu
+        each subValue, subItem in body
+          .nav_sub_item
+            if subValue.split(', ')[0] !='none'
+              a(href=url_for(subValue.split(', ')[0]))
+                i(class=subValue.split(', ')[1])
+                span=subItem.split(', ')[0]
+            else
+              i(class=subValue.split(', ')[1])
+              span=subItem
+
+
+nav.navbar
+  .navbar_inner
+    if theme.custom.ui.navbar.items
+      each body, head in theme.custom.ui.navbar.items
+        - const item = (head + '').split(', ')
+        - const value = (body + '').split(', ')
+        case item[0]
+          //- 站点信息
+          when 'site'
+            case value[2]
+              when 'root'
+                .nav_item_outer
+                  a(href=config.root)
+                    .nav_item_inner
+                      +siteInfo(value)
+              when 'none'
+                .nav_item_outer.noLink
+                  .nav_item_inner
+                    +siteInfo(value)
+              default
+                .nav_item_outer
+                  a(href=value[2])
+                    .nav_item_inner
+                      +siteInfo(value)
+          //- 图片
+          when 'img'
+            if value[1] != 'none'
+              .nav_item_outer
+                a(href=url_for(value[1]))
+                  .nav_item_inner
+                    img(src=url_for(value[0]) alt='img')
+            else
+              .nav_item_outer.noLink
+                .nav_item_inner
+                  img(src=url_for(value[0]) alt='img')
+          //- 文本
+          when 'text'
+            if value[1] != 'none'
+              .nav_item_outer
+                a(href=url_for(value[1]))
+                  .nav_item_inner
+                    span=value[0]
+            else
+              .nav_item_outer.noLink
+                .nav_item_inner
+                  span=value[0]
+          //- 占位符
+          when 'placeholder'
+            .nav_item_outer.placeholder
+          //- 菜单
+          when 'menu'
+            .nav_item_outer
+              if item[3] != 'none'
+                a(href=url_for(item[3]))
+                  +navMenu(body, item)
+              else
+                .fakeA
+                  +navMenu(body, item)

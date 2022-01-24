@@ -1,23 +1,53 @@
-# 导航栏 main menu navigation
-menu:
-  主页: /, fas fa-home
-  关于: /about/, fa fa-heart
-  友情链接: /link/, fa fa-link
-  文章, fa fa-graduation-cap, '':
-    标签: /tags/, fa fa-tags
-    归类: /categories/, fa fa-archive
-    归档: /archives/, fa fa-folder-open
-
 # 信息
 info:
   # 首页大标题（false、default、value；关闭、默认、值。）
   big_title: default
   # 首页副标题（false、default、value；关闭、默认、值。）
-  big_subtitle: hello world
+  big_subtitle: false
   # 站点图标
   favicon: '/favicon.png'
   # 头像（默认使用站点图标）
   avatar: '/avatar.png'
+
+# 归档
+archive:
+  # 页面仅展示归档（开启后归档页的展示方式将改变，且 show 失效）（未配置）
+  only_archive: 
+  # 归档页展示（你可以将归档、归类、标签全部集中到这个页面来显示，你可以自定义展示顺序，最少需要展示一项）
+  show:
+    - tag
+    - category
+    - archive
+  # 显示数量
+  show_count: true
+  # 显示总数
+  show_total: true
+  # 按月份
+  monthly: true
+  # 日期格式（默认：YYYY MMMM）
+  format:
+  # 封面图
+  cover: /448.jpg
+# 分类
+category:
+  # 显示数量
+  show_count: true
+  # 显示总数
+  show_total: true
+  # 封面图
+  cover: /448.jpg
+  # 将内容渲染到分类之后
+  after_content: true
+# 标签
+tag:
+  # 显示数量
+  show_count: true
+  # 显示总数
+  show_total: true
+  # 封面图
+  cover: /448.jpg
+  # 将内容渲染到标签之后
+  after_content: true
 
 # 自定义外观
 custom:
@@ -25,35 +55,55 @@ custom:
   ui:
     # 导航栏
     navbar:
-      # 在屏幕下方
-      downside: false
-      # 跟随滚动到上方（只有 downside 为 true 时有效）
-      move_to_top: false
-      # 分离标题按钮
-      separate: true
-      # 按钮居中（只有 separate 为 false 时有效）
-      center: false
-      # 与屏幕底部边缘距离（只有 downside 为 true 时有效。false、value；无、数值。支持 % px vw em 等单位）
-        # （与 move_to_top: false, min_weight: 0%, border_radius: 10px 共同使用可形成 docker 效果）
-      distance:
-      # 两端与屏幕间隔（当 width 不留空时不建议设置此项。建议大于 36px。默认：36px）
-      lr_distance: 36px
-      # 图标（false、favicon、avatar、url；关闭、站点图标、头像）
-      icon: /logo.png
-      # 文字（false、default、custom；关闭、站点名、自定义）
-      text: default
-      # 宽度（100% ~ 0%、支持 % px vw em 等单位）
-      width:
-      # 圆角（none、default、value；无、默认、数值。只有 顶栏最小宽度 <100% 时有效）
-      border_radius:
-      # 不透明度（较低的背景模糊度建议使用较高的不透明度，较低的不透明度建议使用较高的背景模糊度）
+      # 自定义组件（允许自由调整顺序）
+      items:
+        # site, 0: /logo.png, default, root
+        # img, 0: /logo.png, /
+        # text, 0: hello world!, /
+        # placeholder, 0: 
+        # menu, 主页, fas fa-home, /:
+        # menu, 关于, fa fa-heart, /about/:
+        # menu, 友情链接, fa fa-link, /link/:
+        # # 此处有bug，如果 none 换成链接，会出现奇怪的层次渲染错误
+        # menu, 文章, fa fa-graduation-cap, none:
+        #   标签: /tags/, fa fa-tags
+        #   归类: /categories/, fa fa-archive
+        #   归档: /archives/, fa fa-folder-open
+      
+      # 导航栏高度（默认 60px）
+      height: 
+      # 导航栏外部宽度（默认 100%）
+      outer_width:
+      # 导航栏外部最大宽度 （默认 100%）
+      outer_max_width:
+      # 导航栏内部宽度 （默认 90%）
+      inner_width: 
+      # 导航栏内部最大宽度 （默认 1400px。推荐值：100%）
+      inner_max_width:
+      # 导航栏与顶部距离（top 和 bottom 建议只设置其中一个）
+      top: none
+      # 导航栏与底部距离
+      bottom: none
+
+      # 元素间距（默认 0px）
+      item_distance: 
+      # 元素内横向间距（默认 8px）
+      item_inside_distance: 
+
+      # 不透明度（较低的背景模糊度建议使用较高的不透明度，较低的不透明度建议使用较高的背景模糊度。默认 0.8）
       opacity: ''
       # 背景模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿。设置 0 可关闭。）
+        # 一般情况下，Firefox 浏览器中 backdrop-filter 有限制
       blur: 
+      # 导航栏圆角（none、default、value；无、默认、数值。建议使用 px 而不是 %，使用 % 会导致变为椭圆）
+      border_radius:
+
+      # 二级菜单圆角（默认 8px）
+      sub_menu_border_radius:
     
     # 首页文章
     index_posts:
-      # 封面默认样式【false、side；关闭、侧边】
+      # 封面默认样式【side；侧边】
       cover_default_style: side
       
       # 文章概要、描述
@@ -63,9 +113,7 @@ custom:
 
     # 文章页样式
     post:
-      # 封面样式（banner、incard；横幅、卡片中。默认：incard）
-      cover_style:
-      # 信息样式（false、gradient、block；无、渐变、块状。当 cover_style 为 incard 时有效）
+      # 信息样式（false、gradient、block；无、渐变、块状。）
       incard_info_bg: gradient
       # block 背景样式
       incard_info_bg_block:
@@ -82,18 +130,70 @@ custom:
       # 段落标题易读性增强
       paragraph_title_readability: true
 
+    # 页面样式
+    page:
+      # 信息样式（false、gradient、block；无、渐变、块状。）
+      incard_info_bg: gradient
+      # block 背景样式
+      incard_info_bg_block:
+        # 不透明度（默认 .2）
+        opacity: ''
+        # 不透明度（默认 10px）
+        blur: 
+      # gradient 背景样式
+      incard_info_bg_gradient:
+        # 开始和结束颜色（色值必须用英文引号包括，例：'#2333'）
+        begin_color: ''
+        end_color: ''
+
   # 全局
   
   # 主题色
   theme_color:
-    main: "#009688" 
+    main: "#009688"
 
+  # 自定义背景（均遵照 css 语法）
+  background:
+    # 类型（none、blur、bg_img；无、朦胧、自定义背景）
+    style: none
+    blur:
+      # 图片
+      img: '' # 按照 css 语法
+      # 跟随滚动
+      scroll: false
+      # 模糊度（单位：px）
+      blur: '20px'
+      # 不透明度
+      opacity: '.3'
+    bg_img: '' # 按照 css 语法，作用于 background-image
+
+
+  # 主页横幅图像
+  index_banner_img: ''
+  # 主页横幅高度（单位：px、vh）
+  index_banner_height: 
+  # 滚动视差
+  index_banner_img_parallax: true
+
+  # 板块外边框（单位：px）
+  block-margin: 
+  # 板块内边框
+  block-padding: 
+  # 模块圆角（单位：px）
+  border-radius:
   # 模块背景不透明度（较低的背景模糊度建议使用较高的不透明度，较低的不透明度建议使用较高的背景模糊度）
   global-opacity: ''
   # 模块背景高斯模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿。设置 0 可关闭。）
-  global-blur: 
-  # 最大宽度（单位：px。默认：1600px。过小的值会导致排版错乱。当设置的值极大时，约等于满屏幕宽度）
+  global-blur: 0
+  # 最大宽度（单位：px。默认：1400px。过小的值会导致排版错乱。设置为 none 关闭。）
   max-width: 
+  # 最小边界（当屏幕宽度小于最大宽度时，默认 16px）
+  min_margin:
+
+  # 转跳到内容按钮（进入页面后按下 Tab，将会在屏幕顶部出现此按钮）
+  skip_to_content_buttom: true
+  # 在适当的区域增加返回按钮
+  back_buttom: true
 
 CDN:
   # 主要引入 Mainly introduced
@@ -101,3 +201,6 @@ CDN:
   mainJs: /js/hexo-theme-apha.js
 
   fontawesome: https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css
+
+  # highlight_js_css: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/styles/default.min.css
+  # highlight_js_js: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/highlight.min.js

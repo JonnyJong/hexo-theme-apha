@@ -1,23 +1,22 @@
 if is_home() 
-  .header_info
-    .site_big_title
-      if theme.info.big_title == 'default'
-        span.title=config.title
-      else if theme.info.big_title
-        span.title=theme.info.big_title
-      if theme.info.big_subtitle == 'default'
-        br
-        span.subtitle=config.subtitle
-      else if theme.info.big_subtitle
-        br
-        span.subtitle=theme.info.big_subtitle
-  if theme.quick_entrance.enable
-    .quick_entrance
-      include ./quick_entrance.pug
   .header_img
-    img.header_img(src=url_for(theme.custom.index_banner_img) alt='banner')
+    //- img.header_img(src=url_for(theme.custom.index_banner_img) alt='banner')
+    .header_info
+      .site_big_title
+        if theme.info.big_title == 'default'
+          span.title=config.title
+        else if theme.info.big_title
+          span.title=theme.info.big_title
+        if theme.info.big_subtitle == 'default'
+          br
+          span.subtitle=config.subtitle
+        else if theme.info.big_subtitle
+          br
+          span.subtitle=theme.info.big_subtitle
 else if is_post()
   .header_info
+    .header_img
+      img.header_img(src=url_for(page.cover) alt='banner')
     .post_info
       if page.title
         span.post_title= page.title
@@ -45,5 +44,12 @@ else if is_post()
         each tag in page.tags.data
           a.page_tag(href=url_for(tag.path))=tag.name
           span=' '
-  .header_img
-    img.header_img(src=url_for(page.cover) alt='banner')
+else if is_page()
+  .header_info
+    .header_img
+      img.header_img(src=url_for(page.cover) alt='banner')
+    .page_info
+      if page.title
+        span.page_title= page.title
+      else
+        span.page_title= page.title=_p('page_item.notitle')

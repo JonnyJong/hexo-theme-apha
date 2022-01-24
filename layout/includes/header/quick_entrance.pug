@@ -2,7 +2,7 @@ each item in theme.quick_entrance.items
   div(class="outside_box" id=item.id)
     a(url=item.url)
       div(class="inside_box" id=item.id)
-        span#item_name=item.name
-        img#item_img(src=item.img)
-        span#content=item.content
-        img#background_img(src=item.background_img)
+        span.item_name=item.name
+        img.item_img(src=item.img)
+        span.content=item.content
+        img.background_img(src=item.background_img)

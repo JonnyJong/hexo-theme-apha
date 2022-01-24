@@ -1,3 +1,6 @@
+global:
+  skip_to_content: 转跳到内容
+  back_buttom: 返回
 post_item:
   date: 创建于
   updated: 更新于
@@ -9,4 +12,9 @@ post:
   next_post: 下一篇文章
   prev_post: 上一篇文章
 page:
-  archive: 归档
+  archives: 归档
+  categories: 分类
+  tags: 标签
+  no_category: 暂无归类。
+  no_tag: 暂无标签。
+  no_archive: 暂无。

@@ -7,18 +7,29 @@
 - if (is_year()) pageTitle += ': ' + page.year
 - pageTitle += ' [ ' + config.title + ' ]'
 
+- var what_is_this_page = 'page'
+- if (is_home()) what_is_this_page = 'home'
+- if (is_post()) what_is_this_page = 'post'
+
+- var global_back_btn = theme.custom.back_buttom
+
+//- 颜色模式
+- var color_scheme = no-preference //- light dark
+
 doctype html
-html(lang=config.language)
+html(lang=config.language prefers-color-scheme=color_scheme)
   head
     meta(charset='UTF-8')
     title= pageTitle
+    link(rel="icon" href=theme.info.favicon)
     //- 引用CDN
     link(rel='stylesheet', href=theme.CDN.mainCss)
     script(type="text/javascript" src=theme.CDN.mainJs)
     link(rel='stylesheet', href=theme.CDN.fontawesome)
     //- link(rel='stylesheet', href=theme.CDN.highlight_js_css)
     //- script(src=theme.CDN.highlight_js_js)
-  body
+  body(where=what_is_this_page)
+    include ./skipToContentButtom.pug
     include ./header/header.pug
     #content-outer
       #content-inner
@@ -26,7 +37,7 @@ html(lang=config.language)
           div!= body
         else
           block content
-    .before_footer
+    //- .before_footer
     footer
       span Site construction by
       span= ' ' + config.author + ' '
