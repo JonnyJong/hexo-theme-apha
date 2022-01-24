@@ -76,8 +76,6 @@ category:
   show_count: true
   # 显示总数
   show_total: true
-  # 显示为矩形树图（未配置）
-  rectangle_treemap: true
   # 封面图
   cover: /448.jpg
   # 将内容渲染到分类之后
@@ -237,12 +235,11 @@ custom:
   # 主题色
   theme_color:
     main: "#009688"
-    highlight: "#ff6977"
 
-    # 色相配色（0~360、false；选择色相、关闭。由主题根据色相调整颜色）*
+    # 色相配色（0~360、false；选择色相、关闭。由主题根据色相调整颜色）（未完成）*
     hue: false
 
-    # 随机色相（将无法自定义，每次刷新更换颜色）*
+    # 随机色相（将无法自定义，每次刷新更换颜色）（未完成）*
     random_color: true
 
   # 字体（暂未完成）
@@ -285,16 +282,18 @@ custom:
   global-blur: 0
   # 最大宽度（单位：px。默认：1400px。过小的值会导致排版错乱。设置为 none 关闭。）
   max-width: 
-  # 最小边界（当屏幕宽度小于最大宽度时，默认 px）
-  min_margin: 32px
+  # 最小边界（当屏幕宽度小于最大宽度时，默认 16px）
+  min_margin:
 
   # 转跳到内容按钮（进入页面后按下 Tab，将会在屏幕顶部出现此按钮）
   skip_to_content_buttom: true
   # 在适当的区域增加返回按钮
   back_buttom: true
 
-  # 文章外禁用选中*
-  # 文章禁用选中*
+  # 文章外禁用选中（未配置）*
+  no_select_unless_article: true
+  # 文章禁用选中（未配置）*
+  no_select_in_article: false
 
   # 动画效果（false、slow、normal、fast；关闭、慢、中等、快）（未配置）
   animation:
