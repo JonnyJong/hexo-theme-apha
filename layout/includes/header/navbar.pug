@@ -43,58 +43,59 @@ mixin navMenu(body, item)
 
 nav.navbar
   .navbar_inner
-    each body, head in theme.custom.ui.navbar.items
-      - const item = (head + '').split(', ')
-      - const value = (body + '').split(', ')
-      case item[0]
-        //- 站点信息
-        when 'site'
-          case value[2]
-            when 'root'
-              .nav_item_outer
-                a(href=config.root)
+    if theme.custom.ui.navbar.items
+      each body, head in theme.custom.ui.navbar.items
+        - const item = (head + '').split(', ')
+        - const value = (body + '').split(', ')
+        case item[0]
+          //- 站点信息
+          when 'site'
+            case value[2]
+              when 'root'
+                .nav_item_outer
+                  a(href=config.root)
+                    .nav_item_inner
+                      +siteInfo(value)
+              when 'none'
+                .nav_item_outer.noLink
                   .nav_item_inner
                     +siteInfo(value)
-            when 'none'
+              default
+                .nav_item_outer
+                  a(href=value[2])
+                    .nav_item_inner
+                      +siteInfo(value)
+          //- 图片
+          when 'img'
+            if value[1] != 'none'
+              .nav_item_outer
+                a(href=url_for(value[1]))
+                  .nav_item_inner
+                    img(src=url_for(value[0]) alt='img')
+            else
               .nav_item_outer.noLink
                 .nav_item_inner
-                  +siteInfo(value)
-            default
-              .nav_item_outer
-                a(href=value[2])
-                  .nav_item_inner
-                    +siteInfo(value)
-        //- 图片
-        when 'img'
-          if value[1] != 'none'
-            .nav_item_outer
-              a(href=url_for(value[1]))
-                .nav_item_inner
                   img(src=url_for(value[0]) alt='img')
-          else
-            .nav_item_outer.noLink
-              .nav_item_inner
-                img(src=url_for(value[0]) alt='img')
-        //- 文本
-        when 'text'
-          if value[1] != 'none'
-            .nav_item_outer
-              a(href=url_for(value[1]))
+          //- 文本
+          when 'text'
+            if value[1] != 'none'
+              .nav_item_outer
+                a(href=url_for(value[1]))
+                  .nav_item_inner
+                    span=value[0]
+            else
+              .nav_item_outer.noLink
                 .nav_item_inner
                   span=value[0]
-          else
-            .nav_item_outer.noLink
-              .nav_item_inner
-                span=value[0]
-        //- 占位符
-        when 'placeholder'
-          .nav_item_outer.placeholder
-        //- 菜单
-        when 'menu'
-          .nav_item_outer
-            if item[3] != 'none'
-              a(href=url_for(item[3]))
-                +navMenu(body, item)
-            else
-              .fakeA
-                +navMenu(body, item)
+          //- 占位符
+          when 'placeholder'
+            .nav_item_outer.placeholder
+          //- 菜单
+          when 'menu'
+            .nav_item_outer
+              if item[3] != 'none'
+                a(href=url_for(item[3]))
+                  +navMenu(body, item)
+              else
+                .fakeA
+                  +navMenu(body, item)
