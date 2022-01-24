@@ -37,6 +37,10 @@ html(lang=config.language prefers-color-scheme=color_scheme)
           div!= body
         else
           block content
+          if (theme.custom.ui.sidebar.enable) && (theme.custom.ui.sidebar.items)
+            .side_column
+              .sidebar_items
+                include ./sidebar/sidebar.pug
     //- .before_footer
     footer
       span Site construction by

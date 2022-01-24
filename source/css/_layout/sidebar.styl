@@ -1,0 +1,11 @@
+.sidebar_items
+  .item
+    background var(--bg-color)
+    border-radius $border-radius
+    if hexo-config('custom.global-blur') != 0
+      backdrop-filter: saturate(180%) blur($global-blur)
+    transition all 0.5s
+    margin-top $block-margin
+    padding $block-padding
+  .item:hover
+    box-shadow var(--b-shadow)

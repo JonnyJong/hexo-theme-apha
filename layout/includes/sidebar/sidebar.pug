@@ -1,0 +1,47 @@
+each value, head in theme.custom.ui.sidebar.items
+  - const item = (head + '').split(', ')
+  .item
+    case item[0]
+      when "site"
+        .item_info
+          - const icon_ori = value.icon ? (value.icon + '').split(', ') : false
+          - const icon = icon_ori[0] ? icon_ori[0] : "fas fa-chart-line"
+          - const icon_color = icon_ori[1] ? icon_ori[1] : "var(--text-color-rf)"
+          i(class=icon+' item_icon' style="color:"+icon_color+";")
+          - const title = value.title ? value.title : _p("sidebar.site_info.title")
+          span=title
+        each sub_body, sub_head in value
+          - const sub_item = (sub_head + '').split(', ')        
+          case sub_item[0]
+            when "num_of_articles"
+              .info
+                span.title
+                span.value
+            when "total_word_count"
+              .info
+                span.title
+                span.value
+            when "total_visitors"
+              .info
+                span.title
+                span.value
+            when "total_visits"
+              .info
+                span.title
+                span.value
+            when "runtime"
+              .info
+                span.title
+                span.value
+            when "last_update"
+              .info
+                span.title
+                span.value
+            default
+              - break
+        
+    //- when 'author'
+    //- when 'newest_posts'
+    //- when 'tags'
+    //- when 'categories'
+    //- default

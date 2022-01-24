@@ -18,3 +18,12 @@ page:
   no_category: 暂无归类。
   no_tag: 暂无标签。
   no_archive: 暂无。
+sidebar:
+  site_info:
+    title: 站点信息
+    num_of_articles: 文章数目
+    total_word_count: 总字数
+    total_visitors: 总访客数
+    total_visits: 总访问量
+    runtime: 运行时长
+    last_update: 最后更新时间
