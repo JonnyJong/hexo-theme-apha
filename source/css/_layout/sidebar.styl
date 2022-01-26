@@ -1,5 +1,6 @@
 .sidebar_items
   width 300px
+  font-size 15px
   .item
     background var(--bg-color)
     border-radius $border-radius
@@ -15,10 +16,51 @@
         margin-right 8px
     .content
       margin-top 8px
-      font-size 15px
       display flex
       flex-direction row
       justify-content space-between
       align-items baseline
   .item:hover
     box-shadow var(--b-shadow)
+  
+  .item_author
+    .avatar
+      margin-top 8px
+      img
+        margin 0 auto 0
+        display block
+        max-height 100px
+        max-width 100px
+      .round
+        border-radius 100px
+    .author_name
+      margin-top 8px
+      text-align center
+      font-size 17px
+    .text
+      margin-top 8px
+    .social_link
+      margin-top 8px
+      text-align center
+      i
+        font-size 24px
+        color var(--text-color-r)
+        transition .1s
+      a:hover i
+        color var(--main-color)
+    .button
+      margin-top 8px
+      a
+        display block
+        width 100%
+        text-align center
+        height 34px
+        background var(--main-color-bgh)
+        color var(--text-color-r)
+        line-height 34px
+        transition .2s
+        i
+          margin-right 4px
+      a:hover
+        background var(--main-color)
+        color var(--text-color)

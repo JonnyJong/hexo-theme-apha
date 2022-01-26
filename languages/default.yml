@@ -27,3 +27,9 @@ sidebar:
     total_visits: 总访问量
     runtime: 运行时长
     last_update: 最后更新时间
+  newest_posts:
+    title: 最新文章
+  tags:
+    title: 标签
+  categories:
+    title: 分类

@@ -4,14 +4,14 @@ each value, head in theme.custom.ui.sidebar.items
     case item[0]
       when "site"
         .item_info
-          - const icon_ori = value.icon ? (value.icon + '').split(', ') : false
-          - const icon = icon_ori[0] ? icon_ori[0] : "fas fa-chart-line"
-          - const icon_color = icon_ori[1] ? icon_ori[1] : "var(--text-color-rf)"
+          - var icon_ori = value.icon ? (value.icon + '').split(', ') : false
+          - var icon = icon_ori[0] ? icon_ori[0] : "fas fa-chart-line"
+          - var icon_color = icon_ori[1] ? icon_ori[1] : "var(--text-color-rf)"
           i(class=icon+' item_icon' style="color:"+icon_color+";")
-          - const title = value.title ? value.title : _p("sidebar.site_info.title")
+          - var title = value.title ? value.title : _p("sidebar.site_info.title")
           span=title
         each sub_body, sub_head in value
-          - const sub_item = (sub_head + '').split(', ')        
+          - var sub_item = (sub_head + '').split(', ')        
           case sub_item[0]
             when "num_of_articles"
               .content
@@ -37,11 +37,90 @@ each value, head in theme.custom.ui.sidebar.items
               .content
                 span.title=_p("sidebar.site_info.last_update")
                 span.value=123
-            default
-              - break
-        
-    //- when 'author'
-    //- when 'newest_posts'
-    //- when 'tags'
-    //- when 'categories'
-    //- default
+            when "text"
+              .content
+                span.text=sub_body
+      when 'author'
+        .item_author
+          each sub_body, sub_head in value
+            - var sub_item = (sub_head + '').split(', ')
+            case sub_item[0]
+              when "avatar"
+                .avatar
+                  if sub_body == 'round'
+                    img.round(src=url_for(theme.info.avatar) alt="avatar")
+                  else
+                    img(src=url_for(theme.info.avatar) alt="avatar")
+              when "author_name"
+                .author_name
+                  span.author_name= sub_body ? sub_body : config.author
+              when "social_link"
+                .social_link
+                  if theme.info.social_link
+                    each ori_soc_lnk in theme.info.social_link
+                      - var soc_lnk = (ori_soc_lnk + '').split(', ')
+                      a(href=url_for(soc_lnk[1]) title=soc_lnk[2])
+                        i(class=soc_lnk[0])
+              when "button"
+                .button
+                  - var btn = (sub_body + '').split(', ')
+                  a.button(href=btn[0])
+                    if btn[2] != 'none'
+                      i(class=btn[2])
+                    span=btn[1]
+              when "text"
+                .text
+                  span.text=sub_body
+      when 'newest_posts'
+        .item_info.newest_posts
+          if (typeof value == 'object') && value
+            - var icon_ori = value.icon ? (value.icon + '').split(', ') : false
+            - var icon = icon_ori[0] ? icon_ori[0] : "fas fa-calendar"
+            - var icon_color = icon_ori[1] ? icon_ori[1] : "var(--text-color-rf)"
+            i(class=icon+' item_icon' style="color:"+icon_color+";")
+            - var title = value.title ? value.title : _p("sidebar.newest_posts.title")
+            span=title
+          else
+            i(class='fas fa-calendar item_icon' style="color:var(--text-color-rf);")
+            span=_p("sidebar.newest_posts.title")
+      when 'tags'
+        .item_info.tags
+          if (typeof value == 'object') && value
+            - var icon_ori = value.icon ? (value.icon + '').split(', ') : false
+            - var icon = icon_ori[0] ? icon_ori[0] : "fas fa-tags"
+            - var icon_color = icon_ori[1] ? icon_ori[1] : "var(--text-color-rf)"
+            i(class=icon+' item_icon' style="color:"+icon_color+";")
+            - var title = value.title ? value.title : _p("sidebar.tags.title")
+            span=title
+          else
+            i(class='fas fa-tags item_icon' style="color:var(--text-color-rf);")
+            span=_p("sidebar.tags.title")
+      when 'categories'
+        .item_info.categories
+          if (typeof value == 'object') && value
+            - var icon_ori = value.icon ? (value.icon + '').split(', ') : false
+            - var icon = icon_ori[0] ? icon_ori[0] : "fas fa-folder-open"
+            - var icon_color = icon_ori[1] ? icon_ori[1] : "var(--text-color-rf)"
+            i(class=icon+' item_icon' style="color:"+icon_color+";")
+            - var title = value.title ? value.title : _p("sidebar.categories.title")
+            span=title
+          else
+            i(class='fas fa-folder-open item_icon' style="color:var(--text-color-rf);")
+            span=_p("sidebar.categories.title")
+      default
+        .item_info
+          if value.icon
+            i(class= (value.icon + '').split(', ')[0] + " item_icon" style="color:"+((value.icon + '').split(', ')[1]?(value.icon + '').split(', ')[1]:"var(--text-color-rf)")+";")
+          if value.title
+            span=value.title
+        each sub_body, sub_head in value
+          case sub_head
+            when "button"
+              .button
+                - var btn = (sub_body + '').split(', ')
+                a.button(href=btn[0])
+                  if btn[2] != 'none'
+                    i(class=btn[2])
+                  span=btn[1]
+            when "text"
+              .text!=`${sub_body}`
