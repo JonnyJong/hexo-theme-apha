@@ -1,3 +1,12 @@
+mixin post_info(article)
+  .post_item
+    a.post_link(href=url_for(article.path) title=article.title)
+      if article.cover
+        img.post_cover(src=article.cover alt=article.title)
+      .post_info
+        p.post_title=(article.title ? article.title : _p('post_item.notitle') )
+        time(datetime=date_xml(article.date))= date(article.date)
+
 each value, head in theme.custom.ui.sidebar.items
   - const item = (head + '').split(', ')
   .item
@@ -72,7 +81,7 @@ each value, head in theme.custom.ui.sidebar.items
                 .text
                   span.text=sub_body
       when 'newest_posts'
-        .item_info.newest_posts
+        .item_info
           if (typeof value == 'object') && value
             - var icon_ori = value.icon ? (value.icon + '').split(', ') : false
             - var icon = icon_ori[0] ? icon_ori[0] : "fas fa-calendar"
@@ -83,8 +92,14 @@ each value, head in theme.custom.ui.sidebar.items
           else
             i(class='fas fa-calendar item_icon' style="color:var(--text-color-rf);")
             span=_p("sidebar.newest_posts.title")
+        - var final_limit = 6
+        if (typeof value == 'object') && value
+          - final_limit = value.limit ? value.limit : 6
+        - site.posts.sort("updated", -1).limit(final_limit).each(function(article){
+            +post_info(article)
+        - })
       when 'tags'
-        .item_info.tags
+        .item_info
           if (typeof value == 'object') && value
             - var icon_ori = value.icon ? (value.icon + '').split(', ') : false
             - var icon = icon_ori[0] ? icon_ori[0] : "fas fa-tags"
@@ -95,8 +110,18 @@ each value, head in theme.custom.ui.sidebar.items
           else
             i(class='fas fa-tags item_icon' style="color:var(--text-color-rf);")
             span=_p("sidebar.tags.title")
+        - var f_limit = 30
+        - var f_color = true
+        - var s_color = "#3EA919"
+        - var e_color = "#156FD6"
+        if (typeof value == 'object') && value
+          - f_limit = value.limit ? value.limit : 30
+          - f_color = value.colorful ? value.colorful : true
+          - s_color = value.start_color ? value.start_color : "#3EA919"
+          - e_color = value.end_color ? value.end_color : "#156FD6"
+        .tag_cloud!= tagcloud({min_font: 15, max_font: 20, amount: f_limit, color: f_color, start_color: s_color, end_color: e_color})
       when 'categories'
-        .item_info.categories
+        .item_info
           if (typeof value == 'object') && value
             - var icon_ori = value.icon ? (value.icon + '').split(', ') : false
             - var icon = icon_ori[0] ? icon_ori[0] : "fas fa-folder-open"
@@ -107,6 +132,12 @@ each value, head in theme.custom.ui.sidebar.items
           else
             i(class='fas fa-folder-open item_icon' style="color:var(--text-color-rf);")
             span=_p("sidebar.categories.title")
+        - var f_depth = 1
+        - var f_show_count = true
+        if (typeof value == 'object') && value
+          - f_limit = value.depth ? value.depth : 1
+          - f_show_count = value.show_count ? value.show_count : true
+        .categoriesList!= list_categories({ depth: 1, show_count: f_show_count })
       default
         .item_info
           if value.icon

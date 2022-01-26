@@ -59,8 +59,82 @@
         color var(--text-color-r)
         line-height 34px
         transition .2s
+        border-radius $border-radius
         i
           margin-right 4px
       a:hover
         background var(--main-color)
         color var(--text-color)
+  .item
+    .post_item
+      position relative
+      border-radius $border-radius
+      margin-bottom 16px
+      transition 0.3s
+      a
+        display block
+        height max-content
+        position relative
+        border-radius $border-radius
+        transition 0.1s
+        overflow hidden
+        img.post_cover
+          height 100%
+          width 77px
+          object-fit cover
+          margin 0
+          display inline-block
+          position absolute
+          border-radius $border-radius
+        .post_info
+          display inline-block
+          margin 16px 16px 16px 85px
+          p.post_title
+            font-size 18px
+            margin 0
+            line-height 26px
+            font-weight bold
+            transition 0.1s
+            color var(--text-color-r)
+            -webkit-line-clamp 2
+        time
+          color var(--text-color-r)
+      a:hover
+      a:focus
+        background alpha($main_color 25%)
+        p.post_title
+          font-size 22px
+          line-height 30px
+          color var(--main-color)
+    .tag_cloud
+      overflow hidden
+      a
+        transition .1s
+      a:hover
+        text-decoration underline 2px
+    .category-list
+      list-style-type none
+      margin 0
+      padding 0
+      .category-list-item
+        display flex
+        flex-direction row
+        justify-content space-between
+        align-items baseline
+        line-height 21px
+        border-radius $border-radius
+        transition .1s
+        a
+          color var(--text-color-r)
+          padding 8px
+          font-weight bold
+          width 100%
+          transition .1s
+        a:hover
+          color var(--main-color)
+          font-size 18px
+          line-hight 24px
+        span
+          padding-right 8px
+      .category-list-item:hover
+        background var(--main-color-bgh)
