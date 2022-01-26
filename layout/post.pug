@@ -24,13 +24,20 @@ block content
             if page.updated
               i.fas.fa-history.fa-fw
               time(datetime=page.updated.toJSON())= _p('post_item.updated') + ' ' + date(page.updated, date_format) + ' '
+            if theme.third_party.busuanzi
+              i.fas.fa-eye
+              span= _p('post_item.read') + ' '
+              span#busuanzi_value_page_pv
+              span=' '
             if (page.categories.data.length > 0)
+              .line_warp_h
               i.fas.fa-folder.fa-fw
               each cate, count in page.categories.data
                 a.page_cate(href=url_for(cate.path))=cate.name
                 if (count < page.categories.data.length - 1)
                   span='/'
             if (page.tags.data.length > 0)
+              .line_warp_h
               span=' '
               if (page.tags.data.length > 1)
                 i.fas.fa-tags.fa-fw

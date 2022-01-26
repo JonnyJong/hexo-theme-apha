@@ -5,6 +5,7 @@ post_item:
   date: 创建于
   updated: 更新于
   notitle: 无标题
+  read: 阅读量
 footer:
   frame: 框架
   theme: 主题

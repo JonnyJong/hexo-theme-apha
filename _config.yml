@@ -8,9 +8,11 @@ info:
   favicon: '/favicon.png'
   # 头像（默认使用站点图标）
   avatar: '/avatar.png'
-  # 社交链接（未完成）
+  # 社交链接
   social_link:
     - fab fa-github, https://github.com/JonnyJong, Github
+  # 建站时间（未配置）
+  site_begin: 2020/8/10 00:07:00
 
 # 快捷入口（首页标题旁）
 # 只制作基本的框架，等待制作各种风格的模板插件。故暂时停工
@@ -336,12 +338,19 @@ custom:
   # 动画效果（false、slow、normal、fast；关闭、慢、中等、快）（未配置）
   animation:
 
+# 第三方
+third_party:
+  # busuanzi 统计（引入 js 用于统计访问量与访客数）
+  busuanzi: true
+
 CDN:
   # 主要引入 Mainly introduced
   mainCss: /css/hexo-theme-apha.css
   mainJs: /js/hexo-theme-apha.js
 
   fontawesome: https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css
+
+  busuanzi: //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js
 
   # highlight_js_css: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/styles/default.min.css
   # highlight_js_js: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/highlight.min.js

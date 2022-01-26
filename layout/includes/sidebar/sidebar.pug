@@ -25,7 +25,7 @@ each value, head in theme.custom.ui.sidebar.items
             when "num_of_articles"
               .content
                 span.title=_p("sidebar.site_info.num_of_articles")
-                span.value=123
+                span.value=site.posts.length
             when "total_word_count"
               .content
                 span.title=_p("sidebar.site_info.total_word_count")
@@ -33,11 +33,11 @@ each value, head in theme.custom.ui.sidebar.items
             when "total_visitors"
               .content
                 span.title=_p("sidebar.site_info.total_visitors")
-                span.value=123
+                span.value#busuanzi_value_site_pv
             when "total_visits"
               .content
                 span.title=_p("sidebar.site_info.total_visits")
-                span.value=123
+                span.value#busuanzi_value_site_uv
             when "runtime"
               .content
                 span.title=_p("sidebar.site_info.runtime")
