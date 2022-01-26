@@ -1,6 +1,6 @@
 $max-width = hexo-config('custom.max-width') ? (convert(hexo-config('custom.max-width')) + 200px) : 1600px // 页面主体最大宽度（实际使用 - 200px）
 $block-margin = hexo-config('custom.block-margin') ? convert(hexo-config('custom.block-margin')) : 16px // 模块外边距
-$block-padding = hexo-config('custom.block-padding') ? convert(hexo-config('custom.block-padding')) : 16px // 模块内边距
+$block-padding = hexo-config('custom.block-padding') ? convert(hexo-config('custom.block-padding')) : 24px // 模块内边距
 $border-radius = hexo-config('custom.border-radius') ? convert(hexo-config('custom.border-radius')) : 16px // 圆角
 $global-opacity = hexo-config('custom.global-opacity') ? convert(hexo-config('custom.global-opacity')) : .6 // 不透明度
 $global-blur = hexo-config('custom.global-blur') ? convert(hexo-config('custom.global-blur')) : 20px //模糊程度
@@ -10,6 +10,7 @@ $header-min-width = $max-width - 200px
 $navbar-LR-padding = hexo-config('custom.ui.navbar.lr_distance') ? convert(hexo-config('custom.ui.navbar.lr_distance')) : 36px
 $navbar-opacity = hexo-config('custom.ui.navbar.opacity') ? convert(hexo-config('custom.ui.navbar.opacity')) : .8
 $navbar-blur = hexo-config('custom.ui.navbar.blur') ? convert(hexo-config('custom.ui.navbar.blur')) : 20px
+$navbar_height = hexo-config('custom.ui.navbar.height') ? convert(hexo-config('custom.ui.navbar.height')) : 60px
 
 //需处理的变量
 // 色彩预备

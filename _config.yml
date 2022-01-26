@@ -156,7 +156,7 @@ custom:
           last_update:
           # 隐性选项（除 item 类型，非必填且有初始值）
           # 标题
-          title: 站点信息（可以修改）
+          title: 站点信息（标题可以修改）
           # 图标
           icon: fas fa-chart-line
         author, 0:

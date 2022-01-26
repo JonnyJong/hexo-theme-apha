@@ -63,16 +63,25 @@ a
 ::selection
   background var(--main-color)
   color var(--text-color)
-
+#content-outer
+  margin-bottom $block-margin
 #content-inner
-  // 页面主要部分与上方间隔
-  padding $block-margin $main_content_margin
   margin auto
   // 与侧栏布局
   display flex
   flex-direction row
   gap $block-margin
-
+.main_column
+  width 1400px - 32px - 300px
+.side_column
+  width 300px
+// 页面主要部分与上方间隔
+[where="page"]
+[where="post"]
+  #content-inner
+    padding $navbar_height $main_content_margin $block-margin $main_content_margin
+[where="home"] #content-inner
+  padding 0 $main_content_margin $block-margin $main_content_margin
 // hr
 hr
   border-top 4px dashed var(--main-color)

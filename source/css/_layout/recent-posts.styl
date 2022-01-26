@@ -1,7 +1,7 @@
 div.recent-post-item
   display flex
   margin-top $block-margin
-  height 320px
+  height 280px
   border-radius $border-radius
   if hexo-config('custom.global-blur') != 0
     backdrop-filter: saturate(180%) blur($global-blur)
@@ -12,10 +12,10 @@ div.recent-post-item:hover
 
 div.recent-post-item div.post_cover.side
   height 100%
-  width 480px
-  max-width 40%
+  max-width 480px
   overflow hidden
   border-radius $border-radius 0 0 $border-radius //当前为仅为左侧
+  flex 3
 
 div.recent-post-item div.post_cover.side img
   height 100%
@@ -32,7 +32,8 @@ div.recent-post-item div.post_cover.side img:hover
 div.recent-post-item div.post_info
   margin auto 0
   padding $block-padding
-  max-width $max-width - 700px
+  flex 5
+  font-size 15px
 div.recent-post-item div.post_info a.post_title i.fa.fa-link.fa-tw
   font-size 24px
   transition all 0.1s

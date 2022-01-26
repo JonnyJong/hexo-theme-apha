@@ -39,7 +39,7 @@ div.header_img
   // 基本
   width hexo-config('custom.ui.navbar.outer_width') ? convert(hexo-config('custom.ui.navbar.outer_width')) : 100%
   max-width hexo-config('custom.ui.navbar.outer_max_width') ? convert(hexo-config('custom.ui.navbar.outer_max_width')) : 100%
-  height hexo-config('custom.ui.navbar.height') ? convert(hexo-config('custom.ui.navbar.height')) : 60px
+  height $navbar_height
   color var(--text-color-r)
   user-select none
   // text-shadow: 0px 0px 4px var(--shadow-color)
@@ -73,7 +73,7 @@ div.header_img
   padding 0 hexo-config('custom.ui.navbar.item_inside_distance') ? convert(hexo-config('custom.ui.navbar.item_inside_distance')) : 8px
 
 .navbar img
-  height (hexo-config('custom.ui.navbar.height') ? convert(hexo-config('custom.ui.navbar.height')) : 60px)*0.6
+  height $navbar_height*0.6
 .navbar a
   color var(--text-color-r)
 .navbar i
@@ -103,7 +103,7 @@ div.header_img
   max-width max-content
   background #fff
   box-shadow var(--b-shadow-lite)
-  top hexo-config('custom.ui.navbar.height') ? convert(hexo-config('custom.ui.navbar.height')) : 60px
+  top $navbar_height
   right 0
   animation nav_sub_menu .2s ease
   border-radius hexo-config('custom.ui.navbar.sub_menu_border_radius') ? convert(hexo-config('custom.ui.navbar.sub_menu_border_radius')) : 8px

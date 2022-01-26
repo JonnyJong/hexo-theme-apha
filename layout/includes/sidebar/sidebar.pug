@@ -14,29 +14,29 @@ each value, head in theme.custom.ui.sidebar.items
           - const sub_item = (sub_head + '').split(', ')        
           case sub_item[0]
             when "num_of_articles"
-              .info
-                span.title
-                span.value
+              .content
+                span.title=_p("sidebar.site_info.num_of_articles")
+                span.value=123
             when "total_word_count"
-              .info
-                span.title
-                span.value
+              .content
+                span.title=_p("sidebar.site_info.total_word_count")
+                span.value=123
             when "total_visitors"
-              .info
-                span.title
-                span.value
+              .content
+                span.title=_p("sidebar.site_info.total_visitors")
+                span.value=123
             when "total_visits"
-              .info
-                span.title
-                span.value
+              .content
+                span.title=_p("sidebar.site_info.total_visits")
+                span.value=123
             when "runtime"
-              .info
-                span.title
-                span.value
+              .content
+                span.title=_p("sidebar.site_info.runtime")
+                span.value=123
             when "last_update"
-              .info
-                span.title
-                span.value
+              .content
+                span.title=_p("sidebar.site_info.last_update")
+                span.value=123
             default
               - break
         

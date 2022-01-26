@@ -3,7 +3,8 @@ footer
   position absolute
   text-align center
   background-color var(--main-color)
-  width calc(100% - 32px)
+  --footer-double-block-padding $block-padding*2
+  width calc(100% - var(--footer-double-block-padding))
   bottom 0px
   // 这一项有可能引发问题，需注意
   height 96px
