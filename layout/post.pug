@@ -11,10 +11,12 @@ block content
           .post_cover
         .post_info_oncover_positon_fix
           .post_info_oncover
-            if page.title
-              span.post_title= page.title
+            if page.link
+              a.post_title(href=url_for(page.link))
+                i.fa.fa-link.fa-tw
+                span.post_title=page.title ? page.title : _p('post_item.notitle')
             else
-              span.post_title=_p('post_item.notitle')
+              span.post_title=page.title ? page.title : _p('post_item.notitle')
             p
             if page.date
               i.fas.fa-pencil-alt.fa-fw
@@ -40,4 +42,8 @@ block content
       article.page#main
         //- h1= page.title
         != page.content
+        if page.photos != undefined
+          .post_gallery
+            each url in page.photos
+              img(src=url_for(url) alt="post gallery")
     include includes/page_switch.pug

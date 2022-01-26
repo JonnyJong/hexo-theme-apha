@@ -133,7 +133,7 @@ custom:
       # 导航栏圆角（none、default、value；无、默认、数值。建议使用 px 而不是 %，使用 % 会导致变为椭圆）
       border_radius:
 
-      # 二级菜单圆角（默认 8px）
+      # 二级菜单圆角（默认 6px）
       sub_menu_border_radius:
 
     # 侧边栏（未完成）
@@ -210,8 +210,8 @@ custom:
         type:
         # 无概要、描述时显示（当 type 为 description 或 excerpt 时有效）（未配置）
         default_description:
-        # 最大长度（当 type 为 content 或 auto 时有效）
-        max_length: 500
+        # 最大长度（当 type 为 content 或 auto 时有效，推荐不大于500）
+        max_length: 300
 
     # 文章页样式
     post:

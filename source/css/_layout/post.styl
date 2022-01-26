@@ -51,6 +51,14 @@
   font-weight bold
   color var(--text-color)
   text-shadow: 0 0 24px #000d
+  transition .2s
+.main_column.page div.post_info div.post_info_oncover a.post_title i
+  font-size 26px
+  transition .2s
+.main_column.page div.post_info div.post_info_oncover a.post_title:hover
+  i
+  span.post_title
+    color var(--main-color)
 .main_column.page div.post_info[nocover="true"] div.post_info_oncover span.post_title
   color var(--text-color-r)
   text-shadow none
@@ -144,18 +152,16 @@ article.page
   figure.highlight table::-webkit-scrollbar-thumb:hover
     background #fff4
   figure.highlight span
+  figure.highlight a
     font-family UbuntuMono, "PingFang SC", "Microsoft YaHei", Arial, Monaco, monospace, sans-serif
     font-size 14px
     font-weight lighter
+    margin-right 8px
   figure.highlight table tbody tr td.code
     color #d4d4d4
     background #1e1e1e
     padding 0px 4px
-    // position relative
     overflow auto
-    // flex-shrink 0
-    // box-sizing border-box
-    // display block
     width 100%
   figure.highlight table tbody tr td.gutter
     color #858585
@@ -170,18 +176,49 @@ article.page
   kbd
     border-radius: 4px;
     background: linear-gradient(145deg, #ffffff, #d6d6d6);
-    box-shadow:  2px 2px 1px #626262ee,
-                -2px -2px 1px #ffffffee;
     border solid 2px #0008
     font-family UbuntuMono, "PingFang SC", "Microsoft YaHei", Arial, Monaco, monospace, sans-serif
     padding 4px
     margin 0 4px
+    font-size 14px
 
   // 图片
   img
     max-width 100%
     margin 4px auto 4px
     display block
+  
+  // 引用块
+  blockquote
+    p
+      font-style italic
+    p:before
+      content '\f10d'
+      font-family "Font Awesome 5 Free"
+      font-weight 900
+      position absolute
+      transform translateX(-34px) translateY(-10px)
+      font-size 32px
+      color #8888
+      font-style normal
+    footer
+      position relative
+      text-align right
+      background-color #0000
+      height auto
+      width auto
+      padding 0
+      cite
+        margin 8px
+  // 文章图册
+  .post_gallery
+    position relative
+    width 100%
+    img
+      margin 2px 4px
+      display inline-block
+      height 200px
+
 
 // 表格
 article.page>table

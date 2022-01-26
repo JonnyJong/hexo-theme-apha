@@ -35,10 +35,9 @@ if page.posts.length > 0
                     - let = if_cover = 'no_cover'
           .post_info(class=if_cover class=cover_type)
             if post.link
-              
               a.post_title(href=url_for(post.link))
                 i.fa.fa-link.fa-tw
-                span=post.title
+                span=post.title ? post.title : _p('post_item.notitle')
             else
               a.post_title(href=url_for(post.path))= post.title ? post.title : _p('post_item.notitle')
             p

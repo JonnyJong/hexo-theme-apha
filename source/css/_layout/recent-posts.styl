@@ -1,12 +1,13 @@
 div.recent-post-item
   display flex
   margin-top $block-margin
-  height 280px
+  height 260px
   border-radius $border-radius
   if hexo-config('custom.global-blur') != 0
     backdrop-filter: saturate(180%) blur($global-blur)
   transition all 0.5s
   background var(--bg-color)
+  overflow hidden
 div.recent-post-item:hover
   box-shadow var(--b-shadow)
 
