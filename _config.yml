@@ -274,6 +274,8 @@ custom:
     link:
       # 头像圆角（round、square、auto；圆、方形、自动）
       avatar_radius: round
+      # 将内容渲染到分类之后
+      after_content: true
 
   # 全局
   
