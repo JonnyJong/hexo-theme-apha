@@ -269,6 +269,11 @@ custom:
         # 开始和结束颜色（色值必须用英文引号包括，例：'#2333'）
         begin_color: ''
         end_color: ''
+    
+    # 友链样式
+    link:
+      # 头像圆角（round、square、auto；圆、方形、自动）
+      avatar_radius: round
 
   # 全局
   

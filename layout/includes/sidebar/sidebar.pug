@@ -138,7 +138,7 @@ each value, head in theme.custom.ui.sidebar.items
           - f_limit = value.depth ? value.depth : 1
           - f_show_count = value.show_count ? value.show_count : true
         .categoriesList!= list_categories({ depth: 1, show_count: f_show_count })
-      default
+      when 'item'
         .item_info
           if value.icon
             i(class= (value.icon + '').split(', ')[0] + " item_icon" style="color:"+((value.icon + '').split(', ')[1]?(value.icon + '').split(', ')[1]:"var(--text-color-rf)")+";")

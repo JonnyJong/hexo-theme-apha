@@ -1,0 +1,36 @@
+extends includes/layout.pug
+
+block content
+  .main_column.page.f_link
+    main
+      - let ifNocover = page.cover ? 'false' : 'true'
+      .page_info(nocover=ifNocover)
+        if page.cover
+          .page_cover
+            img.header_img(src=url_for(page.cover) alt='banner')
+        else
+          .page_cover
+        .page_info_oncover_positon_fix
+          .page_info_oncover
+            if page.title
+              span.page_title= page.title
+            else
+              span.page_title=_p("post_item.link_page")
+      article.page#main
+        != page.content
+        if site.data.link
+          each grp in site.data.link
+            .grp_info
+              i(class="grp_icon " + (grp.icon ? grp.icon : "") style="color:" + (grp.icon_color ? grp.icon_color : "unset") +";")
+              h1.grp_name(style="color:"+ (grp.color ? grp.color : "unset") +";" )=grp.group ? grp.group : ''
+              .grp_warp_line
+              .grp_d= grp.description ? grp.description : ""
+            .grp_items
+              each item in grp.links
+                div(class="item"+(item.color ? " cst_color" : "") style="--item-main-color:" + (item.color ? item.color : "none") + ";--item-main-color-ha:" + (item.color ? item.color+"40" : "none") + ";")
+                  a.item_link(href=url_for(item.link))
+                    if item.avatar
+                      img.item_avatar(src=url_for(item.avatar) alt=item.name)
+                    .item_info
+                      p.item_name=item.name
+                      p.item_d=item.description

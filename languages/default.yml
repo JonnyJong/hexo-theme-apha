@@ -6,6 +6,7 @@ post_item:
   updated: 更新于
   notitle: 无标题
   read: 阅读量
+  link_page: 友情链接
 footer:
   frame: 框架
   theme: 主题
