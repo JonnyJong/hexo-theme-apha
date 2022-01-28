@@ -12,6 +12,7 @@
 - if (is_post()) what_is_this_page = 'post'
 
 - var global_back_btn = theme.custom.back_buttom
+- var user_scalable = theme.custom.user_scalable ? "" : ", user-scalable=no"
 
 //- 颜色模式
 - var color_scheme = no-preference //- light dark
@@ -25,6 +26,7 @@ html(lang=config.language prefers-color-scheme=color_scheme)
     meta(charset='UTF-8')
     title= pageTitle
     link(rel="icon" href=theme.info.favicon)
+    meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" + user_scalable)
     //- 引用CDN
     link(rel='stylesheet', href=theme.CDN.mainCss)
     script(type="text/javascript" src=theme.CDN.mainJs)
@@ -34,7 +36,7 @@ html(lang=config.language prefers-color-scheme=color_scheme)
     //- link(rel='stylesheet', href=theme.CDN.highlight_js_css)
     //- script(src=theme.CDN.highlight_js_js)
   body(where=what_is_this_page)
-    #jsC_navFold(class=jsC_navFold)
+    #jsConfig(class=jsC_navFold)
     include ./skipToContentButtom.pug
     include ./header/header.pug
     #content-outer

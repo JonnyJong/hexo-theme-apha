@@ -193,7 +193,7 @@ custom:
     
     # 首页文章
     index_posts:
-      # 封面默认样式【false、side、top、down；关闭、侧边（手机上将显示在上方）、顶部、文章信息下层】（未完成）
+      # 封面默认样式【false、side、down；关闭、侧边（手机上将显示在上方）、文章信息下层】（未完成）
       cover_default_style: side
       # 封面位置（both、left、right。当 cover_default_style 为 side 时有效）（未配置）
       position:
@@ -252,7 +252,7 @@ custom:
       # 复制按钮（未配置）
       copy_button:
       # 自动换行（未配置）
-      word_warp:
+      auto_warp:
       # 折叠按钮（未配置）
       # 折叠（默认折叠、超过长度隐藏）（未配置）
 
@@ -332,7 +332,7 @@ custom:
   global-opacity: ''
   # 模块背景高斯模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿。设置 0 可关闭。）
   global-blur: 0
-  # 最大宽度（单位：px。默认：1400px。过小的值会导致排版错乱。设置为 none 关闭。）
+  # 最大宽度（单位：px。默认：1400px。建议大于 1000px 过小的值会导致排版错乱。设置为 none 关闭。）
   max-width: 
   # 最小边界（当屏幕宽度小于最大宽度时，默认 16px）
   min_margin:
@@ -342,6 +342,8 @@ custom:
   # 在适当的区域增加返回按钮
   back_buttom: true
 
+  # 允许放大（双指放大）
+  user_scalable: true
   # 文章外禁用选中（未配置）*
   no_select_unless_article: true
   # 文章禁用选中（未配置）*

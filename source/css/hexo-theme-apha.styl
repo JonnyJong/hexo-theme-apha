@@ -45,15 +45,6 @@ else if hexo-config("custom.background.style") == 'bg_img'
 @import '_animation'
 @import "_layout/*"
 
-// 自定义背景
-
-// 页面主要部分的自适应
-@media screen and (min-width: $max-width - 200px + ($main_content_margin*2)){
-  div#content-inner{
-    width $header-min-width
-  }
-}
-
 a
   // 清除所有 a 标签下划线
   text-decoration none
@@ -72,10 +63,12 @@ a
   display flex
   flex-direction row
   gap $block-margin
+  transition 1s
 .main_column
-  width 1400px - 32px - 300px
+  max-width $max-width - $block-margin*2 - 500px
 .side_column
   width 300px
+
 // 页面主要部分与上方间隔
 [where="page"]
 [where="post"]
@@ -90,14 +83,36 @@ hr
 // 滚动条
 ::-webkit-scrollbar
   // background #8881
-  height 14px
-  width 14px
+  height 8px
+  width 8px
 ::-webkit-scrollbar-thumb
-  background #0002
+  background alpha($main_color 60%)
+  border-radius $border-radius
+::-webkit-scrollbar-track
+  background var(--main-color-bgh)
 ::-webkit-scrollbar-thumb:hover
-  background #0004
+  background var(--main-color)
 
 // 换行（全局可用）
 .line_warp_h
   display block
   height 4px
+
+// 自适应
+@media screen and (min-width: $max-width - 200px + ($main_content_margin*2))
+  div#content-inner
+    width $header-min-width
+@media screen and (max-width: 1000px)
+  .side_column
+  .sidebar_items
+    width 240px
+@media screen and (max-width: 840px)
+  #content-inner
+    flex-direction column
+  .side_column
+  .sidebar_items
+  .main_column
+    width 100%
+  // 导航栏仅显示手机端图标
+// 文章侧面的封面变到上方
+// @media screen and (max-width: 600px)

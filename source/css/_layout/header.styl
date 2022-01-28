@@ -55,6 +55,7 @@ div.header_img
   if hexo-config('custom.ui.navbar.bottom') != 'none'
     bottom hexo-config('custom.ui.navbar.bottom') ? convert(hexo-config('custom.ui.navbar.bottom')) : 0px
   animation navbar_show .2s ease-in-out
+  white-space nowrap
 .navbar.nav_hide
   top $navbar_height*-1
   animation navbar_hide .2s ease-in-out
@@ -148,18 +149,14 @@ div.header_info
   height 100%
   position relative
 
-@media screen and (min-width: $max-width){
-  .header div.header_info{
+@media screen and (min-width: $max-width)
+  .header div.header_info
     width $header-min-width
     margin auto
-  }
-}
 
-@media screen and (max-width: $max-width){
-  .header div.header_info{
+@media screen and (max-width: $max-width)
+  .header div.header_info
     margin auto auto auto 100px
-  }
-}
 
 div.header_info div.site_big_title
   position relative

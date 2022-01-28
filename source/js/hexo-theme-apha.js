@@ -4,7 +4,7 @@ window.onscroll = function(e){
     saveOffset = window.pageYOffset;
   }
   if (jsC_navFold == 'none') {
-    jsC_navFold = document.getElementById("jsC_navFold").className == "jsC_navFold" ? true : false;
+    jsC_navFold = document.getElementById("jsConfig").classList.contains("jsC_navFold") ? true : false;
   }
   navbar = document.getElementById("navbar");
   var deltaT = saveOffset - window.pageYOffset;
@@ -25,3 +25,5 @@ var jsC_navFold = 'none';
   var hue = parseInt(Math.random()*360);
   document.documentElement.style.setProperty('--main-color', "hsl("+hue+", 100%, 29%)");
 }; */
+
+// 图片描述
