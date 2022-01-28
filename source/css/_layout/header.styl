@@ -54,6 +54,10 @@ div.header_img
     top hexo-config('custom.ui.navbar.top') ? convert(hexo-config('custom.ui.navbar.top')) : 0px
   if hexo-config('custom.ui.navbar.bottom') != 'none'
     bottom hexo-config('custom.ui.navbar.bottom') ? convert(hexo-config('custom.ui.navbar.bottom')) : 0px
+  animation navbar_show .2s ease-in-out
+.navbar.nav_hide
+  top $navbar_height*-1
+  animation navbar_hide .2s ease-in-out
 .navbar_inner
   display flex
   height 100%
@@ -89,6 +93,14 @@ div.header_img
   font-weight bold
 .navbar .placeholder
   flex auto
+.navbar .hr
+  width 2px
+  background var(--text-color-rf)
+  opacity 0.25
+  margin-top $navbar_height*0.2
+  height 60%
+.navbar .hr:hover
+  background var(--text-color-rf)
 .navbar .placeholder:hover
 .nav_item_outer.noLink:hover
   background none
@@ -96,6 +108,11 @@ div.header_img
   background none
 .nav_item_outer.noLink span
   cursor default
+.navbar
+  a.menu_btn
+    i
+      margin-right 0
+      font-size $navbar_height*0.3
 
 .nav_sub_menu
   position absolute

@@ -93,9 +93,11 @@ custom:
     navbar:
       # 自定义组件（允许自由调整顺序）
       items:
+        mobile_menu_btn:
         site, 0: /logo.png, default, root
         img, 0: /logo.png, /
         text, 0: hello world!, /
+        hr:
         placeholder, 0: 
         menu, 主页, fas fa-home, /:
         menu, 关于, fa fa-heart, /about/:
@@ -115,13 +117,16 @@ custom:
       # 导航栏内部宽度 （默认 90%）
       inner_width: 
       # 导航栏内部最大宽度 （默认 1400px。推荐值：100%）
-      inner_max_width: 1400px
+      inner_max_width: 
       # 导航栏与顶部距离（top 和 bottom 建议只设置其中一个）
       top: none
       # 导航栏与底部距离
       bottom: none
-      # 自动收起（未配置）*
+      # 自动收起
       auto_folding: true
+
+      # 手机端菜单位置（未配置）*
+      mobile_menu_btn: left
 
       # 元素间距（默认 0px）
       item_distance: 

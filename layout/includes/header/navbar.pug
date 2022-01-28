@@ -41,7 +41,7 @@ mixin navMenu(body, item)
               span=subItem
 
 
-nav.navbar
+nav.navbar#navbar
   .navbar_inner
     if theme.custom.ui.navbar.items
       each body, head in theme.custom.ui.navbar.items
@@ -90,6 +90,9 @@ nav.navbar
           //- 占位符
           when 'placeholder'
             .nav_item_outer.placeholder
+          //- 分隔线
+          when 'hr'
+            .nav_item_outer.hr
           //- 菜单
           when 'menu'
             .nav_item_outer
@@ -99,3 +102,11 @@ nav.navbar
               else
                 .fakeA
                   +navMenu(body, item)
+          //- 移动端菜单按钮
+          when 'mobile_menu_btn'
+            .nav_item_outer
+              a.menu_btn
+                .nav_item_inner
+                  i.fa.fa-bars
+          default
+            - break
