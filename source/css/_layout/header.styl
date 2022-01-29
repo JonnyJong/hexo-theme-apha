@@ -160,15 +160,14 @@ a.nav_menu_cover
 a.nav_menu_cover.show
   display block
 .navbar.show#mblNavbar
-  if hexo-config('custom.ui.navbar.mbl_menu') != right
-    left 0vw
-  else
-    right 0vw
+  transform translateX(0)
 #mblNavbar
   if hexo-config('custom.ui.navbar.mbl_menu') != right
-    left -100vw
+    transform translateX(-100%)
+    left 0
   else
-    right -100vw
+    transform translateX(100%)
+    right 0
   width hexo-config('custom.ui.navbar.mbl_outer_width') ? convert(hexo-config('custom.ui.navbar.mbl_outer_width')) : max-content
   height 100vh
   padding $mbl_vertical_padding $mbl_horizontal_padding
@@ -235,27 +234,31 @@ a.nav_menu_cover.show
 div.header_info
   height 100%
   position relative
+  transition .5s
 
 @media screen and (min-width: $max-width)
   .header div.header_info
     width $header-min-width
     margin auto
 
-@media screen and (max-width: $max-width)
+@media screen and (max-width: $max-width) and (min-width 1001px)
   .header div.header_info
     margin auto auto auto 100px
 
 div.header_info div.site_big_title
-  position relative
-  top 40%
-  width max-content
+  position absolute
+  top 50%
+  transform translate(0, -50%)
+  word-break break-word
 
 div.header_info div.site_big_title span.title
   font-size 96px
   font-weight bold
   color #fffe
   text-shadow: 0 0 24px #000d
+  transition .5s
 div.header_info div.site_big_title span.subtitle
-  font-size 2rem
+  font-size 32px
   color #fffe
   text-shadow: 0 0 8px #000d
+  transition .5s

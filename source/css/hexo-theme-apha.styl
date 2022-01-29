@@ -66,7 +66,9 @@ a
   gap $block-margin
   transition 1s
 .main_column
+  --width_main_column $main_content_margin*2 + 300px + $block-margin
   max-width $max-width - $block-margin*2 - 500px
+  width calc(100vw - var(--width_main_column))
 .side_column
   width 300px
 
@@ -100,13 +102,17 @@ hr
   height 4px
 
 // 自适应
-@media screen and (min-width: $max-width - 200px + ($main_content_margin*2))
+@media screen and (min-width: $max-width - 200px +($main_content_margin*3))
   div#content-inner
     width $header-min-width
 @media screen and (max-width: 1000px)
+  .main_column
+    --width_main_column $main_content_margin*2 + 240px + $block-margin
   .side_column
   .sidebar_items
     width 240px
+  .header_info
+    margin auto auto auto 60px
 @media screen and (min-width: 841px)
   nav#mblNavbar
   .navbar_inner.mbl
@@ -114,6 +120,20 @@ hr
 @media screen and (max-width: 840px)
   #content-inner
     flex-direction column
+  .side_column
+  .sidebar_items
+  .main_column
+    width 100%
+  .navbar_inner.pc
+    display none
+  // div.header_info div.site_big_title span.title
+  //   width calc(100vw - var(--main_content_margin))
+  //   word-break break-word
+  //   font-size 48px
+  // div.header_info div.site_big_title span.subtitle
+  //   font-size 48px
+@media screen and (max-width: 600px)
+  #content-inner
     .recent-post-item
       flex-direction column
       height max-content
@@ -127,12 +147,12 @@ hr
         height max-content
         flex unset
         margin 0
-  .side_column
-  .sidebar_items
-  .main_column
-    width 100%
-  .navbar_inner.pc
-    display none
-  // 导航栏仅显示手机端图标
-// 文章侧面的封面变到上方
-// @media screen and (max-width: 600px)
+  nav.page_switch 
+    margin-top 0
+    div.prev-post.pull-left
+    div.next-post.pull-right
+      float none
+      width 100%
+      margin-top $block-margin
+  .header_info
+    margin auto auto auto $main_content_margin
