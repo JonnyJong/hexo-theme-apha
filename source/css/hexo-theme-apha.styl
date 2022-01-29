@@ -114,6 +114,19 @@ hr
 @media screen and (max-width: 840px)
   #content-inner
     flex-direction column
+    .recent-post-item
+      flex-direction column
+      height max-content
+      .post_cover.side
+        width 100%
+        max-width 100%
+        border-radius $border-radius $border-radius 0 0
+        height 200px
+        flex unset
+      .post_info
+        height max-content
+        flex unset
+        margin 0
   .side_column
   .sidebar_items
   .main_column
