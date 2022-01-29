@@ -93,20 +93,26 @@ custom:
     navbar:
       # 自定义组件（允许自由调整顺序）
       items:
-        mobile_menu_btn:
-        site, 0: /logo.png, default, root
-        img, 0: /logo.png, /
-        text, 0: hello world!, /
-        hr:
-        placeholder, 0: 
-        menu, 主页, fas fa-home, /:
-        menu, 关于, fa fa-heart, /about/:
-        menu, 友情链接, fa fa-link, /link/:
+        mbl, side_nav_btn:
+        al, site, 0: /logo.png, default, root
+        pc, img, 0: /logo.png, /
+        pc, text, 0: hello world!, /
+        al, hr:
+        pc, placeholder, 0: 
+        al, menu, 主页, fas fa-home, /:
+        mbl, menu, 关于, fa fa-heart, /about/:
+        al, menu, 友情链接, fa fa-link, /link/:
         # 此处有bug，如果 none 换成链接，会出现奇怪的层次渲染错误
-        menu, 文章, fa fa-graduation-cap, none:
+        al, menu, 文章, fa fa-graduation-cap, /hello/:
           标签: /tags/, fa fa-tags
           归类: /categories/, fa fa-archive
           归档: /archives/, fa fa-folder-open
+      # 手机端顶栏组件（方法同上，互相独立）
+      mbl_item_on_navbar:
+        al, side_nav_btn:
+        al, placeholder, 0: 
+        al, site, 0: /logo.png, default, root
+        al, placeholder, 1: 
       
       # 导航栏高度（默认 60px）
       height: 
@@ -125,8 +131,17 @@ custom:
       # 自动收起
       auto_folding: true
 
-      # 手机端菜单位置（未配置）*
-      mobile_menu_btn: left
+      # 手机端菜单位置（left、right；默认 left）
+      mbl_menu: 
+      # 手机端菜单宽度（max-content ，自动 或 px vw，默认自动）
+      mbl_outer_width: 
+      # 手机端菜单按钮高度
+      mbl_item_height:
+      # 手机端菜单水平内间距（默认 8px）
+      mbl_horizontal_padding:
+      # 手机端菜单纵向内间距（默认 10px）
+      mbl_vertical_padding:
+
 
       # 元素间距（默认 0px）
       item_distance: 

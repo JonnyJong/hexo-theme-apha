@@ -56,6 +56,7 @@ div.header_img
     bottom hexo-config('custom.ui.navbar.bottom') ? convert(hexo-config('custom.ui.navbar.bottom')) : 0px
   animation navbar_show .2s ease-in-out
   white-space nowrap
+  font-size $navbar_height*0.27
 .navbar.nav_hide
   top $navbar_height*-1
   animation navbar_hide .2s ease-in-out
@@ -63,7 +64,7 @@ div.header_img
   display flex
   height 100%
   width hexo-config('custom.ui.navbar.inner_width') ? convert(hexo-config('custom.ui.navbar.inner_width')) : 90%
-  max-width hexo-config('custom.ui.navbar.inner_max_width') ? convert(hexo-config('custom.ui.navbar.inner_max_width')) : 100%
+  max-width hexo-config('custom.ui.navbar.inner_max_width') ? convert(hexo-config('custom.ui.navbar.inner_max_width')) : 1400px
   margin auto
 
 .nav_item_outer
@@ -77,72 +78,158 @@ div.header_img
   height 100%
   padding 0 hexo-config('custom.ui.navbar.item_inside_distance') ? convert(hexo-config('custom.ui.navbar.item_inside_distance')) : 8px
 
-.navbar img
-  height $navbar_height*0.6
-.navbar a
-  color var(--text-color-r)
-.navbar i
-  margin-right 4px
-.navbar i.ho_rotate_90
-  transition all 0.1s
-  margin 0 0 0 4px
-.navbar .fakeA
-  cursor pointer
-  display unset
-.navbar .site_title
-  font-size 26px
-  font-weight bold
-.navbar .placeholder
-  flex auto
-.navbar .hr
-  width 2px
-  background var(--text-color-rf)
-  opacity 0.25
-  margin-top $navbar_height*0.2
-  height 60%
-.navbar .hr:hover
-  background var(--text-color-rf)
-.navbar .placeholder:hover
+.navbar
+  .width_in_info
+    width 16px
+  img
+    height $navbar_height*0.6
+  a
+    color var(--text-color-r)
+  i
+    margin-right 4px
+  i.ho_rotate_90
+    transition all 0.1s
+    margin 0 0 0 4px
+  .fakeA
+    cursor pointer
+    display unset
+  .site_title
+    font-size $navbar_height*0.4
+    font-weight bold
+  .placeholder
+    flex auto
+  .hr
+    width 2px
+    background var(--text-color-rf)
+    opacity 0.25
+    margin-top $navbar_height*0.2
+    height 60%
+  .hr:hover
+    background var(--text-color-rf)
+  a.side_nav_btn
+    cursor pointer
+    i
+      margin-right 0
+      font-size $navbar_height*0.3
+.navbar#pcNavbar .placeholder:hover
+.navbar#mblNavbar .placeholder:hover
 .nav_item_outer.noLink:hover
   background none
 .nav_item_outer.noLink
   background none
 .nav_item_outer.noLink span
   cursor default
-.navbar
-  a.menu_btn
-    i
-      margin-right 0
-      font-size $navbar_height*0.3
 
-.nav_sub_menu
-  position absolute
-  display none
-  max-width max-content
-  background #fff
-  box-shadow var(--b-shadow-lite)
-  top $navbar_height
-  right 0
-  animation nav_sub_menu .2s ease
-  border-radius hexo-config('custom.ui.navbar.sub_menu_border_radius') ? convert(hexo-config('custom.ui.navbar.sub_menu_border_radius')) : 6px
-.nav_sub_item
-  width 100%
-  min-width max-content
-  transition 0.05s
-.nav_sub_item:hover
-  background var(--main-color-bgh)
-.nav_sub_item a
-  display block
-  height 48px
-  display flex
-  align-items center
-  padding 0 16px
-.nav_item_outer:hover
-  background var(--main-color-bgh)
+#pcNavbar
   .nav_sub_menu
-    display block
-  .ho_rotate_90
-    transform: rotate(90deg)
+    position absolute
+    display none
+    max-width max-content
+    background var(--body-color)
+    box-shadow var(--b-shadow-lite)
+    top $navbar_height
+    right 0
+    animation nav_sub_menu .2s ease
+    border-radius hexo-config('custom.ui.navbar.sub_menu_border_radius') ? convert(hexo-config('custom.ui.navbar.sub_menu_border_radius')) : 6px
+  .nav_sub_item
+    width 100%
+    min-width max-content
+    transition 0.05s
+  .nav_sub_item:hover
+    background var(--main-color-bgh)
+  .nav_sub_item a
+    height 48px
+    display flex
+    align-items center
+    padding 0 16px
+  .nav_item_outer:hover
+    background var(--main-color-bgh)
+    .nav_sub_menu
+      display block
+    .ho_rotate_90
+      transform: rotate(90deg)
+
+// 手机端侧边栏
+a.nav_menu_cover
+  display none
+  position fixed
+  height 100vh
+  width 100vw
+  top 0
+  z-index 100
+a.nav_menu_cover.show
+  display block
+.navbar.show#mblNavbar
+  if hexo-config('custom.ui.navbar.mbl_menu') != right
+    left 0vw
+  else
+    right 0vw
+#mblNavbar
+  if hexo-config('custom.ui.navbar.mbl_menu') != right
+    left -100vw
+  else
+    right -100vw
+  width hexo-config('custom.ui.navbar.mbl_outer_width') ? convert(hexo-config('custom.ui.navbar.mbl_outer_width')) : max-content
+  height 100vh
+  padding $mbl_vertical_padding $mbl_horizontal_padding
+  max-width 100vw
+  font-size $mbl_item_height*0.36
+  overflow auto
+  transition .2s
+  .navbar_inner
+    flex-direction column
+    width 100%
+    --mbl_vertical_padding $mbl_vertical_padding*2
+    height calc(100vh - var(--mbl_vertical_padding))
+    transition .2s
+    .nav_item_outer
+      min-height $mbl_item_height
+      height max-content
+      img
+        height $mbl_item_height*0.6
+      .site_title
+        font-size $mbl_item_height*0.5
+    .hr
+      height 2px
+      min-height 2px
+      width 100%
+      margin 4px 0
+    .menu
+      height $mbl_item_height
+  .nav_sub_menu
+    position relative
+    // position absolute
+    display none
+    width 100%
+    background var(--bg-color)
+    box-shadow inset var(--b-shadow-lite)
+    // bottom $mbl_item_height
+  .nav_sub_item
+    width 100%
+    // min-width max-content
+    transition 0.05s
+  .nav_sub_item:hover
+    background var(--main-color-bgh)
+  .nav_sub_item a
+    height $mbl_item_height
+    display flex
+    align-items center
+    padding 0 8px
+  a.short .nav_item_inner
+    width 60%
+    display inline-block
+    line-height $mbl_item_height
+  i.fa.fa-chevron-right.ho_rotate_90
+    display inline-block
+    line-height $mbl_item_height
+    margin-left 20px
+  .nav_item_outer:hover
+    background var(--main-color-bgh)
+    .nav_sub_menu
+      display block
+    .ho_rotate_90
+      transform: rotate(90deg)
+  
 
 // 大标题
 div.header_info

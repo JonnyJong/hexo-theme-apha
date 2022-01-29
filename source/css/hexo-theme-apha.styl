@@ -5,6 +5,7 @@
   url('https://cdn.jsdelivr.net/gh/JonnyJong/blogStaticResource@main/fonts/UbuntuMono-R.eot?#iefix') format('embedded-opentype'),
   url('https://cdn.jsdelivr.net/gh/JonnyJong/blogStaticResource@main/fonts/UbuntuMono-R.woff') format('woff'),
   url('https://cdn.jsdelivr.net/gh/JonnyJong/blogStaticResource@main/fonts/UbuntuMono-R.otf') format('opentype');
+  font-display swap
 }
 
 :root
@@ -106,6 +107,10 @@ hr
   .side_column
   .sidebar_items
     width 240px
+@media screen and (min-width: 841px)
+  nav#mblNavbar
+  .navbar_inner.mbl
+    display none
 @media screen and (max-width: 840px)
   #content-inner
     flex-direction column
@@ -113,6 +118,8 @@ hr
   .sidebar_items
   .main_column
     width 100%
+  .navbar_inner.pc
+    display none
   // 导航栏仅显示手机端图标
 // 文章侧面的封面变到上方
 // @media screen and (max-width: 600px)
