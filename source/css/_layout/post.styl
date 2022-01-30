@@ -23,15 +23,15 @@
       width 100%
       bottom 0px
       box-sizing border-box
-      if hexo-config('custom.ui.post.incard_info_bg') == 'block'
-        $info-oncover-opacity = hexo-config('custom.ui.post.incard_info_bg_block.opacity') ? convert(hexo-config('custom.ui.post.incard_info_bg_block.opacity')) : .2
-        $info-oncover-blur = hexo-config('custom.ui.post.incard_info_bg_block.blur') ? convert(hexo-config('custom.ui.post.incard_info_bg_block.blur')) : 2px
+      if hexo-config('custom.post.incard_info_bg') == 'block'
+        $info-oncover-opacity = hexo-config('custom.post.incard_info_bg_block.opacity') ? convert(hexo-config('custom.post.incard_info_bg_block.opacity')) : .2
+        $info-oncover-blur = hexo-config('custom.post.incard_info_bg_block.blur') ? convert(hexo-config('custom.post.incard_info_bg_block.blur')) : 2px
         background rgba(0,0,0,$info-oncover-opacity)
-        if hexo-config('custom.ui.post.incard_info_bg_block.blur') != 0
+        if hexo-config('custom.post.incard_info_bg_block.blur') != 0
           backdrop-filter: saturate(180%) blur($info-oncover-blur)
-      else if hexo-config('custom.ui.post.incard_info_bg') == 'gradient'
-        $info-begin-color = hexo-config('custom.ui.post.incard_info_bg_gradient.begin_color') ? convert(hexo-config('custom.ui.post.incard_info_bg_gradient.begin_color')) : #0000
-        $info-end-color = hexo-config('custom.ui.post.incard_info_bg_gradient.end_color') ? convert(hexo-config('custom.ui.post.incard_info_bg_gradient.end_color')) : #000f
+      else if hexo-config('custom.post.incard_info_bg') == 'gradient'
+        $info-begin-color = hexo-config('custom.post.incard_info_bg_gradient.begin_color') ? convert(hexo-config('custom.post.incard_info_bg_gradient.begin_color')) : #0000
+        $info-end-color = hexo-config('custom.post.incard_info_bg_gradient.end_color') ? convert(hexo-config('custom.post.incard_info_bg_gradient.end_color')) : #000f
         background-image linear-gradient($info-begin-color, $info-end-color)
       span.post_title
         font-size 32px
@@ -102,7 +102,7 @@ h6
 #alt-h1,#alt-h2,#alt-h3,#alt-h4,#alt-h5,#alt-h6
   text-decoration underline dotted
 article.page
-  if hexo-config('custom.ui.post.paragraph_title_readability')
+  if hexo-config('custom.post.paragraph_title_readability')
     h1:before
       content:"H1"
       font-size:25px

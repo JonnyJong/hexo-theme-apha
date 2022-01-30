@@ -14,6 +14,7 @@ info:
   # 建站时间（未配置）
   site_begin: 2020/8/10 00:07:00
 
+# =============================================================
 # 快捷入口（首页标题旁）
 # 只制作基本的框架，等待制作各种风格的模板插件。故暂时停工
 quick_entrance:
@@ -45,6 +46,7 @@ quick_entrance:
       # 内容（支持 html + css）
       content: 
 
+# =============================================================
 # 归档
 archive:
   # 页面仅展示归档（开启后归档页的展示方式将改变，且 show 失效）（未配置）
@@ -85,221 +87,224 @@ tag:
   # 将内容渲染到标签之后
   after_content: true
 
+# =============================================================
 # 自定义外观
 custom:
-  # 界面
-  ui:
-    # 导航栏
-    navbar:
-      # 自定义组件（允许自由调整顺序）
-      items:
-        mbl, side_nav_btn:
-        al, site, 0: /logo.png, default, root
-        pc, img, 0: /logo.png, /
-        pc, text, 0: hello world!, /
-        al, hr:
-        pc, placeholder, 0: 
-        al, menu, 主页, fas fa-home, /:
-        mbl, menu, 关于, fa fa-heart, /about/:
-        al, menu, 友情链接, fa fa-link, /link/:
-        # 此处有bug，如果 none 换成链接，会出现奇怪的层次渲染错误
-        al, menu, 文章, fa fa-graduation-cap, /hello/:
-          标签: /tags/, fa fa-tags
-          归类: /categories/, fa fa-archive
-          归档: /archives/, fa fa-folder-open
-      # 手机端顶栏组件（方法同上，互相独立）
-      mbl_item_on_navbar:
-        al, side_nav_btn:
-        al, placeholder, 0: 
-        al, site, 0: /logo.png, default, root
-        al, placeholder, 1: 
-      
-      # 导航栏高度（默认 60px）
-      height: 
-      # 导航栏外部宽度（默认 100%）
-      outer_width:
-      # 导航栏外部最大宽度 （默认 100%）
-      outer_max_width:
-      # 导航栏内部宽度 （默认 90%）
-      inner_width: 
-      # 导航栏内部最大宽度 （默认 1400px。推荐值：100%）
-      inner_max_width: 
-      # 导航栏与顶部距离（top 和 bottom 建议只设置其中一个）
-      top: none
-      # 导航栏与底部距离
-      bottom: none
-      # 自动收起
-      auto_folding: true
+  # 导航栏
+  navbar:
+    # 自定义组件（允许自由调整顺序）
+    items:
+      mbl, side_nav_btn:
+      al, site, 0: /logo.png, default, root
+      pc, img, 0: /logo.png, /
+      pc, text, 0: hello world!, /
+      al, hr:
+      pc, placeholder, 0: 
+      al, menu, 主页, fas fa-home, /:
+      mbl, menu, 关于, fa fa-heart, /about/:
+      al, menu, 友情链接, fa fa-link, /link/:
+      # 此处有bug，如果 none 换成链接，会出现奇怪的层次渲染错误
+      al, menu, 文章, fa fa-graduation-cap, /hello/:
+        标签: /tags/, fa fa-tags
+        归类: /categories/, fa fa-archive
+        归档: /archives/, fa fa-folder-open
+    # 手机端顶栏组件（方法同上，互相独立）
+    mbl_item_on_navbar:
+      al, side_nav_btn:
+      al, placeholder, 0: 
+      al, site, 0: /logo.png, default, root
+      al, placeholder, 1: 
+    
+    # 导航栏高度（默认 60px）
+    height: 
+    # 导航栏外部宽度（默认 100%）
+    outer_width:
+    # 导航栏外部最大宽度 （默认 100%）
+    outer_max_width:
+    # 导航栏内部宽度 （默认 90%）
+    inner_width: 
+    # 导航栏内部最大宽度 （默认 1400px。推荐值：100%）
+    inner_max_width: 
+    # 导航栏与顶部距离（top 和 bottom 建议只设置其中一个）
+    top: none
+    # 导航栏与底部距离
+    bottom: none
+    # 自动收起
+    auto_folding: true
 
-      # 手机端菜单位置（left、right；默认 left）
-      mbl_menu: 
-      # 手机端菜单宽度（max-content ，自动 或 px vw，默认自动）
-      mbl_outer_width: 
-      # 手机端菜单按钮高度
-      mbl_item_height:
-      # 手机端菜单水平内间距（默认 8px）
-      mbl_horizontal_padding:
-      # 手机端菜单纵向内间距（默认 10px）
-      mbl_vertical_padding:
+    # 手机端菜单位置（left、right；默认 left）
+    mbl_menu: 
+    # 手机端菜单宽度（max-content ，自动 或 px vw，默认自动）
+    mbl_outer_width: 
+    # 手机端菜单按钮高度
+    mbl_item_height:
+    # 手机端菜单水平内间距（默认 8px）
+    mbl_horizontal_padding:
+    # 手机端菜单纵向内间距（默认 10px）
+    mbl_vertical_padding:
 
 
-      # 元素间距（默认 0px）
-      item_distance: 
-      # 元素内横向间距（默认 8px）
-      item_inside_distance: 
+    # 元素间距（默认 0px）
+    item_distance: 
+    # 元素内横向间距（默认 8px）
+    item_inside_distance: 
 
-      # 不透明度（较低的背景模糊度建议使用较高的不透明度，较低的不透明度建议使用较高的背景模糊度。默认 0.8）
+    # 不透明度（较低的背景模糊度建议使用较高的不透明度，较低的不透明度建议使用较高的背景模糊度。默认 0.8）
+    opacity: ''
+    # 背景模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿。设置 0 可关闭。）
+      # 一般情况下，Firefox 浏览器中 backdrop-filter 有限制
+    blur: 
+    # 导航栏圆角（none、default、value；无、默认、数值。建议使用 px 而不是 %，使用 % 会导致变为椭圆）
+    border_radius:
+
+    # 二级菜单圆角（默认 6px）
+    sub_menu_border_radius:
+
+  # =============================================================
+  # 侧边栏
+  sidebar:
+    enable: true
+    # 自定义组件（允许自由调整顺序）
+    items:
+      site, 0:
+        # 文章数目
+        num_of_articles: 这种不需要写 true 之类的，一旦写了就会按照这个顺序生成出来
+        # 总字数
+        total_word_count: 
+        # 总访客数
+        total_visitors: 
+        # 总访问量
+        total_visits:
+        # 运行时长
+        runtime:
+        # 最后更新时间
+        last_update:
+        # 隐性选项（除 item 类型，非必填且有初始值；author 类型没有 title 和 icon 选项，填了等于没有填）
+        # 标题
+        title: 站点信息（标题可以修改）
+        # 图标
+        icon: fas fa-chart-line
+      author, 0:
+        avatar, 0: round
+        avatar, 1: 
+        author_name, 0: 默认使用站点配置文件的，也可以修改
+        text, 0: 和下面 item 一样用法的 text
+        social_link, 0: 此处怎么写都不会产生任何效果
+        text, 1: 类似上面的 social_link，填了参数也是没用的。
+        button, 0: /about/, 关于, fa fa-heart
+        button, 1: /about/, 关于, none
+        text, 2: emm……上面的 buttom 其实算是用了 butterfly 习惯了拿到这边的。老规矩，顺序随意，可以重复，但有的不能不填参数，有的可以，总之看文档。
+        text, 3: 对了，由于同级别不允许出现一样的标签，所以可以再后面加个“, ”和随便的什么东西。
+          跟上面导航栏不太一样的是，这里只识别第一个逗号前面的内容，毕竟上面要做二级菜单的，对了，逗号后面记得加空格
+      newest_posts, 0:
+      tags, 0:
+      categories, 0:
+      item, 0:
+        title: 标题（可填可不填）
+        icon: fas fa-bullhorn, red
+        text: <div class="custom_sidebar_object" style="color:red;">
+          可使用 html + css 语法
+          换行可以，注意缩进
+          css 不能用\<style\>标签，会报错
+          </div>
+  
+  # =============================================================
+  # 首页文章
+  index_posts:
+    # 封面默认样式【false、side、down；关闭、侧边（手机上将显示在上方）、文章信息下层】（未完成）
+    cover_default_style: side
+    # 封面位置（both、left、right。当 cover_default_style 为 side 时有效）（未配置）
+    position:
+    # 封面高度（单位：px。当 cover_default_style 为 top 或 down 时有效）（未配置）
+    top_default_height:
+    
+    # 信息样式（false、gradient、block；无、渐变、块状。当 cover_default_style 为 down 时有效）（未配置）
+    incard_info_bg:
+    # block 背景样式（未配置）
+    incard_info_bg_block:
+      # 不透明度（默认 .2）（未配置）
       opacity: ''
-      # 背景模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿。设置 0 可关闭。）
-        # 一般情况下，Firefox 浏览器中 backdrop-filter 有限制
+      # 不透明度（默认 10px）（未配置）
       blur: 
-      # 导航栏圆角（none、default、value；无、默认、数值。建议使用 px 而不是 %，使用 % 会导致变为椭圆）
-      border_radius:
-
-      # 二级菜单圆角（默认 6px）
-      sub_menu_border_radius:
-
-    # 侧边栏（未完成）
-    sidebar:
-      enable: true
-      # 自定义组件（允许自由调整顺序）
-      items:
-        site, 0:
-          # 文章数目
-          num_of_articles: 这种不需要写 true 之类的，一旦写了就会按照这个顺序生成出来
-          # 总字数
-          total_word_count: 
-          # 总访客数
-          total_visitors: 
-          # 总访问量
-          total_visits:
-          # 运行时长
-          runtime:
-          # 最后更新时间
-          last_update:
-          # 隐性选项（除 item 类型，非必填且有初始值；author 类型没有 title 和 icon 选项，填了等于没有填）
-          # 标题
-          title: 站点信息（标题可以修改）
-          # 图标
-          icon: fas fa-chart-line
-        author, 0:
-          avatar, 0: round
-          avatar, 1: 
-          author_name, 0: 默认使用站点配置文件的，也可以修改
-          text, 0: 和下面 item 一样用法的 text
-          social_link, 0: 此处怎么写都不会产生任何效果
-          text, 1: 类似上面的 social_link，填了参数也是没用的。
-          button, 0: /about/, 关于, fa fa-heart
-          button, 1: /about/, 关于, none
-          text, 2: emm……上面的 buttom 其实算是用了 butterfly 习惯了拿到这边的。老规矩，顺序随意，可以重复，但有的不能不填参数，有的可以，总之看文档。
-          text, 3: 对了，由于同级别不允许出现一样的标签，所以可以再后面加个“, ”和随便的什么东西。
-            跟上面导航栏不太一样的是，这里只识别第一个逗号前面的内容，毕竟上面要做二级菜单的，对了，逗号后面记得加空格
-        newest_posts, 0:
-        tags, 0:
-        categories, 0:
-        item, 0:
-          title: 标题（可填可不填）
-          icon: fas fa-bullhorn, red
-          text: <div class="custom_sidebar_object" style="color:red;">
-            可使用 html + css 语法
-            换行可以，注意缩进
-            css 不能用\<style\>标签，会报错
-            </div>
+    # gradient 背景样式（未配置）
+    incard_info_bg_gradient:
+      # 开始和结束颜色（色值必须用英文引号包括，例：'#2333'）（未配置）
+      begin_color: ''
+      end_color: ''
     
-    # 首页文章
-    index_posts:
-      # 封面默认样式【false、side、down；关闭、侧边（手机上将显示在上方）、文章信息下层】（未完成）
-      cover_default_style: side
-      # 封面位置（both、left、right。当 cover_default_style 为 side 时有效）（未配置）
-      position:
-      # 封面高度（单位：px。当 cover_default_style 为 top 或 down 时有效）（未配置）
-      top_default_height:
-      
-      # 信息样式（false、gradient、block；无、渐变、块状。当 cover_default_style 为 down 时有效）（未配置）
-      incard_info_bg:
-      # block 背景样式（未配置）
-      incard_info_bg_block:
-        # 不透明度（默认 .2）（未配置）
-        opacity: ''
-        # 不透明度（默认 10px）（未配置）
-        blur: 
-      # gradient 背景样式（未配置）
-      incard_info_bg_gradient:
-        # 开始和结束颜色（色值必须用英文引号包括，例：'#2333'）（未配置）
-        begin_color: ''
-        end_color: ''
-      
-      # 文章概要、描述
-      description:
-        # 类型【false、description、excerpt、content、auto；关闭、描述、概要、选取文章内容、自动（优先级：描述 > 概要 > 文章内容）】（未配置）
-        type:
-        # 无概要、描述时显示（当 type 为 description 或 excerpt 时有效）（未配置）
-        default_description:
-        # 最大长度（当 type 为 content 或 auto 时有效，推荐不大于500）
-        max_length: 300
+    # 文章概要、描述
+    description:
+      # 类型【false、description、excerpt、content、auto；关闭、描述、概要、选取文章内容、自动（优先级：描述 > 概要 > 文章内容）】（未配置）
+      type:
+      # 无概要、描述时显示（当 type 为 description 或 excerpt 时有效）（未配置）
+      default_description:
+      # 最大长度（当 type 为 content 或 auto 时有效，推荐不大于500）
+      max_length: 300
+    # 字数统计
+    wordcount: true
 
-      # 字数统计
-      wordcount: true
-
-    # 文章页样式
-    post:
-      # 信息样式（false、gradient、block；无、渐变、块状。）
-      incard_info_bg: gradient
-      # block 背景样式
-      incard_info_bg_block:
-        # 不透明度（默认 .2）
-        opacity: ''
-        # 不透明度（默认 10px）
-        blur: 
-      # gradient 背景样式
-      incard_info_bg_gradient:
-        # 开始和结束颜色（色值必须用英文引号包括，例：'#2333'）
-        begin_color: ''
-        end_color: ''
-      
-      # 页面背景同文章封面（未配置）
-      bg_as_cover:
-
-      # 段落标题易读性增强
-      paragraph_title_readability: true
-
-      # 代码高亮样式（未配置，将允许用户插入自己在 highlightjs 选择的样式）（未配置）
-      code_highlight_style:
-        light:
-        dark:
-      # 复制按钮（未配置）
-      copy_button:
-      # 自动换行（未配置）
-      auto_warp:
-      # 折叠按钮（未配置）
-      # 折叠（默认折叠、超过长度隐藏）（未配置）
-
-      # 字数统计
-      wordcount: true
-
-    # 页面样式
-    page:
-      # 信息样式（false、gradient、block；无、渐变、块状。）
-      incard_info_bg: gradient
-      # block 背景样式
-      incard_info_bg_block:
-        # 不透明度（默认 .2）
-        opacity: ''
-        # 不透明度（默认 10px）
-        blur: 
-      # gradient 背景样式
-      incard_info_bg_gradient:
-        # 开始和结束颜色（色值必须用英文引号包括，例：'#2333'）
-        begin_color: ''
-        end_color: ''
+  # =============================================================
+  # 文章页样式
+  post:
+    # 信息样式（false、gradient、block；无、渐变、块状。）
+    incard_info_bg: gradient
+    # block 背景样式
+    incard_info_bg_block:
+      # 不透明度（默认 .2）
+      opacity: ''
+      # 不透明度（默认 10px）
+      blur: 
+    # gradient 背景样式
+    incard_info_bg_gradient:
+      # 开始和结束颜色（色值必须用英文引号包括，例：'#2333'）
+      begin_color: ''
+      end_color: ''
     
-    # 友链样式
-    link:
-      # 头像圆角（round、square、auto；圆、方形、自动）
-      avatar_radius: round
-      # 将内容渲染到分类之后
-      after_content: true
+    # 页面背景同文章封面（未配置）
+    bg_as_cover:
 
+    # 段落标题易读性增强
+    paragraph_title_readability: true
+
+    # 代码高亮样式（未配置，将允许用户插入自己在 highlightjs 选择的样式）（未配置）
+    code_highlight_style:
+      light:
+      dark:
+    # 复制按钮（未配置）
+    copy_button:
+    # 自动换行（未配置）
+    auto_warp:
+    # 折叠按钮（未配置）
+    # 折叠（默认折叠、超过长度隐藏）（未配置）
+
+    # 字数统计
+    wordcount: true
+
+  # =============================================================
+  # 页面样式
+  page:
+    # 信息样式（false、gradient、block；无、渐变、块状。）
+    incard_info_bg: gradient
+    # block 背景样式
+    incard_info_bg_block:
+      # 不透明度（默认 .2）
+      opacity: ''
+      # 不透明度（默认 10px）
+      blur: 
+    # gradient 背景样式
+    incard_info_bg_gradient:
+      # 开始和结束颜色（色值必须用英文引号包括，例：'#2333'）
+      begin_color: ''
+      end_color: ''
+  
+  # 友链样式
+  link:
+    # 头像圆角（round、square、auto；圆、方形、自动）
+    avatar_radius: round
+    # 将内容渲染到分类之后
+    after_content: true
+
+  # =============================================================
   # 全局
   
   # 主题色
@@ -312,11 +317,13 @@ custom:
     # 随机色相（将无法自定义，每次刷新更换颜色）（未完成）*
     random_color: true
 
+  # =============================================================
   # 字体（暂未完成）
   font:
     font-family: ''
     font-url: ''
 
+  # =============================================================
   # 自定义背景（均遵照 css 语法）
   background:
     # 类型（none、blur、bg_img；无、朦胧、自定义背景）
@@ -333,6 +340,7 @@ custom:
     bg_img: '' # 按照 css 语法，作用于 background-image
 
 
+  # =============================================================
   # 主页横幅图像
   index_banner_img: 'url(/448.jpg)'
   # 主页横幅高度（单位：px、vh）
@@ -344,6 +352,7 @@ custom:
   # 主页副标题字体大小基数（默认 24px）
   index_subtitle_font_size:
 
+  # =============================================================
   # 板块外边框（单位：px）
   block-margin: 
   # 板块内边框
@@ -359,10 +368,13 @@ custom:
   # 最小边界（当屏幕宽度小于最大宽度时，默认 16px）
   min_margin:
 
+  # =============================================================
   # 转跳到内容按钮（进入页面后按下 Tab，将会在屏幕顶部出现此按钮）
   skip_to_content_buttom: true
   # 在适当的区域增加返回按钮
   back_buttom: true
+  # 页面切换按钮样式（flex-start、flex-end、center；居左、居右、居中。默认居中）*
+  page_switch_btn_style: 
 
   # 允许放大（双指放大）
   user_scalable: true
@@ -374,11 +386,13 @@ custom:
   # 动画效果（false、slow、normal、fast；关闭、慢、中等、快）（未配置）
   animation:
 
+# =============================================================
 # 第三方
 third_party:
   # busuanzi 统计（引入 js 用于统计访问量与访客数）
   busuanzi: true
 
+# =============================================================
 CDN:
   # 主要引入 Mainly introduced
   mainCss: /css/hexo-theme-apha.css

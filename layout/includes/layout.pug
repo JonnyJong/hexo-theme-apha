@@ -18,7 +18,7 @@
 - var color_scheme = no-preference //- light dark
 
 //- js 相关设置
-- var jsC_navFold = theme.custom.ui.navbar.auto_folding ? "jsC_navFold" : ""
+- var jsC_navFold = theme.custom.navbar.auto_folding ? "jsC_navFold" : ""
 
 doctype html
 html(lang=config.language prefers-color-scheme=color_scheme)
@@ -45,7 +45,7 @@ html(lang=config.language prefers-color-scheme=color_scheme)
           div!= body
         else
           block content
-          if (theme.custom.ui.sidebar.enable) && (theme.custom.ui.sidebar.items)
+          if (theme.custom.sidebar.enable) && (theme.custom.sidebar.items)
             .side_column
               .sidebar_items
                 include ./sidebar/sidebar.pug

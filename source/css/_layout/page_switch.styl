@@ -2,6 +2,9 @@ nav.page_switch
   margin-top $block-margin
   width 100%
 div.page_switch
+  display flex
+  gap $block-margin
+  justify-content hexo-config('custom.page_switch_btn_style') ? convert(hexo-config('custom.page_switch_btn_style')) : center
   .extend
   .page-number
     display inline-block
@@ -9,7 +12,6 @@ div.page_switch
     width 26px
     color var(--text-color-r)
     background-color var(--bg-color)
-    margin-right $block-margin
     line-height 26px
     text-align center
     overflow hidden

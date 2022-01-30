@@ -7,7 +7,7 @@ mixin post_info(article)
         p.post_title=(article.title ? article.title : _p('post_item.notitle') )
         time(datetime=date_xml(article.date))= date(article.date)
 
-each value, head in theme.custom.ui.sidebar.items
+each value, head in theme.custom.sidebar.items
   - const item = (head + '').split(', ')
   .item
     case item[0]
@@ -45,7 +45,7 @@ each value, head in theme.custom.ui.sidebar.items
             when "last_update"
               .content
                 span.title=_p("sidebar.site_info.last_update")
-                span.value=123
+                span.value=date_xml(Date.now())
             when "text"
               .content
                 span.text=sub_body
