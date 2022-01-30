@@ -29,6 +29,11 @@ block content
               span= _p('post_item.read') + ' '
               span#busuanzi_value_page_pv
               span=' '
+            if theme.custom.ui.post.wordcount
+              i.fas.fa-file-alt.fa-fw
+              span=_p('post_item.wordcount_before')
+              span=wordcount(page.content)
+              span=_p('post_item.wordcount_after')
             if (page.categories.data.length > 0)
               .line_warp_h
               i.fas.fa-folder.fa-fw

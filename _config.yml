@@ -3,7 +3,7 @@ info:
   # 首页大标题（false、default、value；关闭、默认、值。）
   big_title: default
   # 首页副标题（false、default、value；关闭、默认、值。）
-  big_subtitle: hello world
+  subtitle: hello world
   # 站点图标
   favicon: '/favicon.png'
   # 头像（默认使用站点图标）
@@ -238,6 +238,9 @@ custom:
         # 最大长度（当 type 为 content 或 auto 时有效，推荐不大于500）
         max_length: 300
 
+      # 字数统计
+      wordcount: true
+
     # 文章页样式
     post:
       # 信息样式（false、gradient、block；无、渐变、块状。）
@@ -271,8 +274,8 @@ custom:
       # 折叠按钮（未配置）
       # 折叠（默认折叠、超过长度隐藏）（未配置）
 
-      # 图册样式（未配置，@http://localhost:4000/2013/12/25/gallery-post/）（文章开头、文章底、侧栏、封面）
-      gallery_style:
+      # 字数统计
+      wordcount: true
 
     # 页面样式
     page:
@@ -336,6 +339,10 @@ custom:
   index_banner_height: 
   # 滚动视差
   index_banner_img_parallax: true
+  # 主页大标题字体大小基数（默认 96px）
+  index_big_title_font_size:
+  # 主页副标题字体大小基数（默认 24px）
+  index_subtitle_font_size:
 
   # 板块外边框（单位：px）
   block-margin: 

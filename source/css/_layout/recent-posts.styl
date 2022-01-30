@@ -1,4 +1,4 @@
-div.recent-post-item
+.recent-post-item
   display flex
   margin-top $block-margin
   height 260px
@@ -8,60 +8,57 @@ div.recent-post-item
   transition all 0.5s
   background var(--bg-color)
   overflow hidden
-div.recent-post-item:hover
+  .post_cover.side
+    height 100%
+    max-width 480px
+    overflow hidden
+    border-radius $border-radius 0 0 $border-radius //当前为仅为左侧
+    flex 3
+    img
+      height 100%
+      width 100%
+      object-fit cover
+      transform none
+      transition all 3s
+  .post_info
+    margin auto 0
+    padding $block-padding
+    flex 5
+    font-size 15px
+    a.post_title
+      font-size 28px
+      color var(--text-color-r)
+      font-weight 600
+      transition 0.1s
+      i.fa.fa-link.fa-tw
+        font-size 24px
+        transition 0.1s
+    a.post_title:hover
+      color var(--main-color)
+      font-size 32px
+      i.fa.fa-link.fa-tw
+        font-size 25px
+    p
+      margin 6px
+    a
+      color var(--text-color-r)
+      transition all 0.1s
+    a:hover
+      color var(--main-color)
+    .post_description
+      line-height 24px
+      display -webkit-box
+      -webkit-box-orient vertical
+      -webkit-line-clamp 8
+      overflow hidden
+    i
+      margin-right 4px
+
+.recent-post-item:hover
   box-shadow var(--b-shadow)
-
-div.recent-post-item div.post_cover.side
-  height 100%
-  max-width 480px
-  overflow hidden
-  border-radius $border-radius 0 0 $border-radius //当前为仅为左侧
-  flex 3
-
-div.recent-post-item div.post_cover.side img
-  height 100%
-  width 100%
-  object-fit cover
-  transform none
-  transition all 3s
-div.recent-post-item:hover div.post_cover.side img
-  transform scale(1.05)
-div.recent-post-item div.post_cover.side img:hover
-  transform scale(1.1)
-  transition all 0.5s
-
-div.recent-post-item div.post_info
-  margin auto 0
-  padding $block-padding
-  flex 5
-  font-size 15px
-div.recent-post-item div.post_info a.post_title i.fa.fa-link.fa-tw
-  font-size 24px
-  transition all 0.1s
-div.recent-post-item div.post_info a.post_title
-  font-size 28px
-  color var(--text-color-r)
-  font-weight 600
-  transition all 0.1s
-div.recent-post-item div.post_info a.post_title:hover
-  color var(--main-color)
-  font-size 32px
-div.recent-post-item div.post_info a.post_title:hover i.fa.fa-link.fa-tw
-  font-size 25px
-
-div.recent-post-item div.post_info p
-  margin 6px
-
-div.recent-post-item div.post_info a
-  color var(--text-color-r)
-  transition all 0.1s
-div.recent-post-item div.post_info a:hover
-  color var(--main-color)
-
-div.recent-post-item div.post_info span.post_description
-  line-height 24px
-  // -webkit-line-clamp 6
-  display -webkit-box
-  -webkit-box-orient vertical
-  -webkit-line-clamp 8
-  overflow hidden
+  .post_cover.side
+    img
+      transform scale(1.05)
+    img:hover
+      transform scale(1.1)
+      transition all 0.5s

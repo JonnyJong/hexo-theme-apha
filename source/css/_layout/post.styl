@@ -1,82 +1,89 @@
-.main_column.page div.post_info
-  position relative
+.main_column.page
+  .post_info
+    position relative
 
-.main_column.page div.post_info div.post_cover
-  width 100%
-  height 320px
-  overflow hidden
-  border-radius $border-radius $border-radius 0 0
-  position relative
-  background-color var(--main-color)
-.main_column.page div.post_info[nocover="true"] div.post_cover
-  background-color #0000
-  height 0
-.main_column.page div.post_info div.post_cover img
-  height 100%
-  width 100%
-  object-fit cover
+    .post_cover
+      width 100%
+      height 320px
+      overflow hidden
+      border-radius $border-radius $border-radius 0 0
+      position relative
+      background-color var(--main-color)
+      img
+        height 100%
+        width 100%
+        object-fit cover
+    .post_info_oncover_positon_fix
+      width 100%
+      position absolute
+      top 0px
+    .post_info_oncover
+      position absolute
+      padding $block-margin + $block-padding
+      width 100%
+      bottom 0px
+      box-sizing border-box
+      if hexo-config('custom.ui.post.incard_info_bg') == 'block'
+        $info-oncover-opacity = hexo-config('custom.ui.post.incard_info_bg_block.opacity') ? convert(hexo-config('custom.ui.post.incard_info_bg_block.opacity')) : .2
+        $info-oncover-blur = hexo-config('custom.ui.post.incard_info_bg_block.blur') ? convert(hexo-config('custom.ui.post.incard_info_bg_block.blur')) : 2px
+        background rgba(0,0,0,$info-oncover-opacity)
+        if hexo-config('custom.ui.post.incard_info_bg_block.blur') != 0
+          backdrop-filter: saturate(180%) blur($info-oncover-blur)
+      else if hexo-config('custom.ui.post.incard_info_bg') == 'gradient'
+        $info-begin-color = hexo-config('custom.ui.post.incard_info_bg_gradient.begin_color') ? convert(hexo-config('custom.ui.post.incard_info_bg_gradient.begin_color')) : #0000
+        $info-end-color = hexo-config('custom.ui.post.incard_info_bg_gradient.end_color') ? convert(hexo-config('custom.ui.post.incard_info_bg_gradient.end_color')) : #000f
+        background-image linear-gradient($info-begin-color, $info-end-color)
+      span.post_title
+        font-size 32px
+        font-weight bold
+        color var(--text-color)
+        text-shadow: 0 0 24px #000d
+        transition .2s
+      a.post_title i
+        font-size 26px
+        transition .2s
+      a.post_title:hover
+        i
+        span.post_title
+          color var(--main-color)
+      a
+      i
+      time
+      span
+        color var(--text-color)
+        text-shadow: 0 0 24px #000d
+      a:hover
+        color var(--main-color)
+      i
+        margin-right 4px
 
-.main_column.page div.post_info div.post_info_oncover_positon_fix
-  width 100%
-  position absolute
-  top 0px
-.main_column.page div.post_info[nocover="false"] div.post_info_oncover_positon_fix
-  height 320px
-.main_column.page div.post_info[nocover="true"] div.post_info_oncover_positon_fix
-  position relative
-.main_column.page div.post_info div.post_info_oncover
-  position absolute
-  padding $block-margin + $block-padding
-  width 100%
-  bottom 0px
-  box-sizing border-box
-  if hexo-config('custom.ui.post.incard_info_bg') == 'block'
-    $info-oncover-opacity = hexo-config('custom.ui.post.incard_info_bg_block.opacity') ? convert(hexo-config('custom.ui.post.incard_info_bg_block.opacity')) : .2
-    $info-oncover-blur = hexo-config('custom.ui.post.incard_info_bg_block.blur') ? convert(hexo-config('custom.ui.post.incard_info_bg_block.blur')) : 2px
-    background rgba(0,0,0,$info-oncover-opacity)
-    if hexo-config('custom.ui.post.incard_info_bg_block.blur') != 0
-      backdrop-filter: saturate(180%) blur($info-oncover-blur)
-  else if hexo-config('custom.ui.post.incard_info_bg') == 'gradient'
-    $info-begin-color = hexo-config('custom.ui.post.incard_info_bg_gradient.begin_color') ? convert(hexo-config('custom.ui.post.incard_info_bg_gradient.begin_color')) : #0000
-    $info-end-color = hexo-config('custom.ui.post.incard_info_bg_gradient.end_color') ? convert(hexo-config('custom.ui.post.incard_info_bg_gradient.end_color')) : #000f
-    background-image linear-gradient($info-begin-color, $info-end-color)
-.main_column.page div.post_info[nocover="true"] div.post_info_oncover
-  position relative
-  background-image none
-  background none
-  backdrop-filter none
-  padding $block-margin + $block-padding $block-margin + $block-padding 0px $block-margin + $block-padding
-  font-size 15px
-.main_column.page div.post_info div.post_info_oncover span.post_title
-  font-size 32px
-  font-weight bold
-  color var(--text-color)
-  text-shadow: 0 0 24px #000d
-  transition .2s
-.main_column.page div.post_info div.post_info_oncover a.post_title i
-  font-size 26px
-  transition .2s
-.main_column.page div.post_info div.post_info_oncover a.post_title:hover
-  i
-  span.post_title
-    color var(--main-color)
-.main_column.page div.post_info[nocover="true"] div.post_info_oncover span.post_title
-  color var(--text-color-r)
-  text-shadow none
-.main_column.page div.post_info 
-  div.post_info_oncover a
-  div.post_info_oncover i
-  div.post_info_oncover time
-  div.post_info_oncover span
-    color var(--text-color)
-    text-shadow: 0 0 24px #000d
-.main_column.page div.post_info[nocover="true"]
-  div.post_info_oncover a
-  div.post_info_oncover i
-  div.post_info_oncover time
-  div.post_info_oncover span
-    color var(--text-color-r)
-    text-shadow none
+
+  .post_info[nocover="true"]
+    .post_cover
+      background-color #0000
+      height 0
+    .post_info_oncover_positon_fix
+      position relative
+    .post_info_oncover
+      position relative
+      background-image none
+      background none
+      backdrop-filter none
+      padding $block-margin + $block-padding $block-margin + $block-padding 0px $block-margin + $block-padding
+      font-size 15px
+      span.post_title
+        color var(--text-color-r)
+        text-shadow none
+      a
+      i
+      time
+      span
+        color var(--text-color-r)
+        text-shadow none
+      a:hover
+        color var(--main-color)
+  .post_info[nocover="false"] .post_info_oncover_positon_fix
+    height 320px
 
 // 文章内容
 //增强标题可读性
@@ -135,7 +142,7 @@ article.page
 
   // 代码块
   figure.highlight
-    margin 0
+    margin 16px 0 0 0
   figure.highlight figcaption
     background #1e1e1e
     color #ccc

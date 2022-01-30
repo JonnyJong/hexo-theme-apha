@@ -11,7 +11,7 @@ $banner_height = hexo-config('custom.index_banner_height') ? convert(hexo-config
       margin-top -60px
       transform: translate(0px, 60px);
       margin-bottom 60px
-div.header_img
+.header_img
   background hexo-config('custom.index_banner_img') ? convert(hexo-config('custom.index_banner_img')) : var(--main-color)
   // height 100%
   // width 100%
@@ -231,34 +231,29 @@ a.nav_menu_cover.show
   
 
 // 大标题
-div.header_info
+.header_info
   height 100%
   position relative
   transition .5s
-
-@media screen and (min-width: $max-width)
-  .header div.header_info
+  @media screen and (min-width: $max-width)
     width $header-min-width
     margin auto
-
-@media screen and (max-width: $max-width) and (min-width 1001px)
-  .header div.header_info
+  @media screen and (max-width: $max-width) and (min-width 1001px)
     margin auto auto auto 100px
 
-div.header_info div.site_big_title
-  position absolute
-  top 50%
-  transform translate(0, -50%)
-  word-break break-word
-
-div.header_info div.site_big_title span.title
-  font-size 96px
-  font-weight bold
-  color #fffe
-  text-shadow: 0 0 24px #000d
-  transition .5s
-div.header_info div.site_big_title span.subtitle
-  font-size 32px
-  color #fffe
-  text-shadow: 0 0 8px #000d
-  transition .5s
+  .site_big_title
+    position absolute
+    top 50%
+    transform translate(0, -50%)
+    word-break break-word
+    .title
+      font-size $index_big_title_font_size
+      font-weight bold
+      color #fffe
+      text-shadow: 0 0 24px #000d
+      transition .5s
+    .subtitle
+      font-size $index_subtitle_font_size
+      color #fffe
+      text-shadow: 0 0 8px #000d
+      transition .5s

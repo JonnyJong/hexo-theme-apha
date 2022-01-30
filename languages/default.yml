@@ -7,6 +7,8 @@ post_item:
   notitle: 无标题
   read: 阅读量
   link_page: 友情链接
+  wordcount_before: "共 "
+  wordcount_after: " 字 "
 footer:
   frame: 框架
   theme: 主题

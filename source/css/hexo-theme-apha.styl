@@ -113,6 +113,11 @@ hr
     width 240px
   .header_info
     margin auto auto auto 60px
+    .site_big_title
+      .title
+        font-size $index_big_title_font_size*0.9
+      .subtitle
+        font-size $index_subtitle_font_size*0.9
 @media screen and (min-width: 841px)
   nav#mblNavbar
   .navbar_inner.mbl
@@ -126,12 +131,12 @@ hr
     width 100%
   .navbar_inner.pc
     display none
-  // div.header_info div.site_big_title span.title
-  //   width calc(100vw - var(--main_content_margin))
-  //   word-break break-word
-  //   font-size 48px
-  // div.header_info div.site_big_title span.subtitle
-  //   font-size 48px
+  .header_info
+    .site_big_title
+      .title
+        font-size $index_big_title_font_size*0.8
+      .subtitle
+        font-size $index_subtitle_font_size*0.8
 @media screen and (max-width: 600px)
   #content-inner
     .recent-post-item
@@ -147,12 +152,19 @@ hr
         height max-content
         flex unset
         margin 0
-  nav.page_switch 
+  nav.page_switch
     margin-top 0
-    div.prev-post.pull-left
-    div.next-post.pull-right
+    .page_switch
+      margin-top $block-margin
+    .prev-post.pull-left
+    .next-post.pull-right
       float none
       width 100%
       margin-top $block-margin
   .header_info
     margin auto auto auto $main_content_margin
+    .site_big_title
+      .title
+        font-size $index_big_title_font_size*0.6
+      .subtitle
+        font-size $index_subtitle_font_size*0.6

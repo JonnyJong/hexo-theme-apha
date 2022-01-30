@@ -7,12 +7,12 @@ if is_home()
           span.title=config.title
         else if theme.info.big_title
           span.title=theme.info.big_title
-        if theme.info.big_subtitle == 'default'
+        if theme.info.subtitle == 'default'
           br
           span.subtitle=config.subtitle
-        else if theme.info.big_subtitle
+        else if theme.info.subtitle
           br
-          span.subtitle=theme.info.big_subtitle
+          span.subtitle=theme.info.subtitle
     if theme.quick_entrance.enable
       .quick_entrance
         include ./quick_entrance.pug
