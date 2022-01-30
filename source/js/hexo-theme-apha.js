@@ -97,11 +97,38 @@ function imgDes() {
   });
 }
 
+// 归档页面
+function archive(){
+  var t = document.querySelectorAll("main .tag-list-link");
+  var tC = document.querySelectorAll("main .tag-list-count");
+  var tL = t.length - 1;
+  var c = document.querySelectorAll("main .category-list-link");
+  var cC = document.querySelectorAll("main .category-list-count");
+  var cL = c.length - 1;
+  var a = document.querySelectorAll("main .archive-list-link");
+  var aC = document.querySelectorAll("main .archive-list-count");
+  var aL = a.length - 1;
+
+  for (; tL >= 0; tL--) {
+    t[tL].innerText += " - " + tC[tL].innerText;
+    tC[tL].remove();
+  }
+  for (; cL >= 0; cL--) {
+    c[cL].innerText += " - " + cC[cL].innerText;
+    cC[cL].remove();
+  }
+  for (; aL >= 0; aL--) {
+    a[aL].innerText += " - " + aC[aL].innerText;
+    aC[aL].remove();
+  }
+}
+
 //加载后运行
 window.onload = function () {
   updateTime();
   runtime();
   config.imgDesc && imgDes();
+  archive()
 }
 
 config.randColor && randomColor();

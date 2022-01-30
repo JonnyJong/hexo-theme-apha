@@ -19,7 +19,7 @@ block content
           if global_back_btn
             include includes/global_back_btn.pug
 
-          h1= ' ' + page.tag
+          h1= ' ' + page.tag + (theme.tag.show_total ? (' - ' + site.tags.length) : '')
           - page.posts.each(function(article){
               +post_info(article)
           - })

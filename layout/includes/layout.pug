@@ -1,16 +1,19 @@
+//- 标题
+- var pageTitle = page.title || ''
+- if (is_archive()) pageTitle = _p('page_title.archive') + ' | '
+- if (is_tag()) pageTitle = _p('page_title.tag') + page.tag + ' | '
+- if (is_category()) pageTitle = _p('page_title.category') + page.category + ' | '
+- if (is_month()) pageTitle = _p('page_title.archive') + _p('page_title.colon') + page.month + '/' + page.year + ' | '  //- a bug here
+- if (is_year()) pageTitle = _p('page_title.archive') + _p('page_title.colon') + page.month + '/' + page.year + ' | '
+//- - if (is_year()) pageTitle = _p('page_title.archive') + _p('page_title.colon') + page.year + ' | '
+- pageTitle += config.title + (config.subtitle ? ' | ' + config.subtitle : "")
 
-- var pageTitle = page.title || config.subtitle || ''
-- if (is_archive()) pageTitle = 'Archives'
-- if (is_tag()) pageTitle = 'Tag: ' + page.tag
-- if (is_category()) pageTitle = 'Category: ' + page.category
-- if (is_month()) pageTitle += ': ' + page.month + '/' + page.year
-- if (is_year()) pageTitle += ': ' + page.year
-- pageTitle += ' [ ' + config.title + ' ]'
-
+//- 位置
 - var what_is_this_page = 'page'
 - if (is_home()) what_is_this_page = 'home'
 - if (is_post()) what_is_this_page = 'post'
 
+//- 设置
 - var global_back_btn = theme.custom.back_buttom
 - var user_scalable = theme.custom.user_scalable ? "" : ", user-scalable=no"
 
@@ -27,7 +30,8 @@ html(lang=config.language prefers-color-scheme=color_scheme)
     meta(charset='UTF-8')
     title= pageTitle
     link(rel="icon" href=theme.info.favicon)
-    meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" + user_scalable)
+    meta(name="viewport" content="width=device-width" + user_scalable)
+    meta(name="description" content=config.description)
     //- 引入 js 设置
     include ./config.pug
     //- 引用CDN
