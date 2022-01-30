@@ -280,6 +280,8 @@ custom:
     # 图片描述文字
     img_desc: true
 
+    # 版权信息
+
     # 字数统计
     wordcount: true
 
