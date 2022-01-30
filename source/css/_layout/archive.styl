@@ -4,28 +4,30 @@ article.archive
     padding 0
     .tag-list-item
       display inline-block
-      margin-right 16px
-      margin-bottom 32px
+      margin 8px
       max-width 100%
       a.tag-list-link
-        color var(--text-color-r)
-        padding 8px
-        background var(--main-color-bgh)
+        display inline-flex
         border-radius $border-radius
-        box-sizing border-box
         transition 0.1s
-        border 1px solid alpha($main_color 0%)
-        line-height 16px
-        word-wrap break-all
+        border 3px solid alpha($main_color 0%)
+        background var(--main-color-bgh)
+        color var(--text-color-r)
+        padding 6px
+        line-height 20px
+        word-break break-word
         max-width 100%
-      a.tag-list-link:hover
-        text-decoration none
-        border 3px solid $main_color
+        align-items center
       a.tag-list-link:before
         content '\f02b'
         font-family: "Font Awesome 5 Free"
         font-weight 900
         margin-right 4px
+      a.tag-list-link:hover
+        text-decoration none
+        color var(--main-color)
+        font-weight bold
+        border 3px solid $main_color
   .category-list
     padding 0
     margin 0 16px

@@ -121,6 +121,18 @@ function archive(){
     a[aL].innerText += " - " + aC[aL].innerText;
     aC[aL].remove();
   }
+
+  var sC = document.querySelectorAll(".sidebar_items .category-list-link");
+  var sCC = document.querySelectorAll(".sidebar_items .category-list-count");
+  var sCL = sC.length - 1;
+
+  for (; sCL >= 0; sCL--) {
+    const inject = document.createElement("span");
+    inject.textContent = sCC[sCL].innerText;
+    inject.className = "category-list-count";
+    sC[sCL].appendChild(inject);
+    sCC[sCL].remove();
+  }
 }
 
 //加载后运行
@@ -128,7 +140,7 @@ window.onload = function () {
   updateTime();
   runtime();
   config.imgDesc && imgDes();
-  archive()
+  archive();
 }
 
 config.randColor && randomColor();
