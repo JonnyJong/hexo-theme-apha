@@ -12,7 +12,7 @@ info:
   social_link:
     - fab fa-github, https://github.com/JonnyJong, Github
   # 建站时间（未配置）
-  site_begin: 2020/8/10 00:07:00
+  site_begin: 2020-08-10 07:00:00
 
 # =============================================================
 # 快捷入口（首页标题旁）
@@ -277,6 +277,9 @@ custom:
     # 折叠按钮（未配置）
     # 折叠（默认折叠、超过长度隐藏）（未配置）
 
+    # 图片描述文字
+    img_desc: true
+
     # 字数统计
     wordcount: true
 
@@ -315,7 +318,7 @@ custom:
     hue: false
 
     # 随机色相（将无法自定义，每次刷新更换颜色）（未完成）*
-    random_color: true
+    random_color: false
 
   # =============================================================
   # 字体（暂未完成）

@@ -23,10 +23,13 @@
 doctype html
 html(lang=config.language prefers-color-scheme=color_scheme)
   head
+    //- 基本信息
     meta(charset='UTF-8')
     title= pageTitle
     link(rel="icon" href=theme.info.favicon)
     meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" + user_scalable)
+    //- 引入 js 设置
+    include ./config.pug
     //- 引用CDN
     link(rel='stylesheet', href=theme.CDN.mainCss)
     script(type="text/javascript" src=theme.CDN.mainJs)

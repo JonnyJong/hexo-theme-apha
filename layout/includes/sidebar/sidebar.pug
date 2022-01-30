@@ -41,11 +41,11 @@ each value, head in theme.custom.sidebar.items
             when "runtime"
               .content
                 span.title=_p("sidebar.site_info.runtime")
-                span.value=123
+                span.value#runtime(beginTime=date_xml(theme.info.site_begin))
             when "last_update"
               .content
                 span.title=_p("sidebar.site_info.last_update")
-                span.value=date_xml(Date.now())
+                span.value#last_update(last_update_value=date_xml(Date.now()))
             when "text"
               .content
                 span.text=sub_body
