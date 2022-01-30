@@ -10,7 +10,6 @@
 
 :root
   font-family: UbuntuMono, "PingFang SC", "Microsoft YaHei", Arial, Monaco, monospace, sans-serif
-  // 用于修复页面加载瞬间的排版错乱
   font-size: 16px
 
 // 自定义背景
@@ -20,6 +19,7 @@ body
   margin 0
   position relative
   background hexo-config("custom.background.background") ? convert(hexo-config("custom.background.background")) : var(--body-color)
+  word-break break-word
 if hexo-config("custom.background.style") == 'blur'
   body::after
     background-image hexo-config("custom.background.blur.img") ? convert(hexo-config("custom.background.blur.img")) : none

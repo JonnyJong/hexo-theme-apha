@@ -157,8 +157,11 @@ a.nav_menu_cover
   width 100vw
   top 0
   z-index 100
+  background #000
+  opacity .5
 a.nav_menu_cover.show
   display block
+  animation nav_menu_cover_show .2s ease-in-out
 .navbar.show#mblNavbar
   transform translateX(0)
 #mblNavbar
@@ -245,7 +248,6 @@ a.nav_menu_cover.show
     position absolute
     top 50%
     transform translate(0, -50%)
-    word-break break-word
     .title
       font-size $index_big_title_font_size
       line-height 1
