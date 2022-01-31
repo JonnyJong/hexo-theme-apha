@@ -1,8 +1,6 @@
 
 extends includes/layout.pug
 
-include includes/post_info.pug
-
 block content
   - var categoriesList = list_categories({ show_count: theme.category.show_count })
   - var tagsList = list_tags({ show_count: theme.tag.show_count })
@@ -10,11 +8,8 @@ block content
 
   .main_column.page
     main
-      if theme.archive.cover
-        .page_info(nocover=false)
-          .page_cover
-            img.header_img(src=url_for(theme.archive.cover) alt='banner')
-      article.page.archive#main
+      +page_info(page, "archive", true)
+      article.archive#main
         if !is_year()
           each item in theme.archive.show
             case item
@@ -33,7 +28,7 @@ block content
           h1= ' '+page.month + '/' + page.year + (theme.archive.show_total ? ' - ' + page.posts.length : "")
 
           - page.posts.each(function(article){
-              +post_info(article)
+              +post_item(article)
           - })
 
           //- #paginator!= paginator()

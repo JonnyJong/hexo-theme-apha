@@ -1,18 +1,12 @@
 extends includes/layout.pug
 
-include includes/post_info.pug
-
 block content
   - var tagsList = list_tags({ show_count: theme.tag.show_count })
 
   .main_column.page
     main
-      if theme.archive.cover
-        .page_info(nocover=false)
-          .page_cover
-            img.header_img(src=url_for(theme.archive.cover) alt='banner')
-
-      article.page.archive#main
+      +page_info(page, "page", false)
+      article.archive#main
 
         if is_tag(page.tag)
 
@@ -21,7 +15,7 @@ block content
 
           h1= ' ' + page.tag + (theme.tag.show_total ? (' - ' + site.tags.length) : '')
           - page.posts.each(function(article){
-              +post_info(article)
+              +post_item(article)
           - })
           include includes/page_switch.pug
 

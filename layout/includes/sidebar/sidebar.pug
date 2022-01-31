@@ -1,12 +1,3 @@
-mixin post_info(article)
-  .post_item
-    a.post_link(href=url_for(article.path) title=article.title)
-      if article.cover
-        img.post_cover(src=article.cover alt=article.title)
-      .post_info
-        p.post_title=(article.title ? article.title : _p('post_item.notitle') )
-        time(datetime=date_xml(article.date))= date(article.date)
-
 each value, head in theme.custom.sidebar.items
   - const item = (head + '').split(', ')
   .item
@@ -96,7 +87,7 @@ each value, head in theme.custom.sidebar.items
         if (typeof value == 'object') && value
           - final_limit = value.limit ? value.limit : 6
         - site.posts.sort("updated", -1).limit(final_limit).each(function(article){
-            +post_info(article)
+            +post_item(article)
         - })
       when 'tags'
         .item_info

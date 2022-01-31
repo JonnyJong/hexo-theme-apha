@@ -244,13 +244,13 @@ custom:
     wordcount: true
 
   # =============================================================
-  # 文章页样式
-  post:
+  # 页面样式
+  page:
     # 信息样式（false、gradient、block；无、渐变、块状。）
     incard_info_bg: gradient
     # block 背景样式
     incard_info_bg_block:
-      # 不透明度（默认 .2）
+      # 不透明度（默认 .8）
       opacity: ''
       # 不透明度（默认 10px）
       blur: 
@@ -284,23 +284,6 @@ custom:
 
     # 字数统计
     wordcount: true
-
-  # =============================================================
-  # 页面样式
-  page:
-    # 信息样式（false、gradient、block；无、渐变、块状。）
-    incard_info_bg: gradient
-    # block 背景样式
-    incard_info_bg_block:
-      # 不透明度（默认 .2）
-      opacity: ''
-      # 不透明度（默认 10px）
-      blur: 
-    # gradient 背景样式
-    incard_info_bg_gradient:
-      # 开始和结束颜色（色值必须用英文引号包括，例：'#2333'）
-      begin_color: ''
-      end_color: ''
   
   # 友链样式
   link:

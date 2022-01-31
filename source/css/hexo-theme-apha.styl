@@ -40,7 +40,7 @@ if hexo-config("custom.background.style") == 'blur'
     else
       background-attachment fixed
     opacity hexo-config("custom.background.blur.opacity") ? convert(hexo-config("custom.background.blur.opacity")) : 30%
-    background-position center center
+    background-position center
 else if hexo-config("custom.background.style") == 'bg_img'
   body
     background-image hexo-config("custom.background.bg_img") ? convert(hexo-config("custom.background.bg_img")) : none
