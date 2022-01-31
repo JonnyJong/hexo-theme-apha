@@ -14,12 +14,15 @@
 
 // 自定义背景
 body
-  min-height calc(100vh - 128px)
-  padding-bottom 128px
+  min-height 100vh
   margin 0
   position relative
   background hexo-config("custom.background.background") ? convert(hexo-config("custom.background.background")) : var(--body-color)
   word-break break-word
+  display flex
+  justify-content space-between
+  align-items stretch
+  flex-direction column
 if hexo-config("custom.background.style") == 'blur'
   body::after
     background-image hexo-config("custom.background.blur.img") ? convert(hexo-config("custom.background.blur.img")) : none
@@ -58,6 +61,7 @@ a
   color var(--text-color)
 #content-outer
   margin-bottom $block-margin
+  flex 1
 #content-inner
   margin auto
   // 与侧栏布局
