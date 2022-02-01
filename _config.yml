@@ -265,6 +265,8 @@ custom:
 
     # 段落标题易读性增强
     paragraph_title_readability: true
+    # 将 H2 显示为 H1，以此类推，用于优化 SEO 后便于阅读（未配置）
+    after_seo_paraTitleReadly: false
 
     # 代码高亮样式（未配置，将允许用户插入自己在 highlightjs 选择的样式）（未配置）
     code_highlight_style:

@@ -1,5 +1,5 @@
 //- 标题
-- var pageTitle = page.title || ''
+- var pageTitle = page.title ? page.title + " | " : ""
 - if (is_archive()) pageTitle = _p('page_title.archive') + ' | '
 - if (is_tag()) pageTitle = _p('page_title.tag') + page.tag + ' | '
 - if (is_category()) pageTitle = _p('page_title.category') + page.category + ' | '

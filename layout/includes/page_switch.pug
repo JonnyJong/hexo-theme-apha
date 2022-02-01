@@ -7,33 +7,22 @@
   }
 nav.page_switch
   if(!is_post())
-    div.page_switch
+    .page_switch
       - options.format = 'page/%d/#content-outer'
       !=paginator(options)
   else
-    if(page.prev)
-      .prev-post.pull-left
-        a(href=url_for(page.prev.path))
-          i.fa.fa-chevron-left.fa-tw
-          span=' ' + _p('post.prev_post')
-          br
-          if page.prev.title
-            span.post_title=page.prev.title
-          else
-            span.post_title=_p('post_item.notitle')
-        a.img(href=url_for(page.prev.path))
-          if page.prev.cover
-            img.post_img(src=url_for(page.prev.cover) alt='post_img')
-    if(page.next)
-      .next-post.pull-right
-        a(href=url_for(page.next.path))
-          sapn=_p('post.next_post') + ' '
-          i.fa.fa-chevron-right.fa-tw
-          br
-          if page.next.title
-            span.post_title= page.next.title
-          else
-            span.post_title=_p('post_item.notitle')
-        a.img(href=url_for(page.next.path))
-          if page.next.cover
-            img.post_img(src=url_for(page.next.cover) alt='post_img')
+    .post_switch
+      if(page.prev)
+        .switch_item(style=page.prev.cover?("background:url("+url_for(page.prev.cover)+");background-position:center;background-size:cover;"):"")
+          a.prev_post(href=url_for(page.prev.path))
+            i.fa.fa-chevron-left.fa-tw
+            span=' ' + _p('post.prev_post')
+            br
+            .post_title=page.prev.title ? page.prev.title : _p('post_item.notitle')
+      if(page.next)
+        .switch_item(style=page.next.cover?("background:url("+url_for(page.next.cover)+");background-position:center;background-size:cover;"):"")
+          a.next_post(href=url_for(page.next.path))
+            span=_p('post.next_post') + ' '
+            i.fa.fa-chevron-right.fa-tw
+            br
+            .post_title= page.next.title ? page.next.title : _p('post_item.notitle')

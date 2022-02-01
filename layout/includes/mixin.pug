@@ -11,10 +11,10 @@ mixin page_info(page, type, other_info)
   case type
     when "archive"
       - var ifCover = theme.archive.cover ? "true" : "false"
-      .page_info(cover=ifCover style="background:url("+url_for(theme.archive.cover)+");background-position:center;background-size:cover;")
+      .page_info(cover=ifCover style=ifCover?("background:url("+url_for(theme.archive.cover)+");background-position:center;background-size:cover;"):"")
     when "page"
       - var ifCover = page.cover ? "true" : "false"
-      .page_info(cover=ifCover style="background:url("+url_for(page.cover)+");background-position:center;background-size:cover;")
+      .page_info(cover=ifCover style=ifCover?("background:url("+url_for(page.cover)+");background-position:center;background-size:cover;"):"")
         .inner_info
           if page.link
             a.page_title(href=page.link style="display:block;width:max-content;")

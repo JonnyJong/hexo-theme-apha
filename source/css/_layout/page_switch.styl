@@ -1,91 +1,118 @@
 nav.page_switch
   margin-top $block-margin
   width 100%
-div.page_switch
-  display flex
-  gap $block-margin
-  justify-content hexo-config('custom.page_switch_btn_style') ? convert(hexo-config('custom.page_switch_btn_style')) : center
-  .extend
-  .page-number
-    display inline-block
-    height 26px
-    width 26px
-    color var(--text-color-r)
-    background-color var(--bg-color)
-    line-height 26px
-    text-align center
-    overflow hidden
-    border-radius $border-radius
-    transition all 0.1s
-  .extend:hover
-  .page-number:hover
-    box-shadow var(--b-shadow-lite)
-    background-color var(--main-color-nbgh)
-
-  .page-number.current
-    background-color var(--main-color)
-    box-shadow var(--b-shadow)
-  .page-number.current:hover
-    cursor default
-  
-  .extend
-    line-height 28px
-
-// 文章页中
-nav.page_switch
-  .prev-post.pull-left
-  .next-post.pull-right
-    if hexo-config('custom.global-blur') != 0
-      backdrop-filter: saturate(180%) blur($global-blur)
-    --switch-page-in-post $block-margin / 2
-    width calc(50% - var(--switch-page-in-post))
-    border-radius $border-radius
-    min-height 140px // 待更改
-    transition all 0.5s
-    overflow hidden
-    position relative
-    background var(--bg-color)
-    a
+  .page_switch
+    display flex
+    gap $block-margin
+    justify-content hexo-config('custom.page_switch_btn_style') ? convert(hexo-config('custom.page_switch_btn_style')) : center
+    .extend
+    .page-number
+      display inline-block
+      height 26px
+      width 26px
       color var(--text-color-r)
-      padding $block-padding
-      box-sizing border-box
-      position absolute
-      width 100%
-      text-shadow var(--b-shadow-lite)
-      height 100%
-    span.post_title
-      font-size 22px
-      transition all 0.1s
-    a.img
-      min-height max-content
-      height 140px
-      padding 0px
+      background-color var(--bg-color)
+      line-height 26px
+      text-align center
       overflow hidden
       border-radius $border-radius
-      z-index: -1
-      opacity .8
-    img
-      // height 
-      // position absolute
-      height 100%
+      transition all 0.1s
+    .extend:hover
+    .page-number:hover
+      box-shadow var(--b-shadow-lite)
+      background-color var(--main-color-nbgh)
+
+    .page-number.current
+      background-color var(--main-color)
+      box-shadow var(--b-shadow)
+    .page-number.current:hover
+      cursor default
+    
+    .extend
+      line-height 28px
+
+  // 文章页中
+  .post_switch
+    display flex
+    gap $block-margin
+    .switch_item
+      display block
       width 100%
-      object-fit cover
-      transform none
-      transition all 3s
-  .prev-post.pull-left:hover
-  .next-post.pull-right:hover
-    box-shadow var(--b-shadow)
-    span.post_title
-      color var(--main-color)
-      font-size 26px
-      text-shadow var(--b-shadow)
-    img
-      transform scale(1.1)
+      height 100%
+      border-radius $border-radius
       transition all 0.5s
-      opacity .2
-  .prev-post.pull-left
-    float left
-    a
-      text-align right
-  .next-post.pull-right
-    float right
+      a
+        display block
+        min-height 120px
+        height max-content
+        border-radius $border-radius
+        padding $block-padding
+        background #fff8
+        transition all 0.5s
+        color var(--text-color-r)
+        text-shadow var(--b-shadow-lite)
+        .post_title
+          font-size 20px
+          transition .1s
+      a:hover
+        background #fffc
+        .post_title
+          font-size 22px
+          color var(--main-color)
+      .prev_post
+        text-align right
+    .switch_item:hover
+      box-shadow var(--b-shadow)
+
+    // .prev-post.pull-left
+    // .next-post.pull-right
+    //   if hexo-config('custom.global-blur') != 0
+    //     backdrop-filter: saturate(180%) blur($global-blur)
+    //   width 100%
+    //   border-radius $border-radius
+    //   min-height 140px
+    //   height max-content
+    //   transition all 0.5s
+    //   overflow hidden
+    //   position relative
+    //   background var(--bg-color)
+    //   a
+    //     color var(--text-color-r)
+    //     padding $block-padding
+    //     box-sizing border-box
+    //     position absolute
+    //     width 100%
+    //     text-shadow var(--b-shadow-lite)
+    //     height 100%
+    //   span.post_title
+    //     font-size 22px
+    //     transition all 0.1s
+    //   a.img
+    //     min-height max-content
+    //     height 140px
+    //     padding 0px
+    //     overflow hidden
+    //     border-radius $border-radius
+    //     z-index: -1
+    //     opacity .8
+    //   img
+    //     // height 
+    //     // position absolute
+    //     height 100%
+    //     width 100%
+    //     object-fit cover
+    //     transform none
+    //     transition all 3s
+    // .prev-post.pull-left:hover
+    // .next-post.pull-right:hover
+    //   box-shadow var(--b-shadow)
+    //   span.post_title
+    //     color var(--main-color)
+    //     font-size 26px
+    //     text-shadow var(--b-shadow)
+    //   img
+    //     transform scale(1.1)
+    //     transition all 0.5s
+    //     opacity .2
+    // .prev-post.pull-left a
+    //   text-align right

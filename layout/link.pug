@@ -12,7 +12,7 @@ block content
             each grp in site.data.link
               .grp_info
                 i(class="grp_icon " + (grp.icon ? grp.icon : "") style="color:" + (grp.icon_color ? grp.icon_color : "unset") +";")
-                h1.grp_name(style="color:"+ (grp.color ? grp.color : "unset") +";" )=grp.group ? grp.group : ''
+                h2.grp_name(style="color:"+ (grp.color ? grp.color : "unset") +";" )=grp.group ? grp.group : ''
                 .grp_warp_line
                 .grp_d= grp.description ? grp.description : ""
               .grp_items
