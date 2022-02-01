@@ -20,9 +20,6 @@
 //- 颜色模式
 - var color_scheme = no-preference //- light dark
 
-//- js 相关设置
-- var jsC_navFold = theme.custom.navbar.auto_folding ? "jsC_navFold" : ""
-
 include ./mixin.pug
 
 doctype html
@@ -45,7 +42,6 @@ html(lang=config.language prefers-color-scheme=color_scheme)
     //- link(rel='stylesheet', href=theme.CDN.highlight_js_css)
     //- script(src=theme.CDN.highlight_js_js)
   body(where=what_is_this_page)
-    #jsConfig(class=jsC_navFold)
     include ./skipToContentButtom.pug
     include ./header/header.pug
     #content-outer
