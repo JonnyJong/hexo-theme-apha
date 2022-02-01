@@ -43,16 +43,16 @@ mixin items(body, head, item, value, limit)
       when 'site'
         case value[2]
           when 'root'
-            .nav_item_outer
+            .nav_item_outer.site_info
               a(href=config.root)
                 .nav_item_inner
                   +siteInfo(value)
           when 'none'
-            .nav_item_outer.noLink
+            .nav_item_outer.noLink.site_info
               .nav_item_inner
                 +siteInfo(value)
           default
-            .nav_item_outer
+            .nav_item_outer.site_info
               a(href=value[2])
                 .nav_item_inner
                   +siteInfo(value)
