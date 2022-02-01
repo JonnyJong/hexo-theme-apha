@@ -84,6 +84,18 @@ mixin author_name(sub_body)
   .author_name
     span.author_name= sub_body ? sub_body : config.author
 
+mixin act_statistics(value)
+  .act_statistics
+    a.act_item(href= value.archive ? url_for(value.archive) : "")
+      .title=_p("page.archives")
+      .value=site.posts.length
+    a.act_item(href= value.categorie ? url_for(value.categorie) : "")
+      .title=_p("page.categories")
+      .value=site.categories.length
+    a.act_item(href= value.tag ? url_for(value.tag) : "")
+      .title=_p("page.tags")
+      .value=site.tags.length
+
 mixin item(value)
   +item_info(value)
   each sub_body, sub_head in value
@@ -117,6 +129,8 @@ mixin item(value)
         +tags(value)
       when 'categories'
         +categories(value)
+      when "act_statistics"
+        +act_statistics(sub_body)
 
 each value, head in theme.custom.sidebar.items
   - const item = (head + '').split(', ')

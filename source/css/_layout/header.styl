@@ -111,9 +111,19 @@ $banner_height = hexo-config('custom.index_banner_height') ? convert(hexo-config
     i
       margin-right 0
       font-size $navbar_height*0.3
+  .act_outer
+    display flex
+  .act_inner
+    flex-direction column
+    justify-content center
+    transition .1s
+  .act_inner:hover
+    background var(--main-color-bgh)
 .navbar#pcNavbar .placeholder:hover
 .navbar#mblNavbar .placeholder:hover
 .nav_item_outer.noLink:hover
+.navbar#pcNavbar .nav_item_outer.act_outer:hover
+.navbar#mblNavbar .nav_item_outer.act_outer:hover
   background none
 .nav_item_outer.noLink
   background none
@@ -200,15 +210,12 @@ a.nav_menu_cover.show
       height $mbl_item_height
   .nav_sub_menu
     position relative
-    // position absolute
     display none
     width 100%
     background var(--bg-color)
     box-shadow inset var(--b-shadow-lite)
-    // bottom $mbl_item_height
   .nav_sub_item
     width 100%
-    // min-width max-content
     transition 0.05s
   .nav_sub_item:hover
     background var(--main-color-bgh)
@@ -238,8 +245,6 @@ a.nav_menu_cover.show
       img
         height 40px
         padding 8px 0
-
-  
 
 // 大标题
 .header_info

@@ -36,6 +36,19 @@ mixin navMenu(body, item)
             i(class=subValue.split(', ')[1])
             span=subItem
 
+//- act_statistics
+mixin act_statistics(value)
+  .nav_item_outer.act_outer
+    a.nav_item_inner.act_inner(href= value.archive ? url_for(value.archive) : "")
+      .title=_p("page.archives")
+      .value=site.posts.length
+    a.nav_item_inner.act_inner(href= value.categorie ? url_for(value.categorie) : "")
+      .title=_p("page.categories")
+      .value=site.categories.length
+    a.nav_item_inner.act_inner(href= value.tag ? url_for(value.tag) : "")
+      .title=_p("page.tags")
+      .value=site.tags.length
+
 mixin items(body, head, item, value, limit)
   if item[0] != limit
     case item[1]
@@ -120,6 +133,8 @@ mixin items(body, head, item, value, limit)
                   i.fa.fa-times
                 default
                   i.fa.fa-bars
+      when "act_statistics"
+        +act_statistics(value)
       default
         - break
 

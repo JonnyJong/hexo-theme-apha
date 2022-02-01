@@ -98,6 +98,10 @@ custom:
       al, site, 0: /logo.png, default, root
       pc, img, 0: /logo.png, /
       pc, text, 0: hello world!, /
+      al, act_statistics:
+        archive: /archives/
+        categorie: /categories/
+        tag: /tags/
       al, hr:
       pc, placeholder, 0: 
       al, menu, 主页, fas fa-home, /:
@@ -203,7 +207,11 @@ custom:
           可使用 html + css 语法
           换行可以，注意缩进
           css 不能用\<style\>标签，会报错
-          </div> 
+          </div>
+        act_statistics:
+          archive: /archives/
+          categorie: /categories/
+          tag: /tags/
   
   # =============================================================
   # 首页文章
