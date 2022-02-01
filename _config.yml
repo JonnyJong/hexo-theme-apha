@@ -11,7 +11,7 @@ info:
   # 社交链接
   social_link:
     - fab fa-github, https://github.com/JonnyJong, Github
-  # 建站时间（未配置）
+  # 建站时间
   site_begin: 2020-08-10 07:00:00
 
 # =============================================================
@@ -72,8 +72,6 @@ category:
   show_count: true
   # 显示总数
   show_total: true
-  # 封面图
-  cover: /448.jpg
   # 将内容渲染到分类之后
   after_content: true
 # 标签
@@ -82,8 +80,6 @@ tag:
   show_count: true
   # 显示总数
   show_total: true
-  # 封面图
-  cover: /448.jpg
   # 将内容渲染到标签之后
   after_content: true
 
@@ -384,7 +380,7 @@ custom:
   skip_to_content_buttom: true
   # 在适当的区域增加返回按钮
   back_buttom: true
-  # 页面切换按钮样式（flex-start、flex-end、center；居左、居右、居中。默认居中）*
+  # 页面切换按钮样式（flex-start、flex-end、center；居左、居右、居中。默认居中）
   page_switch_btn_style: 
 
   # 允许放大（双指放大）
