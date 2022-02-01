@@ -1,33 +1,28 @@
 extends includes/layout.pug
 
-include includes/post_info.pug
-
 block content
   - var categoriesList = list_categories({ show_count: theme.category.show_count })
 
   .main_column.page
-    if theme.archive.cover
-      .page_info(nocover=false)
-        .page_cover
-          img.header_img(src=url_for(theme.archive.cover) alt='banner')
+    main
+      +page_info(page, "page", false)
+      article.archive#main
 
-    article.page.archive#main
+        if is_category(page.category)
 
-      if is_category(page.category)
+          if global_back_btn
+            include includes/global_back_btn.pug
 
-        if global_back_btn
-          include includes/global_back_btn.pug
+          h1= ' '+page.category + (theme.category.show_total ? (' - ' + site.categories.length) : '')
+          - page.posts.each(function(article){
+              +post_item(article)
+          - })
+          include includes/page_switch.pug
 
-        h1= ' '+page.category
-        - page.posts.each(function(article){
-            +post_info(article)
-        - })
-        include includes/page_switch.pug
+        else
 
-      else
-
-        if !(theme.category.after_content)
-          != page.content
-        include includes/archive/category.pug
-        if theme.category.after_content
-          != page.content
+          if !(theme.category.after_content)
+            != page.content
+          include includes/archive/category.pug
+          if theme.category.after_content
+            != page.content

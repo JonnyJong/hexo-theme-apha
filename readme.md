@@ -16,3 +16,9 @@ npm i hexo-renderer-markdown-it-plus --save
 npm i hexo-renderer-pug --save
 npm i hexo-renderer-stylus --save
 ```
+
+# 附加功能
+## 字数统计
+```bash
+npm i hexo-wordcount --save
+```

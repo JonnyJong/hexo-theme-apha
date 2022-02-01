@@ -10,17 +10,9 @@ if hexo-config("custom.back_buttom")
       margin 0 16px
     span
       margin-right 16px
-  article.page a.global_back_btn:hover
+  article a.global_back_btn:hover
   a.global_back_btn:hover
     text-decoration none
     background var(--main-color-bgh)
     i
       animation back_btn_i .5s ease
-  
-  @keyframes back_btn_i
-    0%
-      transform: translateX(0px)
-    50%
-      transform: translateX(-4px)
-    100%
-      transform: translateX(0px)

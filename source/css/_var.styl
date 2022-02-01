@@ -1,17 +1,25 @@
 $max-width = hexo-config('custom.max-width') ? (convert(hexo-config('custom.max-width')) + 200px) : 1600px // 页面主体最大宽度（实际使用 - 200px）
 $block-margin = hexo-config('custom.block-margin') ? convert(hexo-config('custom.block-margin')) : 16px // 模块外边距
-$block-padding = hexo-config('custom.block-padding') ? convert(hexo-config('custom.block-padding')) : 16px // 模块内边距
-$border-radius = hexo-config('custom.border-radius') ? convert(hexo-config('custom.border-radius')) : 16px // 圆角
+$block-padding = hexo-config('custom.block-padding') ? convert(hexo-config('custom.block-padding')) : 24px // 模块内边距
+$border-radius = hexo-config('custom.border-radius') ? convert(hexo-config('custom.border-radius')) : 10px // 圆角
 $global-opacity = hexo-config('custom.global-opacity') ? convert(hexo-config('custom.global-opacity')) : .6 // 不透明度
 $global-blur = hexo-config('custom.global-blur') ? convert(hexo-config('custom.global-blur')) : 20px //模糊程度
 $main_content_margin = (hexo-config("custom.min_margin") ? convert(hexo-config("custom.min_margin")) : 16px) //主体两侧最小边界
-//header
+// header
 $header-min-width = $max-width - 200px
-$navbar-LR-padding = hexo-config('custom.ui.navbar.lr_distance') ? convert(hexo-config('custom.ui.navbar.lr_distance')) : 36px
-$navbar-opacity = hexo-config('custom.ui.navbar.opacity') ? convert(hexo-config('custom.ui.navbar.opacity')) : .8
-$navbar-blur = hexo-config('custom.ui.navbar.blur') ? convert(hexo-config('custom.ui.navbar.blur')) : 20px
+$navbar-LR-padding = hexo-config('custom.navbar.lr_distance') ? convert(hexo-config('custom.navbar.lr_distance')) : 36px
+$navbar-opacity = hexo-config('custom.navbar.opacity') ? convert(hexo-config('custom.navbar.opacity')) : .8
+$navbar-blur = hexo-config('custom.navbar.blur') ? convert(hexo-config('custom.navbar.blur')) : 20px
+$navbar_height = hexo-config('custom.navbar.height') ? convert(hexo-config('custom.navbar.height')) : 60px
 
-//需处理的变量
+$mbl_item_height = hexo-config('custom.navbar.mbl_item_height') ? convert(hexo-config('custom.navbar.mbl_item_height')) : 40px
+$mbl_vertical_padding = hexo-config('custom.navbar.mbl_vertical_padding') ? convert(hexo-config('custom.navbar.mbl_vertical_padding')) : 10px
+$mbl_horizontal_padding = hexo-config('custom.navbar.mbl_horizontal_padding') ? convert(hexo-config('custom.navbar.mbl_horizontal_padding')) : 8px
+
+$index_big_title_font_size = hexo-config('custom.index_big_title_font_size') ? convert(hexo-config('custom.index_big_title_font_size')) : 96px // 主页大标题字体大小基数
+$index_subtitle_font_size = hexo-config('custom.index_subtitle_font_size') ? convert(hexo-config('custom.index_subtitle_font_size')) : 24px // 主页副标题字体大小基数
+
+// 需处理的变量
 // 色彩预备
 $color_hue = hexo-config('custom.theme_color.hue') ? hexo-config('custom.theme_color.hue') : false
 $color_ori_main = hexo-config('custom.theme_color.main') ? convert(hexo-config('custom.theme_color.main')) : #009688
@@ -25,6 +33,7 @@ $main_color = $color_hue ? hsl($color_hue, 100%, 50%) : $color_ori_main
   // 字体颜色
   --text-color #eee
   --text-color-r #111
+  --text-color-rf #555
   // 背景颜色
   --body-color #fff
   --bg-color rgba(255, 255, 255, $global-opacity)
@@ -32,3 +41,6 @@ $main_color = $color_hue ? hsl($color_hue, 100%, 50%) : $color_ori_main
   // 阴影
   --b-shadow-lite 0px 0px 8px #0004
   --b-shadow 0px 0px 16px #0008
+
+  // 需要即时计算的变量
+  --main_content_margin $main_content_margin

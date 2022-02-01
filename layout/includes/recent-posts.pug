@@ -18,7 +18,7 @@ if page.posts.length > 0
                   a(href=url_for(post.path))
                     img.post_cover(src=url_for(post.cover) alt=post.title)
               default
-                case theme.custom.ui.index_posts.cover_default_style
+                case theme.custom.index_posts.cover_default_style
                   when 'side'
                     div.post_cover.side
                       a(href=url_for(post.path))
@@ -35,10 +35,9 @@ if page.posts.length > 0
                     - let = if_cover = 'no_cover'
           .post_info(class=if_cover class=cover_type)
             if post.link
-              
               a.post_title(href=url_for(post.link))
                 i.fa.fa-link.fa-tw
-                span=post.title
+                span=post.title ? post.title : _p('post_item.notitle')
             else
               a.post_title(href=url_for(post.path))= post.title ? post.title : _p('post_item.notitle')
             p
@@ -48,14 +47,20 @@ if page.posts.length > 0
             if post.updated
               i.fas.fa-history.fa-fw
               time(datetime=post.updated.toJSON())= _p('post_item.updated') + ' ' + date(post.updated, date_format) + ' '
+            if theme.custom.index_posts.wordcount
+              i.fas.fa-file-alt.fa-fw
+              span=_p('post_item.wordcount_before')
+              span=wordcount(post.content)
+              span=_p('post_item.wordcount_after')
             if (post.categories.data.length > 0)
+              .line_warp_h
               i.fas.fa-folder.fa-fw
               each cate, count in post.categories.data
                 a.post_cate(href=url_for(cate.path))=cate.name
                 if (count < post.categories.data.length - 1)
                   span='/'
             if (post.tags.data.length > 0)
-              span=' '
+              .line_warp_h
               if (post.tags.data.length > 1)
                 i.fas.fa-tags.fa-fw
               else
@@ -69,4 +74,4 @@ if page.posts.length > 0
             else if post.excerpt
               span.post_description=strip_html(post.excerpt)
             else
-              span.post_description=truncate(strip_html(post.content), {length: theme.custom.ui.index_posts.description.max_length})
+              span.post_description=truncate(strip_html(post.content), {length: theme.custom.index_posts.description.max_length})

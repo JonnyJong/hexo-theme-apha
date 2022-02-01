@@ -1,0 +1,146 @@
+mixin item_info(value)
+  if value.icon || value.title
+    .item_info
+      if value.icon
+        i(class= (value.icon + '').split(', ')[0] + " item_icon" style="color:"+((value.icon + '').split(', ')[1]?(value.icon + '').split(', ')[1]:"var(--text-color-rf)")+";")
+      if value.title
+        span=value.title
+
+mixin bottom(sub_body)
+  .button
+    - var btn = (sub_body + '').split(', ')
+    a.button(href=btn[0])
+      if btn[2] != 'none'
+        i(class=btn[2])
+      span=btn[1]
+
+mixin social_link()
+  .social_link
+    if theme.info.social_link
+      each ori_soc_lnk in theme.info.social_link
+        - var soc_lnk = (ori_soc_lnk + '').split(', ')
+        a(href=url_for(soc_lnk[1]) title=soc_lnk[2])
+          i(class=soc_lnk[0])
+
+mixin newest_posts(value)
+  .newest_posts
+    - var final_limit = 6
+    if (typeof value == 'object') && value
+      - final_limit = value.limit ? value.limit : 6
+    - site.posts.sort("updated", -1).limit(final_limit).each(function(article){
+        +post_item(article)
+    - })
+mixin tags(value)
+  - var f_limit = 30
+  - var f_color = true
+  - var s_color = "#3EA919"
+  - var e_color = "#156FD6"
+  if (typeof value == 'object') && value
+    - f_limit = value.limit ? value.limit : 30
+    - f_color = value.colorful ? value.colorful : true
+    - s_color = value.start_color ? value.start_color : "#3EA919"
+    - e_color = value.end_color ? value.end_color : "#156FD6"
+  .tag_cloud!= tagcloud({min_font: 15, max_font: 20, amount: f_limit, color: f_color, start_color: s_color, end_color: e_color})
+mixin categories(value)
+  - var f_depth = 1
+  - var f_show_count = true
+  if (typeof value == 'object') && value
+    - f_limit = value.depth ? value.depth : 1
+    - f_show_count = value.show_count ? value.show_count : true
+  .categoriesList!= list_categories({ depth: 1, show_count: f_show_count })
+
+mixin num_of_articles()
+  .info
+    span.title=_p("sidebar.site_info.num_of_articles")
+    span.value=site.posts.length
+mixin total_word_count()
+  .info
+    span.title=_p("sidebar.site_info.total_word_count")
+    span.value=totalcount(site)
+mixin total_visitors()
+  .info
+    span.title=_p("sidebar.site_info.total_visitors")
+    span.value#busuanzi_value_site_pv
+mixin total_visits()
+  .info
+    span.title=_p("sidebar.site_info.total_visits")
+    span.value#busuanzi_value_site_uv
+mixin runtime()
+  .info
+    span.title=_p("sidebar.site_info.runtime")
+    span.value#runtime(beginTime=date_xml(theme.info.site_begin))
+mixin last_update()
+  .info
+    span.title=_p("sidebar.site_info.last_update")
+    span.value#last_update(last_update_value=date_xml(Date.now()))
+
+mixin avatar(sub_body)
+  .avatar
+    if sub_body == 'round'
+      img.round(src=url_for(theme.info.avatar) alt="avatar")
+    else
+      img(src=url_for(theme.info.avatar) alt="avatar")
+mixin author_name(sub_body)
+  .author_name
+    span.author_name= sub_body ? sub_body : config.author
+
+mixin act_statistics(value)
+  .act_statistics
+    a.act_item(href= value.archive ? url_for(value.archive) : "")
+      .title=_p("page.archives")
+      .value=site.posts.length
+    a.act_item(href= value.categorie ? url_for(value.categorie) : "")
+      .title=_p("page.categories")
+      .value=site.categories.length
+    a.act_item(href= value.tag ? url_for(value.tag) : "")
+      .title=_p("page.tags")
+      .value=site.tags.length
+
+mixin item(value)
+  +item_info(value)
+  each sub_body, sub_head in value
+    - var sub_item = (sub_head + '').split(', ')
+    case sub_item[0]
+      when "text"
+        .text!=`${sub_body}`
+      when "button"
+        +bottom(sub_body)
+      when "num_of_articles"
+        +num_of_articles()
+      when "total_word_count"
+        +total_word_count()
+      when "total_visitors"
+        +total_visitors()
+      when "total_visits"
+        +total_visits()
+      when "runtime"
+        +runtime()
+      when "last_update"
+        +last_update()
+      when "avatar"
+        +avatar(sub_body)
+      when "author_name"
+        +author_name(sub_body)
+      when "social_link"
+        +social_link()
+      when 'newest_posts'
+        +newest_posts(value)
+      when 'tags'
+        +tags(value)
+      when 'categories'
+        +categories(value)
+      when "act_statistics"
+        +act_statistics(sub_body)
+
+each value, head in theme.custom.sidebar.items
+  - const item = (head + '').split(', ')
+  case item[0]
+    when "pc"
+      .item.onlyPC
+        +item(value)
+    when "mbl"
+      .item.onlyMbl
+        +item(value)
+    default
+      .item
+        +item(value)

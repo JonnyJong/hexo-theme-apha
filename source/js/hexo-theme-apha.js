@@ -1,71 +1,167 @@
-// 导航栏自动收起、
-window.onscroll = function () {undefined
+//时间间隔
+function diffTime(inputTime, type) {
+  const inputTimeAf = new Date(inputTime).getTime();
+  const curDate = new Date().getTime();
 
-  var h = document.documentElement.scrollTop || document.body.scrollTop;
+  var diff = curDate- inputTimeAf;
 
-  // console.log(h * 2.5);      //控制台查看监听滚动  
+  var days=Math.floor(diff/86400000);
+  var lvH=diff%86400000;
 
-  // var headerTop = document.getElementById("dao");//获取导航栏id
+  var h=Math.floor(lvH/3600000);
+  var lvMin=lvH%3600000;
 
-  // var navtext = document.getElementById("navtext");//获取导航栏中的文字id
+  var min=Math.floor(lvMin/60000);
+  var lvS=lvMin%60000;
 
-  // var back = document.getElementById("cell-back");//获取导航栏中的返回图标icon id
+  var s=Math.round(lvS/1000);
 
-  // if (h >= 42) {       //header的高度是40px;     
+  switch (type) {
+    case 1:
+      return ((days==0) ? "" : days+" 天 ") + ((h==0) ? "" : h+" 小时 ") + ((min==0) ? "" : min+" 分钟 ") + ((s==0) ? "" : s+" 秒");
+    case 2:
+      return ((days==0) ? "" : days+" 天 ");
+    case 3:
+      return ((days!=0) ? days+" 天前" : ((h!=0) ? h+" 小时前" : ((min!=0) ? min+" 分钟前" : s+" 秒前")))
+    default:
+      return;
+  }
+  
+}
 
-  //   headerTop.style.background = "#fff";
 
-  //   headerTop.style.color = "rgba(66,65,66,1)";
+// 导航栏自动收起
+window.onscroll = config.navFold && function(e){
+  if (saveOffset == 'none') {
+    saveOffset = window.pageYOffset;
+  }
+  pcNavbar = document.getElementById("pcNavbar");
+  var deltaT = saveOffset - window.pageYOffset;
+  if (deltaT < 0) {
+    pcNavbar.className = "navbar nav_hide";
+  } else if (deltaT > 0) {
+    pcNavbar.className = "navbar";
+  }
+  saveOffset = window.pageYOffset;
+}
 
-  //   // 设置导航栏中的文字样式
+var saveOffset = 'none', pcNavbar;
 
-  //   navtext.style.background = "#fff";
+// 手机端打开菜单
+function nav_menu_btn() {
+  if (mblNavbar == "none"){
+    mblNavbar = document.getElementById("mblNavbar");
+    mblNavBakCover = document.getElementById("nav_menu_cover");
+  }
+  if (mblNavbar.className == "navbar"){
+    mblNavbar.className = "navbar show";
+    mblNavBakCover.className = "nav_menu_cover show";
+  }else{
+    mblNavbar.className = "navbar";
+    mblNavBakCover.className = "nav_menu_cover";
+  }
+}
+var mblNavbar = 'none', mblNavBakCover;
 
-  //   navtext.style.color = "rgba(66,65,66,1)";
+// 最后更新日期
+function updateTime() {
+  const lastTime = document.getElementById("last_update");
+  const lastValue = new Date(lastTime.getAttribute("last_update_value")).getTime();
+  lastTime.innerHTML = diffTime(lastValue, 3);
+}
 
-  //   // 设置导航栏中的返回图标icon样式
-
-  //   back.style.background = "#fff";
-
-  //   back.style.fill = "rgba(19,146,245,1)";
-
-  // } else {undefined
-
-  //   if (h < 10) {undefined
-
-  //     //40*2.5=100;这样透明度就可以由0渐变到100%；
-
-  //     headerTop.style.background = "rgba(255,255,255,0.0" + h * 2.5 + ")";
-
-  //     headerTop.style.color = "rgba(66,66,66,0.0" + h * 2.5 + ")";
-
-  //     navtext.style.background = "rgba(255,255,255,0.0" + h * 2.5 + ")";
-
-  //     navtext.style.color = "rgba(66,66,66,0.0" + h * 2.5 + ")";
-
-  //     back.style.background = "rgba(255,255,255,0.0" + h * 2.5 + ")";
-
-  //     back.style.fill = "rgba(19,146,246,0.0" + h * 2.5 + ")";
-
-  //   } else if (h > 10 && h <= 42) {undefined
-
-  //     headerTop.style.background = "rgba(255,255,255,0." + h * 2.5 + ")";
-
-  //     headerTop.style.color = "rgba(66,66,66,0." + h * 2.5 + ")";
-
-  //     navtext.style.background = "rgba(255,255,255,0." + h * 2.5 + ")";
-
-  //     navtext.style.color = "rgba(66,66,66,0." + h * 2.5 + ")";
-
-  //     back.style.background = "rgba(255,255,255,0." + h * 2.5 + ")";
-
-  //     back.style.fill = "rgba(19,146,245,0." + h * 2.5 + ")";
-  //   }
-  // }
-};
+// 运行时长
+function runtime() {
+  // setTimeout(runtime, 1000);
+  const runtimes = document.getElementById("runtime");
+  const beginTime = new Date(runtimes.getAttribute("beginTime")).getTime();
+  runtimes.innerHTML = diffTime(beginTime, 2);
+}
 
 // 随机色相
-/* window.onload = function() {
+function randomColor() {
   var hue = parseInt(Math.random()*360);
   document.documentElement.style.setProperty('--main-color', "hsl("+hue+", 100%, 29%)");
-}; */
+};
+
+// 图片描述
+function imgDes() {
+  document.querySelectorAll("main img").forEach(item => {
+    const title = item.getAttribute("title");
+    if (title != null) {
+      const inject = document.createElement("div");
+      inject.textContent = title;
+      inject.className = "img_des";
+      item.parentNode.insertBefore(inject, item.nextSibling);
+    }
+  });
+}
+
+// 归档页面
+function archive(){
+  var t = document.querySelectorAll("main .tag-list-link");
+  var tC = document.querySelectorAll("main .tag-list-count");
+  var tL = t.length - 1;
+  var c = document.querySelectorAll("main .category-list-link");
+  var cC = document.querySelectorAll("main .category-list-count");
+  var cL = c.length - 1;
+  var a = document.querySelectorAll("main .archive-list-link");
+  var aC = document.querySelectorAll("main .archive-list-count");
+  var aL = a.length - 1;
+
+  for (; tL >= 0; tL--) {
+    t[tL].innerText += " - " + tC[tL].innerText;
+    tC[tL].remove();
+  }
+  for (; cL >= 0; cL--) {
+    c[cL].innerText += " - " + cC[cL].innerText;
+    cC[cL].remove();
+  }
+  for (; aL >= 0; aL--) {
+    a[aL].innerText += " - " + aC[aL].innerText;
+    aC[aL].remove();
+  }
+
+  var sC = document.querySelectorAll(".sidebar_items .category-list-link");
+  var sCC = document.querySelectorAll(".sidebar_items .category-list-count");
+  var sCL = sC.length - 1;
+
+  for (; sCL >= 0; sCL--) {
+    const inject = document.createElement("span");
+    inject.textContent = sCC[sCL].innerText;
+    inject.className = "category-list-count";
+    sC[sCL].appendChild(inject);
+    sCC[sCL].remove();
+  }
+}
+
+function sinceTo() {
+  const s = document.getElementById("sinceTo");
+  const sY = parseInt(s.getAttribute("since"));
+  const nY = new Date().getFullYear();
+  if (sY >= nY) {
+    s.innerHTML = sY;
+  }else{
+    s.innerHTML = sY + " - " + nY
+  }
+  // s.innerHTML = diffTime(s, 2);
+}
+
+function runtimeFooter() {
+    setTimeout(runtimeFooter, 1000);
+    const s = document.getElementById("runtimeFooter");
+    const sT = new Date(s.getAttribute("begin")).getTime();
+    s.innerHTML = diffTime(sT, 1);
+}
+
+//加载后运行
+window.onload = function () {
+  updateTime();
+  runtime();
+  config.imgDesc && imgDes();
+  archive();
+  sinceTo();
+  runtimeFooter();
+}
+
+config.randColor && randomColor();

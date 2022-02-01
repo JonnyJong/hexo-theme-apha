@@ -3,11 +3,12 @@ if hexo-config('custom.skip_to_content_buttom')
     position fixed
     display block
     z-index 101
-    height (hexo-config('custom.ui.navbar.height') ? convert(hexo-config('custom.ui.navbar.height')) : 60px)
-    line-height (hexo-config('custom.ui.navbar.height') ? convert(hexo-config('custom.ui.navbar.height')) : 60px)
-    top ((hexo-config('custom.ui.navbar.height') ? convert(hexo-config('custom.ui.navbar.height')) : 60px)*-1)
+    height $navbar_height
+    line-height $navbar_height
+    transform translateY(-100%)
     width 100vw
     text-align center
-    background var(--bg-color-tran)
+    background var(--bg-color)
+    white-space nowrap
   .skip:focus
-    top 0
+    transform translateY(0)

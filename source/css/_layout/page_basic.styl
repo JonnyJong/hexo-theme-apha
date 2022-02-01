@@ -1,13 +1,219 @@
 .main_column.page
-  background-color var(--bg-color)
-  box-shadow var(--b-shadow-lite)
-  if hexo-config('custom.global-blur') != 0
-    backdrop-filter: saturate(180%) blur($global-blur)
-  border-radius $border-radius
   margin-top $block-margin
-  transition all 0.5s
-.main_column.page:hover
-  box-shadow var(--b-shadow)
+  article
+    padding $block-padding
+  main:hover
+    box-shadow var(--b-shadow)
+  main
+    background-color var(--bg-color)
+    box-shadow var(--b-shadow-lite)
+    if hexo-config('custom.global-blur') != 0
+      backdrop-filter: saturate(180%) blur($global-blur)
+    border-radius $border-radius
+    transition all 0.5s
+    .page_info
+      width 100%
+      height max-content
+      border-radius $border-radius $border-radius 0 0
+      display flex
+      align-items flex-end
+      .inner_info
+        width 100%
+        .page_title
+          margin 0
+          display inline-block
+        .marginR
+          margin-right 8px
+        .other_info
+          margin-top 20px
+    .page_info[cover="true"]
+      min-height 320px
+      .inner_info
+        padding 40px
+        color var(--text-color)
+        if hexo-config('custom.page.incard_info_bg') == 'block'
+          $info-oncover-opacity = hexo-config('custom.page.incard_info_bg_block.opacity') ? convert(hexo-config('custom.page.incard_info_bg_block.opacity')) : .6
+          $info-oncover-blur = hexo-config('custom.page.incard_info_bg_block.blur') ? convert(hexo-config('custom.page.incard_info_bg_block.blur')) : 10px
+          background rgba(0,0,0,$info-oncover-opacity)
+          if hexo-config('custom.page.incard_info_bg_block.blur') != 0
+            backdrop-filter: saturate(180%) blur($info-oncover-blur)
+        else if hexo-config('custom.page.incard_info_bg') == 'gradient'
+          $info-begin-color = hexo-config('custom.page.incard_info_bg_gradient.begin_color') ? convert(hexo-config('custom.page.incard_info_bg_gradient.begin_color')) : #0000
+          $info-end-color = hexo-config('custom.page.incard_info_bg_gradient.end_color') ? convert(hexo-config('custom.page.incard_info_bg_gradient.end_color')) : #000f
+          background-image linear-gradient($info-begin-color, $info-end-color)
+        a
+          color var(--text-color)
+          transition .2s
+        a:hover
+          color var(--main-color)
+    .page_info[cover="false"]
+      color var(--text-color-r)
+      .inner_info
+        padding 40px 40px 0 40px
+        a
+          color var(--text-color-r)
+          transition .2s
+        a:hover
+          color var(--main-color)
+          i
+            animation link_icon .5s
 
-.main_column.page article
-  padding $block-padding
+//增强标题可读性
+h1
+  font-size 30px
+h2
+  font-size 26px
+h3
+  font-size 23px
+h4
+  font-size 20px
+h5
+  font-size 18px
+h6
+  font-size 18px
+#alt-h1,#alt-h2,#alt-h3,#alt-h4,#alt-h5,#alt-h6
+  text-decoration underline dotted
+article
+  if hexo-config('custom.page.paragraph_title_readability')
+    h1:before
+      content:"H1"
+      font-size:25px
+    h2:before
+      content:"H2"
+      font-size:23px
+    h3:before
+      content:"H3"
+      font-size:21px
+    h4:before
+      content:"H4"
+      font-size:18px
+    h5:before
+      content:"H5"
+      font-size:16px
+    h6:before
+      content:"H6"
+      font-size:16px
+  h1:before
+  h2:before
+  h3:before
+  h4:before
+  h5:before
+  h6:before
+    // margin-right 0.5rem
+    color var(--main-color)
+    text-decoration none
+  
+  // 行高
+  p
+    line-height 20px
+
+  // 当鼠标移动到链接上时
+  a:hover
+    text-decoration underline
+    text-decoration-thickness 2px
+
+  // 代码块
+  figure.highlight
+    margin 16px 0 0 0
+  figure.highlight figcaption
+    background #1e1e1e
+    color #ccc
+    padding 8px 16px 0px 16px
+  figure.highlight table
+    border none
+    border-spacing 0px
+    width 100%
+    display block
+    overflow auto
+  figure.highlight span
+  figure.highlight a
+    font-family UbuntuMono, "PingFang SC", "Microsoft YaHei", Arial, Monaco, monospace, sans-serif
+    font-size 14px
+    font-weight lighter
+    margin-right 8px
+  figure.highlight table tbody tr td.code
+    color #d4d4d4
+    background #1e1e1e
+    padding 0px 4px
+    overflow auto
+    width 100%
+  figure.highlight table tbody tr td.gutter
+    color #858585
+    background #1e1e1e
+    padding 0px 4px
+    text-align right
+    width 3ch
+  figure.highlight table tbody span.line
+    line-height 16px
+
+  // 按钮
+  kbd
+    border-radius: 4px;
+    background: linear-gradient(145deg, #ffffff, #d6d6d6);
+    border solid 2px #0008
+    font-family UbuntuMono, "PingFang SC", "Microsoft YaHei", Arial, Monaco, monospace, sans-serif
+    padding 4px
+    margin 0 4px
+    font-size 14px
+
+  // 图片
+  img
+    max-width 100%
+    margin 4px auto 4px
+    display block
+
+  // 图片描述
+  .img_des
+    text-align center
+    color var(--text-color-rf)
+  
+  // 引用块
+  blockquote
+    p
+      font-style italic
+    p:before
+      content '\f10d'
+      font-family "Font Awesome 5 Free"
+      font-weight 900
+      position absolute
+      transform translateX(-34px) translateY(-10px)
+      font-size 32px
+      color #8888
+      font-style normal
+    footer
+      position relative
+      text-align right
+      background-color #0000
+      height auto
+      width auto
+      padding 0
+      cite
+        margin 8px
+  // 文章图册
+  .post_gallery
+    position relative
+    width 100%
+    img
+      margin 2px 4px
+      display inline-block
+      height 200px
+
+
+// 表格
+article>table
+  width 100%
+article>table thead tr
+  background-color #8884
+article>table thead tr th
+  padding 8px
+article>table tbody
+  background-color #8882
+article>table tbody tr td
+  padding 4px
+
+// 高亮
+article>table code
+article>p code
+  font-family UbuntuMono, "PingFang SC", "Microsoft YaHei", Arial, Monaco, monospace, sans-serif
+  background-color #f001
+  color #f44

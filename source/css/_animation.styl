@@ -1,0 +1,67 @@
+// 友情链接头像
+@keyframes f_link_img
+  0%
+    transform scale(1)
+  50%
+    transform scale(1.08)
+  100%
+    transform scale(1)
+
+// 社交链接
+@keyframes social_icon
+  0%
+    transform scale(1)
+  50%
+    transform scale(1.2)
+  100%
+    transform scale(1)
+
+// 返回按钮
+@keyframes back_btn_i
+  0%
+    transform: translateX(0px)
+  50%
+    transform: translateX(-4px)
+  100%
+    transform: translateX(0px)
+
+// 导航栏二级菜单
+@keyframes nav_sub_menu
+  0%
+    opacity: 0
+    transform: translateY(-10px)
+  100%
+    opacity: 1
+    transform: translateY(0)
+
+// 导航栏
+@keyframes navbar_hide
+  0%
+    top 0
+  100%
+    top $navbar_height*-1
+@keyframes navbar_show
+  0%
+    top $navbar_height*-1
+  100%
+    top 0
+@keyframes nav_menu_cover_show
+  0%
+    opacity 0
+  100%
+    opacity .5
+@keyframes link_icon
+  0%
+    transform rotate(0deg) scale(1)
+  20%
+    transform rotate(30deg) scale(1.2)
+  40%
+    transform rotate(-30deg) scale(1.2)
+  50%
+    transform rotate(0deg) scale(1.2)
+  60%
+    transform rotate(30deg) scale(1.2)
+  80%
+    transform rotate(-30deg) scale(1.2)
+  100%
+    transform rotate(0deg) scale(1)

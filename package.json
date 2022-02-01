@@ -1,8 +1,8 @@
 {
   "name": "hexo-theme-apha",
-  "version": "0.0.2",
-  "build": "2.40",
-  "description": "a hexo theme.",
+  "version": "0.0.3",
+  "build": "3.70",
+  "description": "A hexo theme.",
   "author": "jonnyjonny",
   "license": "MIT",
   "scripts": {

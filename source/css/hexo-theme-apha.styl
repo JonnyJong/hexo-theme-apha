@@ -5,20 +5,24 @@
   url('https://cdn.jsdelivr.net/gh/JonnyJong/blogStaticResource@main/fonts/UbuntuMono-R.eot?#iefix') format('embedded-opentype'),
   url('https://cdn.jsdelivr.net/gh/JonnyJong/blogStaticResource@main/fonts/UbuntuMono-R.woff') format('woff'),
   url('https://cdn.jsdelivr.net/gh/JonnyJong/blogStaticResource@main/fonts/UbuntuMono-R.otf') format('opentype');
+  font-display swap
 }
 
 :root
   font-family: UbuntuMono, "PingFang SC", "Microsoft YaHei", Arial, Monaco, monospace, sans-serif
-  // 用于修复页面加载瞬间的排版错乱
   font-size: 16px
 
 // 自定义背景
 body
-  min-height calc(100vh - 128px)
-  padding-bottom 128px
+  min-height 100vh
   margin 0
   position relative
   background hexo-config("custom.background.background") ? convert(hexo-config("custom.background.background")) : var(--body-color)
+  word-break break-word
+  display flex
+  justify-content space-between
+  align-items stretch
+  flex-direction column
 if hexo-config("custom.background.style") == 'blur'
   body::after
     background-image hexo-config("custom.background.blur.img") ? convert(hexo-config("custom.background.blur.img")) : none
@@ -36,22 +40,14 @@ if hexo-config("custom.background.style") == 'blur'
     else
       background-attachment fixed
     opacity hexo-config("custom.background.blur.opacity") ? convert(hexo-config("custom.background.blur.opacity")) : 30%
-    background-position center center
+    background-position center
 else if hexo-config("custom.background.style") == 'bg_img'
   body
     background-image hexo-config("custom.background.bg_img") ? convert(hexo-config("custom.background.bg_img")) : none
 
 @import '_var'
+@import '_animation'
 @import "_layout/*"
-
-// 自定义背景
-
-// 页面主要部分的自适应
-@media screen and (min-width: $max-width - 200px + ($main_content_margin*2)){
-  div#content-inner{
-    width $header-min-width
-  }
-}
 
 a
   // 清除所有 a 标签下划线
@@ -63,17 +59,32 @@ a
 ::selection
   background var(--main-color)
   color var(--text-color)
+#content-outer
+  margin-bottom $block-margin
+  flex 1
+#content-inner
+  margin auto
+  // 与侧栏布局
+  display flex
+  flex-direction row
+  gap $block-margin
+  transition 1s
+  max-width $max-width - 200px
+.main_column
+  --width_main_column $main_content_margin*2 + 300px + $block-margin
+  max-width $max-width - $block-margin*2 - 500px
+  width calc(100vw - var(--width_main_column))
+  transition .2s ease-in-out
+.side_column
+  width 300px
 
 // 页面主要部分与上方间隔
-#content-inner
-  padding $block-margin $main_content_margin
-  margin auto
-body[where='page'] #content-inner
-body[where='post'] #content-inner
-  padding-top (hexo-config('custom.ui.navbar.height') ? convert(hexo-config('custom.ui.navbar.height')) : 60px)+(hexo-config('custom.ui.navbar.top') != 'none' ? convert(hexo-config('custom.ui.navbar.top')) : 0px)
-body[where='post'] #content-inner
-  padding-bottom ($block-margin + 140px)
-
+[where="page"]
+[where="post"]
+  #content-inner
+    padding $navbar_height $main_content_margin $block-margin $main_content_margin
+[where="home"] #content-inner
+  padding 0 $main_content_margin $block-margin $main_content_margin
 // hr
 hr
   border-top 4px dashed var(--main-color)
@@ -81,9 +92,76 @@ hr
 // 滚动条
 ::-webkit-scrollbar
   // background #8881
-  height 14px
-  width 14px
+  height 8px
+  width 8px
 ::-webkit-scrollbar-thumb
-  background #0002
+  background alpha($main_color 60%)
+  border-radius $border-radius
+::-webkit-scrollbar-track
+  background var(--main-color-bgh)
 ::-webkit-scrollbar-thumb:hover
-  background #0004
+  background var(--main-color)
+
+// 换行（全局可用）
+.line_warp_h
+  display block
+  height 4px
+
+// 自适应
+@media screen and (max-width: 1000px)
+  .main_column
+    --width_main_column $main_content_margin*2 + 240px + $block-margin
+  .side_column
+  .sidebar_items
+    width 240px
+  .header_info
+    margin auto auto auto 60px
+    .site_big_title
+      .title
+        font-size $index_big_title_font_size*0.9
+      .subtitle
+        font-size $index_subtitle_font_size*0.9
+@media screen and (min-width: 841px)
+  nav#mblNavbar
+  .navbar_inner.mbl
+    display none
+@media screen and (max-width: 840px)
+  #content-inner
+    flex-direction column
+  .side_column
+  .sidebar_items
+  .main_column
+    width 100%
+  .navbar_inner.pc
+    display none
+  .header_info
+    .site_big_title
+      .title
+        font-size $index_big_title_font_size*0.8
+      .subtitle
+        font-size $index_subtitle_font_size*0.8
+@media screen and (max-width: 600px)
+  #content-inner
+    .recent-post-item
+      flex-direction column
+      height max-content
+      .post_cover.side
+        width 100%
+        max-width 100%
+        border-radius $border-radius $border-radius 0 0
+        height 200px
+        flex unset
+      .post_info
+        height max-content
+        flex unset
+        margin 0
+  nav.page_switch
+    .post_switch
+      flex-direction column
+  .header_info
+    margin auto auto auto $main_content_margin
+    .site_big_title
+      .title
+        font-size $index_big_title_font_size*0.6
+      .subtitle
+        font-size $index_subtitle_font_size*0.6
