@@ -55,15 +55,16 @@ html(lang=config.language prefers-color-scheme=color_scheme)
               .sidebar_items
                 include ./sidebar/sidebar.pug
     //- .before_footer
-    footer
-      span Site construction by
-      span= ' ' + config.author + ' '
-      span using 
-      a(href='http://hexo.io')
-        span=_p('footer.frame') + ' hexo '
-      a(href='https://github.com/JonnyJong/hexo-theme-apha/')
-        span=_p('footer.theme') + ' Apha '
-      span .
+    include ./footer.pug
+    //- footer
+    //-   span Site construction by
+    //-   span= ' ' + config.author + ' '
+    //-   span using 
+    //-   a(href='http://hexo.io')
+    //-     span=_p('footer.frame') + ' hexo '
+    //-   a(href='https://github.com/JonnyJong/hexo-theme-apha/')
+    //-     span=_p('footer.theme') + ' Apha '
+    //-   span .
         //- br
         //- a(href=config.root) Home
     //- if theme.scripts !== undefined && theme.scripts.length > 0

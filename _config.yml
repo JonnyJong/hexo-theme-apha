@@ -300,6 +300,19 @@ custom:
     after_content: true
 
   # =============================================================
+  # 页脚
+  footer:
+    since: 2020
+    # 运行时长
+    runtime: true
+    # 版权信息
+    copyright: true
+    # 自定义信息
+    content: <span>✨ </span><span style="color:white;">hello</span><span> there! </span><span>This content work with css!</span><span> 🎉</span>
+      <br>
+      <span>✨ </span><span style="color:white;">你</span><span>好！</span><span>这段文本使用了 CSS！</span><span> 🎉</span>
+
+  # =============================================================
   # 全局
   
   # 主题色

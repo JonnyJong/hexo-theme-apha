@@ -135,12 +135,33 @@ function archive(){
   }
 }
 
+function sinceTo() {
+  const s = document.getElementById("sinceTo");
+  const sY = parseInt(s.getAttribute("since"));
+  const nY = new Date().getFullYear();
+  if (sY >= nY) {
+    s.innerHTML = sY;
+  }else{
+    s.innerHTML = sY + " - " + nY
+  }
+  // s.innerHTML = diffTime(s, 2);
+}
+
+function runtimeFooter() {
+    setTimeout(runtimeFooter, 1000);
+    const s = document.getElementById("runtimeFooter");
+    const sT = new Date(s.getAttribute("begin")).getTime();
+    s.innerHTML = diffTime(sT, 1);
+}
+
 //加载后运行
 window.onload = function () {
   updateTime();
   runtime();
   config.imgDesc && imgDes();
   archive();
+  sinceTo();
+  runtimeFooter();
 }
 
 config.randColor && randomColor();
