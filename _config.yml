@@ -166,7 +166,16 @@ custom:
     enable: true
     # 自定义组件（允许自由调整顺序）
     items:
-      site, 0:
+      pc, 0:
+        title: 标题（可填可不填）
+        icon: fas fa-bullhorn, red
+        text: <div class="custom_sidebar_object" style="color:red;">
+          可使用 html + css 语法
+          换行可以，注意缩进
+          css 不能用\<style\>标签，会报错
+          </div>
+        button, 1: /about/, 关于, none
+        button, 0: /about/, 关于, fa fa-heart
         # 文章数目
         num_of_articles: 这种不需要写 true 之类的，一旦写了就会按照这个顺序生成出来
         # 总字数
@@ -179,34 +188,22 @@ custom:
         runtime:
         # 最后更新时间
         last_update:
-        # 隐性选项（除 item 类型，非必填且有初始值；author 类型没有 title 和 icon 选项，填了等于没有填）
-        # 标题
-        title: 站点信息（标题可以修改）
-        # 图标
-        icon: fas fa-chart-line
-      author, 0:
+        # 社交链接
+        social_link, 0: 此处怎么写都不会产生任何效果
         avatar, 0: round
         avatar, 1: 
         author_name, 0: 默认使用站点配置文件的，也可以修改
-        text, 0: 和下面 item 一样用法的 text
-        social_link, 0: 此处怎么写都不会产生任何效果
-        text, 1: 类似上面的 social_link，填了参数也是没用的。
-        button, 0: /about/, 关于, fa fa-heart
+        newest_posts, 0:
+        tags, 0:
+        categories, 0:
+      mbl, 0:
         button, 1: /about/, 关于, none
-        text, 2: emm……上面的 buttom 其实算是用了 butterfly 习惯了拿到这边的。老规矩，顺序随意，可以重复，但有的不能不填参数，有的可以，总之看文档。
-        text, 3: 对了，由于同级别不允许出现一样的标签，所以可以再后面加个“, ”和随便的什么东西。
-          跟上面导航栏不太一样的是，这里只识别第一个逗号前面的内容，毕竟上面要做二级菜单的，对了，逗号后面记得加空格
-      newest_posts, 0:
-      tags, 0:
-      categories, 0:
-      item, 0:
-        title: 标题（可填可不填）
-        icon: fas fa-bullhorn, red
+      al, 0:
         text: <div class="custom_sidebar_object" style="color:red;">
           可使用 html + css 语法
           换行可以，注意缩进
           css 不能用\<style\>标签，会报错
-          </div>
+          </div> 
   
   # =============================================================
   # 首页文章
