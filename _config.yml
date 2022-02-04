@@ -273,8 +273,8 @@ custom:
     code_highlight_style:
       light:
       dark:
-    # 复制按钮（未配置）
-    copy_button:
+    # 复制按钮
+    copy_button: true
     # 自动换行（未配置）
     auto_warp:
     # 折叠按钮（未配置）
@@ -408,6 +408,9 @@ CDN:
   fontawesome: https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css
 
   busuanzi: //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js
+
+  # highlightjs_css: 
+  # highlightjs_js: //unpkg.com/@highlightjs/cdn-assets@11.4.0/highlight.min.js
 
   # highlight_js_css: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/styles/default.min.css
   # highlight_js_js: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/highlight.min.js

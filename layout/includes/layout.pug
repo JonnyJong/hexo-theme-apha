@@ -31,16 +31,12 @@ html(lang=config.language prefers-color-scheme=color_scheme)
     link(rel="icon" href=theme.info.favicon)
     meta(name="viewport" content="width=device-width" + user_scalable)
     meta(name="description" content=config.description)
+    //- main css
+    link(rel='stylesheet', href=theme.CDN.mainCss)
     //- 引入 js 设置
     include ./config.pug
     //- 引用CDN
-    link(rel='stylesheet', href=theme.CDN.mainCss)
-    script(type="text/javascript" src=theme.CDN.mainJs)
     link(rel='stylesheet', href=theme.CDN.fontawesome)
-    if theme.third_party.busuanzi
-      script(async src=theme.CDN.busuanzi)
-    //- link(rel='stylesheet', href=theme.CDN.highlight_js_css)
-    //- script(src=theme.CDN.highlight_js_js)
   body(where=what_is_this_page)
     include ./skipToContentButtom.pug
     include ./header/header.pug
@@ -56,18 +52,8 @@ html(lang=config.language prefers-color-scheme=color_scheme)
                 include ./sidebar/sidebar.pug
     //- .before_footer
     include ./footer.pug
-    //- footer
-    //-   span Site construction by
-    //-   span= ' ' + config.author + ' '
-    //-   span using 
-    //-   a(href='http://hexo.io')
-    //-     span=_p('footer.frame') + ' hexo '
-    //-   a(href='https://github.com/JonnyJong/hexo-theme-apha/')
-    //-     span=_p('footer.theme') + ' Apha '
-    //-   span .
-        //- br
-        //- a(href=config.root) Home
-    //- if theme.scripts !== undefined && theme.scripts.length > 0
-      //- scripts list from config.yml
-      //- each url in theme.scripts
-      //-   script(src=url)
+    //- main JS
+    script(type="text/javascript" src=theme.CDN.mainJs)
+    //- 引用CDN
+    //- if theme.third_party.busuanzi
+      script(async src=theme.CDN.busuanzi)
