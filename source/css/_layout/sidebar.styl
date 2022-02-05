@@ -150,6 +150,21 @@
         transition .1s
       .act_item:hover
         color var(--main-color)
+    .toc
+      margin 8px 0 0 0
+      padding 0
+      li::marker
+        color #0000
+      ol
+        padding-left 16px
+      .toc-link
+        display block
+        line-height 28px
+        color var(--text-color-r)
+        padding 0 8px
+      .toc-link:hover
+        background var(--main-color)
+        color var(--text-color)
   .item:hover
     box-shadow var(--b-shadow)
 @media screen and (max-width: 840px)

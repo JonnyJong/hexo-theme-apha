@@ -11,3 +11,4 @@ block content
             each url in page.photos
               img(src=url_for(url) alt="post gallery")
     include includes/page_switch.pug
+    //- != toc(page.content)

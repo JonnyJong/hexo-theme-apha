@@ -208,6 +208,11 @@ custom:
           archive: /archives/
           categorie: /categories/
           tag: /tags/
+      al, 1:
+        toc:
+          post: true
+          page: true
+          list_number: true
   
   # =============================================================
   # 首页文章

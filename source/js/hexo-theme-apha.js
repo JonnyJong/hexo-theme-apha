@@ -193,6 +193,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // 侧栏 清理空白的块
+  function cleanSidebat() {
+    document.querySelectorAll(".sidebar_items .item").forEach(item => {
+      if (!item.childElementCount) {
+        item.remove();
+      }
+    });
+  }
 
   updateTime();
   runtime();
@@ -200,6 +208,7 @@ document.addEventListener('DOMContentLoaded', function () {
   archive();
   sinceTo();
   figure();
+  cleanSidebat()
   runtimeFooter();
   config.randColor && randomColor();
 
