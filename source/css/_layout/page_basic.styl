@@ -151,7 +151,7 @@ article
           position relative
           .gutter
             display inline-block
-          .code
+          td.code
             display inline-block
             // overflow auto
             overflow overlay
@@ -168,11 +168,12 @@ article
     else
       .gutter
         display none
-    .code
-      if hexo-config('custom.page.auto_warp')
-        .line
+    td.code
+      .line
+        if hexo-config('custom.page.auto_warp')
           white-space normal
           word-break break-word
+        margin-right 16px
       pre
         min-width 100%
       .keyword
