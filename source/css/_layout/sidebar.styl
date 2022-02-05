@@ -13,6 +13,7 @@
     .item_info
       padding-bottom 8px
       font-size 16px
+      cursor default
       i
         margin-right 8px
     .text
@@ -52,7 +53,8 @@
     .author_name
       margin-top 8px
       text-align center
-      font-size 16px
+      font-size 22px
+      font-weight bold
     .social_link
       margin-top 8px
       text-align center
@@ -155,9 +157,9 @@
       margin 8px 0 0 0
       padding 0
       if hexo-config('custom.navbar.auto_folding')
-        --toc-max-height $block-margin*4 + $block-padding*3
+        --toc-max-height $block-margin*4 + $block-padding*4 + 30px
       else
-        --toc-max-height $block-margin*4 + $block-padding*3 + $navbar_height
+        --toc-max-height $block-margin*4 + $block-padding*4 + $navbar_height + 30px
       max-height calc(100vh - var(--toc-max-height))
       overflow overlay
       li::marker

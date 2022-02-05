@@ -1,13 +1,14 @@
 footer
-  if theme.custom.footer.since
+  if theme.custom.footer.copyright
     p
       span="© " + config.author + " "
-      span#sinceTo(since=theme.custom.footer.since)
+      if theme.custom.footer.since
+        span#sinceTo(since=theme.custom.footer.since)
   if theme.custom.footer.runtime
     p
       span="本站已运行 "
       span#runtimeFooter(begin=date_xml(theme.info.site_begin))
-  if theme.custom.footer.copyright
+  if theme.custom.footer.hexo_and_apha_info
     p
       a(href='http://hexo.io')
         span=_p('footer.frame') + ' hexo '

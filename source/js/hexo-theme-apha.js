@@ -62,9 +62,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // 导航栏自动收起
   window.onscroll = config.navFold && function(e){
-    if ((saveOffset - window.pageYOffset) < 0) {
+    if ((saveOffset - window.pageYOffset) < -4) {
       pcNavbar.className = "navbar nav_hide";
-    } else if ((saveOffset - window.pageYOffset) > 0) {
+    } else if ((saveOffset - window.pageYOffset) > 4) {
       pcNavbar.className = "navbar";
     }
     saveOffset = window.pageYOffset;
@@ -76,16 +76,20 @@ document.addEventListener('DOMContentLoaded', function () {
   // 最后更新日期
   function updateTime() {
     const lastTime = document.getElementById("last_update");
-    const lastValue = new Date(lastTime.getAttribute("last_update_value")).getTime();
-    lastTime.innerHTML = diffTime(lastValue, 3);
+    if (lastTime) {
+      const lastValue = new Date(lastTime.getAttribute("last_update_value")).getTime();
+      lastTime.innerHTML = diffTime(lastValue, 3);
+    }
   }
 
   // 运行时长
   function runtime() {
     // setTimeout(runtime, 1000);
     const runtimes = document.getElementById("runtime");
-    const beginTime = new Date(runtimes.getAttribute("beginTime")).getTime();
-    runtimes.innerHTML = diffTime(beginTime, 2);
+    if (runtimes) {
+      const beginTime = new Date(runtimes.getAttribute("beginTime")).getTime();
+      runtimes.innerHTML = diffTime(beginTime, 2);
+    }
   }
 
   // 随机色相
@@ -197,9 +201,9 @@ document.addEventListener('DOMContentLoaded', function () {
   runtime();
   config.imgDesc && imgDes();
   archive();
-  sinceTo();
+  config.fooSt && sinceTo();
   figure();
-  runtimeFooter();
+  config.fooRt && runtimeFooter();
   config.randColor && randomColor();
 
 })

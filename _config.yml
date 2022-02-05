@@ -167,54 +167,78 @@ custom:
     # 自定义组件（允许自由调整顺序）
     items:
       # （此注释发布时删除，请写入文档）
-      all, pc, 0:
-        title: 标题（可填可不填）
-        icon: fas fa-bullhorn, red
-        text: <div class="custom_sidebar_object" style="color:red;">
-          可使用 html + css 语法
-          换行可以，注意缩进
-          css 不能用\<style\>标签，会报错
-          </div>
-        button, 1: /about/, 关于, none
-        button, 0: /about/, 关于, fa fa-heart
-        # 文章数目
-        num_of_articles: 这种不需要写 true 之类的，一旦写了就会按照这个顺序生成出来
-        # 总字数
-        total_word_count: 
-        # 总访客数
-        total_visitors: 
-        # 总访问量
-        total_visits:
-        # 运行时长
-        runtime:
-        # 最后更新时间
-        last_update:
-        # 社交链接
-        social_link, 0: 此处怎么写都不会产生任何效果
-        avatar, 0: round
-        avatar, 1: 
-        author_name, 0: 默认使用站点配置文件的，也可以修改
-        newest_posts, 0:
-        tags, 0:
-        categories, 0:
-      all, mbl, 0:
-        button, 1: /about/, 关于, none
-      index, al, 0:
-        text: <div class="custom_sidebar_object" style="color:red;">
-          可使用 html + css 语法
-          换行可以，注意缩进
-          css 不能用\<style\>标签，会报错
-          </div>
+      all, all, author:
+        avatar, 1: #round
+        author_name:
+        social_link:
         act_statistics:
           archive: /archives/
           categorie: /categories/
           tag: /tags/
+      all, all, note:
+        icon: fas fa-bookmark
+        title: Apha
+        text: 这里是 hexo-theme-apha 的测试站点。
       sticky_items:
-        page, pc, 1:
+        page, pc, toc:
+          icon: fas fa-bars
+          title: 目录
           toc:
             post: true
             page: true
             list_number: true
+        all, pc, cate:
+          icon: fas fa-calendar
+          title: 最新文章
+          newest_posts, 0:
+      # all, al, 0:
+      #   title: 标题（可填可不填）
+      #   icon: fas fa-bullhorn, red
+      #   text: <div class="custom_sidebar_object" style="color:red;">
+      #     可使用 html + css 语法
+      #     换行可以，注意缩进
+      #     css 不能用\<style\>标签，会报错
+      #     </div>
+      #   button, 1: /about/, 关于, none
+      #   button, 0: /about/, 关于, fa fa-heart
+      #   # 文章数目
+      #   num_of_articles: 这种不需要写 true 之类的，一旦写了就会按照这个顺序生成出来
+      #   # 总字数
+      #   total_word_count: 
+      #   # 总访客数
+      #   total_visitors: 
+      #   # 总访问量
+      #   total_visits:
+      #   # 运行时长
+      #   runtime:
+      #   # 最后更新时间
+      #   last_update:
+      #   # 社交链接
+      #   social_link, 0: 此处怎么写都不会产生任何效果
+      #   avatar, 0: round
+      #   avatar, 1: 
+      #   author_name, 0: 默认使用站点配置文件的，也可以修改
+      #   newest_posts, 0:
+      #   tags, 0:
+      #   categories, 0:
+      # all, mbl, 0:
+      #   button, 1: /about/, 关于, none
+      # index, al, 0:
+      #   text: <div class="custom_sidebar_object" style="color:red;">
+      #     可使用 html + css 语法
+      #     换行可以，注意缩进
+      #     css 不能用\<style\>标签，会报错
+      #     </div>
+      #   act_statistics:
+      #     archive: /archives/
+      #     categorie: /categories/
+      #     tag: /tags/
+      # sticky_items:
+      #   page, pc, 1:
+      #     toc:
+      #       post: true
+      #       page: true
+      #       list_number: true
   # =============================================================
   # 侧边按钮
   side_btn: 
@@ -308,11 +332,13 @@ custom:
   # =============================================================
   # 页脚
   footer:
+    # 版权信息
+    copyright: true
     since: 2020
     # 运行时长
     runtime: true
     # 版权信息
-    copyright: true
+    hexo_and_apha_info: true
     # 自定义信息
     content: <span>✨ </span><span style="color:white;">hello</span><span> there! </span><span>This content work with css!</span><span> 🎉</span>
       <br>
