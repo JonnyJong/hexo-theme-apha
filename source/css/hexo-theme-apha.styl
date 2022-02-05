@@ -23,6 +23,7 @@ body
   justify-content space-between
   align-items stretch
   flex-direction column
+  overflow overlay
 if hexo-config("custom.background.style") == 'blur'
   body::after
     background-image hexo-config("custom.background.blur.img") ? convert(hexo-config("custom.background.blur.img")) : none
@@ -71,6 +72,9 @@ a
   gap $block-margin
   transition 1s
   max-width $max-width - 200px
+  -webkit-box-flex 1
+  -moz-box-flex 1
+  box-flex 1
 .main_column
   --width_main_column $main_content_margin*2 + 300px + $block-margin
   max-width $max-width - $block-margin*2 - 500px
@@ -98,8 +102,8 @@ hr
 ::-webkit-scrollbar-thumb
   background alpha($main_color 60%)
   border-radius $border-radius
-::-webkit-scrollbar-track
-  background var(--main-color-bgh)
+// ::-webkit-scrollbar-track
+  // background var(--main-color-bgh)
 ::-webkit-scrollbar-thumb:hover
   background var(--main-color)
 

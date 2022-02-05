@@ -166,7 +166,8 @@ custom:
     enable: true
     # 自定义组件（允许自由调整顺序）
     items:
-      pc, 0:
+      # （此注释发布时删除，请写入文档）
+      all, pc, 0:
         title: 标题（可填可不填）
         icon: fas fa-bullhorn, red
         text: <div class="custom_sidebar_object" style="color:red;">
@@ -196,9 +197,9 @@ custom:
         newest_posts, 0:
         tags, 0:
         categories, 0:
-      mbl, 0:
+      all, mbl, 0:
         button, 1: /about/, 关于, none
-      al, 0:
+      index, al, 0:
         text: <div class="custom_sidebar_object" style="color:red;">
           可使用 html + css 语法
           换行可以，注意缩进
@@ -208,11 +209,12 @@ custom:
           archive: /archives/
           categorie: /categories/
           tag: /tags/
-      al, 1:
-        toc:
-          post: true
-          page: true
-          list_number: true
+      sticky_items:
+        page, al, 1:
+          toc:
+            post: true
+            page: true
+            list_number: true
   
   # =============================================================
   # 首页文章
@@ -274,13 +276,13 @@ custom:
     # 将 H2 显示为 H1，以此类推，用于优化 SEO 后便于阅读（未配置）
     after_seo_paraTitleReadly: false
 
-    # 代码高亮样式（未配置，将允许用户插入自己在 highlightjs 选择的样式）（未配置）
-    code_highlight_style:
-      light:
-      dark:
     # 复制按钮
     copy_button: true
-    # 自动换行（未配置）
+    # 显示行号
+    line_number: true
+    # 固定左侧行号（与自动换行冲突）
+    sticky_line_number: true
+    # 自动换行（不推荐）
     auto_warp:
     # 折叠按钮（未配置）
     # 折叠（默认折叠、超过长度隐藏）（未配置）
@@ -375,7 +377,7 @@ custom:
   global-opacity: ''
   # 模块背景高斯模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿。设置 0 可关闭。）
   global-blur: 0
-  # 最大宽度（单位：px。默认：1400px。建议大于 1000px 过小的值会导致排版错乱。设置为 none 关闭。）
+  # 最大宽度（单位：px。默认：1400px。建议大于 1000px，过小的值会导致排版错乱。设置 none 为不限制。）
   max-width: 
   # 最小边界（当屏幕宽度小于最大宽度时，默认 16px）
   min_margin:

@@ -1,6 +1,7 @@
 .sidebar_items
   width 300px
   font-size 15px
+  height 100%
   .item
     background var(--bg-color)
     border-radius $border-radius
@@ -153,6 +154,12 @@
     .toc
       margin 8px 0 0 0
       padding 0
+      if hexo-config('custom.navbar.auto_folding')
+        --toc-max-height $block-margin*4 + $block-padding*3
+      else
+        --toc-max-height $block-margin*4 + $block-padding*3 + $navbar_height
+      max-height calc(100vh - var(--toc-max-height))
+      overflow overlay
       li::marker
         color #0000
       .toc-child
@@ -171,6 +178,12 @@
         color var(--text-color)
   .item:hover
     box-shadow var(--b-shadow)
+  .sticky_items
+    position sticky
+    if hexo-config('custom.navbar.auto_folding')
+      top $block-margin
+    else
+      top $block-margin + $navbar_height
 @media screen and (max-width: 840px)
   .onlyPC
     display none

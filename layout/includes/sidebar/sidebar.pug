@@ -137,9 +137,8 @@ mixin item(value)
       when "toc"
         +side_toc(sub_body)
 
-each value, head in theme.custom.sidebar.items
-  - const item = (head + '').split(', ')
-  case item[0]
+mixin deviceFilter(item, value)
+  case item[1]
     when "pc"
       .item.onlyPC
         +item(value)
@@ -149,3 +148,23 @@ each value, head in theme.custom.sidebar.items
     default
       .item
         +item(value)
+mixin pageFilter(item, value)
+  case item[0]
+    when "index"
+      if is_home()
+        +deviceFilter(item, value)
+    when "page"
+      if !is_home()
+        +deviceFilter(item, value)
+    //- 用于创建粘性定位元素
+    when "sticky_items"
+      .sticky_items
+        each valueRe, headRe in value
+          - const itemRe = (headRe + '').split(', ')
+          +pageFilter(itemRe, valueRe)
+    default
+      +deviceFilter(item, value)
+
+each value, head in theme.custom.sidebar.items
+  - const item = (head + '').split(', ')
+  +pageFilter(item, value)
