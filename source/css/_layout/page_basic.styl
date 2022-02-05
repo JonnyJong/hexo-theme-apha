@@ -229,6 +229,15 @@ article
         background-color #f004
         display inline-block
         width 100%
+  
+  pre code
+    overflow auto
+    display block
+    margin 14px 0
+    background #1e1e1e
+    color #dcdcdc
+    line-height 18px
+    font-family: UbuntuMono, "PingFang SC", "Microsoft YaHei", Arial, Monaco, monospace, sans-serif
 
   // 按钮
   kbd
@@ -277,11 +286,12 @@ article
   .post_gallery
     position relative
     width 100%
+    columns 200px auto
+    column-gap 8px
     img
-      margin 2px 4px
-      display inline-block
-      height 200px
-
+      margin 8px 0
+    img:first-child
+      margin-top 0
 
 // 表格
 article>table
