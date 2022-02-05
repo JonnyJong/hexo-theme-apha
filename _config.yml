@@ -210,11 +210,14 @@ custom:
           categorie: /categories/
           tag: /tags/
       sticky_items:
-        page, al, 1:
+        page, pc, 1:
           toc:
             post: true
             page: true
             list_number: true
+  # =============================================================
+  # 侧边按钮
+  side_btn: 
   
   # =============================================================
   # 首页文章

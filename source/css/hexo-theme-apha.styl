@@ -66,19 +66,20 @@ a
   flex 1
 #content-inner
   margin auto
-  // 与侧栏布局
-  display flex
-  flex-direction row
-  gap $block-margin
   transition 1s
   max-width $max-width - 200px
-  -webkit-box-flex 1
-  -moz-box-flex 1
-  box-flex 1
+  if hexo-config("custom.sidebar.enable") && hexo-config("custom.sidebar.items")
+    display flex
+    flex-direction row
+    gap $block-margin
+    -webkit-box-flex 1
+    -moz-box-flex 1
+    box-flex 1
 .main_column
-  --width_main_column $main_content_margin*2 + 300px + $block-margin
-  max-width $max-width - $block-margin*2 - 500px
-  width calc(100vw - var(--width_main_column))
+  if hexo-config("custom.sidebar.enable") && hexo-config("custom.sidebar.items")
+    --width_main_column $main_content_margin*2 + 300px + $block-margin
+    max-width $max-width - $block-margin*2 - 500px
+    width calc(100vw - var(--width_main_column))
   transition .2s ease-in-out
 .side_column
   width 300px
