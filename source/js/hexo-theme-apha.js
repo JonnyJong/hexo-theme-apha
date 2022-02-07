@@ -59,8 +59,24 @@ document.addEventListener('DOMContentLoaded', function () {
     
   }
 
+  // 滚动事件
+  var doRunOnscroll = true;
+  window.onscroll = function(e){
+    if (!doRunOnscroll) {return;}
+    doRunOnscroll = false;
+    setTimeout(() => {
+      runOnscroll();
+      doRunOnscroll = true;
+    }, 100);
+  }
+  // 执行事件
+  function runOnscroll() {
+    config.navFold && navFold();
+    config.ifToc && (tocObj.length != 0) && tocFready();
+  }
+  
   // 导航栏自动收起
-  window.onscroll = config.navFold && function(e){
+  function navFold() {
     if ((saveOffset - window.pageYOffset) < -4) {
       pcNavbar.className = "navbar nav_hide";
     } else if ((saveOffset - window.pageYOffset) > 4) {
@@ -189,14 +205,47 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // 侧栏 清理空白的块
+  // 侧栏
+  // 清理空白的块
   function cleanSidebat() {
     document.querySelectorAll(".sidebar_items .item").forEach(item => {
       if (!(item.childElementCount - item.querySelectorAll(".item_info").length)) {
         item.remove();
       }
     });
-  }  
+  }
+  // 目录
+  function tocFready(){
+    // 准备
+    mTiTop = [];
+    mainTitle.forEach(item => {
+      let fTop = item.offsetTop;
+      let binElm = item.offsetParent;
+      while (binElm != null) {
+        fTop += binElm.offsetTop;
+        binElm = binElm.offsetParent;
+      }
+      mTiTop.push(fTop)
+    });
+    // 执行
+    let c = tocObj.length;
+    let cR = c;
+    while (cR > 0) {
+      cR--;
+      tocObj[cR].className = "toc-link";
+    }
+    while (c > 0) {
+      c--;
+      if ((mTiTop[c] - window.pageYOffset) < 100) {
+        break;
+      }
+    }
+    tocObj[c].className = "toc-link active";
+    document.querySelector(".toc").scrollTop=tocObj[c].offsetTop-150
+  }
+  var mainTitle = document.querySelectorAll("article h1,article h2,article h3,article h4,article h5,article h6");
+  var mTiTop = new Array();
+  var tocObj = document.querySelectorAll(".toc-link");
 
   cleanSidebat();
   updateTime();
@@ -206,5 +255,4 @@ document.addEventListener('DOMContentLoaded', function () {
   config.fooSt && sinceTo();
   figure();
   config.fooRt && runtimeFooter();
-
 })

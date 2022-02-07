@@ -1,4 +1,5 @@
 - const fooSt = (theme.footer.since) ? true : false
+- const ifToc = (page.toc != undefined) ? page.toc : true
 
 script.
   var config = { 
@@ -7,4 +8,5 @@ script.
     cpBtn: !{theme.page.copy_button},
     fooRt: !{theme.footer.runtime},
     fooSt: !{fooSt},
+    ifToc: !{ifToc},
   }
