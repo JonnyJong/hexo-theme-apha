@@ -17,34 +17,34 @@ body
   min-height 100vh
   margin 0
   position relative
-  background hexo-config("custom.background.background") ? convert(hexo-config("custom.background.background")) : var(--body-color)
+  background var(--body-color)
+  color var(--text-color-r)
   word-break break-word
   display flex
   justify-content space-between
   align-items stretch
   flex-direction column
-  overflow overlay
-if hexo-config("custom.background.style") == 'blur'
-  body::after
-    background-image hexo-config("custom.background.blur.img") ? convert(hexo-config("custom.background.blur.img")) : none
-    $bg_style_blur_filter = hexo-config("custom.background.blur.blur") ? convert(hexo-config("custom.background.blur.blur")) : 20px
-    filter saturate(180%) blur($bg_style_blur_filter)
-    content ""
-    position absolute
-    top 0
-    left 0
-    width 100%
-    height 100%
+  overflow-y auto
+  overflow-y overlay
+if hexo-config("background.type")
+  .bg
+    width 100vw
     z-index -1
-    if hexo-config("custom.background.blur.scroll")
-      background-attachment scroll
-    else
-      background-attachment fixed
-    opacity hexo-config("custom.background.blur.opacity") ? convert(hexo-config("custom.background.blur.opacity")) : 30%
-    background-position center
-else if hexo-config("custom.background.style") == 'bg_img'
-  body
-    background-image hexo-config("custom.background.bg_img") ? convert(hexo-config("custom.background.bg_img")) : none
+    if (hexo-config("background.type") == "img") && hexo-config("background.img.bg")
+      background convert(hexo-config("background.img.bg"))
+      background-position center
+      if !hexo-config("background.img.repeat")
+        background-size cover
+        background-repeat no-repeat
+      if !hexo-config("background.img.scroll")
+        position fixed
+        height 100vh
+        top 0
+      else
+        height 100%
+        position absolute
+      opacity hexo-config("background.img.opacity") ? convert(hexo-config("background.img.opacity")) : 1
+      filter blur( hexo-config("background.img.blur") ? convert(hexo-config("background.img.blur")) : 0px )
 
 @import '_var'
 @import '_animation'
@@ -67,7 +67,7 @@ a
   margin auto
   transition 1s
   max-width $max-width - 200px
-  if hexo-config("custom.sidebar.enable") && hexo-config("custom.sidebar.items")
+  if hexo-config("sidebar.enable") && hexo-config("sidebar.items")
     display flex
     flex-direction row
     gap $block-margin
@@ -75,7 +75,7 @@ a
     -moz-box-flex 1
     box-flex 1
 .main_column
-  if hexo-config("custom.sidebar.enable") && hexo-config("custom.sidebar.items")
+  if hexo-config("sidebar.enable") && hexo-config("sidebar.items")
     --width_main_column $main_content_margin*2 + 300px + $block-margin
     max-width $max-width - $block-margin*2 - 500px
     width calc(100vw - var(--width_main_column))
@@ -97,14 +97,13 @@ hr
 
 // 滚动条
 ::-webkit-scrollbar
-  // background #8881
   height 8px
   width 8px
 ::-webkit-scrollbar-thumb
   background alpha($main_color 60%)
   border-radius $border-radius
 // ::-webkit-scrollbar-track
-  // background var(--main-color-bgh)
+//   background var(--main-color-bgh)
 ::-webkit-scrollbar-thumb:hover
   background var(--main-color)
 

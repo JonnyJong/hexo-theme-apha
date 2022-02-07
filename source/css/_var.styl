@@ -1,29 +1,26 @@
-$max-width = hexo-config('custom.max-width') ? (convert(hexo-config('custom.max-width')) + 200px) : 1600px // 页面主体最大宽度（实际使用 - 200px）
-$block-margin = hexo-config('custom.block-margin') ? convert(hexo-config('custom.block-margin')) : 16px // 模块外边距
-$block-padding = hexo-config('custom.block-padding') ? convert(hexo-config('custom.block-padding')) : 24px // 模块内边距
-$border-radius = hexo-config('custom.border-radius') ? convert(hexo-config('custom.border-radius')) : 10px // 圆角
-$global-opacity = hexo-config('custom.global-opacity') ? convert(hexo-config('custom.global-opacity')) : .6 // 不透明度
-$global-blur = hexo-config('custom.global-blur') ? convert(hexo-config('custom.global-blur')) : 20px //模糊程度
-$main_content_margin = (hexo-config("custom.min_margin") ? convert(hexo-config("custom.min_margin")) : 16px) //主体两侧最小边界
+$max-width = hexo-config('max-width') ? (convert(hexo-config('max-width')) + 200px) : 1600px // 页面主体最大宽度（实际使用 - 200px）
+$block-margin = hexo-config('block-margin') ? convert(hexo-config('block-margin')) : 16px // 模块外边距
+$block-padding = hexo-config('block-padding') ? convert(hexo-config('block-padding')) : 24px // 模块内边距
+$border-radius = hexo-config('border-radius') ? convert(hexo-config('border-radius')) : 10px // 圆角
+$global-opacity = hexo-config('global-opacity') ? convert(hexo-config('global-opacity')) : .6 // 不透明度
+$global-blur = hexo-config('global-blur') ? convert(hexo-config('global-blur')) : 20px //模糊程度
+$main_content_margin = (hexo-config("min_margin") ? convert(hexo-config("min_margin")) : 16px) //主体两侧最小边界
 // header
 $header-min-width = $max-width - 200px
-$navbar-LR-padding = hexo-config('custom.navbar.lr_distance') ? convert(hexo-config('custom.navbar.lr_distance')) : 36px
-$navbar-opacity = hexo-config('custom.navbar.opacity') ? convert(hexo-config('custom.navbar.opacity')) : .8
-$navbar-blur = hexo-config('custom.navbar.blur') ? convert(hexo-config('custom.navbar.blur')) : 20px
-$navbar_height = hexo-config('custom.navbar.height') ? convert(hexo-config('custom.navbar.height')) : 60px
+$navbar-LR-padding = hexo-config('navbar.lr_distance') ? convert(hexo-config('navbar.lr_distance')) : 36px
+$navbar-opacity = hexo-config('navbar.opacity') ? convert(hexo-config('navbar.opacity')) : .8
+$navbar-blur = hexo-config('navbar.blur') ? convert(hexo-config('navbar.blur')) : 20px
+$navbar_height = hexo-config('navbar.height') ? convert(hexo-config('navbar.height')) : 60px
 
-$mbl_item_height = hexo-config('custom.navbar.mbl_item_height') ? convert(hexo-config('custom.navbar.mbl_item_height')) : 40px
-$mbl_vertical_padding = hexo-config('custom.navbar.mbl_vertical_padding') ? convert(hexo-config('custom.navbar.mbl_vertical_padding')) : 10px
-$mbl_horizontal_padding = hexo-config('custom.navbar.mbl_horizontal_padding') ? convert(hexo-config('custom.navbar.mbl_horizontal_padding')) : 8px
+$mbl_item_height = hexo-config('navbar.mbl_item_height') ? convert(hexo-config('navbar.mbl_item_height')) : 40px
+$mbl_vertical_padding = hexo-config('navbar.mbl_vertical_padding') ? convert(hexo-config('navbar.mbl_vertical_padding')) : 10px
+$mbl_horizontal_padding = hexo-config('navbar.mbl_horizontal_padding') ? convert(hexo-config('navbar.mbl_horizontal_padding')) : 8px
 
-$index_big_title_font_size = hexo-config('custom.index_big_title_font_size') ? convert(hexo-config('custom.index_big_title_font_size')) : 96px // 主页大标题字体大小基数
-$index_subtitle_font_size = hexo-config('custom.index_subtitle_font_size') ? convert(hexo-config('custom.index_subtitle_font_size')) : 24px // 主页副标题字体大小基数
+$index_big_title_font_size = hexo-config('index_big_title_font_size') ? convert(hexo-config('index_big_title_font_size')) : 96px // 主页大标题字体大小基数
+$index_subtitle_font_size = hexo-config('index_subtitle_font_size') ? convert(hexo-config('index_subtitle_font_size')) : 24px // 主页副标题字体大小基数
 
-// 需处理的变量
-// 色彩预备
-$color_hue = hexo-config('custom.theme_color.hue') ? hexo-config('custom.theme_color.hue') : false
-$color_ori_main = hexo-config('custom.theme_color.main') ? convert(hexo-config('custom.theme_color.main')) : #009688
-$main_color = $color_hue ? hsl($color_hue, 100%, 50%) : $color_ori_main
+// 色调
+$main_color = hexo-config('theme_color.black_and_white') ? #000 : (hexo-config('theme_color.main') ? convert(hexo-config('theme_color.main')) : #009688)
 
 :root
   //主要色调
@@ -36,7 +33,7 @@ $main_color = $color_hue ? hsl($color_hue, 100%, 50%) : $color_ori_main
   --text-color-rf #555
   --text-color-ro #5554
   // 背景颜色
-  --body-color #fff
+  --body-color #eee
   --bg-color rgba(255, 255, 255, $global-opacity)
 
   // 阴影
@@ -45,3 +42,13 @@ $main_color = $color_hue ? hsl($color_hue, 100%, 50%) : $color_ori_main
 
   // 需要即时计算的变量
   --main_content_margin $main_content_margin
+
+[prefers-color-scheme="dark"]
+  // 字体颜色
+  --text-color #111
+  --text-color-r #eee
+  --text-color-rf #aaa
+  --text-color-ro #aaa4
+  // 背景颜色
+  --body-color #111
+  --bg-color rgba(0, 0, 0, $global-opacity)

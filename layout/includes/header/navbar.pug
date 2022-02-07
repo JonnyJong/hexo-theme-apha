@@ -138,17 +138,17 @@ mixin items(body, head, item, value, limit)
       default
         - break
 
-if theme.custom.navbar.items
+if theme.navbar.items
   nav.navbar#pcNavbar
     .navbar_inner.pc
-      each body, head in theme.custom.navbar.items
+      each body, head in theme.navbar.items
         - const item = (head + '').split(', ')
         - const value = (body + '').split(', ')
         //- if item[0] != "mbl"
         +items(body, head, item, value, "mbl")
     .navbar_inner.mbl
-      if theme.custom.navbar.mbl_item_on_navbar
-        each body, head in theme.custom.navbar.mbl_item_on_navbar
+      if theme.navbar.mbl_item_on_navbar
+        each body, head in theme.navbar.mbl_item_on_navbar
           - const item = (head + '').split(', ')
           - const value = (body + '').split(', ')
           //- if item[0] != "mbl"
@@ -156,7 +156,7 @@ if theme.custom.navbar.items
   a.nav_menu_cover#nav_menu_cover(onClick="nav_menu_btn()")
   nav.navbar#mblNavbar
     .navbar_inner
-      each body, head in theme.custom.navbar.items
+      each body, head in theme.navbar.items
         - const item = (head + '').split(', ')
         - const value = (body + '').split(', ')
         //- if item[0] != "pc"

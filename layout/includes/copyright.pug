@@ -1,0 +1,106 @@
+if (page.lisence == undefined) ? (theme.page.lisence && theme.page.lisence != true) : (page.lisence && page.lisence != true)
+  - var oriLisence = ((page.lisence == undefined) ? theme.page.lisence : page.lisence)
+  - oriLisence = (oriLisence + '').split(', ')
+  - var lisenceLink = ""
+  - var lisenceDesc = ""
+  - var lisenceIcon = ""
+  case oriLisence[0]
+    when "CC"
+      - var cc0 = true
+      - var first = true
+      each point in oriLisence
+        case point
+          when "BY"
+            - cc0 = false
+            if first
+              - lisenceLink = "by"
+              - lisenceDesc = _p('copyright.lisences.CC.BY')
+              - lisenceIcon = "by"
+              - first = false
+            else
+              - lisenceLink = lisenceLink + "-by"
+              - lisenceDesc = lisenceDesc + "-" + _p('copyright.lisences.CC.BY')
+              - lisenceIcon = lisenceIcon + ", by"
+          when "NC"
+            - cc0 = false
+            if first
+              - lisenceLink = "nc"
+              - lisenceDesc = _p('copyright.lisences.CC.NC')
+              - lisenceIcon = "nc"
+              - first = false
+            else
+              - lisenceLink = lisenceLink + "-nc"
+              - lisenceDesc = lisenceDesc + "-" + _p('copyright.lisences.CC.NC')
+              - lisenceIcon = lisenceIcon + ", nc"
+          when "ND"
+            - cc0 = false
+            if first
+              - lisenceLink = "nd"
+              - lisenceDesc = _p('copyright.lisences.CC.ND')
+              - lisenceIcon = "nd"
+              - first = false
+            else
+              - lisenceLink = lisenceLink + "-nd"
+              - lisenceDesc = lisenceDesc + "-" + _p('copyright.lisences.CC.ND')
+              - lisenceIcon = lisenceIcon + ", nd"
+          when "SA"
+            - cc0 = false
+            if first
+              - lisenceLink = "sa"
+              - lisenceDesc = _p('copyright.lisences.CC.SA')
+              - lisenceIcon = "sa"
+              - first = false
+            else
+              - lisenceLink = lisenceLink + "-sa"
+              - lisenceDesc = lisenceDesc + "-" + _p('copyright.lisences.CC.SA')
+              - lisenceIcon = lisenceIcon + ", sa"
+          default
+            - break
+      if (cc0)
+        - lisenceLink = "//creativecommons.org/publicdomain/zero/1.0/"
+        - lisenceDesc = _p('copyright.lisences.CC.zero')
+        - lisenceIcon = "cc, zero".split(', ')
+      else
+        - lisenceLink = "//creativecommons.org/publicdomain/" + lisenceLink + "/4.0/"
+        - lisenceDesc = _p('copyright.lisences.CC.start_content') + lisenceDesc + _p('copyright.lisences.CC.end_content')
+        - lisenceIcon = ("cc, " + lisenceIcon).split(', ')
+    default
+      - break
+
+if (page.copyright == undefined) ? theme.page.copyright : page.copyright
+  .post_copyright
+    .post_title=page.title ? page.title : _p('post_item.notitle')
+    a.post_link(href=url_for(page.origin_link ? page.origin_link : (config.url + config.root + page.path)))=url_for(page.origin_link ? page.origin_link : (config.url + config.root + page.path))
+    if (page.copyright == undefined) ? (theme.page.copyright && theme.page.copyright != true) : (page.copyright && page.copyright != true)
+      .copyright=(page.copyright == undefined) ? theme.page.copyright : page.copyright
+    else if (page.lisence == undefined) ? (theme.page.lisence && theme.page.lisence != true) : (page.lisence && page.lisence != true)
+      .copyright=lisenceDesc
+    .other_info
+      .info
+        .title=_p('copyright.author')
+        if page.author_link
+          .author(href=url_for(page.author_link))=(page.author == undefined) ? config.author : page.author
+        else
+          .author=(page.author == undefined) ? config.author : page.author
+      .info
+        .title=_p('copyright.date')
+        .date=date(page.date, date_format)
+      .info
+        .title=_p('copyright.updated')
+        .updated=date(page.updated, date_format)
+      if lisenceIcon
+        .info
+          .title=_p('copyright.lisence')
+          a.lisence(href=url_for(lisenceLink))
+            each icon in lisenceIcon
+              case icon
+                when "cc"
+                  i.fa.fa-link
+                when "by"
+                  i.fa.fa-link
+                when "nc"
+                  i.fa.fa-link
+                when "nd"
+                  i.fa.fa-link
+                when "sa"
+                  i.fa.fa-link

@@ -1,15 +1,12 @@
 .recent-post-item
   display flex
   margin-top $block-margin
-  height 260px
   border-radius $border-radius
-  if hexo-config('custom.global-blur') != 0
+  if hexo-config('global-blur') != 0
     backdrop-filter: saturate(180%) blur($global-blur)
   transition all 0.5s
   background var(--bg-color)
-  overflow hidden
   .post_cover.side
-    height 100%
     max-width 480px
     overflow hidden
     border-radius $border-radius 0 0 $border-radius //当前为仅为左侧
@@ -19,7 +16,7 @@
       width 100%
       object-fit cover
       transform none
-      transition all 3s
+      transition .2s
   .post_info
     margin auto 0
     padding $block-padding
@@ -42,7 +39,7 @@
       margin 6px
     a
       color var(--text-color-r)
-      transition all 0.1s
+      transition .1s
     a:hover
       color var(--main-color)
     .post_description
@@ -57,8 +54,5 @@
 .recent-post-item:hover
   box-shadow var(--b-shadow)
   .post_cover.side
-    img
-      transform scale(1.05)
     img:hover
       transform scale(1.1)
-      transition all 0.5s

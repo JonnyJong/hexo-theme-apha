@@ -35,3 +35,17 @@ sidebar:
     total_visits: 总访问量
     runtime: 运行时长
     last_update: 最后更新时间
+copyright:
+  author: 作者
+  date: 创建日期
+  updated: 更新日期
+  lisence: 许可协议
+  lisences:
+    CC:
+      start_content: 采用
+      end_content: " 4.0 国际许可协议"
+      zero: "无著作权"
+      BY: 署名
+      NC: 非商业性使用
+      ND: 禁止演绎
+      SA: 相同方式共享

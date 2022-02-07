@@ -7,10 +7,10 @@
   main
     background-color var(--bg-color)
     box-shadow var(--b-shadow-lite)
-    if hexo-config('custom.global-blur') != 0
+    if hexo-config('global-blur') != 0
       backdrop-filter: saturate(180%) blur($global-blur)
     border-radius $border-radius
-    transition all 0.5s
+    transition .2s
     .page_info
       width 100%
       height max-content
@@ -31,19 +31,19 @@
       min-height 320px
       .inner_info
         padding 40px
-        color var(--text-color)
-        if hexo-config('custom.page.incard_info_bg') == 'block'
-          $info-oncover-opacity = hexo-config('custom.page.incard_info_bg_block.opacity') ? convert(hexo-config('custom.page.incard_info_bg_block.opacity')) : .6
-          $info-oncover-blur = hexo-config('custom.page.incard_info_bg_block.blur') ? convert(hexo-config('custom.page.incard_info_bg_block.blur')) : 10px
+        color #eee
+        if hexo-config('page.incard_info_bg') == 'block'
+          $info-oncover-opacity = hexo-config('page.incard_info_bg_block.opacity') ? convert(hexo-config('page.incard_info_bg_block.opacity')) : .6
+          $info-oncover-blur = hexo-config('page.incard_info_bg_block.blur') ? convert(hexo-config('page.incard_info_bg_block.blur')) : 10px
           background rgba(0,0,0,$info-oncover-opacity)
-          if hexo-config('custom.page.incard_info_bg_block.blur') != 0
+          if hexo-config('page.incard_info_bg_block.blur') != 0
             backdrop-filter: saturate(180%) blur($info-oncover-blur)
-        else if hexo-config('custom.page.incard_info_bg') == 'gradient'
-          $info-begin-color = hexo-config('custom.page.incard_info_bg_gradient.begin_color') ? convert(hexo-config('custom.page.incard_info_bg_gradient.begin_color')) : #0000
-          $info-end-color = hexo-config('custom.page.incard_info_bg_gradient.end_color') ? convert(hexo-config('custom.page.incard_info_bg_gradient.end_color')) : #000f
+        else if hexo-config('page.incard_info_bg') == 'gradient'
+          $info-begin-color = hexo-config('page.incard_info_bg_gradient.begin_color') ? convert(hexo-config('page.incard_info_bg_gradient.begin_color')) : #0000
+          $info-end-color = hexo-config('page.incard_info_bg_gradient.end_color') ? convert(hexo-config('page.incard_info_bg_gradient.end_color')) : #000f
           background-image linear-gradient($info-begin-color, $info-end-color)
         a
-          color var(--text-color)
+          color #eee
           transition .2s
         a:hover
           color var(--main-color)
@@ -75,7 +75,7 @@ h6
 #alt-h1,#alt-h2,#alt-h3,#alt-h4,#alt-h5,#alt-h6
   text-decoration underline dotted
 article
-  if hexo-config('custom.page.paragraph_title_readability')
+  if hexo-config('page.paragraph_title_readability')
     h1:before
       content:"H1"
       font-size:25px
@@ -139,10 +139,11 @@ article
         background #0008
     table
       width 100%
-      overflow auto
+      if !(hexo-config('page.line_number') && hexo-config('page.sticky_line_number'))
+        overflow auto
       display block
       box-shadow inset 0 4px 4px #000b
-    if hexo-config('custom.page.line_number') && hexo-config('custom.page.sticky_line_number')
+    if hexo-config('page.line_number') && hexo-config('page.sticky_line_number')
       tbody
         display block
         tr
@@ -153,13 +154,12 @@ article
             display inline-block
           td.code
             display inline-block
-            // overflow auto
-            overflow overlay
+            overflow auto
             padding-bottom 8px
     pre
       margin 0
       font-family: UbuntuMono, "PingFang SC", "Microsoft YaHei", Arial, Monaco, monospace, sans-serif
-    if hexo-config('custom.page.line_number')
+    if hexo-config('page.line_number')
       .gutter
         text-align right
         min-width 3ch
@@ -170,7 +170,7 @@ article
         display none
     td.code
       .line
-        if hexo-config('custom.page.auto_warp')
+        if hexo-config('page.auto_warp')
           white-space normal
           word-break break-word
         margin-right 16px
@@ -345,3 +345,24 @@ article>p code
   font-family UbuntuMono, "PingFang SC", "Microsoft YaHei", Arial, Monaco, monospace, sans-serif
   background-color #f001
   color #f44
+
+// 版权信息
+.post_copyright
+  margin-top 16px
+  padding $block-padding
+  border solid 4px var(--main-color-bgh)
+  background var(--bg-color)
+  border-radius $border-radius
+  .post_title
+    font-size 23px
+    font-weight bold
+  .post_title
+  .post_link
+  .copyright
+    margin-bottom 8px
+    display block
+    width max-content
+  .other_info
+    .info
+      display inline-block
+      margin-right 8px

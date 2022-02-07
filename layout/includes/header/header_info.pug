@@ -1,22 +1,19 @@
 if is_home() 
-  .header_img
-    //- img.header_img(src=url_for(theme.custom.index_banner_img) alt='banner')
-    .header_info
-      .site_big_title
-        if theme.info.big_title == 'default'
-          span.title=config.title
-        else if theme.info.big_title
-          span.title=theme.info.big_title
-        if theme.info.subtitle == 'default'
-          br
-          span.subtitle=config.subtitle
-        else if theme.info.subtitle
-          br
-          span.subtitle=theme.info.subtitle
+  .header_info
+    .site_big_title
+      if theme.info.big_title == 'default'
+        span.title=config.title
+      else if theme.info.big_title
+        span.title=theme.info.big_title
+      if theme.info.subtitle == 'default'
+        br
+        span.subtitle=config.subtitle
+      else if theme.info.subtitle
+        br
+        span.subtitle=theme.info.subtitle
     if theme.quick_entrance.enable
       .quick_entrance
         include ./quick_entrance.pug
-    //- .header_img_inside
 else if is_post()
   .header_info
     .header_img

@@ -5,7 +5,7 @@ block content
     main
       +page_info(page, "page", false)
       article#main
-        if !(theme.custom.link.after_content)
+        if !(theme.link.after_content)
           != page.content
         if site.data.link
           .f_link_block
@@ -24,5 +24,5 @@ block content
                       .item_info
                         p.item_name=item.name
                         p.item_d=item.description
-        if theme.custom.link.after_content
+        if theme.link.after_content
           != page.content

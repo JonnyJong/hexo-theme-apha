@@ -22,7 +22,7 @@ mixin page_info(page, type, other_info)
               h1.page_title=page.title ? page.title : _p('post_item.notitle')
           else
             h1.page_title=page.title ? page.title : _p('post_item.notitle')
-          if other_info && (page.date || page.updated || theme.third_party.busuanzi || theme.custom.page.wordcount || (page.categories.data.length > 0) || (page.tags.data.length > 0))
+          if other_info && (page.date || page.updated || theme.third_party.busuanzi || theme.page.wordcount || (page.categories.data.length > 0) || (page.tags.data.length > 0))
             .other_info
               if page.date
                 i.fas.fa-pencil-alt.fa-fw
@@ -34,7 +34,7 @@ mixin page_info(page, type, other_info)
                 i.fas.fa-eye
                 span= _p('post_item.read') + ' '
                 span.marginR#busuanzi_value_page_pv
-              if theme.custom.page.wordcount
+              if theme.page.wordcount
                 i.fas.fa-file-alt.fa-fw
                 span=_p('post_item.wordcount_before') + wordcount(page.content) + _p('post_item.wordcount_after')
               if (page.categories.data.length > 0)
@@ -52,56 +52,3 @@ mixin page_info(page, type, other_info)
                   i.fas.fa-tag.fa-fw
                 each tag in page.tags.data
                   a.page_tag.marginR(href=url_for(tag.path))=tag.name
-
-
-
-
-  //- - let ifNocover = page.cover ? "false" : "true"
-  //- .post_info(nocover=ifNocover)
-  //-   if page.cover
-  //-     .post_cover
-  //-       img.header_img(src=url_for(page.cover) alt='banner')
-  //-   else
-  //-     .post_cover
-  //-   .post_info_oncover_positon_fix
-  //-     .post_info_oncover
-  //-       if page.link
-  //-         a.post_title(href=url_for(page.link))
-  //-           i.fa.fa-link.fa-tw
-  //-           span.post_title=page.title ? page.title : _p('post_item.notitle')
-  //-       else
-  //-         span.post_title=page.title ? page.title : _p('post_item.notitle')
-  //-       p
-  //-       if page.date
-  //-         i.fas.fa-pencil-alt.fa-fw
-  //-         time(datetime=page.date.toJSON())= _p('post_item.date') + ' ' + date(page.date, date_format) + ' '
-  //-       if page.updated
-  //-         i.fas.fa-history.fa-fw
-  //-         time(datetime=page.updated.toJSON())= _p('post_item.updated') + ' ' + date(page.updated, date_format) + ' '
-  //-       if theme.third_party.busuanzi
-  //-         i.fas.fa-eye
-  //-         span= _p('post_item.read') + ' '
-  //-         span#busuanzi_value_page_pv
-  //-         span=' '
-  //-       if theme.custom.page.wordcount
-  //-         i.fas.fa-file-alt.fa-fw
-  //-         span=_p('post_item.wordcount_before')
-  //-         span=wordcount(page.content)
-  //-         span=_p('post_item.wordcount_after')
-  //-       if (page.categories.data.length > 0)
-  //-         .line_warp_h
-  //-         i.fas.fa-folder.fa-fw
-  //-         each cate, count in page.categories.data
-  //-           a.page_cate(href=url_for(cate.path))=cate.name
-  //-           if (count < page.categories.data.length - 1)
-  //-             span='/'
-  //-       if (page.tags.data.length > 0)
-  //-         .line_warp_h
-  //-         span=' '
-  //-         if (page.tags.data.length > 1)
-  //-           i.fas.fa-tags.fa-fw
-  //-         else
-  //-           i.fas.fa-tag.fa-fw
-  //-         each tag in page.tags.data
-  //-           a.page_tag(href=url_for(tag.path))=tag.name
-  //-           span=' '

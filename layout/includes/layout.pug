@@ -5,7 +5,6 @@
 - if (is_category()) pageTitle = _p('page_title.category') + page.category + ' | '
 - if (is_month()) pageTitle = _p('page_title.archive') + _p('page_title.colon') + page.month + '/' + page.year + ' | '  //- a bug here
 - if (is_year()) pageTitle = _p('page_title.archive') + _p('page_title.colon') + page.month + '/' + page.year + ' | '
-//- - if (is_year()) pageTitle = _p('page_title.archive') + _p('page_title.colon') + page.year + ' | '
 - pageTitle += config.title + (config.subtitle ? ' | ' + config.subtitle : "")
 
 //- 位置
@@ -14,8 +13,8 @@
 - if (is_post()) what_is_this_page = 'post'
 
 //- 设置
-- var global_back_btn = theme.custom.back_buttom
-- var user_scalable = theme.custom.user_scalable ? "" : ", user-scalable=no"
+- var global_back_btn = theme.back_buttom
+- var user_scalable = theme.user_scalable ? "" : ", user-scalable=no"
 
 //- 颜色模式
 - var color_scheme = no-preference //- light dark
@@ -30,7 +29,9 @@ html(lang=config.language prefers-color-scheme=color_scheme)
     title= pageTitle
     link(rel="icon" href=theme.info.favicon)
     meta(name="viewport" content="width=device-width" + user_scalable)
-    meta(name="description" content=config.description)
+    meta(name="description" content=page.description ? page.description : config.description)
+    if page.keywords
+      meta(name="keywords" content=page.keywords)
     //- main css
     link(rel='stylesheet', href=theme.CDN.mainCss)
     //- 引入 js 设置
@@ -46,14 +47,15 @@ html(lang=config.language prefers-color-scheme=color_scheme)
           div!= body
         else
           block content
-          if (theme.custom.sidebar.enable) && (theme.custom.sidebar.items)
+          if (theme.sidebar.enable) && (theme.sidebar.items)
             .side_column
               .sidebar_items
                 include ./sidebar/sidebar.pug
-    //- .before_footer
     include ./footer.pug
+    if theme.background.type
+      .bg
     //- main JS
     script(type="text/javascript" src=theme.CDN.mainJs)
     //- 引用CDN
-    //- if theme.third_party.busuanzi
+    if theme.third_party.busuanzi
       script(async src=theme.CDN.busuanzi)

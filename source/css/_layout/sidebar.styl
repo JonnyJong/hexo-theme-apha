@@ -5,7 +5,7 @@
   .item
     background var(--bg-color)
     border-radius $border-radius
-    if hexo-config('custom.global-blur') != 0
+    if hexo-config('global-blur') != 0
       backdrop-filter: saturate(180%) blur($global-blur)
     transition all 0.5s
     margin-top $block-margin
@@ -156,11 +156,12 @@
     .toc
       margin 8px 0 0 0
       padding 0
-      if hexo-config('custom.navbar.auto_folding')
+      if hexo-config('navbar.auto_folding')
         --toc-max-height $block-margin*4 + $block-padding*4 + 30px
       else
         --toc-max-height $block-margin*4 + $block-padding*4 + $navbar_height + 30px
       max-height calc(100vh - var(--toc-max-height))
+      overflow auto
       overflow overlay
       li::marker
         color #0000
@@ -182,7 +183,7 @@
     box-shadow var(--b-shadow)
   .sticky_items
     position sticky
-    if hexo-config('custom.navbar.auto_folding')
+    if hexo-config('navbar.auto_folding')
       top $block-margin
     else
       top $block-margin + $navbar_height

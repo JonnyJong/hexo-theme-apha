@@ -1,18 +1,18 @@
 footer
-  if theme.custom.footer.copyright
+  if theme.footer.copyright
     p
       span="© " + config.author + " "
-      if theme.custom.footer.since
-        span#sinceTo(since=theme.custom.footer.since)
-  if theme.custom.footer.runtime
+      if theme.footer.since
+        span#sinceTo(since=theme.footer.since)
+  if theme.footer.runtime
     p
       span="本站已运行 "
       span#runtimeFooter(begin=date_xml(theme.info.site_begin))
-  if theme.custom.footer.hexo_and_apha_info
+  if theme.footer.hexo_and_apha_info
     p
       a(href='http://hexo.io')
         span=_p('footer.frame') + ' hexo '
       a(href='https://github.com/JonnyJong/hexo-theme-apha/')
         span=_p('footer.theme') + ' Apha '
-  if theme.custom.footer.content
-    p!=`${theme.custom.footer.content}`
+  if theme.footer.content
+    p!=`${theme.footer.content}`

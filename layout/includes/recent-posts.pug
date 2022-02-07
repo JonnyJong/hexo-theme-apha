@@ -18,7 +18,7 @@ if page.posts.length > 0
                   a(href=url_for(post.path))
                     img.post_cover(src=url_for(post.cover) alt=post.title)
               default
-                case theme.custom.index_posts.cover_default_style
+                case theme.index_posts.cover_default_style
                   when 'side'
                     div.post_cover.side
                       a(href=url_for(post.path))
@@ -41,25 +41,25 @@ if page.posts.length > 0
             else
               a.post_title(href=url_for(post.path))= post.title ? post.title : _p('post_item.notitle')
             p
-            if post.date
+            if theme.index_posts.show_date
               i.fas.fa-pencil-alt.fa-fw
               time(datetime=post.date.toJSON())= _p('post_item.date') + ' ' + date(post.date, date_format) + ' '
-            if post.updated
+            if theme.index_posts.show_updated
               i.fas.fa-history.fa-fw
               time(datetime=post.updated.toJSON())= _p('post_item.updated') + ' ' + date(post.updated, date_format) + ' '
-            if theme.custom.index_posts.wordcount
+            if theme.index_posts.wordcount
               i.fas.fa-file-alt.fa-fw
               span=_p('post_item.wordcount_before')
               span=wordcount(post.content)
               span=_p('post_item.wordcount_after')
-            if (post.categories.data.length > 0)
+            if theme.index_posts.show_categories && (post.categories.data.length > 0)
               .line_warp_h
               i.fas.fa-folder.fa-fw
               each cate, count in post.categories.data
                 a.post_cate(href=url_for(cate.path))=cate.name
                 if (count < post.categories.data.length - 1)
                   span='/'
-            if (post.tags.data.length > 0)
+            if theme.index_posts.show_tags && (post.tags.data.length > 0)
               .line_warp_h
               if (post.tags.data.length > 1)
                 i.fas.fa-tags.fa-fw
@@ -69,9 +69,26 @@ if page.posts.length > 0
                 a.post_tag(href=url_for(tag.path))=tag.name
                 span=' '
             p
-            if post.description
-              span.post_description=post.description
-            else if post.excerpt
-              span.post_description=strip_html(post.excerpt)
-            else
-              span.post_description=truncate(strip_html(post.content), {length: theme.custom.index_posts.description.max_length})
+            case theme.index_posts.description.type
+              when "description"
+                if post.description
+                  span.post_description=post.description
+                else
+                  span.post_description=theme.index_posts.description.default_description
+              when "excerpt"
+                if post.excerpt
+                  span.post_description=strip_html(post.excerpt)
+                else
+                  span.post_description=theme.index_posts.description.default_description
+              when "content"
+                if post.content
+                  span.post_description=truncate(strip_html(post.content), {length: theme.index_posts.description.max_length})
+              when "auto"
+                if post.description
+                  span.post_description=post.description
+                else if post.excerpt
+                  span.post_description=strip_html(post.excerpt)
+                else if post.content
+                  span.post_description=truncate(strip_html(post.content), {length: theme.index_posts.description.max_length})
+              default
+                - break

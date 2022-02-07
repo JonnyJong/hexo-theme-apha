@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function () {
     
   }
 
-
   // 导航栏自动收起
   window.onscroll = config.navFold && function(e){
     if ((saveOffset - window.pageYOffset) < -4) {
@@ -69,7 +68,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     saveOffset = window.pageYOffset;
   }
-
   var saveOffset = window.pageYOffset;
   var pcNavbar = document.getElementById("pcNavbar");
 
@@ -91,12 +89,6 @@ document.addEventListener('DOMContentLoaded', function () {
       runtimes.innerHTML = diffTime(beginTime, 2);
     }
   }
-
-  // 随机色相
-  function randomColor() {
-    var hue = parseInt(Math.random()*360);
-    document.documentElement.style.setProperty('--main-color', "hsl("+hue+", 100%, 29%)");
-  };
 
   // 图片描述
   function imgDes() {
@@ -204,6 +196,5 @@ document.addEventListener('DOMContentLoaded', function () {
   config.fooSt && sinceTo();
   figure();
   config.fooRt && runtimeFooter();
-  config.randColor && randomColor();
 
 })

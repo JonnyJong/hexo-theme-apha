@@ -165,6 +165,6 @@ mixin pageFilter(item, value)
     default
       +deviceFilter(item, value)
 
-each value, head in theme.custom.sidebar.items
+each value, head in theme.sidebar.items
   - const item = (head + '').split(', ')
   +pageFilter(item, value)

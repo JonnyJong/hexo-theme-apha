@@ -41,9 +41,6 @@
       a
         display block
         width 280px
-        // min-width 280px
-        // width max-content
-        // max-width 320px
         min-height 90px
         height max-content
         border-radius $border-radius
@@ -53,9 +50,9 @@
           display inline-block
           height 70px
           margin 10px
-          if hexo-config('custom.link.avatar_radius') == "round"
+          if hexo-config('link.avatar_radius') == "round"
             border-radius 90px
-          else if hexo-config('custom.link.avatar_radius') == "auto"
+          else if hexo-config('link.avatar_radius') == "auto"
             border-radius $border-radius
         .item_info
           display inline-block
@@ -70,7 +67,6 @@
             font-size 15px
             margin 0 10px 14px 0
             max-width 180px
-            // max-width 220px
             transition .1s
       a:hover
         background var(--main-color-bgh)
