@@ -328,7 +328,9 @@ page:
   # 版权信息
   copyright: true
   # 协议
-  lisence: CC, BY, NC, ND, SA
+  # CC：https://creativecommons.org/choose/
+  lisence: CC, BY, NC, SA
+  # lisence: CC, BY, NC, ND, SA
 
   # 字数统计
   wordcount: true
