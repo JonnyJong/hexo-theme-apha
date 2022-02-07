@@ -96,7 +96,7 @@ mixin act_statistics(value)
       .title=_p("page.tags")
       .value=site.tags.length
 mixin side_toc(sub_body)
-  if ((is_post()) && sub_body.post) || ((is_page()) && sub_body.page)
+  if (page.toc == undefined | page.toc == true) && (((is_post()) && sub_body.post) || ((is_page()) && sub_body.page))
     != toc(page.content,{list_number: sub_body.list_number})
 
 mixin item(value)
