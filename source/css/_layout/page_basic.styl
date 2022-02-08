@@ -327,6 +327,66 @@ article
     img:first-child
       margin-top 0
 
+  // 插件标签
+  .blocktip
+    display flex
+    width 100%
+    background var(--obj-bg)
+    border-left solid 6px var(--obj-main)
+    align-items center
+    box-shadow var(--b-shadow-lite)
+    margin-block-start 14px
+    margin-block-end 14px
+  .blocktip>i
+    padding 12px
+    color var(--obj-main)
+  .blocktip>.content
+    flex 1
+    padding-right 18px
+  
+  // 插件基本颜色
+  .c_de
+    --obj-main var(--text-color-r)
+    --obj-bg #fff3
+  .c_re
+    --obj-main #f00
+    --obj-bg #f003
+  .c_or
+    --obj-main #ff7400
+    --obj-bg #ff740033
+  .c_ye
+    --obj-main #d8bc2f
+    --obj-bg #d8bc2f33
+  .c_gr
+    --obj-main #00cc00
+    --obj-bg #00cc0033
+  .c_cy
+    --obj-main #009999
+    --obj-bg #00999933
+  .c_bl
+    --obj-main #1240ab
+    --obj-bg #1240ab33
+  .c_pu
+    --obj-main #7109aa
+    --obj-bg #7109aa33
+  
+  .b_de
+    --obj-bg #fff3
+  .b_re
+    --obj-bg #f003
+  .b_or
+    --obj-bg #ff740033
+  .b_ye
+    --obj-bg #d8bc2f33
+  .b_gr
+    --obj-bg #00cc0033
+  .b_cy
+    --obj-bg #00999933
+  .b_bl
+    --obj-bg #1240ab33
+  .b_pu
+    --obj-bg #7109aa33
+
 // 表格
 article>table
   width 100%
@@ -340,11 +400,13 @@ article>table tbody tr td
   padding 4px
 
 // 高亮
-article>table code
-article>p code
+table code
+p code
   font-family UbuntuMono, "PingFang SC", "Microsoft YaHei", Arial, Monaco, monospace, sans-serif
   background-color #f001
   color #f44
+  line-height 1
+  padding 3px 0
 
 // 版权信息
 .post_copyright

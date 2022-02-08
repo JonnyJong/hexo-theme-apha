@@ -63,7 +63,7 @@ if (page.lisence == undefined) ? (theme.page.lisence && theme.page.lisence != tr
       else
         - lisenceLink = "//creativecommons.org/licenses/" + lisenceLink + "/4.0/"
         - lisenceDesc = _p('copyright.lisences.CC.start_content') + lisenceDesc + _p('copyright.lisences.CC.end_content')
-        - lisenceIcon = ("cc, " + lisenceIcon).split(', ')
+        - lisenceIcon = ("cc, " + lisenceIcon + ", cc4").split(', ')
     default
       - break
 
@@ -104,3 +104,5 @@ if (page.copyright == undefined) ? theme.page.copyright : page.copyright
                   i.fa.fa-link
                 when "sa"
                   i.fa.fa-link
+                when "cc4"
+                  span="4.0"

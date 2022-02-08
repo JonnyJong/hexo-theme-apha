@@ -241,11 +241,12 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
     tocObj[c].className = "toc-link active";
-    document.querySelector(".toc").scrollTop=tocObj[c].offsetTop-150
+    tocWindow.scroll({ top: tocObj[c].offsetTop-150, behavior: 'smooth' });
   }
   var mainTitle = document.querySelectorAll("article h1,article h2,article h3,article h4,article h5,article h6");
   var mTiTop = new Array();
   var tocObj = document.querySelectorAll(".toc-link");
+  var tocWindow = document.querySelector(".toc");
 
   cleanSidebat();
   updateTime();

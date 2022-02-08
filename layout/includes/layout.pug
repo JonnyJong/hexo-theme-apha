@@ -37,7 +37,7 @@ html(lang=config.language prefers-color-scheme=color_scheme)
     //- 引入 js 设置
     include ./config.pug
     //- 引用CDN
-    link(rel='stylesheet', href=theme.CDN.fontawesome)
+    link(rel='preload', href=theme.CDN.fontawesome, as="style", onload="this.rel='stylesheet'")
   body(where=what_is_this_page)
     include ./skipToContentButtom.pug
     include ./header/header.pug
