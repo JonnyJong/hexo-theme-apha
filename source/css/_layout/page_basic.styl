@@ -328,6 +328,7 @@ article
       margin-top 0
 
   // 插件标签
+  // 提示块
   .blocktip
     display flex
     width 100%
@@ -343,6 +344,26 @@ article
   .blocktip>.content
     flex 1
     padding-right 18px
+  // 进度条
+  .progress
+    background var(--obj-bg)
+    border-radius $border-radius
+    margin-block-start 14px
+    margin-block-end 14px
+    .inside
+      height max-content
+      border-radius $border-radius
+      background var(--obj-main)
+      color var(--text-color-r)
+      text-align right
+      padding 1px 0
+      white-space nowrap
+    .inside>*
+      // line-height 1.2
+      margin 6px 10px
+  .progress.c_de
+    --obj-bg #8883
+    --obj-main #888
   
   // 插件基本颜色
   .b_de
