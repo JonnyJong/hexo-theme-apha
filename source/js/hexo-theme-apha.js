@@ -26,6 +26,11 @@ function figureCpBtn(which) {
   }, 2000);
 }
 
+// tag平滑转跳
+function tagJump(tag) {
+  window.scroll({ top: document.querySelector(tag).offsetTop-80, behavior: 'smooth' });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 
   //时间间隔
@@ -243,6 +248,12 @@ document.addEventListener('DOMContentLoaded', function () {
     tocObj[c].className = "toc-link active";
     tocWindow.scroll({ top: tocObj[c].offsetTop-150, behavior: 'smooth' });
   }
+  function tocjump(){
+    tocObj.forEach(item => {
+      item.setAttribute("onclick", "tagJump('" + decodeURI(item.getAttribute("href")) + "');");
+      item.removeAttribute("href")
+    });
+  }
   var mainTitle = document.querySelectorAll("article h1,article h2,article h3,article h4,article h5,article h6");
   var mTiTop = new Array();
   var tocObj = document.querySelectorAll(".toc-link");
@@ -256,4 +267,5 @@ document.addEventListener('DOMContentLoaded', function () {
   config.fooSt && sinceTo();
   figure();
   config.fooRt && runtimeFooter();
+  config.tocSmJ && config.ifToc && (tocObj.length != 0) && tocjump();
 })

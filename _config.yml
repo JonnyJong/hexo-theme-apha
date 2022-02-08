@@ -343,6 +343,9 @@ page:
   # 显示分类
   show_categories: true
 
+  # 点击目录平滑转跳（将目录的链接替换为 onclick 事件）
+  click_toc_smooth_jump: false
+
 # 友链样式
 link:
   # 头像圆角（round、square、auto；圆、方形、自动）

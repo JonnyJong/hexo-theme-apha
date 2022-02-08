@@ -1,5 +1,6 @@
 - const fooSt = (theme.footer.since) ? true : false
 - const ifToc = (page.toc != undefined) ? page.toc : true
+- const tocSmJ = (theme.page.click_toc_smooth_jump) ? true : false
 
 script.
   var config = { 
@@ -9,4 +10,5 @@ script.
     fooRt: !{theme.footer.runtime},
     fooSt: !{fooSt},
     ifToc: !{ifToc},
+    tocSmJ: !{tocSmJ},
   }
