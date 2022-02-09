@@ -346,6 +346,9 @@ page:
   # 点击目录平滑转跳（将目录的链接替换为 onclick 事件）
   click_toc_smooth_jump: false
 
+  # 提示块圆角（推荐值：留空、0~10px）
+  blocktip_radius:
+
 # 友链样式
 link:
   # 头像圆角（round、square、auto；圆、方形、自动）
@@ -445,8 +448,23 @@ no_select_unless_article: true
 # 文章禁用选中（未配置）*
 no_select_in_article: false
 
-# 动画效果（false、slow、normal、fast；关闭、慢、中等、快）（未配置）
+# 动画效果（未配置）
+# 0：没有动画
+# 1：最低限度的的动画
+# 2：基本的动画
+# 3：完整的动画
 animation:
+
+# 将必要的 CSS 写入 HTML（未配置）
+# 必要的 CSS 指布局和尺寸相关的 CSS
+# 用于优化加载速度，启用此项后会异步加载其余 CSS，每个 HTML 的尺寸会有所上升
+main_css_in_html:
+# CSS 分块（未配置）
+# 将 CSS 分为多个文件，在不同的页面加载所需的 CSS
+# 用于优化加载速度，减少未使用的 CSS 数量
+# 建议与 main_css_in_html 同时开启
+differentiate_css:
+# JS 分块（同上，但当前 JS 量少，暂无必要）（未配置）
 
 # =============================================================
 # 第三方

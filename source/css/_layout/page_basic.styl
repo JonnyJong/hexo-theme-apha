@@ -109,6 +109,7 @@ article
   // 行高
   p
     line-height 20px
+    margin 6px 0
 
   // 当鼠标移动到链接上时
   a:hover
@@ -339,12 +340,14 @@ article
     box-shadow var(--b-shadow-lite)
     margin-block-start 14px
     margin-block-end 14px
+    if hexo-config('page.blocktip_radius')
+      border-radius convert(hexo-config('page.blocktip_radius'))
   .blocktip>i
-    padding 12px
+    padding 12px 0 12px 14px
     color var(--obj-main)
   .blocktip>.content
     flex 1
-    padding-right 18px
+    padding 0 14px
     overflow auto
   // 进度条
   .progress
@@ -366,48 +369,96 @@ article
   .progress.c_de
     --obj-bg #8883
     --obj-main #888
+  // 单选与复选
+  .check
+  .radio
+    display flex
+    align-items center
+    --obj-main var(--text-color-r)
+    input
+      appearance none
+      border 2px solid var(--obj-main)
+      height 16px
+      width 16px
+      margin 4px
+    input[type="radio"]
+      border-radius 14px
+    input[type="radio"]:checked:before
+      content ""
+      display block
+      background var(--obj-main)
+      height 8px
+      width 8px
+      border-radius 8px
+      margin 2px 0 0 2px
+    input[type="checkbox"]
+      border-radius 2px
+    input[type="checkbox"]:checked
+      background var(--obj-main)
+    input[type="checkbox"]:checked:before
+    input[type="checkbox"]:checked:after
+      content ""
+      display block
+      background #eee
+  .check.o input:checked:before
+    height 10px
+    width 10px
+    border-radius 10px
+    margin 1px 0 0 1px
+  .check.v input:checked:before
+    height 3px
+    width 12px
+    border-radius 3px
+    transform rotate(-45deg) translateY(5px) translateX(-2px)
+  .check.v input:checked:after
+    height 3px
+    width 7px
+    border-radius 3px
+    transform rotate(45deg) translateY(3px) translateX(2px)
+  .check.m input:checked:before
+  .check.p input:checked:before
+    height 3px
+    width 12px
+    border-radius 3px
+    transform translateY(4.5px)
+  .check.p input:checked:after
+    height 12px
+    width 3px
+    border-radius 3px
+    transform translateX(4.5px) translateY(-3px)
+  .check.x input:checked:before
+  .check.x input:checked:after
+    height 3px
+    width 14px
+    border-radius 3px
+    transform translateY(4.5px) translateX(-1px) rotate(45deg)
+  .check.x input:checked:after
+    transform translateY(1.5px) translateX(-1px) rotate(-45deg)
   
   // 插件基本颜色
-  .b_de
-    --obj-bg #fff3
-  .c_de
+  .default
     --obj-main var(--text-color-r)
     --obj-bg #fff3
-  .c_re
+  .red
     --obj-main #f00
     --obj-bg #f003
-  .c_or
+  .orange
     --obj-main #ff7400
     --obj-bg #ff740033
-  .c_ye
+  .yellow
     --obj-main #d8bc2f
     --obj-bg #d8bc2f33
-  .c_gr
+  .green
     --obj-main #00cc00
     --obj-bg #00cc0033
-  .c_cy
+  .cyan
     --obj-main #009999
     --obj-bg #00999933
-  .c_bl
+  .blue
     --obj-main #1240ab
     --obj-bg #1240ab33
-  .c_pu
+  .purple
     --obj-main #7109aa
-    --obj-bg #7109aa33
-  
-  .b_re
-    --obj-bg #f003
-  .b_or
-    --obj-bg #ff740033
-  .b_ye
-    --obj-bg #d8bc2f33
-  .b_gr
-    --obj-bg #00cc0033
-  .b_cy
-    --obj-bg #00999933
-  .b_bl
-    --obj-bg #1240ab33
-  .b_pu
     --obj-bg #7109aa33
 
 // 表格
