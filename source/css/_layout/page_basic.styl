@@ -332,6 +332,8 @@ article
   // 插件标签
   // 提示块
   .blocktip
+    --obj-main var(--text-color-r)
+    --obj-bg #fff3
     display flex
     width 100%
     background var(--obj-bg)
@@ -351,6 +353,8 @@ article
     overflow auto
   // 进度条
   .progress
+    --obj-bg #8883
+    --obj-main #888
     background var(--obj-bg)
     border-radius $border-radius
     margin-block-start 14px
@@ -364,11 +368,7 @@ article
       padding 1px 0
       white-space nowrap
     .inside>*
-      // line-height 1.2
       margin 6px 10px
-  .progress.c_de
-    --obj-bg #8883
-    --obj-main #888
   // 单选与复选
   .check
   .radio
@@ -436,9 +436,6 @@ article
     transform translateY(1.5px) translateX(-1px) rotate(-45deg)
   
   // 插件基本颜色
-  .default
-    --obj-main var(--text-color-r)
-    --obj-bg #fff3
   .red
     --obj-main #f00
     --obj-bg #f003
