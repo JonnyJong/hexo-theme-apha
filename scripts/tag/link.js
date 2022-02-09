@@ -11,6 +11,6 @@ function link (args, content) {
       img = (v[1]!=undefined&&v[1]!="")?'<img alt="link_icon" src="'+v[1]+'">':"";
     }
   }
-  return `<a href="${args[0]}" class="link"${title?' title="'+title+'"':''}>${img}<div class="info">${title?'<div class="i_title">'+title+'</div>':""}<div class="i_link">${args[0]}</div></div></a>`
+  return `<a href="${args[0]}" class="t_link"${title?' title="'+title+'"':''}>${img}<div class="info">${title?'<div class="i_title">'+title+'</div>':""}<div class="i_link">${args[0]}</div></div></a>`
 }
 hexo.extend.tag.register('link', link, { ends: false })

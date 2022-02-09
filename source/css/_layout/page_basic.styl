@@ -435,7 +435,7 @@ article
   .check.x input:checked:after
     transform translateY(1.5px) translateX(-1px) rotate(-45deg)
   // 更好看的链接
-  .link
+  .t_link
     display flex
     max-width calc(100% - 32px)
     width max-content
@@ -462,7 +462,7 @@ article
       .i_title
         font-size 16px
         font-weight bold
-  .link:hover
+  .t_link:hover
     text-decoration none
     box-shadow var(--b-shadow-m)
   // 彩色字
@@ -472,6 +472,7 @@ article
     background var(--obj-main)
     line-height 2
     white-space pre-wrap
+    max-width 100%
   .colorful.right
   .colorful.center
     width max-content
@@ -480,6 +481,77 @@ article
     margin-left auto
   .colorful.center
     margin 4px auto
+  // 时间线
+  .timeline
+    margin 16px 0
+    .title
+      font-size 20px
+      margin-bottom 8px
+      font-weight bold
+    .nodes
+      display flex
+      flex-direction column
+      padding-left 8px
+      margin-left 16px
+      border-left 4px solid var(--main-color)
+      position relative
+      padding-bottom 8px
+    .timenode
+      padding 8px
+      position relative
+      max-width 100%
+      width max-content
+    .timenode:after
+      content ''
+      display block
+      position absolute
+      height 8px
+      width 8px
+      border 4px solid var(--main-color)
+      border-radius 8px
+      background #fff
+      top 8px
+      left -18px
+    .content
+      background var(--main-color-bgh)
+      border-radius $border-radius
+      padding 8px 16px
+    .nodetitle
+      margin-bottom 8px
+      line-height 1
+      font-size 16px
+      font-weight bold
+  .timeline.row
+    .nodes
+      flex-direction row
+      padding-left 0
+      margin-left 0
+      border-left none
+      padding-top 24px
+      width 100%
+      overflow auto
+      overflow overlay
+    .timenode:before
+      content ""
+      position absolute
+      display block
+      background var(--main-color)
+      height 4px
+      width 100%
+      transform translate(0, -20px)
+    .timenode
+      flex-shrink 0
+      max-width calc(100% - 48px)
+    .timenode:after
+      top -18px
+      left 12px
+    .content
+      max-height calc(100vh - 200px)
+      overflow auto
+      overflow overlay
+      @media screen and (min-height: 600px)
+        max-height 400px
+
   // 插件基本颜色
   .red
     --obj-main #f00
