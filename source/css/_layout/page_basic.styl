@@ -440,13 +440,16 @@ article
     max-width calc(100% - 32px)
     width max-content
     height max-content
+    max-width 80%
+    min-width 280px
+    min-height 40px
     background var(--bg-color)
     margin 16px auto
     padding 16px
     border-radius $border-radius
     color var(--text-color-r)
     align-items center
-    justify-content center
+    justify-content space-evenly
     gap 8px
     box-shadow var(--b-shadow-lite)
     transition .2s ease-in-out
@@ -551,6 +554,80 @@ article
       overflow overlay
       @media screen and (min-height: 600px)
         max-height 400px
+  // 折叠块
+  .fold
+    border 1px solid var(--text-color-ro)
+  .fold>.head
+    background var(--bg-color)
+    padding 8px
+    cursor pointer
+    i
+      height 15px
+      width 15px
+      margin 0 4px 0 2px
+      transition .1s
+    i
+    .title
+      font-size 15px
+  .fold>.content
+    padding 16px
+    background #8881
+    display none
+  .fold.un>.head i
+    transform rotate(90deg)
+  .fold.un>.content
+    display block
+  // 标签块
+  .tabs
+    border 1px solid var(--text-color-ro)
+    background #8881
+    --obj-main var(--main-color)
+    .nav
+      display flex
+      overflow auto
+      overflow overlay
+      .tab
+        flex-shrink 0
+        width max-content
+        min-width 50px
+        height 22px
+        padding 14px 10px 14px 10px
+        line-height 22px
+        border 1px solid var(--text-color-ro)
+        border-bottom 0
+        cursor pointer
+        transition .1s
+        text-align center
+        position relative
+        i
+          margin-right 4px
+      .tab:hover
+        background #8882
+      .tab:first-child
+        border-left 0
+      .tab.active
+        background var(--bg-color)
+        border-bottom 1px solid #0000
+      .tab:after
+        content ''
+        display block
+        position absolute
+        width 100%
+        height 0
+        top 0
+        background var(--obj-main)
+        transition .1s
+        left 0
+      .tab:hover:after
+        height 2px
+      .tab.active:after
+        height 4px
+    .content
+      background var(--bg-color)
+      padding 16px
+      display none
+    .content.active
+      display block
 
   // 插件基本颜色
   .red

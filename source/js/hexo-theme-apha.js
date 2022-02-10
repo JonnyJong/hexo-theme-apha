@@ -31,6 +31,28 @@ function tagJump(tag) {
   window.scroll({ top: document.querySelector(tag).offsetTop-80, behavior: 'smooth' });
 }
 
+// 折叠块
+function unfold(e) {
+  e.parentNode.className="fold un";
+  e.setAttribute("onclick", "fold(this)");
+}
+function fold(e) {
+  e.parentNode.className="fold";
+  e.setAttribute("onclick", "unfold(this)");
+}
+// 标签块
+function tabs(e,c) {
+  e.parentNode.querySelectorAll(".tab").forEach(element => {
+    element.className = element.className.split(" active")[0];
+  });
+  e.className+=" active";
+  let ci = e.parentNode.parentNode.querySelector(".contents").querySelectorAll(".content")
+  ci.forEach(element => {
+    element.className = "content";
+  });
+  ci[c].className = "content active";
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 
   //时间间隔
