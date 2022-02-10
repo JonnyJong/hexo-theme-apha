@@ -45,11 +45,13 @@ $main_color = hexo-config('theme_color.black_and_white') ? #000 : (hexo-config('
   --main_content_margin $main_content_margin
 
 [prefers-color-scheme="dark"]
+  // 主要色调
+  --main-color-nbgh saturation(lightness($main_color 30%) 50%)
   // 字体颜色
   --text-color #111
-  --text-color-r #eee
+  --text-color-r #ededed
   --text-color-rf #aaa
   --text-color-ro #aaa4
   // 背景颜色
   --body-color #111
-  --bg-color rgba(0, 0, 0, $global-opacity)
+  --bg-color rgba(10, 10, 10, $global-opacity)

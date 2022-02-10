@@ -41,6 +41,9 @@ if page.posts.length > 0
             else
               a.post_title(href=url_for(post.path))= post.title ? post.title : _p('post_item.notitle')
             p
+            if post.sticky>0
+              i.fas.fa-thumb-tack(style="color:#f33;")
+              span(style="color:#f33;")=_p('post_item.sticky')
             if theme.index_posts.show_date
               i.fas.fa-pencil-alt.fa-fw
               time(datetime=post.date.toJSON())= _p('post_item.date') + ' ' + date(post.date, date_format) + ' '

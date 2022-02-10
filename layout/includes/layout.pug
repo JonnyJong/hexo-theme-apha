@@ -17,11 +17,12 @@
 - var user_scalable = theme.user_scalable ? "" : ", user-scalable=no"
 
 //- 颜色模式
-- var color_scheme = no-preference //- light dark
+- var color_scheme = theme.color_mode ? theme.color_mode : "auto" //- no-preference light dark
 
 include ./mixin.pug
 
 doctype html
+//- html(lang=config.language color-mode=color_scheme)
 html(lang=config.language prefers-color-scheme=color_scheme)
   head
     //- 基本信息

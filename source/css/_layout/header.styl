@@ -40,6 +40,9 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
       transition .5s
 
 // 导航栏
+[prefers-color-scheme="dark"]
+  .navbar
+    background rgba(10,10,10,$navbar-opacity)
 .navbar
   // 基本
   width hexo-config('navbar.outer_width') ? convert(hexo-config('navbar.outer_width')) : 100%

@@ -80,7 +80,7 @@ a
     --width_main_column $main_content_margin*2 + 300px + $block-margin
     max-width $max-width - $block-margin*2 - 500px
     width calc(100vw - var(--width_main_column))
-  transition .2s ease-in-out
+  transition .05s ease-in-out
 .side_column
   width 300px
   margin-bottom $block-margin
@@ -94,7 +94,7 @@ a
   padding 0 $main_content_margin $block-margin $main_content_margin
 // hr
 hr
-  border-top 4px dashed var(--main-color)
+  border 2px dashed var(--main-color)
 
 // 滚动条
 ::-webkit-scrollbar
@@ -171,3 +171,7 @@ hr
         font-size $index_big_title_font_size*0.6
       .subtitle
         font-size $index_subtitle_font_size*0.6
+
+[prefers-color-scheme="dark"]
+  img
+    filter brightness(0.9)

@@ -14,6 +14,7 @@ post_item:
   link_page: 友情链接
   wordcount_before: "共 "
   wordcount_after: " 字"
+  sticky: "置顶 "
 footer:
   frame: 框架
   theme: 主题

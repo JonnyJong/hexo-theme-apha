@@ -281,6 +281,19 @@ document.addEventListener('DOMContentLoaded', function () {
   var tocObj = document.querySelectorAll(".toc-link");
   var tocWindow = document.querySelector(".toc");
 
+  // 颜色模式
+  function colorMode() {
+    const mode = document.documentElement.getAttribute("prefers-color-scheme");
+    if ((mode=="auto")&&matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute("prefers-color-scheme","dark");
+    }else if (mode=="time") {
+      const now = new Date();
+      if (now.getHours<6||now.getHours>17) {
+        document.documentElement.setAttribute("prefers-color-scheme","dark");
+      }
+    }
+  }
+
   cleanSidebat();
   updateTime();
   runtime();
@@ -290,4 +303,5 @@ document.addEventListener('DOMContentLoaded', function () {
   figure();
   config.fooRt && runtimeFooter();
   config.tocSmJ && config.ifToc && (tocObj.length != 0) && tocjump();
+  colorMode();
 })

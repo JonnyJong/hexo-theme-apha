@@ -277,9 +277,9 @@ article
 
   // 按钮
   kbd
-    border-radius: 4px;
-    background: linear-gradient(145deg, #ffffff, #d6d6d6);
-    border solid 2px #0008
+    border-radius 4px
+    background linear-gradient(145deg, #fff, #d6d6d6)
+    border solid 2px #8888
     font-family UbuntuMono, "PingFang SC", "Microsoft YaHei", Arial, Monaco, monospace, sans-serif
     padding 4px
     margin 0 4px
@@ -559,7 +559,7 @@ article
     border 1px solid var(--text-color-ro)
   .fold>.head
     background var(--bg-color)
-    padding 8px
+    padding 10px8px
     cursor pointer
     i
       height 15px
@@ -591,7 +591,7 @@ article
         width max-content
         min-width 50px
         height 22px
-        padding 14px 10px 14px 10px
+        padding 12px 10px 12px 10px
         line-height 22px
         border 1px solid var(--text-color-ro)
         border-bottom 0
@@ -631,26 +631,44 @@ article
 
   // 插件基本颜色
   .red
-    --obj-main #f00
-    --obj-bg #f003
+    --obj-main #ff2525
+    --obj-bg #ff252533
   .orange
-    --obj-main #ff7400
-    --obj-bg #ff740033
+    --obj-main #ff9225
+    --obj-bg #ff922533
   .yellow
-    --obj-main #d8bc2f
-    --obj-bg #d8bc2f33
+    --obj-main #f6f822
+    --obj-bg #f6f82233
   .green
-    --obj-main #00cc00
-    --obj-bg #00cc0033
+    --obj-main #23da23
+    --obj-bg #23da2333
   .cyan
-    --obj-main #009999
-    --obj-bg #00999933
+    --obj-main #24b5b5
+    --obj-bg #24b5b533
   .blue
-    --obj-main #1240ab
-    --obj-bg #1240ab33
+    --obj-main #2e64c3
+    --obj-bg #2e64c333
   .purple
-    --obj-main #7109aa
-    --obj-bg #7109aa33
+    --obj-main #b923ff
+    --obj-bg #b923ff33
+[prefers-color-scheme="dark"]
+  article
+    kbd
+      background linear-gradient(145deg, #333, #000)
+    .red
+      --obj-main #da1515
+    .orange
+      --obj-main #f04e18
+    .yellow
+      --obj-main #b2b81b
+    .green
+      --obj-main #119511
+    .cyan
+      --obj-main #136d6d
+    .blue
+      --obj-main #1d3f8f
+    .purple
+      --obj-main #4e1ca0
 
 // 表格
 article>table
