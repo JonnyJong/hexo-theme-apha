@@ -89,8 +89,8 @@ navbar:
   # 自定义组件（允许自由调整顺序）
   items:
     mbl, side_nav_btn:
-    al, site, 0: /logo.png, default, root
-    pc, img, 0: /logo.png, /
+    al, site, 0: none, default, root
+    # pc, img, 0: /logo.png, /
     pc, text, 0: hello world!, /
     al, act_statistics:
       archive: /archives/
@@ -329,7 +329,7 @@ page:
   copyright: true
   # 协议
   # CC：https://creativecommons.org/choose/
-  lisence: CC, BY, NC, SA
+  lisence: CC, BY, ND, SA
   # lisence: CC, BY, NC, ND, SA
 
   # 字数统计
@@ -397,6 +397,42 @@ color_mode:
 font:
   font-family: ''
   font-url: ''
+
+# =============================================================
+# 图标（在此处修改主题使用的图标）（未配置）
+# Q：为何需要此功能？
+# A：fontawesome 提供了许多图标，但大部分是不需要的，故提供此方式用于使用自己的图标。
+icons:
+  # 文章创建日期
+  date:
+  # 文章更新日期
+  updated:
+  # 阅读量
+  read:
+  # 归类
+  categorie:
+  # 标签（单个）
+  tag:
+  # 标签（多个）
+  tags:
+  # 文章字数
+  wordcount:
+  # 文章置顶
+  pin:
+  # 返回图标
+  back:
+  # 上一篇文章
+  prev_post:
+  # 下一篇文章
+  next_post:
+  # 导航栏菜单指示
+  nav_menu:
+  # 侧边导航栏按钮
+  nav_side_btn:
+  # 侧边导航栏关闭按钮
+  nav_side_close_btn:
+  # 链接
+  link:
 
 # =============================================================
 # 自定义背景
@@ -499,8 +535,4 @@ CDN:
 
   busuanzi: //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js
 
-  # highlightjs_css: 
-  # highlightjs_js: //unpkg.com/@highlightjs/cdn-assets@11.4.0/highlight.min.js
-
-  # highlight_js_css: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/styles/default.min.css
-  # highlight_js_js: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/highlight.min.js
+  

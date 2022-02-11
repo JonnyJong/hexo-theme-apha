@@ -11,7 +11,7 @@ mixin siteInfo(value)
     default
       img(src=url_for(value[0]) alt='site_icon')
   //- 间隔
-  if value[0] && value[1]
+  if value[0]!="none" && (value[1]!=""||value[1]!=undefined)
     .width_in_info
   //- 标题
   case value[1]
@@ -109,9 +109,9 @@ mixin items(body, head, item, value, limit)
                 i(class=item[3])
                 span=item[2]
                 if (limit != "pc") && (typeof body == 'object') && body
-                  i.fa.fa-chevron-right.ho_rotate_90
+                  i(class=(theme.icons.nav_menu?theme.icons.nav_menu:"fa fa-chevron-right fa-fw")+" ho_rotate_90")
             if iconRender
-              i.fa.fa-chevron-right.ho_rotate_90
+              i(class=(theme.icons.nav_menu?theme.icons.nav_menu:"fa fa-chevron-right fa-fw")+" ho_rotate_90")
             +navMenu(body, item)
           else
             div(class="fakeA" + (iconRender ? " short" : ""))
@@ -119,9 +119,9 @@ mixin items(body, head, item, value, limit)
                 i(class=item[3])
                 span=item[2]
                 if (limit != "pc") && (typeof body == 'object') && body
-                  i.fa.fa-chevron-right.ho_rotate_90
+                  i(class=(theme.icons.nav_menu?theme.icons.nav_menu:"fa fa-chevron-right fa-fw")+" ho_rotate_90")
             if iconRender
-              i.fa.fa-chevron-right.ho_rotate_90
+              i(class=(theme.icons.nav_menu?theme.icons.nav_menu:"fa fa-chevron-right fa-fw")+" ho_rotate_90")
             +navMenu(body, item)
       //- 移动端菜单按钮
       when 'side_nav_btn'
@@ -130,9 +130,9 @@ mixin items(body, head, item, value, limit)
             .nav_item_inner
               case limit
                 when "pc"
-                  i.fa.fa-times
+                  i(class=theme.icons.nav_side_btn?theme.icons.nav_side_btn:"fa fa-times fa-tw")
                 default
-                  i.fa.fa-bars
+                  i(class=theme.icons.nav_side_close_btn?theme.icons.nav_side_close_btn:"fa fa-bars fa-tw")
       when "act_statistics"
         +act_statistics(value)
       default

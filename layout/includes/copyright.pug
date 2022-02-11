@@ -3,7 +3,7 @@ if (page.lisence == undefined) ? (theme.page.lisence && theme.page.lisence != tr
   - oriLisence = (oriLisence + '').split(', ')
   - var lisenceLink = ""
   - var lisenceDesc = ""
-  - var lisenceIcon = ""
+  - var lisenceInfo = ""
   case oriLisence[0]
     when "CC"
       - var cc0 = true
@@ -15,55 +15,55 @@ if (page.lisence == undefined) ? (theme.page.lisence && theme.page.lisence != tr
             if first
               - lisenceLink = "by"
               - lisenceDesc = _p('copyright.lisences.CC.BY')
-              - lisenceIcon = "by"
+              - lisenceInfo = "BY"
               - first = false
             else
               - lisenceLink = lisenceLink + "-by"
               - lisenceDesc = lisenceDesc + "-" + _p('copyright.lisences.CC.BY')
-              - lisenceIcon = lisenceIcon + ", by"
+              - lisenceInfo = lisenceInfo + "-BY"
           when "NC"
             - cc0 = false
             if first
               - lisenceLink = "nc"
               - lisenceDesc = _p('copyright.lisences.CC.NC')
-              - lisenceIcon = "nc"
+              - lisenceInfo = "nc"
               - first = false
             else
               - lisenceLink = lisenceLink + "-nc"
               - lisenceDesc = lisenceDesc + "-" + _p('copyright.lisences.CC.NC')
-              - lisenceIcon = lisenceIcon + ", nc"
+              - lisenceInfo = lisenceInfo + "-NC"
           when "ND"
             - cc0 = false
             if first
               - lisenceLink = "nd"
               - lisenceDesc = _p('copyright.lisences.CC.ND')
-              - lisenceIcon = "nd"
+              - lisenceInfo = "nd"
               - first = false
             else
               - lisenceLink = lisenceLink + "-nd"
               - lisenceDesc = lisenceDesc + "-" + _p('copyright.lisences.CC.ND')
-              - lisenceIcon = lisenceIcon + ", nd"
+              - lisenceInfo = lisenceInfo + "-ND"
           when "SA"
             - cc0 = false
             if first
               - lisenceLink = "sa"
               - lisenceDesc = _p('copyright.lisences.CC.SA')
-              - lisenceIcon = "sa"
+              - lisenceInfo = "sa"
               - first = false
             else
               - lisenceLink = lisenceLink + "-sa"
               - lisenceDesc = lisenceDesc + "-" + _p('copyright.lisences.CC.SA')
-              - lisenceIcon = lisenceIcon + ", sa"
+              - lisenceInfo = lisenceInfo + "-SA"
           default
             - break
       if (cc0)
         - lisenceLink = "//creativecommons.org/publicdomain/zero/1.0/"
         - lisenceDesc = _p('copyright.lisences.CC.zero')
-        - lisenceIcon = "cc, zero".split(', ')
+        - lisenceInfo = "CC0 1.0"
       else
         - lisenceLink = "//creativecommons.org/licenses/" + lisenceLink + "/4.0/"
         - lisenceDesc = _p('copyright.lisences.CC.start_content') + lisenceDesc + _p('copyright.lisences.CC.end_content')
-        - lisenceIcon = ("cc, " + lisenceIcon + ", cc4").split(', ')
+        - lisenceInfo = ("CC-" + lisenceInfo + " 4.0")
     default
       - break
 
@@ -88,21 +88,7 @@ if (page.copyright == undefined) ? theme.page.copyright : page.copyright
       .info
         .title=_p('copyright.updated')
         .updated=date(page.updated, date_format)
-      if lisenceIcon
+      if lisenceInfo
         .info
           .title=_p('copyright.lisence')
-          a.lisence(href=url_for(lisenceLink))
-            each icon in lisenceIcon
-              case icon
-                when "cc"
-                  i.fa.fa-link
-                when "by"
-                  i.fa.fa-link
-                when "nc"
-                  i.fa.fa-link
-                when "nd"
-                  i.fa.fa-link
-                when "sa"
-                  i.fa.fa-link
-                when "cc4"
-                  span="4.0"
+          a.lisence(href=url_for(lisenceLink))=lisenceInfo

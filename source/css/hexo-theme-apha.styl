@@ -1,15 +1,20 @@
 @font-face {
-  font-family: UbuntuMono
-  src:url('https://cdn.jsdelivr.net/gh/JonnyJong/blogStaticResource@main/fonts/UbuntuMono-R.woff2') format('woff2'),
-  url('https://cdn.jsdelivr.net/gh/JonnyJong/blogStaticResource@main/fonts/UbuntuMono-R.eot'),
-  url('https://cdn.jsdelivr.net/gh/JonnyJong/blogStaticResource@main/fonts/UbuntuMono-R.eot?#iefix') format('embedded-opentype'),
-  url('https://cdn.jsdelivr.net/gh/JonnyJong/blogStaticResource@main/fonts/UbuntuMono-R.woff') format('woff'),
-  url('https://cdn.jsdelivr.net/gh/JonnyJong/blogStaticResource@main/fonts/UbuntuMono-R.otf') format('opentype');
-  font-display swap
+  font-family: 'Noto Sans SC';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('/font/noto-sans-sc/noto-sans-sc-chinese-simplified-400-normal.woff2') format('woff2'), url('/font/noto-sans-sc/noto-sans-sc-chinese-simplified-400-normal.woff') format('woff');
+}
+@font-face {
+  font-family: 'Ubuntu Mono';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('/font/ubuntu-mono/ubuntu-mono-all-400-normal.woff') format('woff');
 }
 
 :root
-  font-family: UbuntuMono, "PingFang SC", "Microsoft YaHei", Arial, Monaco, monospace, sans-serif
+  font-family: "Ubuntu Mono", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", Arial, Monaco, monospace, sans-serif
   font-size: 14px
 
 // 自定义背景
@@ -66,7 +71,7 @@ a
   flex 1
 #content-inner
   margin auto
-  transition 1s
+  transition .2s
   max-width $max-width - 200px
   if hexo-config("sidebar.enable") && hexo-config("sidebar.items")
     display flex

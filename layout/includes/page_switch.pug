@@ -1,21 +1,20 @@
 -
   var options = {
-    prev_text: '<i class="fa fa-chevron-left fa-tw"></i>',
-    next_text: '<i class="fa fa-chevron-right fa-tw"></i>',
+    prev_text: '<i class="' + (theme.icons.prev_post?theme.icons.prev_post:"fa fa-chevron-left fa-tw") + '"></i>',
+    next_text: '<i class="' + (theme.icons.next_post?theme.icons.next_post:"fa fa-chevron-right fa-tw") + '"></i>',
     mid_size: 1,
     escape: false
   }
 nav.page_switch
   if(!is_post())
     .page_switch
-      - options.format = 'page/%d/#content-outer'
       !=paginator(options)
   else
     .post_switch
       if(page.prev)
         .switch_item(style=page.prev.cover?("background:url("+url_for(page.prev.cover)+");background-position:center;background-size:cover;"):"")
           a.prev_post(href=url_for(page.prev.path))
-            i.fa.fa-chevron-left.fa-tw
+            i(class=theme.icons.prev_post?theme.icons.prev_post:"fa fa-chevron-left fa-tw")
             span=' ' + _p('post.prev_post')
             br
             .post_title=page.prev.title ? page.prev.title : _p('post_item.notitle')
@@ -23,6 +22,6 @@ nav.page_switch
         .switch_item(style=page.next.cover?("background:url("+url_for(page.next.cover)+");background-position:center;background-size:cover;"):"")
           a.next_post(href=url_for(page.next.path))
             span=_p('post.next_post') + ' '
-            i.fa.fa-chevron-right.fa-tw
+            i(class=theme.icons.next_post?theme.icons.next_post:"fa fa-chevron-right fa-tw")
             br
             .post_title= page.next.title ? page.next.title : _p('post_item.notitle')
