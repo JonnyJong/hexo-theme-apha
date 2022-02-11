@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var tocWindow = document.querySelector(".toc");
 
   // 颜色模式
-  function colorMode() {
+/*   function colorMode() {
     const mode = document.documentElement.getAttribute("prefers-color-scheme");
     if ((mode=="auto")&&matchMedia('(prefers-color-scheme: dark)').matches) {
       document.documentElement.setAttribute("prefers-color-scheme","dark");
@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.documentElement.setAttribute("prefers-color-scheme","dark");
       }
     }
-  }
+  } */
 
   cleanSidebat();
   updateTime();
@@ -303,5 +303,4 @@ document.addEventListener('DOMContentLoaded', function () {
   figure();
   config.fooRt && runtimeFooter();
   config.tocSmJ && config.ifToc && (tocObj.length != 0) && tocjump();
-  colorMode();
 })

@@ -17,7 +17,7 @@
 - var user_scalable = theme.user_scalable ? "" : ", user-scalable=no"
 
 //- 颜色模式
-- var color_scheme = theme.color_mode ? theme.color_mode : "auto" //- no-preference light dark
+- var color_scheme = theme.color_mode=="dark" ? theme.color_mode : "light" //- no-preference light dark
 
 include ./mixin.pug
 
@@ -39,9 +39,12 @@ html(lang=config.language prefers-color-scheme=color_scheme)
     include ./config.pug
     //- 引用CDN
     link(rel='preload', href=theme.CDN.fontawesome, as="style", onload="this.rel='stylesheet'")
+    //- 需要提前执行的 js
+    include ./head_js.pug
   body(where=what_is_this_page)
     include ./skipToContentButtom.pug
     include ./header/header.pug
+    //- .forTest(style="height:100px;width:100px;background:#0002;position:fixed;top:30vh;right:0;z-index:1000;cursor:pointer;user-select:none;" onclick="if(document.documentElement.getAttribute('prefers-color-scheme')=='dark'){document.documentElement.setAttribute('prefers-color-scheme','light')}else{document.documentElement.setAttribute('prefers-color-scheme','dark')}")='实验模式：\n切换暗色、亮色模式'
     #content-outer
       #content-inner
         if body

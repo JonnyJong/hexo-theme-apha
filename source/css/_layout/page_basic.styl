@@ -672,15 +672,19 @@ article
 
 // 表格
 article>table
-  width 100%
-article>table thead tr
-  background-color #8884
-article>table thead tr th
-  padding 8px
-article>table tbody
-  background-color #8882
-article>table tbody tr td
-  padding 4px
+  max-width 100%
+  margin 0 auto
+  thead tr
+    background-color #8884
+  thead tr th
+    padding 8px
+    line-height 1.2
+  tbody
+    background-color #8882
+    tr td
+      padding 4px 8px
+    tr:nth-child(even)
+      background-color #8882
 
 // 高亮
 table code
