@@ -131,10 +131,11 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
       width 80px
       background #0000
       outline none
-      height 80%
+      height $navbar_height
       border 0
       font-size 16px
       transition .1s ease-in-out
+    .s_result:hover+.s_in
     .s_in:focus
     .s_in:hover
       width 200px
@@ -166,6 +167,7 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
         .item:hover
           background var(--bg-color)
           box-shadow var(--b-shadow-lite)
+    .s_result:hover
     .s_in:focus+.s_result
     .s_in:hover+.s_result
       display block

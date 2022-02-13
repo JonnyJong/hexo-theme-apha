@@ -75,9 +75,9 @@ function search(e) {
     s_db.forEach(s_n => {
       s_hit=false;
       if (s_n.title!=undefined&&s_n.title.indexOf(e.value)>-1) {s_hit=true;}
-      if (s_n.content!=undefined&&s_n.content.indexOf(e.value)>-1) {s_hit=true;}
-      if (s_n.tag!=undefined) {s_n.tags.forEach(tag => {(tag.indexOf(e.value)>-1)?s_hit=true:"";});}
-      if (s_n.categories!=undefined) {s_n.categories.forEach(cat => {(cat.indexOf(e.value)>-1)?s_hit=true:"";});}
+      if (!s_hit&&s_n.content!=undefined&&s_n.content.indexOf(e.value)>-1) {s_hit=true;}
+      if (!s_hit&&s_n.tag!=undefined) {s_n.tags.forEach(tag => {(tag.indexOf(e.value)>-1)?s_hit=true:"";});}
+      if (!s_hit&&s_n.categories!=undefined) {s_n.categories.forEach(cat => {(cat.indexOf(e.value)>-1)?s_hit=true:"";});}
       if (s_hit) {
         const item = document.createElement("a");
         item.className = "item";
@@ -88,7 +88,7 @@ function search(e) {
           s_tmpSpace="";
           s_tmpSpace+='<div class="more_info">';
           if (s_n.tags!=undefined&&s_n.tags.length!=0) {
-            s_tmpSpace+=(s_n.tags.length==1?'<i class="fa fa-tag fa-fw"></i>':'<i class="fa fa-tags fa-fw"></i>');
+            s_tmpSpace+=(s_n.tags.length==1?'<i class="'+config.icon_tag+'"></i>':'<i class="'+config.icon_tag+'"></i>');
             s_n.tags.forEach(tag => {
               s_tmpSpace+='<span class="tag">'+tag+' </span>';
             });
