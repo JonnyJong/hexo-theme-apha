@@ -83,7 +83,6 @@ function search(e) {
         item.className = "item";
         item.setAttribute("href",s_n.url)
         item.innerHTML='<div class="title">'+(s_n.title!=undefined?s_n.title:config.s_notitle)+'</div>';
-        // item.innerHTML='<a class="title" href="'+s_n.url+'>'+(s_n.title?s_n.title:config.s_notitle)+'</a>';
         item.innerHTML += ((s_n.content!=undefined&&s_n.content!="")?'<div class="content">'+s_n.content.replace(/<[^>]+>/g, "").slice(0,100)+'</div>':'');
         if ((s_n.categories!=undefined&&s_n.categories.length!=0)||(s_n.tags!=undefined&&s_n.tags.length!=0)) {
           s_tmpSpace="";
@@ -132,7 +131,7 @@ function initializeSDB(e) {
     }else{
       s_db_load=true;
       s_msg(e,"failed");
-      console.error("搜索数据库加载失败！Search DB failed to load!");
+      console.error("搜索数据库加载失败！Search DB failed to load!\n错误代码/code: "+require.status);
     }
   }
 }
@@ -185,11 +184,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     switch (type) {
       case 1:
-        return ((days==0) ? "" : days+" 天 ") + ((h==0) ? "" : h+" 小时 ") + ((min==0) ? "" : min+" 分钟 ") + ((s==0) ? "" : s+" 秒");
+        return ((days==0) ? "" : days+" "+config.lang_days+" ") + ((h==0) ? "" : h+" "+config.lang_hours+" ") + ((min==0) ? "" : min+" "+config.lang_mins+" ") + ((s==0) ? "" : s+" "+config.lang_s);
       case 2:
-        return ((days==0) ? "" : days+" 天 ");
+        return ((days==0) ? "" : days+" "+config.lang_days+" ");
       case 3:
-        return ((days!=0) ? days+" 天前" : ((h!=0) ? h+" 小时前" : ((min!=0) ? min+" 分钟前" : s+" 秒前")))
+        return ((days!=0) ? days+" "+config.lang_days_b : ((h!=0) ? h+" "+config.lang_hours_b : ((min!=0) ? min+" "+config.lang_mins_b : s+" "+config.lang_s_b)))
       default:
         return;
     }

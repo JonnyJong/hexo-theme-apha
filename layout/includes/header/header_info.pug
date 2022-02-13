@@ -25,13 +25,13 @@ else if is_post()
         span.post_title= page.title=_p('post_item.notitle')
       p
       if page.date
-        i(class=theme.icons.date?theme.icons.date:"fas fa-pencil-alt fa-fw")
+        i(class=icon_date)
         time(datetime=page.date.toJSON())= _p('post_item.date') + ' ' + date(page.date, date_format) + ' '
       if page.updated
-        i(class=theme.icons.updated?theme.icons.updated:"fas fa-history fa-fw")
+        i(class=icon_updated)
         time(datetime=page.updated.toJSON())= _p('post_item.updated') + ' ' + date(page.updated, date_format) + ' '
       if (page.categories.data.length > 0)
-        i(class=theme.icons.categorie?theme.icons.categorie:"fas fa-folder fa-fw")
+        i(class=icon_categorie)
         each cate, count in page.categories.data
           a.page_cate(href=url_for(cate.path))=cate.name
           if (count < page.categories.data.length - 1)
@@ -39,9 +39,9 @@ else if is_post()
       if (page.tags.data.length > 0)
         span=' '
         if (page.tags.data.length > 1)
-          i(class=theme.icons.tags?theme.icons.tags:"fas fa-tags fa-fw")
+          i(class=icon_tags)
         else
-          i(class=theme.icons.tag?theme.icons.tag:"fas fa-tag fa-fw")
+          i(class=icon_tag)
         each tag in page.tags.data
           a.page_tag(href=url_for(tag.path))=tag.name
           span=' '

@@ -52,3 +52,13 @@ copyright:
       NC: 非商业性使用
       ND: 禁止演绎
       SA: 相同方式共享
+js:
+  time:
+    days: 天
+    hours: 小时
+    mins: 分钟
+    s: 秒
+    days_before: 天前
+    hours_before: 小时前
+    mins_before: 分钟前
+    s_before: 秒前

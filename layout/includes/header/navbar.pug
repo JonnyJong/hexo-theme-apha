@@ -109,9 +109,9 @@ mixin items(body, head, item, value, limit)
                 i(class=item[3])
                 span=item[2]
                 if (limit != "pc") && (typeof body == 'object') && body
-                  i(class=(theme.icons.nav_menu?theme.icons.nav_menu:"fa fa-chevron-right fa-fw")+" ho_rotate_90")
+                  i(class=icon_sub_menu+" ho_rotate_90")
             if iconRender
-              i(class=(theme.icons.nav_menu?theme.icons.nav_menu:"fa fa-chevron-right fa-fw")+" ho_rotate_90")
+              i(class=icon_sub_menu+" ho_rotate_90")
             +navMenu(body, item)
           else
             div(class="fakeA" + (iconRender ? " short" : ""))
@@ -119,9 +119,9 @@ mixin items(body, head, item, value, limit)
                 i(class=item[3])
                 span=item[2]
                 if (limit != "pc") && (typeof body == 'object') && body
-                  i(class=(theme.icons.nav_menu?theme.icons.nav_menu:"fa fa-chevron-right fa-fw")+" ho_rotate_90")
+                  i(class=icon_sub_menu+" ho_rotate_90")
             if iconRender
-              i(class=(theme.icons.nav_menu?theme.icons.nav_menu:"fa fa-chevron-right fa-fw")+" ho_rotate_90")
+              i(class=icon_sub_menu+" ho_rotate_90")
             +navMenu(body, item)
       //- 移动端菜单按钮
       when 'side_nav_btn'
@@ -130,9 +130,9 @@ mixin items(body, head, item, value, limit)
             .nav_item_inner
               case limit
                 when "pc"
-                  i(class=theme.icons.nav_side_btn?theme.icons.nav_side_btn:"fa fa-times fa-tw")
+                  i(class=icon_close)
                 default
-                  i(class=theme.icons.nav_side_close_btn?theme.icons.nav_side_close_btn:"fa fa-bars fa-tw")
+                  i(class=icon_menu)
       when "act_statistics"
         +act_statistics(value)
       when "search"

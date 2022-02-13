@@ -436,12 +436,10 @@ icons:
   prev_post:
   # 下一篇文章
   next_post:
-  # 导航栏菜单指示
-  nav_menu:
-  # 侧边导航栏按钮
-  nav_side_btn:
-  # 侧边导航栏关闭按钮
-  nav_side_close_btn:
+  # 菜单
+  menu:
+  # 子菜单指示
+  sub_menu:
   # 关闭按钮
   close_btn:
   # 链接

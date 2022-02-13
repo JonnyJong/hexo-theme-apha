@@ -18,28 +18,28 @@ mixin page_info(page, type, other_info)
         .inner_info
           if page.link
             a.page_title(href=page.link style="display:block;width:max-content;")
-              i(class=theme.icons.link?theme.icons.link:"fa fa-link fa-tw" style="font-size:24px;")
+              i(class=icon_link style="font-size:24px;")
               h1.page_title=page.title ? page.title : _p('post_item.notitle')
           else
             h1.page_title=page.title ? page.title : _p('post_item.notitle')
           if other_info && (page.date || page.updated || theme.third_party.busuanzi || theme.page.wordcount || (page.categories.data.length > 0) || (page.tags.data.length > 0))
             .other_info
               if page.date
-                i(class=theme.icons.date?theme.icons.date:"fas fa-pencil-alt fa-fw")
+                i(class=icon_date)
                 time.marginR(datetime=page.date.toJSON())= _p('post_item.date') + ' ' + date(page.date, date_format)
               if page.updated
-                i(class=theme.icons.updated?theme.icons.updated:"fas fa-history fa-fw")
+                i(class=icon_updated)
                 time.marginR(datetime=page.updated.toJSON())= _p('post_item.updated') + ' ' + date(page.updated, date_format)
               if theme.third_party.busuanzi
-                i(class=theme.icons.read?theme.icons.read:"fas fa-eye fa-fw")
+                i(class=icon_read)
                 span= _p('post_item.read') + ' '
                 span.marginR#busuanzi_value_page_pv
               if theme.page.wordcount
-                i(class=theme.icons.wordcount?theme.icons.wordcount:"fas fa-file-alt fa-fw")
+                i(class=icon_wordcount)
                 span=_p('post_item.wordcount_before') + wordcount(page.content) + _p('post_item.wordcount_after')
               if (page.categories.data.length > 0)
                 .line_warp_h
-                i(class=theme.icons.categorie?theme.icons.categorie:"fas fa-folder fa-fw")
+                i(class=icon_categorie)
                 each cate, count in page.categories.data
                   a.page_cate(href=url_for(cate.path))=cate.name
                   if (count < page.categories.data.length - 1)
@@ -47,8 +47,8 @@ mixin page_info(page, type, other_info)
               if (page.tags.data.length > 0)
                 .line_warp_h
                 if (page.tags.data.length > 1)
-                  i(class=theme.icons.tags?theme.icons.tags:"fas fa-tags fa-fw")
+                  i(class=icon_tags)
                 else
-                  i(class=theme.icons.tag?theme.icons.tag:"fas fa-tag fa-fw")
+                  i(class=icon_tag)
                 each tag in page.tags.data
                   a.page_tag.marginR(href=url_for(tag.path))=tag.name
