@@ -1,0 +1,6 @@
+.s_penal_bg
+  .s_close(onclick="this.parentNode.className='s_penal_bg'")
+  .s_penal
+    i(class='close '+icon_close onclick="this.parentNode.parentNode.className='s_penal_bg'")
+    input.s_in(type="text" onclick="if(s_db==null&&s_db_load==true){s_db_load=false;s_msg(this,'load');initializeSDB(this);s_db_load=true;}this.oninput=function(){search(this)}" placeholder=_p("global.search_placeholder"))
+    .s_result

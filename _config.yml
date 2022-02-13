@@ -98,6 +98,8 @@ navbar:
       tag: /tags/
     al, hr:
     pc, placeholder, 0: 
+    al, search, 0: icon
+    pc, search, 1: input
     al, menu, 主页, fas fa-home, /:
     mbl, menu, 关于, fa fa-heart, /about/:
     al, menu, 友情链接, fa fa-link, /link/:
@@ -112,6 +114,7 @@ navbar:
     al, placeholder, 0: 
     al, site, 0: /logo.png, default, root
     al, placeholder, 1: 
+    al, search, 0: icon
   
   # 导航栏高度（默认 60px）
   height: 
@@ -165,6 +168,10 @@ sidebar:
   # 自定义组件（允许自由调整顺序）
   items:
     # all、page、index；all、pc、mbl（此注释发布时删除，请写入文档）
+    all, all, search:
+      # search: # 搜索功能需要安装 hexo-generator-search 并在根目录 _config.yml 添加配置。 # 两种样式 icon/input
+      search, 0: icon
+      search, 1: input
     all, all, author:
       avatar, 1: #round
       author_name:
@@ -435,8 +442,12 @@ icons:
   nav_side_btn:
   # 侧边导航栏关闭按钮
   nav_side_close_btn:
+  # 关闭按钮
+  close_btn:
   # 链接
   link:
+  # 搜索
+  search:
 
 # =============================================================
 # 自定义背景
@@ -525,6 +536,10 @@ pjax:
 
 # PWA
 pwa:
+
+# 搜索
+# 数据库路径（默认使用 hexo 配置文件中的路径，若都未配置，则使用“/search.json”）
+search_db_href:
 
 # =============================================================
 # 第三方

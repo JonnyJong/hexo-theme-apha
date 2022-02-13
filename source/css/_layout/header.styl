@@ -125,6 +125,50 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
     transition .1s
   .act_inner:hover
     background var(--main-color-bgh)
+  .search
+    position relative
+    .s_in
+      width 80px
+      background #0000
+      outline none
+      height 80%
+      border 0
+      font-size 16px
+      transition .1s ease-in-out
+    .s_in:focus
+    .s_in:hover
+      width 200px
+    .s_result
+      position absolute
+      top $navbar_height
+      right 0
+      width 400px
+      background var(--body-color)
+      box-shadow var(--b-shadow-lite)
+      border-radius $border-radius
+      padding $block-padding
+      display none
+      white-space pre-wrap
+      .s_msg
+        text-align center
+      .s_items
+        overflow auto
+        max-height 50vh
+        .item
+          color var(--text-color-r)
+          display block
+          border-radius $border-radius
+          padding $block-padding
+          transition .1s
+          .title
+            transition .1s
+            font-size 20px
+        .item:hover
+          background var(--bg-color)
+          box-shadow var(--b-shadow-lite)
+    .s_in:focus+.s_result
+    .s_in:hover+.s_result
+      display block
 .navbar#pcNavbar .placeholder:hover
 .navbar#mblNavbar .placeholder:hover
 .nav_item_outer.noLink:hover

@@ -26,6 +26,7 @@
       align-items baseline
     .button
       margin-top 8px
+      .search
       a
         display block
         width 100%
@@ -36,8 +37,10 @@
         line-height 34px
         transition .2s
         border-radius $border-radius
+        cursor pointer
         i
           margin-right 4px
+      .search:hover
       a:hover
         background var(--main-color)
         color var(--text-color)
@@ -181,6 +184,39 @@
       .toc-link:hover
         background var(--main-color)
         color var(--text-color)
+    .search_penal
+      margin-top 8px
+      .s_in
+        width 100%
+        height 30px
+        background #0000
+        border 0
+        border-bottom 4px solid var(--main-color-bgh)
+        transition .1s
+      .s_in:focus
+        border-bottom 4px solid var(--main-color)
+        outline none
+      .s_result
+        width 100%
+        --max-height-m $block-margin*2 + $block-padding*2 + 352px
+        max-height calc(100vh - var(--max-height-m))
+        overflow auto
+      .s_msg
+        margin-top $block-margin
+        text-align center
+      .s_items
+        .item
+          color var(--text-color-r)
+          display block
+          border-radius $border-radius
+          padding $block-padding
+          transition .1s
+          .title
+            transition .1s
+            font-size 20px
+        .item:hover
+          background var(--bg-color)
+          box-shadow var(--b-shadow-lite)
   .item:hover
     box-shadow var(--b-shadow)
   .sticky_items

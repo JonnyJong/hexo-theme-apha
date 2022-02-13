@@ -1,0 +1,64 @@
+.s_penal_bg
+  position fixed
+  height 100vh
+  width 100vw
+  background #0008
+  z-index 101
+  display none
+.s_penal_bg.show
+  display block
+.s_close
+  position absolute
+  height 100vh
+  width 100vw
+i.close
+  text-align center
+  line-height 32px
+  height 32px
+  width 32px
+  border-radius $border-radius
+  cursor pointer
+  transition .1s
+i.close:hover
+  background var(--main-color-bgh)
+.s_penal
+  margin $block-margin auto
+  width 600px
+  background var(--bg-color)
+  border-radius $border-radius
+  padding $block-padding
+  color var(--text-color-r)
+  max-width 80vw
+  if ($global-blur!=0)
+    backdrop-filter blur($global-blur)
+  .s_in
+    width 100%
+    height 30px
+    background #0000
+    border 0
+    border-bottom 4px solid var(--main-color-bgh)
+    transition .1s
+  .s_in:focus
+    border-bottom 4px solid var(--main-color)
+    outline none
+  .s_result
+    width 100%
+    --max-height-m $block-margin*2 + $block-padding*2 + 70px
+    max-height calc(100vh - var(--max-height-m))
+    overflow auto
+  .s_msg
+    margin-top $block-margin
+    text-align center
+  .s_items
+    .item
+      color var(--text-color-r)
+      display block
+      border-radius $border-radius
+      padding $block-padding
+      transition .1s
+      .title
+        transition .1s
+        font-size 20px
+    .item:hover
+      background var(--bg-color)
+      box-shadow var(--b-shadow-lite)

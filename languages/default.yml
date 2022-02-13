@@ -6,6 +6,8 @@ page_title:
 global:
   skip_to_content: 转跳到内容
   back_buttom: 返回
+  search: 搜索
+  search_placeholder: 键入以搜索
 post_item:
   date: 创建于
   updated: 更新于

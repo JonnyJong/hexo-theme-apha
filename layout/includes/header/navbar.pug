@@ -135,6 +135,18 @@ mixin items(body, head, item, value, limit)
                   i(class=theme.icons.nav_side_close_btn?theme.icons.nav_side_close_btn:"fa fa-bars fa-tw")
       when "act_statistics"
         +act_statistics(value)
+      when "search"
+        .nav_item_outer
+          case body
+            when "icon"
+              .fakeA(onClick='document.querySelector(".s_penal_bg").className="s_penal_bg show"')
+                .nav_item_inner
+                  i(class=icon_search)
+                  span=_p("global.search")
+            when "input"
+              .nav_item_inner.search
+                input.s_in(type="text" onclick="if(s_db==null&&s_db_load==true){s_db_load=false;s_msg(this,'load');initializeSDB(this);s_db_load=true;}this.oninput=function(){search(this)}" placeholder=_p("global.search_placeholder"))
+                .s_result
       default
         - break
 

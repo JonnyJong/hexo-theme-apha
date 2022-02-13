@@ -99,6 +99,17 @@ mixin side_toc(sub_body)
   if (page.toc == undefined | page.toc == true) && (((is_post()) && sub_body.post) || ((is_page()) && sub_body.page))
     != toc(page.content,{list_number: sub_body.list_number})
 
+mixin search(sub_body)
+  case sub_body
+    when "icon"
+      .button
+        .search(onClick='document.querySelector(".s_penal_bg").className="s_penal_bg show"')
+          i(class=icon_search)
+          span=_p("global.search")
+    when "input"
+      .search_penal
+        input.s_in(type="text" onclick="if(s_db==null&&s_db_load==true){s_db_load=false;s_msg(this,'load');initializeSDB(this);s_db_load=true;}this.oninput=function(){search(this)}" placeholder=_p("global.search_placeholder"))
+        .s_result
 mixin item(value)
   +item_info(value)
   each sub_body, sub_head in value
@@ -136,6 +147,8 @@ mixin item(value)
         +act_statistics(sub_body)
       when "toc"
         +side_toc(sub_body)
+      when "search"
+        +search(sub_body)
 
 mixin deviceFilter(item, value)
   case item[1]
