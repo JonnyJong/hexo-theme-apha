@@ -13,7 +13,7 @@ block content
           if global_back_btn
             include includes/global_back_btn.pug
 
-          h1= ' '+page.category + (theme.category.show_total ? (' - ' + site.categories.length) : '')
+          h1= ' '+page.category + (theme.category.show_total ? (' - ' + (site.categories.findOne({name: page.category}).length)) : '')
           - page.posts.each(function(article){
               +post_item(article)
           - })
