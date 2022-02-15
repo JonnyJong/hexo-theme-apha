@@ -8,7 +8,7 @@
 - const fooSt = (theme.footer.since) ? true : false
 - const ifToc = (page.toc != undefined) ? page.toc : true
 - const tocSmJ = theme.page.click_toc_smooth_jump ? true : false
-- const s_db_href = theme.s_db_href ? theme.s_db_href : (config.search.template!=undefined?config.search.template:"/search.json")
+- const s_db_href = theme.search_db_href ? theme.search_db_href : "/search.json"
 
 script.
   var config = { 
@@ -20,9 +20,9 @@ script.
     ifToc: !{ifToc},
     tocSmJ: !{tocSmJ},
     s_db_href: "!{s_db_href}",
-    s_msg_load: "正在加载数据库",
-    s_msg_failed: "数据库加载失败",
-    s_msg_nothing: "没有结果",
+    s_msg_load: "!{_p('js.search.DB_loading')}",
+    s_msg_failed: "!{_p('js.search.DB_failed')}",
+    s_msg_nothing: "!{_p('js.search.no_result')}",
     s_notitle: "!{_p('post_item.notitle')}",
     lang_days: "!{_p('js.time.days')}",
     lang_hours: "!{_p('js.time.hours')}",

@@ -91,10 +91,16 @@ a
   margin-bottom $block-margin
 
 // 页面主要部分与上方间隔
-[where="page"]
-[where="post"]
-  #content-inner
-    padding $navbar_height $main_content_margin $block-margin $main_content_margin
+if hexo-config("navbar.pc_nav_items") || hexo-config("navbar.mbl_nav_items")
+  [where="page"]
+  [where="post"]
+    #content-inner
+      padding $navbar_height $main_content_margin $block-margin $main_content_margin
+else
+  [where="page"]
+  [where="post"]
+    #content-inner
+      padding 0 $main_content_margin $block-margin $main_content_margin
 [where="home"] #content-inner
   padding 0 $main_content_margin $block-margin $main_content_margin
 // hr
@@ -133,9 +139,13 @@ hr
       .subtitle
         font-size $index_subtitle_font_size*0.9
 @media screen and (min-width: 841px)
-  nav#mblNavbar
+  .navbar.row.pcNone
   .navbar_inner.mbl
     display none
+  [where="page"]
+  [where="post"]
+    .navbar.row.pcNone~#content-outer #content-inner
+      padding 0 $main_content_margin $block-margin $main_content_margin
 @media screen and (max-width: 840px)
   #content-inner
     flex-direction column
@@ -143,6 +153,7 @@ hr
   .sidebar_items
   .main_column
     width 100%
+  .navbar.row.mblNone
   .navbar_inner.pc
     display none
   .header_info
@@ -151,6 +162,12 @@ hr
         font-size $index_big_title_font_size*0.8
       .subtitle
         font-size $index_subtitle_font_size*0.8
+  .sidebar_items .item:first-child
+    margin-top 0
+  [where="page"]
+  [where="post"]
+    .navbar.row.mblNone~#content-outer #content-inner
+      padding 0 $main_content_margin $block-margin $main_content_margin
 @media screen and (max-width: 600px)
   #content-inner
     .recent-post-item

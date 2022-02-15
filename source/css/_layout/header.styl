@@ -64,7 +64,7 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
   animation navbar_show .2s ease-in-out
   white-space nowrap
   font-size $navbar_height*0.27
-.navbar.nav_hide
+.navbar.hide
   top $navbar_height*-1
   animation navbar_hide .2s ease-in-out
 .navbar_inner
@@ -103,7 +103,7 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
   .site_title
     font-size $navbar_height*0.4
     font-weight bold
-  .placeholder
+  .flexbox
     flex auto
   .hr
     width 2px
@@ -171,18 +171,20 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
     .s_in:focus+.s_result
     .s_in:hover+.s_result
       display block
-.navbar#pcNavbar .placeholder:hover
-.navbar#mblNavbar .placeholder:hover
+.navbar.row .nav_item_outer.flexbox:hover
+.navbar.side .nav_item_outer.flexbox:hover
+.navbar.row .nav_item_outer.hr:hover
+.navbar.side .nav_item_outer.hr:hover
 .nav_item_outer.noLink:hover
-.navbar#pcNavbar .nav_item_outer.act_outer:hover
-.navbar#mblNavbar .nav_item_outer.act_outer:hover
+.navbar.row .nav_item_outer.act_outer:hover
+.navbar.side .nav_item_outer.act_outer:hover
   background none
 .nav_item_outer.noLink
   background none
 .nav_item_outer.noLink span
   cursor default
 
-#pcNavbar
+.navbar.row
   .nav_sub_menu
     position absolute
     display none
@@ -224,9 +226,9 @@ a.nav_menu_cover
 a.nav_menu_cover.show
   display block
   animation nav_menu_cover_show .2s ease-in-out
-.navbar.show#mblNavbar
+.navbar.show.side
   transform translateX(0)
-#mblNavbar
+.navbar.side
   if hexo-config('navbar.mbl_menu') != right
     transform translateX(-100%)
     left 0
@@ -276,6 +278,7 @@ a.nav_menu_cover.show
     display flex
     align-items center
     padding 0 8px
+  .fakeA.short .nav_item_inner
   a.short .nav_item_inner
     width 60%
     display inline-block

@@ -21,6 +21,8 @@ block content
                     a.item_link(href=url_for(item.link))
                       if item.avatar
                         img.item_avatar(src=url_for(item.avatar) alt=item.name)
+                      else
+                        .item_avatar
                       .item_info
                         p.item_name=item.name
                         p.item_d=item.description

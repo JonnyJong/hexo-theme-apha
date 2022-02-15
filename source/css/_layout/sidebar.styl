@@ -160,9 +160,8 @@
       margin 8px 0 0 0
       padding 0
       if hexo-config('navbar.auto_folding')
-        --toc-max-height $block-margin*2 + $block-padding*2 + 36px
-      else
-        --toc-max-height $block-margin*2 + $block-padding*2 + $navbar_height + 36px
+        transition .2s
+      --toc-max-height $block-margin*2 + $block-padding*2 + $navbar_height + 36px
       max-height calc(100vh - var(--toc-max-height))
       overflow auto
       overflow overlay
@@ -222,10 +221,17 @@
     box-shadow var(--b-shadow)
   .sticky_items
     position sticky
-    if hexo-config('navbar.auto_folding')
-      top $block-margin
-    else
-      top $block-margin + $navbar_height
+    top $block-margin + $navbar_height
+    transition .2s
+if hexo-config('navbar.auto_folding')
+  .navbar.row.hide:not(.pcNone) ~ #content-outer .sidebar_items .sticky_items
+    top $block-margin
+    .item .toc
+      --toc-max-height $block-margin*2 + $block-padding*2 + 36px
+  .navbar.row.pcNone ~ #content-outer .sidebar_items .sticky_items
+    top $block-margin
+    .item .toc
+      --toc-max-height $block-margin*2 + $block-padding*2 + 36px
 @media screen and (max-width: 840px)
   .onlyPC
     display none

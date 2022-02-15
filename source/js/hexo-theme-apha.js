@@ -1,14 +1,14 @@
 // 手机端打开菜单
 function nav_menu_btn() {
   if (mblNavbar == "none"){
-    mblNavbar = document.getElementById("mblNavbar");
-    mblNavBakCover = document.getElementById("nav_menu_cover");
+    mblNavbar = document.querySelector("nav.navbar.side");
+    mblNavBakCover = document.querySelector("a.nav_menu_cover");
   }
-  if (mblNavbar.className == "navbar"){
-    mblNavbar.className = "navbar show";
+  if (mblNavbar.className == "navbar side"){
+    mblNavbar.className = "navbar side show";
     mblNavBakCover.className = "nav_menu_cover show";
   }else{
-    mblNavbar.className = "navbar";
+    mblNavbar.className = "navbar side";
     mblNavBakCover.className = "nav_menu_cover";
   }
 }
@@ -214,14 +214,14 @@ document.addEventListener('DOMContentLoaded', function () {
   // 导航栏自动收起
   function navFold() {
     if ((saveOffset - window.pageYOffset) < -4) {
-      pcNavbar.className = "navbar nav_hide";
+      rowNavbar.classList.add("hide")
     } else if ((saveOffset - window.pageYOffset) > 4) {
-      pcNavbar.className = "navbar";
+      rowNavbar.classList.remove("hide")
     }
     saveOffset = window.pageYOffset;
   }
   var saveOffset = window.pageYOffset;
-  var pcNavbar = document.getElementById("pcNavbar");
+  var rowNavbar = document.querySelector("nav.navbar.row");
 
   // 最后更新日期
   function updateTime() {

@@ -62,3 +62,7 @@ js:
     hours_before: 小时前
     mins_before: 分钟前
     s_before: 秒前
+  search:
+    DB_loading: 正在加载数据库
+    DB_failed: 数据库加载失败
+    no_result: 没有结果

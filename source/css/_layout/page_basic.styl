@@ -170,6 +170,7 @@ article
       .gutter
         display none
     td.code
+      width 100%
       .line
         if hexo-config('page.auto_warp')
           white-space normal
@@ -251,12 +252,12 @@ article
       .addition
         background-color #0f04
         display inline-block
-        width 100%
+        width calc(100% - 16px)
 
       .deletion
         background-color #f004
         display inline-block
-        width 100%
+        width calc(100% - 16px)
   
   pre code
     overflow auto
@@ -677,7 +678,6 @@ article
 // 表格
 article>table
   max-width 100%
-  margin 0 auto
   thead tr
     background-color #8884
   thead tr th

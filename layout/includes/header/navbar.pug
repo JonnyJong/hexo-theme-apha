@@ -6,16 +6,20 @@ mixin siteInfo(value)
       img(src=url_for(theme.info.favicon) alt='site_icon')
     when 'avatar'
       img(src=url_for(theme.info.avatar) alt='site_icon')
-    when 'none'
+    when ''
+    when undefined
+    when null
+    when "null"
       - break
     default
       img(src=url_for(value[0]) alt='site_icon')
   //- 间隔
-  if value[0]!="none" && (value[1]!=""||value[1]!=undefined)
+  if value[0]!="null" && value[0]!="" && (value[1]!="none"||value[1]!=undefined)
     .width_in_info
   //- 标题
   case value[1]
-    when 'default'
+    when ''
+    when undefined
       span.site_title=config.title
     when 'none'
       - break
@@ -39,137 +43,135 @@ mixin navMenu(body, item)
 //- act_statistics
 mixin act_statistics(value)
   .nav_item_outer.act_outer
-    a.nav_item_inner.act_inner(href= value.archive ? url_for(value.archive) : "")
+    a.nav_item_inner.act_inner(href= value.archive ? value.archive : "/archives/")
       .title=_p("page.archives")
       .value=site.posts.length
-    a.nav_item_inner.act_inner(href= value.categorie ? url_for(value.categorie) : "")
+    a.nav_item_inner.act_inner(href= value.categorie ? value.categorie : "/categories/")
+      span=value.categorie
       .title=_p("page.categories")
       .value=site.categories.length
-    a.nav_item_inner.act_inner(href= value.tag ? url_for(value.tag) : "")
+    a.nav_item_inner.act_inner(href= value.tag ? value.tag : "/tags/")
       .title=_p("page.tags")
       .value=site.tags.length
 
 mixin items(body, head, item, value, limit)
-  if item[0] != limit
-    case item[1]
-      //- 站点信息
-      when 'site'
-        case value[2]
-          when 'root'
-            .nav_item_outer.site_info
-              a(href=config.root)
-                .nav_item_inner
-                  +siteInfo(value)
-          when 'none'
-            .nav_item_outer.noLink.site_info
-              .nav_item_inner
-                +siteInfo(value)
-          default
-            .nav_item_outer.site_info
-              a(href=value[2])
-                .nav_item_inner
-                  +siteInfo(value)
-      //- 图片
-      when 'img'
-        if value[1] != 'none'
-          .nav_item_outer
-            a(href=url_for(value[1]))
-              .nav_item_inner
-                img(src=url_for(value[0]) alt='img')
-        else
-          .nav_item_outer.noLink
+  case item[0]
+    //- 站点信息
+    when 'site'
+      if (value[2]==undefined||value[2]=="")
+        .nav_item_outer.site_info
+          a(href=config.root)
+            .nav_item_inner
+              +siteInfo(value)
+      else if (value[2]=="none")
+        .nav_item_outer.noLink.site_info
+          .nav_item_inner
+            +siteInfo(value)
+      else
+        .nav_item_outer.site_info
+          a(href=value[2])
+            .nav_item_inner
+              +siteInfo(value)
+    //- 图片
+    when 'img'
+      if value[1]!='' && value[1]!=undefined
+        .nav_item_outer
+          a(href=url_for(value[1]))
             .nav_item_inner
               img(src=url_for(value[0]) alt='img')
-      //- 文本
-      when 'text'
-        if value[1] != 'none'
-          .nav_item_outer
-            a(href=url_for(value[1]))
-              .nav_item_inner
-                span=value[0]
-        else
-          .nav_item_outer.noLink
+      else
+        .nav_item_outer.noLink
+          .nav_item_inner
+            img(src=url_for(value[0]) alt='img')
+    //- 文本
+    when 'text'
+      if value[1] != '' && value[1]!=undefined
+        .nav_item_outer
+          a(href=url_for(value[1]))
             .nav_item_inner
               span=value[0]
-      //- 占位符
-      when 'placeholder'
-        .nav_item_outer.placeholder
-      //- 分隔线
-      when 'hr'
-        .nav_item_outer.hr
-      //- 菜单
-      when 'menu'
-        - var iconRender
-        if (limit == "pc") && (typeof body == 'object') && body
-          - iconRender = true
-        .nav_item_outer.menu
-          if item[4] != 'none'
-            a(class=(iconRender ? "short" : "") href=url_for(item[4]))
-              .nav_item_inner
-                i(class=item[3])
-                span=item[2]
-                if (limit != "pc") && (typeof body == 'object') && body
-                  i(class=icon_sub_menu+" ho_rotate_90")
-            if iconRender
-              i(class=icon_sub_menu+" ho_rotate_90")
-            +navMenu(body, item)
-          else
-            div(class="fakeA" + (iconRender ? " short" : ""))
-              .nav_item_inner
-                i(class=item[3])
-                span=item[2]
-                if (limit != "pc") && (typeof body == 'object') && body
-                  i(class=icon_sub_menu+" ho_rotate_90")
-            if iconRender
-              i(class=icon_sub_menu+" ho_rotate_90")
-            +navMenu(body, item)
-      //- 移动端菜单按钮
-      when 'side_nav_btn'
-        .nav_item_outer
-          a.side_nav_btn(onClick="nav_menu_btn()")
+      else
+        .nav_item_outer.noLink
+          .nav_item_inner
+            span=value[0]
+    //- 弹性空间
+    when 'flexbox'
+      .nav_item_outer.flexbox
+    //- 分隔线
+    when 'hr'
+      .nav_item_outer.hr
+    //- 菜单
+    when 'menu'
+      - var iconRender
+      if (limit == "pc") && (typeof body == 'object') && body
+        - iconRender = true
+      .nav_item_outer.menu
+        if item[3]!='' && item[3]!=undefined
+          a(class=(iconRender ? "short" : "") href=url_for(item[3]))
             .nav_item_inner
-              case limit
-                when "pc"
-                  i(class=icon_close)
-                default
-                  i(class=icon_menu)
-      when "act_statistics"
-        +act_statistics(value)
-      when "search"
-        .nav_item_outer
-          case body
-            when "icon"
-              .fakeA(onClick='document.querySelector(".s_penal_bg").className="s_penal_bg show"')
-                .nav_item_inner
-                  i(class=icon_search)
-                  span=_p("global.search")
-            when "input"
-              .nav_item_inner.search
-                input.s_in(type="text" onclick="if(s_db==null&&s_db_load==true){s_db_load=false;s_msg(this,'load');initializeSDB(this);s_db_load=true;}this.oninput=function(){search(this)}" placeholder=_p("global.search_placeholder"))
-                .s_result
-      default
-        - break
+              i(class=item[2])
+              span=item[1]
+              if (limit != "pc") && (typeof body == 'object') && body
+                i(class=icon_sub_menu+" ho_rotate_90")
+          if iconRender
+            i(class=icon_sub_menu+" ho_rotate_90")
+          +navMenu(body, item)
+        else
+          div(class="fakeA" + (iconRender ? " short" : ""))
+            .nav_item_inner
+              i(class=item[2])
+              span=item[1]
+              if (limit != "pc") && (typeof body == 'object') && body
+                i(class=icon_sub_menu+" ho_rotate_90")
+          if iconRender
+            i(class=icon_sub_menu+" ho_rotate_90")
+          +navMenu(body, item)
+    //- 移动端菜单按钮
+    when 'side_nav_btn'
+      .nav_item_outer
+        a.side_nav_btn(onClick="nav_menu_btn()")
+          .nav_item_inner
+            case limit
+              when "pc"
+                i(class=icon_close)
+              default
+                i(class=icon_menu)
+    when "act_statistics"
+      +act_statistics(value)
+    when "search"
+      .nav_item_outer
+        case body
+          when "icon"
+            .fakeA(onClick='document.querySelector(".s_penal_bg").className="s_penal_bg show"')
+              .nav_item_inner
+                i(class=icon_search)
+                span=_p("global.search")
+          when "input"
+            .nav_item_inner.search
+              input.s_in(type="text" onclick="if(s_db==null&&s_db_load==true){s_db_load=false;s_msg(this,'load');initializeSDB(this);s_db_load=true;}this.oninput=function(){search(this)}" placeholder=_p("global.search_placeholder"))
+              .s_result
+    default
+      - break
 
-if theme.navbar.items
-  nav.navbar#pcNavbar
-    .navbar_inner.pc
-      each body, head in theme.navbar.items
-        - const item = (head + '').split(', ')
-        - const value = (body + '').split(', ')
-        //- if item[0] != "mbl"
-        +items(body, head, item, value, "mbl")
-    .navbar_inner.mbl
-      if theme.navbar.mbl_item_on_navbar
-        each body, head in theme.navbar.mbl_item_on_navbar
+if theme.navbar.pc_nav_items || theme.navbar.mbl_nav_items
+  nav(class="navbar row"+(theme.navbar.pc_nav_items?"":" pcNone")+(theme.navbar.mbl_nav_items?"":" mblNone"))
+    if theme.navbar.pc_nav_items
+      .navbar_inner.pc
+        each body, head in theme.navbar.pc_nav_items
           - const item = (head + '').split(', ')
           - const value = (body + '').split(', ')
-          //- if item[0] != "mbl"
+          +items(body, head, item, value, "mbl")
+    if theme.navbar.mbl_nav_items
+      .navbar_inner.mbl
+        each body, head in theme.navbar.mbl_nav_items
+          - const item = (head + '').split(', ')
+          - const value = (body + '').split(', ')
           +items(body, head, item, value, "")
-  a.nav_menu_cover#nav_menu_cover(onClick="nav_menu_btn()")
-  nav.navbar#mblNavbar
+if theme.navbar.side_nav_items
+  a.nav_menu_cover(onClick="nav_menu_btn()")
+  nav.navbar.side
     .navbar_inner
-      each body, head in theme.navbar.items
+      each body, head in theme.navbar.side_nav_items
         - const item = (head + '').split(', ')
         - const value = (body + '').split(', ')
-        //- if item[0] != "pc"
         +items(body, head, item, value, "pc")
