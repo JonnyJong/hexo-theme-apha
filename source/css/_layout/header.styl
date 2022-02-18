@@ -71,7 +71,7 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
   display flex
   height 100%
   width hexo-config('navbar.inner_width') ? convert(hexo-config('navbar.inner_width')) : 90%
-  max-width hexo-config('navbar.inner_max_width') ? convert(hexo-config('navbar.inner_max_width')) : 1400px
+  max-width hexo-config('navbar.inner_max_width') ? convert(hexo-config('navbar.inner_max_width')) : ($max-width - 200px)
   margin auto
 
 .nav_item_outer
@@ -199,6 +199,11 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
     width 100%
     min-width max-content
     transition 0.05s
+  .nav_sub_hr
+    width 80%
+    margin 4px auto
+    height 4px
+    background var(--text-color-ro)
   .nav_sub_item:hover
     background var(--main-color-bgh)
   .nav_sub_item a

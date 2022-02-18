@@ -6,13 +6,14 @@ mixin item_info(value)
       if value.title
         span=value.title
 
-mixin bottom(sub_body)
+mixin button(sub_body)
   .button
     - var btn = (sub_body + '').split(', ')
     a.button(href=btn[0])
-      if btn[2] != 'none'
+      if (btn[2] != '')&&(btn[2]!=undefined)
         i(class=btn[2])
-      span=btn[1]
+      if (btn[1] != "")&&(btn[1]!=undefined)
+        span=btn[1]
 
 mixin social_link()
   .social_link
@@ -96,12 +97,19 @@ mixin act_statistics(value)
       .title=_p("page.tags")
       .value=site.tags.length
 mixin side_toc(sub_body)
-  if (page.toc == undefined | page.toc == true) && (((is_post()) && sub_body.post) || ((is_page()) && sub_body.page))
-    != toc(page.content,{list_number: sub_body.list_number})
+  - let show_in_post = true
+  - let show_in_page = false
+  - let show_count = true
+  if (typeof sub_body == 'object') && sub_body
+    - show_in_post = sub_body.post ? sub_body.post : true
+    - show_in_page = sub_body.page ? sub_body.page : false
+    - show_in_page = sub_body.list_number ? sub_body.list_number : true
+  if (page.toc == undefined | page.toc == true) && (((is_post()) && show_in_post) || ((is_page()) && show_in_page))
+    != toc(page.content,{list_number: show_count})
 
 mixin search(sub_body)
   case sub_body
-    when "icon"
+    when "button"
       .button
         .search(onClick='document.querySelector(".s_penal_bg").className="s_penal_bg show"')
           i(class=icon_search)
@@ -118,7 +126,7 @@ mixin item(value)
       when "text"
         .text!=`${sub_body}`
       when "button"
-        +bottom(sub_body)
+        +button(sub_body)
       when "num_of_articles"
         +num_of_articles()
       when "total_word_count"

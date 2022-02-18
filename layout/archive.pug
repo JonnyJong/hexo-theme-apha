@@ -25,7 +25,8 @@ block content
           if global_back_btn
             include includes/global_back_btn.pug
 
-          h1= ' '+page.month + '/' + page.year + (theme.archive.show_total ? ' - ' + page.posts.length : "")
+          //- h1= ' '+page.month + '/' + page.year + (theme.archive.show_total ? ' - ' + page.posts.length : "")
+          h1= ' '+page.month + '/' + page.year
 
           - page.posts.each(function(article){
               +post_item(article)

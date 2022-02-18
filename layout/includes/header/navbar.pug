@@ -32,13 +32,13 @@ mixin navMenu(body, item)
     .nav_sub_menu
       each subValue, subItem in body
         .nav_sub_item
-          if subValue.split(', ')[0] !='none'
+          if subValue.split(', ')[0] !=''
             a(href=url_for(subValue.split(', ')[0]))
               i(class=subValue.split(', ')[1])
               span=subItem.split(', ')[0]
           else
             i(class=subValue.split(', ')[1])
-            span=subItem
+            span=subItem.split(', ')[0]
 
 //- act_statistics
 mixin act_statistics(value)
@@ -136,12 +136,14 @@ mixin items(body, head, item, value, limit)
                 i(class=icon_close)
               default
                 i(class=icon_menu)
+    //- 归档、分类、标签统计
     when "act_statistics"
       +act_statistics(value)
+    //- 搜索
     when "search"
       .nav_item_outer
         case body
-          when "icon"
+          when "button"
             .fakeA(onClick='document.querySelector(".s_penal_bg").className="s_penal_bg show"')
               .nav_item_inner
                 i(class=icon_search)
