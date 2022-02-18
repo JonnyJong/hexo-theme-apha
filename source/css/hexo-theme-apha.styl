@@ -50,7 +50,7 @@ if hexo-config("background.type")
         height 100%
         position absolute
       opacity hexo-config("background.img.opacity") ? convert(hexo-config("background.img.opacity")) : 1
-      filter blur( hexo-config("background.img.blur") ? convert(hexo-config("background.img.blur")) : 0px )
+      filter blur( hexo-config("background.img.blur") ? convert(hexo-config("background.img.blur")) : 0px ) saturate(hexo-config("background.img.saturate") ? convert(hexo-config("background.img.saturate")) : 180%)
 
 @import '_var'
 @import '_animation'

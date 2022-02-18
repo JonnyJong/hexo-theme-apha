@@ -1,15 +1,25 @@
+if hexo-config('index_posts.position')=="both"
+  .recent-post-item:nth-child(even)
+    flex-direction row-reverse
+    .post_cover.side
+      border-radius 0 $border-radius $border-radius 0
 .recent-post-item
   display flex
   margin-top $block-margin
   border-radius $border-radius
   if hexo-config('global-blur') != 0
     backdrop-filter: saturate(180%) blur($global-blur)
+  if hexo-config('index_posts.position')=="right"
+    flex-direction row-reverse
   transition all 0.5s
   background var(--bg-color)
   .post_cover.side
     max-width 480px
     overflow hidden
-    border-radius $border-radius 0 0 $border-radius //当前为仅为左侧
+    if hexo-config('index_posts.position')=="right"
+      border-radius 0 $border-radius $border-radius 0
+    else
+      border-radius $border-radius 0 0 $border-radius
     flex 3
     img
       height 100%

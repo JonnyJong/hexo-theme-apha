@@ -35,9 +35,10 @@
         if hexo-config('page.incard_info_bg') == 'block'
           $info-oncover-opacity = hexo-config('page.incard_info_bg_block.opacity') ? convert(hexo-config('page.incard_info_bg_block.opacity')) : .6
           $info-oncover-blur = hexo-config('page.incard_info_bg_block.blur') ? convert(hexo-config('page.incard_info_bg_block.blur')) : 10px
+          $info-oncover-saturate = hexo-config('page.incard_info_bg_block.saturate') ? convert(hexo-config('page.incard_info_bg_block.saturate')) : 180%
           background rgba(0,0,0,$info-oncover-opacity)
           if hexo-config('page.incard_info_bg_block.blur') != 0
-            backdrop-filter: saturate(180%) blur($info-oncover-blur)
+            backdrop-filter: saturate($info-oncover-saturate) blur($info-oncover-blur)
         else if hexo-config('page.incard_info_bg') == 'gradient'
           $info-begin-color = hexo-config('page.incard_info_bg_gradient.begin_color') ? convert(hexo-config('page.incard_info_bg_gradient.begin_color')) : #0000
           $info-end-color = hexo-config('page.incard_info_bg_gradient.end_color') ? convert(hexo-config('page.incard_info_bg_gradient.end_color')) : #000f

@@ -51,8 +51,8 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
   color var(--text-color-r)
   user-select none
   background rgba(255,255,255,$navbar-opacity)
-  if hexo-config('navbar.blur') != 0
-    backdrop-filter: saturate(180%) blur($navbar-blur)
+  if (hexo-config('navbar.blur') != 0)
+    backdrop-filter: saturate($navbar-saturate) blur($navbar-blur)
   box-shadow var(--b-shadow-lite)
   border-radius hexo-config('navbar.border_radius') ? convert(hexo-config('navbar.border_radius')) : 0px
   z-index 100
