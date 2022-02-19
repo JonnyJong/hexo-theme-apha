@@ -2,37 +2,10 @@ if page.posts.length > 0
   .recent-posts
     each post in page.posts.data
       .recent-post-item
-        - let if_cover = post.cover ? '' : 'no_cover'
-          if post.cover
-            case post.cover_type
-              when 'side'
-                div.post_cover.side
-                  a(href=url_for(post.path))
-                    img.post_cover(src=url_for(post.cover) alt=post.title)
-              when 'top'
-                div.post_cover.top
-                  a(href=url_for(post.path))
-                    img.post_cover(src=url_for(post.cover) alt=post.title)
-              when 'down'
-                div.post_cover.down
-                  a(href=url_for(post.path))
-                    img.post_cover(src=url_for(post.cover) alt=post.title)
-              default
-                case theme.index_posts.post_item_style
-                  when 'side'
-                    div.post_cover.side
-                      a(href=url_for(post.path))
-                        img.post_cover(src=url_for(post.cover) alt=post.title)
-                  when 'top'
-                    div.post_cover.top
-                      a(href=url_for(post.path))
-                        img.post_cover(src=url_for(post.cover) alt=post.title)
-                  when 'down'
-                    div.post_cover.down
-                      a(href=url_for(post.path))
-                        img.post_cover(src=url_for(post.cover) alt=post.title)
-                  default
-                    - let = if_cover = 'no_cover'
+        - let if_cover = (post.cover && theme.index_posts.post_item_style!=0) ? '' : 'no_cover'
+          if post.cover && theme.index_posts.post_item_style!=0
+            a.post_cover(href=url_for(post.path))
+              img.post_cover(src=url_for(post.cover) alt=post.title)
           .post_info(class=if_cover class=cover_type)
             if post.link
               a.post_title(href=url_for(post.link))

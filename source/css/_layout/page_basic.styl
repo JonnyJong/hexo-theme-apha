@@ -46,8 +46,7 @@
           $info-oncover-blur = hexo-config('page.incard_info_bg_block.blur') ? convert(hexo-config('page.incard_info_bg_block.blur')) : 10px
           $info-oncover-saturate = hexo-config('page.incard_info_bg_block.saturate') ? convert(hexo-config('page.incard_info_bg_block.saturate')) : 180%
           background rgba(0,0,0,$info-oncover-opacity)
-          if hexo-config('page.incard_info_bg_block.blur') != 0
-            backdrop-filter: saturate($info-oncover-saturate) blur($info-oncover-blur)
+          backdrop-filter: saturate($info-oncover-saturate) blur($info-oncover-blur)
         else if hexo-config('page.incard_info_bg') == 'gradient'
           $info-begin-color = hexo-config('page.incard_info_bg_gradient.begin_color') ? convert(hexo-config('page.incard_info_bg_gradient.begin_color')) : #0000
           $info-end-color = hexo-config('page.incard_info_bg_gradient.end_color') ? convert(hexo-config('page.incard_info_bg_gradient.end_color')) : #000f
@@ -452,7 +451,7 @@ article
     width max-content
     height max-content
     max-width 80%
-    min-width 280px
+    min-width s("min(calc(100% - 32px), 280px)")
     min-height 40px
     background var(--bg-color)
     margin 16px auto
@@ -491,6 +490,7 @@ article
   .colorful.center
     width max-content
     display block
+    max-width calc(100% - 8px)
   .colorful.right
     margin-left auto
   .colorful.center

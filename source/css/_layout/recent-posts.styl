@@ -1,26 +1,55 @@
-if hexo-config('index_posts.cover_position')=="both"
+if (hexo-config('index_posts.post_item_style')==1 && hexo-config('index_posts.cover_position')=="both")
   .recent-post-item:nth-child(even)
     flex-direction row-reverse
-    .post_cover.side
+    .post_cover
       border-radius 0 $border-radius $border-radius 0
+if hexo-config('index_posts.more_post_item_in_line')
+  .recent-posts
+    display flex
+    flex-wrap wrap
+    gap $block-margin
+    margin $block-margin $block-margin*-1 0 0
 .recent-post-item
   display flex
-  margin-top $block-margin
+  if !hexo-config('index_posts.more_post_item_in_line')
+    margin-top $block-margin
   border-radius $border-radius
   if hexo-config('global-blur') != 0
-    backdrop-filter: saturate(180%) blur($global-blur)
-  if hexo-config('index_posts.cover_position')=="right"
-    flex-direction row-reverse
+    backdrop-filter: saturate($global-saturate) blur($global-blur)    
+  if hexo-config('index_posts.post_item_style')==1
+    if hexo-config('index_posts.cover_position')=="right"
+      flex-direction row-reverse
+  else if hexo-config('index_posts.post_item_style')==2
+    flex-direction column
+  else if hexo-config('index_posts.post_item_style')==3
+    align-items flex-end
+    if hexo-config('index_posts.post_item_min_height')
+      min-height hexo-config('index_posts.post_item_min_height')?convert(hexo-config('index_posts.post_item_min_height')):""
+  if hexo-config('index_posts.more_post_item_in_line')
+    --gap-here $block-margin
+    --count-in-line hexo-config('index_posts.more_post_item_in_line')?hexo-config('index_posts.more_post_item_in_line'):2
+    width calc(100% / var(--count-in-line) - var(--gap-here))
   transition all 0.5s
   background var(--bg-color)
-  .post_cover.side
-    max-width 480px
+  position relative
+  .post_cover
     overflow hidden
-    if hexo-config('index_posts.cover_position')=="right"
-      border-radius 0 $border-radius $border-radius 0
-    else
-      border-radius $border-radius 0 0 $border-radius
-    flex 3
+    if hexo-config('index_posts.post_item_style')==1
+      max-width 480px
+      flex 3
+      if hexo-config('index_posts.cover_position')=="right"
+        border-radius 0 $border-radius $border-radius 0
+      else
+        border-radius $border-radius 0 0 $border-radius
+    else if hexo-config('index_posts.post_item_style')==2
+      border-radius $border-radius $border-radius 0 0
+      height hexo-config('index_posts.cover_default_height')?convert(hexo-config('index_posts.cover_default_height')):240px
+    else if hexo-config('index_posts.post_item_style')==3
+      position absolute
+      width 100%
+      height 100%
+      top 0
+      border-radius $border-radius
     img
       height 100%
       width 100%
@@ -28,13 +57,35 @@ if hexo-config('index_posts.cover_position')=="both"
       transform none
       transition .2s
   .post_info
-    margin auto 0
+    if hexo-config('index_posts.post_item_style')!=3
+      margin auto 0
     padding $block-padding
-    flex 5
+    if hexo-config('index_posts.post_item_style')==1
+      flex 5
+    else if hexo-config('index_posts.post_item_style')==3
+      width 100%
+      border-radius $border-radius
+      if hexo-config('index_posts.incard_info_bg')=="gradient"
+        $info-begin-color = hexo-config('index_posts.incard_info_bg_gradient.begin_color') ? convert(hexo-config('index_posts.incard_info_bg_gradient.begin_color')) : #fff0
+        $info-end-color = hexo-config('index_posts.incard_info_bg_gradient.end_color') ? convert(hexo-config('index_posts.incard_info_bg_gradient.end_color')) : #fff8
+        background-image linear-gradient($info-begin-color, $info-end-color)
+      if hexo-config('index_posts.incard_info_bg')=="block"
+        $info-block-opacity = hexo-config('index_posts.incard_info_bg_block.opacity') ? convert(hexo-config('index_posts.incard_info_bg_block.opacity')) : .2
+        $info-block-blur = hexo-config('index_posts.incard_info_bg_block.blur') ? convert(hexo-config('index_posts.incard_info_bg_block.blur')) : 10px
+        $info-block-saturate = hexo-config('index_posts.incard_info_bg_block.saturate') ? convert(hexo-config('index_posts.incard_info_bg_block.saturate')) : 180%
+        $info-block-brightness = hexo-config('index_posts.incard_info_bg_block.brightness') ? hexo-config('index_posts.incard_info_bg_block.brightness') : 1
+        background rgba(0,0,0,$info-block-opacity)
+        backdrop-filter: saturate($info-block-saturate) blur($info-block-blur) brightness($info-block-brightness)
+      if hexo-config('index_posts.info_font_color')
+        color convert(hexo-config('index_posts.info_font_color'))
     font-size 15px
+    position relative
     a.post_title
       font-size 26px
-      color var(--text-color-r)
+      if (hexo-config('index_posts.post_item_style')==3 && hexo-config('index_posts.info_font_color'))
+        color convert(hexo-config('index_posts.info_font_color'))
+      else
+        color var(--text-color-r)
       font-weight 600
       transition 0.1s
       i.fa.fa-link.fa-tw
@@ -48,7 +99,10 @@ if hexo-config('index_posts.cover_position')=="both"
     p
       margin 6px
     a
-      color var(--text-color-r)
+      if (hexo-config('index_posts.post_item_style')==3 && hexo-config('index_posts.info_font_color'))
+        color convert(hexo-config('index_posts.info_font_color'))
+      else
+        color var(--text-color-r)
       transition .1s
     a:hover
       color var(--main-color)
@@ -63,6 +117,9 @@ if hexo-config('index_posts.cover_position')=="both"
 
 .recent-post-item:hover
   box-shadow var(--b-shadow)
-  .post_cover.side
+  .post_cover
     img:hover
-      transform scale(1.1)
+      if hexo-config('index_posts.post_item_style')==1
+        transform scale(1.1)
+      else if hexo-config('index_posts.post_item_style')==2
+        transform scale(1.03)

@@ -16,6 +16,9 @@
 - var global_back_btn = theme.back_buttom
 - var user_scalable = theme.user_scalable ? "" : ", user-scalable=no"
 
+//- 需要计算的变量
+- let ifSidebar = false
+
 //- 颜色模式
 - var color_scheme = theme.color_mode=="dark" ? theme.color_mode : "light" //- no-preference light dark
 
@@ -25,6 +28,9 @@ doctype html
 //- html(lang=config.language color-mode=color_scheme)
 html(lang=config.language prefers-color-scheme=color_scheme)
   head
+    //- 需要计算的变量
+    if (theme.sidebar.enable) && (theme.sidebar.items)
+      +isAnySideBarItem()
     //- 基本信息
     meta(charset='UTF-8')
     title= pageTitle
@@ -53,7 +59,7 @@ html(lang=config.language prefers-color-scheme=color_scheme)
           div!= body
         else
           block content
-          if (theme.sidebar.enable) && (theme.sidebar.items)
+          if ifSidebar
             .side_column
               .sidebar_items
                 include ./sidebar/sidebar.pug

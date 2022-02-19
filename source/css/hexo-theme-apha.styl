@@ -73,6 +73,7 @@ a
   margin auto
   transition .2s
   max-width $max-width - 200px
+  justify-content space-around
   if hexo-config("sidebar.enable") && hexo-config("sidebar.items")
     display flex
     flex-direction row
@@ -81,11 +82,9 @@ a
     -moz-box-flex 1
     box-flex 1
 .main_column
-  if hexo-config("sidebar.enable") && hexo-config("sidebar.items")
-    --width_main_column $main_content_margin*2 + 300px + $block-margin
-    max-width $max-width - $block-margin*2 - 500px
-    width calc(100vw - var(--width_main_column))
   transition .05s ease-in-out
+  width 0
+  flex 1
 .side_column
   width 300px
   margin-bottom $block-margin
@@ -173,16 +172,15 @@ hr
     .recent-post-item
       flex-direction column
       height max-content
-      .post_cover.side
-        width 100%
-        max-width 100%
-        border-radius $border-radius $border-radius 0 0
-        height 200px
-        flex unset
-      .post_info
-        height max-content
-        flex unset
-        margin 0
+      if hexo-config('index_posts.more_post_item_in_line')&&hexo-config('index_posts.more_post_item_in_line_on_mobile')
+        --count-in-line hexo-config('index_posts.more_post_item_in_line_on_mobile')?hexo-config('index_posts.more_post_item_in_line_on_mobile'):2
+      if hexo-config('index_posts.post_item_style')==1
+        .post_cover
+          width 100%
+          max-width 100%
+          border-radius $border-radius $border-radius 0 0
+          height 200px
+          flex unset
   nav.page_switch
     .post_switch
       flex-direction column
