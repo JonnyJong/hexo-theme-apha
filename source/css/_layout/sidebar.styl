@@ -5,8 +5,7 @@
   .item
     background var(--bg-color)
     border-radius $border-radius
-    if hexo-config('global-blur') != 0
-      backdrop-filter: saturate(180%) blur($global-blur)
+    backdrop-filter: saturate($global-saturate) blur($global-blur)
     transition all 0.5s
     margin-top $block-margin
     padding $block-padding
@@ -161,8 +160,11 @@
       padding 0
       if hexo-config('navbar.auto_folding')
         transition .2s
-      --toc-max-height $block-margin*2 + $block-padding*2 + $navbar_height + 36px
-      max-height calc(100vh - var(--toc-max-height))
+      if hexo-config('sidebar.toc_max_height')
+        max-height convert(hexo-config('sidebar.toc_max_height'))
+      else
+        --toc-max-height $block-margin*2 + $block-padding*2 + $navbar_height + 36px
+        max-height calc(100vh - var(--toc-max-height))
       overflow auto
       overflow overlay
       li::marker
@@ -226,12 +228,14 @@
 if hexo-config('navbar.auto_folding')
   .navbar.row.hide:not(.pcNone) ~ #content-outer .sidebar_items .sticky_items
     top $block-margin
-    .item .toc
-      --toc-max-height $block-margin*2 + $block-padding*2 + 36px
+    if !hexo-config('sidebar.toc_max_height')
+      .item .toc
+        --toc-max-height $block-margin*2 + $block-padding*2 + 36px
   .navbar.row.pcNone ~ #content-outer .sidebar_items .sticky_items
     top $block-margin
-    .item .toc
-      --toc-max-height $block-margin*2 + $block-padding*2 + 36px
+    if !hexo-config('sidebar.toc_max_height')
+      .item .toc
+        --toc-max-height $block-margin*2 + $block-padding*2 + 36px
 @media screen and (max-width: 840px)
   .onlyPC
     display none

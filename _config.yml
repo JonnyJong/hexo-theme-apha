@@ -100,6 +100,12 @@ navbar:
   saturate:
   # 导航栏圆角（none、default、value；无、默认、数值。建议使用 px 而不是 %，使用 % 会导致变为椭圆）
   border_radius:
+  # 背景（未配置）
+  background:
+    # 颜色
+    # auto：自动，根据当前颜色模式选择黑色或白色
+    # main：主题色
+    color:
 
   # 导航栏高度（默认 60px）
   height: 
@@ -144,11 +150,18 @@ sidebar:
   enable: false
   # 自定义组件（允许自由调整顺序）
   items:
+
+  # 目录最大高度（单位：vh px。默认：自适应）
+  toc_max_height: 
 # =============================================================
 # 快捷按钮（未配置）
 quick_btn: 
   enable:
   items:
+
+# =============================================================
+# 首页组件（未配置）
+index_items:
 
 # =============================================================
 # 首页文章
@@ -158,10 +171,10 @@ index_posts:
   # 1：封面在左侧或右侧
   # 2：封面在上方
   # 3：文章信息重叠在封面上方
-  post_item_style: 2
+  post_item_style: 0
   # 一行展示多篇文章（整数）
-  more_post_item_in_line: 2
-  more_post_item_in_line_on_mobile: 1
+  more_post_item_in_line: 
+  more_post_item_in_line_on_mobile: 
 
   # 封面位置（both、left、right。当 post_item_style 为 1 时有效）
   cover_position: 
@@ -233,7 +246,7 @@ page:
 
   # 段落标题易读性增强
   paragraph_title_readability: false
-  # 将 H2 显示为 H1，以此类推，用于优化 SEO 后便于阅读（未配置）
+  # 将 H2 显示为 H1，以此类推，用于优化 SEO 后便于阅读（未完成）
   after_seo_paraTitleReadly: false
 
   # 复制按钮
@@ -249,7 +262,7 @@ page:
   # 折叠（默认折叠、超过长度隐藏）（未配置）
   auto_fold:
   # 完整的高亮颜色（将会增加 css 大小）（未配置）
-  full_highlight_color:
+  full_highlight_color: 
 
   # 图片描述文字
   img_desc: false
@@ -274,7 +287,7 @@ page:
   # 显示分类
   show_categories: false
 
-  # 点击目录平滑转跳（将目录的链接替换为 onclick 事件）
+  # 点击目录平滑转跳（将目录的链接替换为 onclick 事件）（未配置）
   click_toc_smooth_jump: false
 
   # 提示块圆角（推荐值：留空、0~10px）
@@ -299,6 +312,16 @@ footer:
   hexo_and_apha_info: false
   # 自定义信息
   content: 
+
+  # 组件（未配置）
+  items:
+
+  # 背景（未配置）
+  background:
+    # 颜色
+    # auto：自动，根据当前颜色模式选择黑色或白色
+    # main：主题色
+    color:
 
 # =============================================================
 # 评论系统（未配置）
@@ -408,10 +431,10 @@ block-padding:
 border-radius:
 # 模块背景不透明度（较低的背景模糊度建议使用较高的不透明度，较低的不透明度建议使用较高的背景模糊度）
 global-opacity: ''
-# 模块背景高斯模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿。设置 0 可关闭。）
+# 模块背景高斯模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿。可设置为 0）
 global-blur: 0
-# 模块背景饱和度（单位：%。基础值：100%。推荐随模糊度增加而增加。）（未配置）
-global-saturate:
+# 模块背景饱和度（单位：%。基础值：100%。推荐随模糊度增加而增加。）
+global-saturate: 
 # 最大宽度（单位：px。默认：1400px。建议大于 1000px，过小的值会导致排版错乱。设置 none 为不限制。）
 max-width: 
 # 最小边界（当屏幕宽度小于最大宽度时，默认 16px）
@@ -448,6 +471,10 @@ main_css_in_html:
 # 用于优化加载速度，减少未使用的 CSS 数量
 # 建议与 main_css_in_html 同时开启
 differentiate_css:
+# 按需加载 CSS 分块（未配置）
+# 在开启 CSS 分块的基础上进一步拆分 CSS
+# 当需要时在 Front-matter 中启用
+load_css_ineed:
 # JS 分块（同上，但当前 JS 量少，暂无必要）（未配置）
 
 # 图片懒加载（未配置）
