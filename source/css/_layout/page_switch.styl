@@ -41,6 +41,8 @@ nav.page_switch
       height 100%
       border-radius $border-radius
       transition all 0.5s
+      position relative
+      overflow hidden
       a
         display block
         min-height 120px
@@ -51,14 +53,26 @@ nav.page_switch
         transition all 0.5s
         color var(--text-color-r)
         text-shadow var(--b-shadow-lite)
+        position relative
+        z-index 1
         .post_title
           font-size 20px
           transition .1s
+      .post_cover
+        height 100%
+        width 100%
+        object-fit cover
+        position absolute
+        top 0
+        border-radius $border-radius
+        transition .2s ease-in-out
       a:hover
         background #fffc
         .post_title
           font-size 22px
           color var(--main-color)
+      a:hover+.post_cover
+        transform scale(1.05)
       .prev_post
         text-align right
     .switch_item:hover

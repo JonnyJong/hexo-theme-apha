@@ -17,8 +17,10 @@
       border-radius $border-radius $border-radius 0 0
       display flex
       align-items flex-end
+      position relative
       .inner_info
         width 100%
+        z-index 1
         .page_title
           margin 0
           display inline-block
@@ -27,6 +29,13 @@
           margin-right 8px
         .other_info
           margin-top 20px
+      .page_cover
+        object-fit cover
+        height 100%
+        width 100%
+        position absolute
+        top 0
+        border-radius $border-radius $border-radius 0 0
     .page_info[cover="true"]
       min-height 320px
       .inner_info

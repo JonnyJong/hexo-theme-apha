@@ -14,7 +14,8 @@ mixin page_info(page, type, other_info)
       .page_info(cover=ifCover style=ifCover?("background:url("+url_for(theme.archive.cover)+");background-position:center;background-size:cover;"):"")
     when "page"
       - var ifCover = page.cover ? "true" : "false"
-      .page_info(cover=ifCover style=ifCover?("background:url("+url_for(page.cover)+");background-position:center;background-size:cover;"):"")
+      //- .page_info(cover=ifCover style=ifCover?("background:url("+url_for(page.cover)+");background-position:center;background-size:cover;"):"")
+      .page_info(cover=ifCover)
         .inner_info
           if page.link
             a.page_title(href=page.link style="display:block;width:max-content;")
@@ -52,3 +53,4 @@ mixin page_info(page, type, other_info)
                   i(class=icon_tag)
                 each tag in page.tags.data
                   a.page_tag.marginR(href=url_for(tag.path))=tag.name
+        img.page_cover(src=page.cover alt="page_cover")

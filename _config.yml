@@ -153,10 +153,10 @@ quick_btn:
 # =============================================================
 # 首页文章
 index_posts:
-  # 封面默认样式【false、side、down；关闭、侧边（手机上将显示在上方）、文章信息下层】（未完成）
-  cover_default_style: side
-  # 封面位置（both、left、right。当 cover_default_style 为 side 时有效）（未配置）
-  position:
+  # 文章展示样式【false、side、down；关闭、侧边（手机上将显示在上方）、文章信息下层】（未完成）
+  post_item_style: side
+  # 封面位置（both、left、right。当 cover_default_style 为 side 时有效）
+  cover_position:
   # 封面高度（单位：px。当 cover_default_style 为 top 或 down 时有效）（未配置）
   top_default_height:
   

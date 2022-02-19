@@ -18,7 +18,7 @@ if page.posts.length > 0
                   a(href=url_for(post.path))
                     img.post_cover(src=url_for(post.cover) alt=post.title)
               default
-                case theme.index_posts.cover_default_style
+                case theme.index_posts.post_item_style
                   when 'side'
                     div.post_cover.side
                       a(href=url_for(post.path))
