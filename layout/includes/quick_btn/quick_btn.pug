@@ -1,0 +1,114 @@
+mixin qBtnInfo(item)
+  if item.name || item.icon
+    if item.icon
+      i(class=item.icon)
+    if item.name
+      span.item_name=item.name
+
+mixin qBtnTypeFilter(item)
+  - let style = (item.color?'--item-hover-bg:'+item.color+';':"")
+  case item.type
+    when "top"
+      .top.btn(style=style onclick="window.scrollTo({top:0,left:0,behavior:'smooth'})")
+        +qBtnInfo(item)
+    when "colormode"
+      .colormode.btn(style=style onclick="if(document.documentElement.getAttribute('prefers-color-scheme')=='dark'){document.documentElement.setAttribute('prefers-color-scheme','light');localStorage.setItem('color_mode', 'light');}else{document.documentElement.setAttribute('prefers-color-scheme','dark');localStorage.setItem('color_mode', 'dark')}")
+        +qBtnInfo(item)
+    when "toc"
+      - let show_in_post = (item.show_in_post?true:false)
+      - let show_in_page = (item.show_in_page?true:false)
+      - let show_count = (item.show_count?true:false)
+      if (page.toc == undefined | page.toc == true) && (((is_post()) && show_in_post) || ((is_page()) && show_in_page))
+        .toc.btn(style=style onclick="this.nextSibling.classList.toggle('show')")
+          +qBtnInfo(item)
+        .toc_list
+          != toc(page.content,{list_number: show_count})
+
+mixin qBtnGroupFilter(item)
+  case item.type
+    when "group"
+      .group.btn(style=(item.color?'--item-hover-bg:'+item.color+';':"") onclick="this.parentElement.classList.toggle('active')")
+        +qBtnInfo(item)
+      .sub_items
+        each sub_item in item.items
+          - let sub_hl = (sub_item.highlight?" hl":"")
+          - let sub_autoHide = (sub_item.auto_hide?" auto_hide":"")
+          case sub_item.page
+            when "index"
+              if is_home()
+                case sub_item.device
+                  when "pc"
+                    div(class="item pc"+sub_hl+sub_autoHide)
+                      +qBtnTypeFilter(sub_item)
+                  when "mobile"
+                    div(class="item mbl"+sub_hl+sub_autoHide)
+                      +qBtnTypeFilter(sub_item)
+                  default
+                    div(class="item"+sub_hl+sub_autoHide)
+                      +qBtnTypeFilter(sub_item)
+            when "page"
+              if !is_home()
+                case sub_item.device
+                  when "pc"
+                    div(class="item pc"+sub_hl+sub_autoHide)
+                      +qBtnTypeFilter(sub_item)
+                  when "mobile"
+                    div(class="item mbl"+sub_hl+sub_autoHide)
+                      +qBtnTypeFilter(sub_item)
+                  default
+                    div(class="item"+sub_hl+sub_autoHide)
+                      +qBtnTypeFilter(sub_item)
+            default
+              case sub_item.device
+                when "pc"
+                  div(class="item pc"+sub_hl+sub_autoHide)
+                    +qBtnTypeFilter(sub_item)
+                when "mobile"
+                  div(class="item mbl"+sub_hl+sub_autoHide)
+                    +qBtnTypeFilter(sub_item)
+                default
+                  div(class="item"+sub_hl+sub_autoHide)
+                    +qBtnTypeFilter(sub_item)
+    default
+      +qBtnTypeFilter(item)
+
+.quick_btn
+  each item in theme.quick_btn.items
+    - let hl = (item.highlight?" hl":"")
+    - let autoHide = (item.auto_hide?" auto_hide":"")
+    case item.page
+      when "index"
+        if is_home()
+          case item.device
+            when "pc"
+              div(class="item pc"+hl+autoHide)
+                +qBtnGroupFilter(item)
+            when "mobile"
+              div(class="item mbl"+hl+autoHide)
+                +qBtnGroupFilter(item)
+            default
+              div(class="item"+hl+autoHide)
+                +qBtnGroupFilter(item)
+      when "page"
+        if !is_home()
+          case item.device
+            when "pc"
+              div(class="item pc"+hl+autoHide)
+                +qBtnGroupFilter(item)
+            when "mobile"
+              div(class="item mbl"+hl+autoHide)
+                +qBtnGroupFilter(item)
+            default
+              div(class="item"+hl+autoHide)
+                +qBtnGroupFilter(item)
+      default
+        case item.device
+          when "pc"
+            div(class="item pc"+hl+autoHide)
+              +qBtnGroupFilter(item)
+          when "mobile"
+            div(class="item mbl"+hl+autoHide)
+              +qBtnGroupFilter(item)
+          default
+            div(class="item"+hl+autoHide)
+              +qBtnGroupFilter(item)

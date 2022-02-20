@@ -64,6 +64,8 @@ html(lang=config.language prefers-color-scheme=color_scheme)
               .sidebar_items
                 include ./sidebar/sidebar.pug
     include ./footer.pug
+    if theme.quick_btn.enable
+      include ./quick_btn/quick_btn.pug
     if theme.background.type=="img"
       if theme.background.img.bg_as_cover && page.cover
         .bg(style="background-image:url("+page.cover+");")

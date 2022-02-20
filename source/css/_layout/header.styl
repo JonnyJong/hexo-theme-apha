@@ -40,9 +40,6 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
       transition .5s
 
 // 导航栏
-[prefers-color-scheme="dark"]
-  .navbar
-    background rgba(10,10,10,$navbar-opacity)
 .navbar
   // 基本
   width hexo-config('navbar.outer_width') ? convert(hexo-config('navbar.outer_width')) : 100%
@@ -50,7 +47,15 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
   height $navbar_height
   color var(--text-color-r)
   user-select none
-  background rgba(255,255,255,$navbar-opacity)
+  if hexo-config('navbar.background.color')=="main"
+    background var(--main-color)
+  else if hexo-config('navbar.background.color')=="gradient"
+    $nav_bg_angle = hexo-config('navbar.background.angle')?convert(hexo-config('navbar.background.angle')):0deg
+    $nav_bg_start_color = hexo-config('navbar.background.start_color')?convert(hexo-config('navbar.background.start_color')):#0000
+    $nav_bg_end_color = hexo-config('navbar.background.end_color')?convert(hexo-config('navbar.background.end_color')):var(--bg-nav)
+    background linear-gradient($nav_bg_angle,$nav_bg_start_color,$nav_bg_end_color)
+  else
+    background var(--bg-nav)
   if (hexo-config('navbar.blur') != 0)
     backdrop-filter: saturate($navbar-saturate) blur($navbar-blur)
   box-shadow var(--b-shadow-lite)

@@ -100,14 +100,18 @@ navbar:
   saturate:
   # 导航栏圆角（none、default、value；无、默认、数值。建议使用 px 而不是 %，使用 % 会导致变为椭圆）
   border_radius:
-  # 背景（未配置）
+  # 背景
   background:
     # 颜色
-    # auto：自动，根据当前颜色模式选择黑色或白色
+    # auto：默认值，自动，根据当前颜色模式选择黑色或白色
     # main：主题色
+    # gradient：渐变
     color:
-
-    # 渐变
+    # 渐变（默认根据当前颜色模式变化）
+    start_color:
+    end_color:
+    # 角度（单位 deg）
+    angle:
 
   # 导航栏高度（默认 60px）
   height: 
@@ -155,11 +159,60 @@ sidebar:
 
   # 目录最大高度（单位：vh px。默认：自适应）
   toc_max_height: 
+
 # =============================================================
 # 快捷按钮（未配置）
+# quick_btn: 
+#   enable:
+#   items:
 quick_btn: 
-  enable:
+  enable: true
   items:
+    - type: top
+      auto_hide: true
+      page: all
+      device: all
+      color: red
+      icon: fa fa-arrow-up
+      name: 回到顶部
+      highlight: true
+    - type: toc
+      show_in_post: true
+      show_count: true
+      page: page
+      device: mobile
+      icon: fa fa-bars
+    - type: group
+      icon: fa fa-cog
+      name: 设置
+      items:
+        - type: colormode
+          page: all
+          device: all
+          icon: fa fa-moon
+          name: 亮色/暗色模式
+
+
+    # all, all, top, auto_hide:
+    # page, mbl, toc:
+    # all, all, group:
+    #   group:
+    #   all, all, darkmode:
+
+  # 位置（left_center、left_bottom、right_center、right_bottom）
+  position: right_bottom
+  # 水平外间距
+  horizontal_outer_spacing:
+  # 垂直外间距
+  vertical_outer_spacing:
+  # 按钮尺寸
+  height:
+  width:
+  # 按钮间距
+  bottom_gap:
+  # 按钮圆角
+  bottom_border_radius:
+
 
 # =============================================================
 # 首页组件（未配置）
@@ -257,7 +310,7 @@ page:
   line_number: false
   # 固定左侧行号（与自动换行冲突）
   sticky_line_number: true
-  # 自动换行（不推荐）
+  # 自动换行（故障）
   auto_warp:
   # 折叠按钮
   fold_botton: 
@@ -403,7 +456,7 @@ icons:
   figure_more:
   # 阅读时长
   min2read: 
-  
+
 # =============================================================
 # 自定义背景
 background:
@@ -417,7 +470,7 @@ background:
     # 模糊度（单位：px）
     blur: 
     # 饱和度（单位：%。基础值：100%。默认值：180%。推荐随模糊度增加而增加。）
-    saturate: 300%
+    saturate:
     # 不透明度
     opacity: 
     # 重复
