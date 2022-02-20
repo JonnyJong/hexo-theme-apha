@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function runOnscroll() {
     config.navFold && navFold();
     config.ifToc && (tocObj.length != 0) && tocFready();
-    qBtnAutoHide();
+    config.ifQuickBtn && qBtnAutoHide();
   }
   
   // 导航栏自动收起
@@ -385,7 +385,6 @@ document.addEventListener('DOMContentLoaded', function () {
     while (cR > 0) {
       cR--;
       tocObj[cR].className = "toc-link";
-      qBtnTocObj[cR].className = "toc-link";
     }
     while (c > 0) {
       c--;
@@ -394,9 +393,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
     tocObj[c].className = "toc-link active";
-    qBtnTocObj[c].className = "toc-link active";
     tocWindow.scroll({ top: tocObj[c].offsetTop-150, behavior: 'smooth' });
-    // qBtnTocWindow.scroll({ top: qBtnTocObj[c].offsetTop-150 });
   }
   function tocjump(){
     tocObj.forEach(item => {
@@ -407,9 +404,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var mainTitle = document.querySelectorAll("article h1,article h2,article h3,article h4,article h5,article h6");
   var mTiTop = new Array();
   var tocObj = document.querySelectorAll(".sidebar_items .toc-link");
-  var qBtnTocObj = document.querySelectorAll(".quick_btn .toc-link");
   var tocWindow = document.querySelector(".sidebar_items .toc");
-  var qBtnTocWindow = document.querySelector(".quick_btn .toc");
 
   // 自动隐藏快捷按钮
   function qBtnAutoHide(){

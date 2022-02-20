@@ -161,46 +161,13 @@ sidebar:
   toc_max_height: 
 
 # =============================================================
-# 快捷按钮（未配置）
-# quick_btn: 
-#   enable:
-#   items:
+# 快捷按钮
 quick_btn: 
-  enable: true
+  enable: false
   items:
-    - type: top
-      auto_hide: true
-      page: all
-      device: all
-      color: red
-      icon: fa fa-arrow-up
-      name: 回到顶部
-      highlight: true
-    - type: toc
-      show_in_post: true
-      show_count: true
-      page: page
-      device: mobile
-      icon: fa fa-bars
-    - type: group
-      icon: fa fa-cog
-      name: 设置
-      items:
-        - type: colormode
-          page: all
-          device: all
-          icon: fa fa-moon
-          name: 亮色/暗色模式
-
-
-    # all, all, top, auto_hide:
-    # page, mbl, toc:
-    # all, all, group:
-    #   group:
-    #   all, all, darkmode:
 
   # 位置（left_center、left_bottom、right_center、right_bottom）
-  position: right_bottom
+  position: 
   # 水平外间距
   horizontal_outer_spacing:
   # 垂直外间距
@@ -212,7 +179,6 @@ quick_btn:
   bottom_gap:
   # 按钮圆角
   bottom_border_radius:
-
 
 # =============================================================
 # 首页组件（未配置）

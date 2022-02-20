@@ -18,6 +18,7 @@
 
 //- 需要计算的变量
 - let ifSidebar = false
+- let ifQbtn = false
 
 //- 颜色模式
 - var color_scheme = theme.color_mode=="dark" ? theme.color_mode : "light" //- no-preference light dark
@@ -64,7 +65,7 @@ html(lang=config.language prefers-color-scheme=color_scheme)
               .sidebar_items
                 include ./sidebar/sidebar.pug
     include ./footer.pug
-    if theme.quick_btn.enable
+    if theme.quick_btn.enable && ifQbtn
       include ./quick_btn/quick_btn.pug
     if theme.background.type=="img"
       if theme.background.img.bg_as_cover && page.cover

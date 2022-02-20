@@ -78,3 +78,16 @@ mixin isAnySideBarItem()
   each value, head in theme.sidebar.items
     - const item = (head + '').split(', ')
     +isAnySideBarItemInside(item, value)
+
+mixin isAnyQbtn()
+  if theme.quick_btn.items && theme.quick_btn.enable
+    each item in theme.quick_btn.items
+      case item.page
+        when "index"
+          if is_home()
+            - ifQbtn = true
+        when "page"
+          if !is_home()
+            - ifQbtn = true
+        default
+          - ifQbtn = true
