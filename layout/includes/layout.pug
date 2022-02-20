@@ -52,7 +52,7 @@ html(lang=config.language prefers-color-scheme=color_scheme)
     include ./search.pug
     include ./skipToContentButtom.pug
     include ./header/header.pug
-    //- .forTest(style="height:100px;width:100px;background:#0002;position:fixed;top:30vh;right:0;z-index:1000;cursor:pointer;user-select:none;" onclick="if(document.documentElement.getAttribute('prefers-color-scheme')=='dark'){document.documentElement.setAttribute('prefers-color-scheme','light')}else{document.documentElement.setAttribute('prefers-color-scheme','dark')}")='实验模式：\n切换暗色、亮色模式'
+    //- .forTest(style="height:100px;width:100px;background:#0002;color:red;position:fixed;top:30vh;right:0;z-index:1000;cursor:pointer;user-select:none;" onclick="if(document.documentElement.getAttribute('prefers-color-scheme')=='dark'){document.documentElement.setAttribute('prefers-color-scheme','light');localStorage.setItem('color_mode', 'light');}else{document.documentElement.setAttribute('prefers-color-scheme','dark');localStorage.setItem('color_mode', 'dark')}")='实验模式：\n切换暗色、亮色模式'
     #content-outer
       #content-inner
         if body

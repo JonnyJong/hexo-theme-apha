@@ -25,9 +25,10 @@ if page.posts.length > 0
               time(datetime=post.updated.toJSON())= _p('post_item.updated') + ' ' + date(post.updated, date_format) + ' '
             if theme.index_posts.wordcount
               i(class=icon_wordcount)
-              span=_p('post_item.wordcount_before')
-              span=wordcount(post.content)
-              span=_p('post_item.wordcount_after')
+              span=_p('post_item.wordcount_before') + wordcount(post.content) + _p('post_item.wordcount_after')
+            if theme.index_posts.min2read
+              i(class=icon_min2read)
+              span=_p('post_item.min2read_before') + min2read(post.content) + _p('post_item.min2read_after')
             if theme.index_posts.show_categories && (post.categories.data.length > 0)
               .line_warp_h
               i(class=icon_categorie)

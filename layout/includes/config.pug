@@ -5,21 +5,18 @@
 //- - const isCate = is_category()
 //- - const isTag = is_tag()
 
-- const fooSt = (theme.footer.since) ? true : false
-- const ifToc = (page.toc != undefined) ? page.toc : true
-- const tocSmJ = theme.page.click_toc_smooth_jump ? true : false
-- const s_db_href = theme.search_db_href ? theme.search_db_href : "/search.json"
-
 script.
   var config = { 
-    navFold: !{theme.navbar.auto_folding},
-    imgDesc: !{theme.page.img_desc},
-    cpBtn: !{theme.page.copy_button},
-    fooRt: !{theme.footer.runtime},
-    fooSt: !{fooSt},
-    ifToc: !{ifToc},
-    tocSmJ: !{tocSmJ},
-    s_db_href: "!{s_db_href}",
+    navFold: !{theme.navbar.auto_folding?theme.navbar.auto_folding:false},
+    imgDesc: !{theme.page.img_desc?theme.page.img_desc:false},
+    cpBtn: !{theme.page.copy_button?theme.page.copy_button:false},
+    fdBtn: !{theme.page.fold_botton?theme.page.fold_botton:false},
+    fdVal: !{theme.page.auto_fold==false?false:(theme.page.auto_fold==0?0:'"'+theme.page.auto_fold+'"')},
+    fooRt: !{theme.footer.runtime?theme.footer.runtime:false},
+    fooSt: !{(theme.footer.since) ? true : false},
+    ifToc: !{(page.toc != undefined) ? page.toc : true},
+    tocSmJ: !{theme.page.click_toc_smooth_jump ? true : false},
+    s_db_href: "!{theme.search_db_href ? theme.search_db_href : '/search.json'}",
     s_msg_load: "!{_p('js.search.DB_loading')}",
     s_msg_failed: "!{_p('js.search.DB_failed')}",
     s_msg_nothing: "!{_p('js.search.no_result')}",
@@ -32,9 +29,15 @@ script.
     lang_hours_b: "!{_p('js.time.hours_before')}",
     lang_mins_b: "!{_p('js.time.mins_before')}",
     lang_s_b: "!{_p('js.time.s_before')}",
-    icon_tag: "!{icon_tag}",
-    icon_tags: "!{icon_tags}",
+    icon_tag: "!{theme.icons.tag?theme.icons.tag:'fas fa-tag fa-fw'}",
+    icon_tags: "!{theme.icons.tags?theme.icons.tags:'fas fa-tags fa-fw'}",
+    icon_archive: "!{theme.icons.categorie?theme.icons.categorie:'fas fa-folder fa-fw'}",
+    icon_copy: "!{theme.icons.copy?theme.icons.copy:'fa fa-clipboard fa-fw'}",
+    icon_check: "!{theme.icons.check?theme.icons.check:'fas fa-check fa-fw'}",
+    icon_fold: "!{theme.icons.fold?theme.icons.fold:'fas fa-chevron-right fa-fw'}",
+    icon_fig_more: "!{theme.icons.figure_more?theme.icons.figure_more:'fas fa-angle-double-down fa-fw'}",
   }
+  config.fdVal?(config.fdVal=parseInt(config.fdVal)):""
 
 //- isHome: !{isHome},
 //- isPost: !{isPost},

@@ -17,6 +17,8 @@ post_item:
   wordcount_before: "共 "
   wordcount_after: " 字"
   sticky: "置顶 "
+  min2read_before: "大约 "
+  min2read_after: " 分钟"
 footer:
   frame: 框架
   theme: 主题

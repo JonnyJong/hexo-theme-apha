@@ -107,6 +107,8 @@ navbar:
     # main：主题色
     color:
 
+    # 渐变
+
   # 导航栏高度（默认 60px）
   height: 
   # 导航栏外部宽度（默认 100%）
@@ -214,8 +216,8 @@ index_posts:
     max_length: 300
   # 字数统计
   wordcount: false
-  # 阅读时长（未配置）
-  needtime: false
+  # 阅读时长
+  min2read: 
   # 显示创建日期
   show_date: false
   # 显示更新日期
@@ -254,12 +256,12 @@ page:
   # 显示行号
   line_number: false
   # 固定左侧行号（与自动换行冲突）
-  sticky_line_number: false
+  sticky_line_number: true
   # 自动换行（不推荐）
   auto_warp:
-  # 折叠按钮（未配置）
-  fold_botton:
-  # 折叠（默认折叠、超过长度隐藏）（未配置）
+  # 折叠按钮
+  fold_botton: 
+  # 折叠（默认折叠、超过长度隐藏，单位 px）
   auto_fold:
   # 完整的高亮颜色（将会增加 css 大小）（未配置）
   full_highlight_color: 
@@ -271,13 +273,13 @@ page:
   copyright: false
   # 协议
   # CC：https://creativecommons.org/choose/
-  lisence: CC, BY, ND, SA
+  lisence: CC, BY, NC, SA
   # lisence: CC, BY, NC, ND, SA
 
   # 字数统计
   wordcount: false
-  # 阅读时长（未配置）
-  needtime: false
+  # 阅读时长
+  min2read: false
   # 显示创建日期
   show_date: false
   # 显示更新日期
@@ -333,6 +335,12 @@ comment:
 # 主题色
 theme_color:
   main: 
+  # 强调色（未配置）
+  focus: 
+
+  # 渐变（未配置）
+
+  # 彩虹色（未配置）
 
   # 黑白（未完成）*
   black_and_white: false
@@ -379,15 +387,23 @@ icons:
   next_post:
   # 菜单
   menu:
-  # 子菜单指示
-  sub_menu:
+  # 可折叠
+  fold:
   # 关闭按钮
   close_btn:
   # 链接
   link:
   # 搜索
   search:
-
+  # 复制
+  copy:
+  # 完成
+  check:
+  # 更多（代码块超出）
+  figure_more:
+  # 阅读时长
+  min2read: 
+  
 # =============================================================
 # 自定义背景
 background:

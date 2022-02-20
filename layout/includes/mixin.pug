@@ -23,7 +23,7 @@ mixin page_info(page, type, other_info)
               h1.page_title=page.title ? page.title : _p('post_item.notitle')
           else
             h1.page_title=page.title ? page.title : _p('post_item.notitle')
-          if other_info && (page.date || page.updated || theme.third_party.busuanzi || theme.page.wordcount || (page.categories.data.length > 0) || (page.tags.data.length > 0))
+          if other_info && (page.date || page.updated || theme.third_party.busuanzi || theme.page.wordcount || theme.page.min2read || (page.categories.data.length > 0) || (page.tags.data.length > 0))
             .other_info
               if page.date
                 i(class=icon_date)
@@ -38,6 +38,10 @@ mixin page_info(page, type, other_info)
               if theme.page.wordcount
                 i(class=icon_wordcount)
                 span=_p('post_item.wordcount_before') + wordcount(page.content) + _p('post_item.wordcount_after')
+                span.marginR#busuanzi_value_page_pv
+              if theme.page.min2read
+                i(class=icon_min2read)
+                span=_p('post_item.min2read_before') + min2read(page.content) + _p('post_item.min2read_after')
               if (page.categories.data.length > 0)
                 .line_warp_h
                 i(class=icon_categorie)

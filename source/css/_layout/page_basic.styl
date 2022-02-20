@@ -142,11 +142,20 @@ article
     text-decoration-thickness 2px
 
   // 代码块
+  figure.highlight.hide>table
+    display none
+  figure.highlight.hide>figcaption i.foldBtn
+    transform rotate(180deg)
+  figure.highlight>figcaption i.foldBtn
+    transform rotate(90deg)
+    transition 0s
   figure.highlight
     margin 14px 0
     background #1e1e1e
     color #dcdcdc
     line-height 18px
+    if (hexo-config('page.auto_fold') && convert(hexo-config('page.auto_fold'))>0px)
+      overflow-y hidden
     figcaption
       background #333
       span
@@ -169,6 +178,24 @@ article
         overflow auto
       display block
       box-shadow inset 0 4px 4px #000b
+    if (hexo-config('page.auto_fold') && convert(hexo-config('page.auto_fold'))>0px)
+      table+i.auto_fold
+        font-size 14px
+        line-height 18px
+        width 100%
+        height 18px
+        background linear-gradient(0deg, #1e1e1e, #0000)
+        z-index 1
+        position relative
+        transform rotate(180deg)
+        cursor pointer
+      table.folded
+        max-height convert(hexo-config('page.auto_fold'))
+        // tbody td.code
+        //   max-height convert(hexo-config('page.auto_fold')) - 16px
+        //   overflow-y hidden
+      table.folded+i.auto_fold
+        transform rotate(0)
     if hexo-config('page.line_number') && hexo-config('page.sticky_line_number')
       tbody
         display block

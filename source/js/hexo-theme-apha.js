@@ -15,15 +15,18 @@ function nav_menu_btn() {
 var mblNavbar = 'none', mblNavBakCover;
 
 // 代码复制按钮
-function figureCpBtn(which) {
-  const icon = document.querySelectorAll("figcaption i")[which];
-  window.getSelection().selectAllChildren(document.querySelectorAll("figure")[which].querySelectorAll(".code")[0])
+function figureCpBtn(item) {
+  window.getSelection().selectAllChildren(item.parentElement.parentElement.querySelector(".code"))
   document.execCommand ("Copy");
   window.getSelection().removeAllRanges();
-  icon.className = "fa fa-check";
+  item.className = config.icon_check;
   setTimeout(() => {
-    icon.className = "fa fa-clipboard";
+    item.className = config.icon_copy;
   }, 2000);
+}
+// 代码块折叠按钮
+function figureFdBtn(item){
+  item.parentElement.parentElement.classList.toggle("hide")
 }
 
 // tag平滑转跳
@@ -33,12 +36,7 @@ function tagJump(tag) {
 
 // 折叠块
 function unfold(e) {
-  e.parentNode.className="fold un";
-  e.setAttribute("onclick", "fold(this)");
-}
-function fold(e) {
-  e.parentNode.className="fold";
-  e.setAttribute("onclick", "unfold(this)");
+  e.parentElement.classList.toggle("un")
 }
 // 标签块
 function tabs(e,c) {
@@ -88,14 +86,14 @@ function search(e) {
           s_tmpSpace="";
           s_tmpSpace+='<div class="more_info">';
           if (s_n.tags!=undefined&&s_n.tags.length!=0) {
-            s_tmpSpace+=(s_n.tags.length==1?'<i class="'+config.icon_tag+'"></i>':'<i class="'+config.icon_tag+'"></i>');
+            s_tmpSpace+=(s_n.tags.length==1?'<i class="'+config.icon_tag+'"></i>':'<i class="'+config.icon_tags+'"></i>');
             s_n.tags.forEach(tag => {
               s_tmpSpace+='<span class="tag">'+tag+' </span>';
             });
           }
           if ((s_n.categories!=undefined&&s_n.categories.length!=0)||(s_n.tags!=undefined&&s_n.tags.length!=0)) {s_tmpSpace+='<div class="line_warp_h"></div>'}
           if (s_n.categories!=undefined&&s_n.categories.length!=0) {
-            s_tmpSpace+='<i class="fa fa-archive fa-fw"></i>';
+            s_tmpSpace+='<i class="'+config.icon_archive+'"></i>';
             s_n.categories.forEach(cat => {
               s_tmpSpace+='<span class="category">'+cat+' </span>';
             });
@@ -312,16 +310,31 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // 代码块相关
-  function copyBtn(item, count){
+  function copyBtn(item){
     const injectBtn = document.createElement("i");
     const head = item.querySelectorAll("figcaption")[0]
-    injectBtn.setAttribute("onclick", "figureCpBtn(" + count + ");");
-    injectBtn.className = "fa fa-clipboard";
+    injectBtn.setAttribute("onclick", "figureCpBtn(this);");
+    injectBtn.className = config.icon_copy;
     head.insertBefore(injectBtn, head.lastChild.nextSibling);
+  }
+  function foldBtn(item){
+    const injectBtn = document.createElement("i");
+    const head = item.querySelectorAll("figcaption")[0]
+    injectBtn.setAttribute("onclick", "figureFdBtn(this);");
+    injectBtn.className = config.icon_fold+' foldBtn';
+    head.insertBefore(injectBtn, head.lastChild.nextSibling);
+  }
+  function autoFold(item) {
+    if (config.fdVal==0) {
+      item.classList.add("hide")
+    }else if (item.querySelector("table").offsetHeight>config.fdVal){
+      item.querySelector("table").classList.add("folded")
+      item.innerHTML+='<i class="'+config.icon_fig_more+' auto_fold" onclick="this.parentElement.querySelector(\'table\').classList.toggle(\'folded\')"></i>'
+      // item.querySelector("table").innerHTML+='<i class="'+config.icon_fig_more+' auto_fold" onclick="this.parentElement.classList.toggle(\'folded\')"></i>'
+    }
   }
   function figure() {
     const items = document.querySelectorAll("figure.highlight");
-    var count = 0;
     items.forEach(item => {
       const itemType = item.classList[1]
       const head = item.querySelectorAll("figcaption").length != 0 ? item.querySelectorAll("figcaption") : false;
@@ -337,7 +350,9 @@ document.addEventListener('DOMContentLoaded', function () {
         inject.appendChild(inside);
         item.insertBefore(inject, table[0]);
       }
-      config.cpBtn && copyBtn(item, count++);
+      config.fdBtn && foldBtn(item);
+      config.cpBtn && copyBtn(item);
+      (config.fdVal&&config.fdVal>=0) && autoFold(item);
     });
   }
 

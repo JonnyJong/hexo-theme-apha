@@ -112,9 +112,9 @@ mixin items(body, head, item, value, limit)
               i(class=item[2])
               span=item[1]
               if (limit != "pc") && (typeof body == 'object') && body
-                i(class=icon_sub_menu+" ho_rotate_90")
+                i(class=icon_fold+" ho_rotate_90")
           if iconRender
-            i(class=icon_sub_menu+" ho_rotate_90")
+            i(class=icon_fold+" ho_rotate_90")
           +navMenu(body, item)
         else
           div(class="fakeA" + (iconRender ? " short" : ""))
@@ -122,9 +122,9 @@ mixin items(body, head, item, value, limit)
               i(class=item[2])
               span=item[1]
               if (limit != "pc") && (typeof body == 'object') && body
-                i(class=icon_sub_menu+" ho_rotate_90")
+                i(class=icon_fold+" ho_rotate_90")
           if iconRender
-            i(class=icon_sub_menu+" ho_rotate_90")
+            i(class=icon_fold+" ho_rotate_90")
           +navMenu(body, item)
     //- 移动端菜单按钮
     when 'side_nav_btn'
