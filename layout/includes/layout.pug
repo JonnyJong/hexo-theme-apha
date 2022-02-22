@@ -29,9 +29,10 @@ doctype html
 //- html(lang=config.language color-mode=color_scheme)
 html(lang=config.language prefers-color-scheme=color_scheme)
   head
-    //- 需要计算的变量
+    //- 变量计算
     if (theme.sidebar.enable) && (theme.sidebar.items)
       +isAnySideBarItem()
+    +isAnyQbtn()
     //- 基本信息
     meta(charset='UTF-8')
     title= pageTitle
