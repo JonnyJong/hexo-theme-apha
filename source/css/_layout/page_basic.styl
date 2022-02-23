@@ -128,6 +128,7 @@ article
     // margin-right 0.5rem
     color var(--main-color)
     text-decoration none
+    margin-right 8px
   h6
     margin 32px 0
   
@@ -682,6 +683,29 @@ article
       display none
     .content.active
       display block
+  // 按钮
+  .t_button
+    display inline-block
+    border 2px solid var(--obj-main)
+    padding 12px
+    color var(--text-color-r)
+    border-radius hexo-config('page.bottom_border_radius')?convert(hexo-config('page.bottom_border_radius')):$border-radius
+    transition .2s
+    margin 8px 4px
+    i
+      margin-right 4px
+  .t_button.center
+    display block
+    margin 8px auto
+    width max-content
+  .t_button.right
+    display block
+    margin-left auto
+    width max-content
+  .t_button:hover
+    color #eee
+    text-decoration none
+    background var(--obj-main)
 
   // 插件基本颜色
   .red

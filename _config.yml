@@ -313,6 +313,8 @@ page:
 
   # 提示块圆角（推荐值：留空、0~10px）
   blocktip_radius:
+  # 按钮圆角（默认：全局圆角）
+  bottom_border_radius:
 
 # 友链样式
 link:
