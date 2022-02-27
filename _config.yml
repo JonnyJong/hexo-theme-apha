@@ -181,8 +181,15 @@ quick_btn:
   bottom_border_radius:
 
 # =============================================================
-# 首页组件（未配置）
+# 首页组件
 index_items:
+  enable: false
+  items:
+
+  # 推荐图片模糊
+  recommend_img_blur:
+  # 推荐图片饱和度
+  recommend_img_saturate:
 
 # =============================================================
 # 首页文章
@@ -229,6 +236,8 @@ index_posts:
   description:
     # 类型【false、description、excerpt、content、auto；关闭、描述、概要、选取文章内容、自动（优先级：描述 > 概要 > 文章内容）】
     type: false
+    # 悬停时显示（未完成）
+    show_on_hover: 
     # 无概要、描述时显示（当 type 为 description 或 excerpt 时有效）
     default_description:
     # 最大长度（当 type 为 content 或 auto 时有效，推荐不大于500）
@@ -424,6 +433,8 @@ icons:
   figure_more:
   # 阅读时长
   min2read: 
+  # 前往
+  go_to:
 
 # =============================================================
 # 自定义背景

@@ -112,6 +112,9 @@ if hexo-config('index_posts.more_post_item_in_line')
       -webkit-box-orient vertical
       -webkit-line-clamp 8
       overflow hidden
+      if hexo-config('index_posts.description.show_on_hover')
+        height 0
+        transition .1s
     i
       margin-right 4px
 
@@ -123,3 +126,6 @@ if hexo-config('index_posts.more_post_item_in_line')
         transform scale(1.1)
       else if hexo-config('index_posts.post_item_style')==2
         transform scale(1.03)
+  if hexo-config('index_posts.description.show_on_hover')
+    .post_description
+      height auto

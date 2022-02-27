@@ -160,6 +160,28 @@ function s_msg(e,type) {
   }
 }
 
+// 首页组件 - says
+var saysCount = 0;
+var saysItem, saysTimeout;
+function says() {
+  console.log(saysCount);
+  if (!saysItem) {
+    saysTimeout=parseInt(document.querySelector(".index_items .item.say .contents").getAttribute("speed"));
+    saysItem=document.querySelectorAll(".index_items .item.say .contents .content");
+  }
+  setTimeout(says, saysTimeout);
+
+  document.querySelector(".index_items .item.say .contents .content.in")?document.querySelector(".index_items .item.say .contents .content.in").className='content out':''
+
+  setTimeout(() => {
+    saysItem[saysCount].className='content in'
+    saysCount++;
+    if (saysCount==saysItem.length) {
+      saysCount=0;
+    }
+  }, 200);
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 
   //时间间隔
@@ -412,6 +434,13 @@ document.addEventListener('DOMContentLoaded', function () {
     window.pageYOffset<=300?(document.querySelector(".quick_btn").classList.remove("show")):""
   }
 
+  // 运行 says
+  function saysInit() {
+    if (document.querySelector(".index_items .item.say .contents")!=null) {
+      says();
+    }
+  }
+
   cleanSidebat();
   updateTime();
   runtime();
@@ -421,5 +450,6 @@ document.addEventListener('DOMContentLoaded', function () {
   figure();
   config.fooRt && runtimeFooter();
   config.tocSmJ && config.ifToc && (tocObj.length != 0) && tocjump();
+  saysInit();
 
 })

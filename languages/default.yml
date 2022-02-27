@@ -68,3 +68,5 @@ js:
     DB_loading: 正在加载数据库
     DB_failed: 数据库加载失败
     no_result: 没有结果
+index_item:
+  go_to_read: 前往阅读

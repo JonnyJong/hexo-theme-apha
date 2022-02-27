@@ -38,6 +38,7 @@ $main_color = hexo-config('theme_color.black_and_white') ? #000 : (hexo-config('
   --body-color #eee
   --bg-color rgba(255, 255, 255, $global-opacity)
   --bg-nav rgba(255, 255, 255, $navbar-opacity)
+  --bg-contrast #111e
 
   // 阴影
   --b-shadow-lite 0px 0px 8px #0004
@@ -48,6 +49,7 @@ $main_color = hexo-config('theme_color.black_and_white') ? #000 : (hexo-config('
 
   // 需要即时计算的变量
   --main_content_margin $main_content_margin
+  --block-margin $block-margin
 
 [prefers-color-scheme="dark"]
   // 主要色调
@@ -61,3 +63,4 @@ $main_color = hexo-config('theme_color.black_and_white') ? #000 : (hexo-config('
   --body-color #111
   --bg-color rgba(10, 10, 10, $global-opacity)
   --bg-nav rgba(10, 10, 10, $navbar-opacity)
+  --bg-contrast #eeee
