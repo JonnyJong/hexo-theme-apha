@@ -1,19 +1,12 @@
-mixin item_info(value)
-  if value.icon || value.title
-    .item_info
-      if value.icon
-        i(class= (value.icon + '').split(', ')[0] + " item_icon" style="color:"+((value.icon + '').split(', ')[1]?(value.icon + '').split(', ')[1]:"var(--text-color-rf)")+";")
-      if value.title
-        span=value.title
+- var isStickyItems = false
 
-mixin button(sub_body)
+mixin button(subItem)
   .button
-    - var btn = (sub_body + '').split(', ')
-    a.button(href=btn[0])
-      if (btn[2] != '')&&(btn[2]!=undefined)
-        i(class=btn[2])
-      if (btn[1] != "")&&(btn[1]!=undefined)
-        span=btn[1]
+    a.button(href=subItem.link)
+      if subItem.icon
+        i(class=subItem.icon)
+      if subItem.content
+        span=subItem.content
 
 mixin social_link()
   .social_link
@@ -23,31 +16,20 @@ mixin social_link()
         a(href=url_for(soc_lnk[1]) title=soc_lnk[2])
           i(class=soc_lnk[0])
 
-mixin newest_posts(value)
+mixin newest_posts(subItem)
   .newest_posts
-    - var final_limit = 6
-    if (typeof value == 'object') && value
-      - final_limit = value.limit ? value.limit : 6
-    - site.posts.sort("updated", -1).limit(final_limit).each(function(article){
+    - site.posts.sort("updated", -1).limit(subItem.limit?subItem.limit:6).each(function(article){
         +post_item(article)
     - })
-mixin tags(value)
-  - var f_limit = 30
-  - var f_color = true
-  - var s_color = "#3EA919"
-  - var e_color = "#156FD6"
-  if (typeof value == 'object') && value
-    - f_limit = value.limit ? value.limit : 30
-    - f_color = value.colorful ? value.colorful : true
-    - s_color = value.start_color ? value.start_color : "#3EA919"
-    - e_color = value.end_color ? value.end_color : "#156FD6"
+mixin tags(subItem)
+  - var f_limit = subItem.limit ? subItem.limit : 30
+  - var f_color = subItem.colorful ? subItem.colorful : true
+  - var s_color = subItem.start_color ? subItem.start_color : "#3EA919"
+  - var e_color = subItem.end_color ? subItem.end_color : "#156FD6"
   .tag_cloud!= tagcloud({min_font: 15, max_font: 20, amount: f_limit, color: f_color, start_color: s_color, end_color: e_color})
-mixin categories(value)
-  - var f_depth = 1
-  - var f_show_count = true
-  if (typeof value == 'object') && value
-    - f_limit = value.depth ? value.depth : 1
-    - f_show_count = value.show_count ? value.show_count : true
+mixin categories(subItem)
+  - var f_depth = subItem.depth ? subItem.depth : 1
+  - var f_show_count = subItem.show_count ? subItem.show_count : true
   .categoriesList!= list_categories({ depth: 1, show_count: f_show_count })
 
 mixin num_of_articles()
@@ -75,40 +57,33 @@ mixin last_update()
     span.title=_p("sidebar.site_info.last_update")
     span.value#last_update(last_update_value=date_xml(Date.now()))
 
-mixin avatar(sub_body)
+mixin avatar(subItem)
   .avatar
-    if sub_body == 'round'
-      img.round(src=url_for(theme.info.avatar) alt="avatar")
-    else
-      img(src=url_for(theme.info.avatar) alt="avatar")
-mixin author_name(sub_body)
+    img(class=subItem.round?'round':'' src=url_for(theme.info.avatar) alt="avatar")
+mixin author_name(subItem)
   .author_name
-    span.author_name= sub_body ? sub_body : config.author
+    span.author_name= subItem.content ? subItem.content : config.author
 
-mixin act_statistics(value)
+mixin act_statistics(subItem)
   .act_statistics
-    a.act_item(href= value.archive ? url_for(value.archive) : "")
+    a.act_item(href= subItem.archive ? url_for(subItem.archive) : "")
       .title=_p("page.archives")
       .value=site.posts.length
-    a.act_item(href= value.categorie ? url_for(value.categorie) : "")
+    a.act_item(href= subItem.categorie ? url_for(subItem.categorie) : "")
       .title=_p("page.categories")
       .value=site.categories.length
-    a.act_item(href= value.tag ? url_for(value.tag) : "")
+    a.act_item(href= subItem.tag ? url_for(subItem.tag) : "")
       .title=_p("page.tags")
       .value=site.tags.length
-mixin side_toc(sub_body)
-  - let show_in_post = true
-  - let show_in_page = false
-  - let show_count = true
-  if (typeof sub_body == 'object') && sub_body
-    - show_in_post = sub_body.post ? sub_body.post : true
-    - show_in_page = sub_body.page ? sub_body.page : false
-    - show_in_page = sub_body.list_number ? sub_body.list_number : true
+mixin side_toc(subItem)
+  - let show_in_post = subItem.post ? subItem.post : true
+  - let show_in_page = subItem.page ? subItem.page : false
+  - let show_count = subItem.list_number ? subItem.list_number : true
   if (page.toc == undefined | page.toc == true) && (((is_post()) && show_in_post) || ((is_page()) && show_in_page))
     != toc(page.content,{list_number: show_count})
 
-mixin search(sub_body)
-  case sub_body
+mixin search(subItem)
+  case subItem.style
     when "button"
       .button
         .search(onClick='document.querySelector(".s_penal_bg").className="s_penal_bg show"')
@@ -118,15 +93,13 @@ mixin search(sub_body)
       .search_penal
         input.s_in(type="text" onclick="if(s_db==null&&s_db_load==true){s_db_load=false;s_msg(this,'load');initializeSDB(this);s_db_load=true;}this.oninput=function(){search(this)}" placeholder=_p("global.search_placeholder"))
         .s_result
-mixin item(value)
-  +item_info(value)
-  each sub_body, sub_head in value
-    - var sub_item = (sub_head + '').split(', ')
-    case sub_item[0]
+mixin item(subItems)
+  each subItem in subItems
+    case subItem.type
       when "text"
-        .text!=`${sub_body}`
+        .text!=`${subItem.content}`
       when "button"
-        +button(sub_body)
+        +button(subItem)
       when "num_of_articles"
         +num_of_articles()
       when "total_word_count"
@@ -140,52 +113,66 @@ mixin item(value)
       when "last_update"
         +last_update()
       when "avatar"
-        +avatar(sub_body)
+        +avatar(subItem)
       when "author_name"
-        +author_name(sub_body)
+        +author_name(subItem)
       when "social_link"
         +social_link()
       when 'newest_posts'
-        +newest_posts(value)
+        +newest_posts(subItem)
       when 'tags'
-        +tags(value)
+        +tags(subItem)
       when 'categories'
-        +categories(value)
+        +categories(subItem)
       when "act_statistics"
-        +act_statistics(sub_body)
+        +act_statistics(subItem)
       when "toc"
-        +side_toc(sub_body)
+        +side_toc(subItem)
       when "search"
-        +search(sub_body)
+        +search(subItem)
 
-mixin deviceFilter(item, value)
-  case item[1]
+mixin item_info(item)
+  if item.icon || item.title
+    .item_info
+      if item.icon
+        i(class= (item.icon + '').split(', ')[0] + " item_icon" style="color:"+((item.icon + '').split(', ')[1]?(item.icon + '').split(', ')[1]:"var(--text-color-rf)")+";")
+      if item.title
+        span=item.title
+
+mixin deviceFilter(item)
+  case item.device
     when "pc"
       .item.onlyPC
-        +item(value)
-    when "mbl"
+        +item_info(item)
+        +item(item.items)
+    when "mobile"
       .item.onlyMbl
-        +item(value)
+        +item_info(item)
+        +item(item.items)
     default
       .item
-        +item(value)
-mixin pageFilter(item, value)
-  case item[0]
-    when "index"
-      if is_home()
-        +deviceFilter(item, value)
-    when "page"
-      if !is_home()
-        +deviceFilter(item, value)
-    //- 用于创建粘性定位元素
-    when "sticky_items"
-      .sticky_items
-        each valueRe, headRe in value
-          - const itemRe = (headRe + '').split(', ')
-          +pageFilter(itemRe, valueRe)
-    default
-      +deviceFilter(item, value)
+        +item_info(item)
+        +item(item.items)
 
-each value, head in theme.sidebar.items
-  - const item = (head + '').split(', ')
-  +pageFilter(item, value)
+mixin pageFilter(item, sticky)
+  if !sticky == !(item.sticky)
+    case item.page
+      when "index"
+        if is_home()
+          +deviceFilter(item)
+      when "page"
+        if !is_home()
+          +deviceFilter(item)
+      default
+        +deviceFilter(item, value)
+  else
+    - isStickyItems = true
+
+each item in theme.sidebar.items
+  if item.items
+    +pageFilter(item, false)
+if isStickyItems
+  .sticky_items
+    each item in theme.sidebar.items
+      if item.items
+        +pageFilter(item, true)

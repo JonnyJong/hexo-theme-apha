@@ -23,7 +23,7 @@ if theme.index_items.enable && theme.index_items.items
             .item.video
               +index_item_info(item)
               if item.src
-                video(src=item.src controls)
+                video(src=item.src controls poster=(item.poster?item.poster:''))
               else if item.iframe
                 !=`${item.iframe}`
           when "recommend"

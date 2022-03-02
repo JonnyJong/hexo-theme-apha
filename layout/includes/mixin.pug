@@ -59,24 +59,18 @@ mixin page_info(page, type, other_info)
         if page.cover
           img.page_cover(src=page.cover alt="page_cover")
 
-mixin isAnySideBarItemInside(item, value)
-  case item[0]
-    when "index"
-      if is_home()
-        - ifSidebar = true
-    when "page"
-      if !is_home()
-        - ifSidebar = true
-    when "sticky_items"
-      each valueRe, headRe in value
-        - const itemRe = (headRe + '').split(', ')
-        +isAnySideBarItemInside(itemRe, valueRe)
-    default
-      - ifSidebar = true
 mixin isAnySideBarItem()
-  each value, head in theme.sidebar.items
-    - const item = (head + '').split(', ')
-    +isAnySideBarItemInside(item, value)
+  each item in theme.sidebar.items
+    if item.items
+      case item.page
+        when 'index'
+          if is_home()
+            - ifSidebar = true
+        when 'page'
+          if !is_home()
+            - ifSidebar = true
+        default
+          - ifSidebar = true
 
 mixin isAnyQbtn()
   if theme.quick_btn.items && theme.quick_btn.enable

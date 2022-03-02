@@ -1,7 +1,7 @@
 //- 站点信息
-mixin siteInfo(value)
+mixin siteInfo(item)
   //- 图标
-  case value[0]
+  case item.logo
     when 'favicon'
       img(src=url_for(theme.info.favicon) alt='site_icon')
     when 'avatar'
@@ -12,88 +12,86 @@ mixin siteInfo(value)
     when "null"
       - break
     default
-      img(src=url_for(value[0]) alt='site_icon')
+      img(src=url_for(item.logo) alt='site_icon')
   //- 间隔
-  if value[0]!="null" && value[0]!="" && (value[1]!="none"||value[1]!=undefined)
+  if item.logo!="null" && item.logo!="" && (item.title!="none"||item.title!=undefined)
     .width_in_info
   //- 标题
-  case value[1]
+  case item.title
     when ''
     when undefined
       span.site_title=config.title
     when 'none'
       - break
     default
-      span.site_title=value[1]
+      span.site_title=item.title
 
 //- 菜单
-mixin navMenu(body, item)
-  if (typeof body == 'object') && body
-    .nav_sub_menu
-      each subValue, subItem in body
-        .nav_sub_item
-          if subValue.split(', ')[0] !=''
-            a(href=url_for(subValue.split(', ')[0]))
-              i(class=subValue.split(', ')[1])
-              span=subItem.split(', ')[0]
-          else
-            i(class=subValue.split(', ')[1])
-            span=subItem.split(', ')[0]
+mixin navMenu(subMenus)
+  .nav_sub_menu
+    each subMenu in subMenus
+      .nav_sub_item
+        if subMenu.link
+          a(href=url_for(subMenu.link))
+            i(class=subMenu.icon)
+            span=subMenu.name
+        else
+          i(class=subMenu.icon)
+          span=subMenu.name
 
 //- act_statistics
-mixin act_statistics(value)
+mixin act_statistics(item)
   .nav_item_outer.act_outer
-    a.nav_item_inner.act_inner(href= value.archive ? value.archive : "/archives/")
+    a.nav_item_inner.act_inner(href= item.archive ? item.archive : "/archives/")
       .title=_p("page.archives")
       .value=site.posts.length
-    a.nav_item_inner.act_inner(href= value.categorie ? value.categorie : "/categories/")
-      span=value.categorie
+    a.nav_item_inner.act_inner(href= item.categorie ? item.categorie : "/categories/")
       .title=_p("page.categories")
       .value=site.categories.length
-    a.nav_item_inner.act_inner(href= value.tag ? value.tag : "/tags/")
+    a.nav_item_inner.act_inner(href= item.tag ? item.tag : "/tags/")
       .title=_p("page.tags")
       .value=site.tags.length
 
-mixin items(body, head, item, value, limit)
-  case item[0]
+mixin items(item, limit)
+  case item.type
     //- 站点信息
     when 'site'
-      if (value[2]==undefined||value[2]=="")
+      if item.link=='none'
+        .nav_item_outer.noLink.site_info
+          .nav_item_inner
+            +siteInfo(item)
+      else if item.link
+        .nav_item_outer.site_info
+          a(href=item.link)
+            .nav_item_inner
+              +siteInfo(item)
+      else
         .nav_item_outer.site_info
           a(href=config.root)
             .nav_item_inner
-              +siteInfo(value)
-      else if (value[2]=="none")
-        .nav_item_outer.noLink.site_info
-          .nav_item_inner
-            +siteInfo(value)
-      else
-        .nav_item_outer.site_info
-          a(href=value[2])
-            .nav_item_inner
-              +siteInfo(value)
+              +siteInfo(item)
     //- 图片
     when 'img'
-      if value[1]!='' && value[1]!=undefined
+      if item.link
         .nav_item_outer
-          a(href=url_for(value[1]))
+          a(href=url_for(item.link))
             .nav_item_inner
-              img(src=url_for(value[0]) alt='img')
+              img(src=url_for(item.src) alt='img')
       else
         .nav_item_outer.noLink
           .nav_item_inner
-            img(src=url_for(value[0]) alt='img')
+            img(src=url_for(item.src) alt='img')
     //- 文本
     when 'text'
-      if value[1] != '' && value[1]!=undefined
+      if item.link
         .nav_item_outer
-          a(href=url_for(value[1]))
+          a(href=url_for(item.link))
             .nav_item_inner
-              span=value[0]
+              span=item.content
       else
         .nav_item_outer.noLink
           .nav_item_inner
-            span=value[0]
+            span=item.content
     //- 弹性空间
     when 'flexbox'
       .nav_item_outer.flexbox
@@ -103,29 +101,31 @@ mixin items(body, head, item, value, limit)
     //- 菜单
     when 'menu'
       - var iconRender
-      if (limit == "pc") && (typeof body == 'object') && body
+      if (limit == "pc") && item.subMenu
         - iconRender = true
       .nav_item_outer.menu
-        if item[3]!='' && item[3]!=undefined
-          a(class=(iconRender ? "short" : "") href=url_for(item[3]))
+        if item.link
+          a(class=(iconRender ? "short" : "") href=url_for(item.link))
             .nav_item_inner
-              i(class=item[2])
-              span=item[1]
-              if (limit != "pc") && (typeof body == 'object') && body
+              i(class=item.icon)
+              span=item.name
+              if (limit != "pc") && item.subMenu
                 i(class=icon_fold+" ho_rotate_90")
           if iconRender
             i(class=icon_fold+" ho_rotate_90")
-          +navMenu(body, item)
+          if item.subMenu
+            +navMenu(item.subMenu)
         else
           div(class="fakeA" + (iconRender ? " short" : ""))
             .nav_item_inner
-              i(class=item[2])
-              span=item[1]
-              if (limit != "pc") && (typeof body == 'object') && body
+              i(class=item.icon)
+              span=item.name
+              if (limit != "pc") && item.subMenu
                 i(class=icon_fold+" ho_rotate_90")
           if iconRender
             i(class=icon_fold+" ho_rotate_90")
-          +navMenu(body, item)
+          item.subMenu
+            +navMenu(item.subMenu)
     //- 移动端菜单按钮
     when 'side_nav_btn'
       .nav_item_outer
@@ -138,11 +138,11 @@ mixin items(body, head, item, value, limit)
                 i(class=icon_menu)
     //- 归档、分类、标签统计
     when "act_statistics"
-      +act_statistics(value)
+      +act_statistics(item)
     //- 搜索
     when "search"
       .nav_item_outer
-        case body
+        case item.style
           when "button"
             .fakeA(onClick='document.querySelector(".s_penal_bg").className="s_penal_bg show"')
               .nav_item_inner
@@ -152,28 +152,20 @@ mixin items(body, head, item, value, limit)
             .nav_item_inner.search
               input.s_in(type="text" onclick="if(s_db==null&&s_db_load==true){s_db_load=false;s_msg(this,'load');initializeSDB(this);s_db_load=true;}this.oninput=function(){search(this)}" placeholder=_p("global.search_placeholder"))
               .s_result
-    default
-      - break
 
 if theme.navbar.pc_nav_items || theme.navbar.mbl_nav_items
   nav(class="navbar row"+(theme.navbar.pc_nav_items?"":" pcNone")+(theme.navbar.mbl_nav_items?"":" mblNone"))
     if theme.navbar.pc_nav_items
       .navbar_inner.pc
-        each body, head in theme.navbar.pc_nav_items
-          - const item = (head + '').split(', ')
-          - const value = (body + '').split(', ')
-          +items(body, head, item, value, "mbl")
+        each item in theme.navbar.pc_nav_items
+          +items(item, "mbl")
     if theme.navbar.mbl_nav_items
       .navbar_inner.mbl
-        each body, head in theme.navbar.mbl_nav_items
-          - const item = (head + '').split(', ')
-          - const value = (body + '').split(', ')
-          +items(body, head, item, value, "")
+        each item in theme.navbar.mbl_nav_items
+          +items(item, "")
 if theme.navbar.side_nav_items
   a.nav_menu_cover(onClick="nav_menu_btn()")
   nav.navbar.side
     .navbar_inner
-      each body, head in theme.navbar.side_nav_items
-        - const item = (head + '').split(', ')
-        - const value = (body + '').split(', ')
-        +items(body, head, item, value, "pc")
+      each item in theme.navbar.side_nav_items
+        +items(item, "pc")

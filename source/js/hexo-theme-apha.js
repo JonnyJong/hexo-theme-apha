@@ -381,7 +381,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // 侧栏
   // 清理空白的块
-  function cleanSidebat() {
+  function cleanSidebar() {
     document.querySelectorAll(".sidebar_items .item").forEach(item => {
       if (!(item.childElementCount - item.querySelectorAll(".item_info").length)) {
         item.remove();
@@ -441,7 +441,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  cleanSidebat();
+  cleanSidebar();
   updateTime();
   runtime();
   config.imgDesc && imgDes();
