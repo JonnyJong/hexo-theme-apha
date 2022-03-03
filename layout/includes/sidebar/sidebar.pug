@@ -86,7 +86,7 @@ mixin search(subItem)
   case subItem.style
     when "button"
       .button
-        .search(onClick='document.querySelector(".s_penal_bg").className="s_penal_bg show"')
+        .search(onClick='document.querySelector(".s_penal_bg").className="s_penal_bg show";document.querySelector(".s_penal_bg .s_in").focus();')
           i(class=icon_search)
           span=_p("global.search")
     when "input"

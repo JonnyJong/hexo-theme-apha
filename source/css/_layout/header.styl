@@ -90,6 +90,16 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
   height 100%
   padding 0 hexo-config('navbar.item_inside_distance') ? convert(hexo-config('navbar.item_inside_distance')) : 8px
 
+// 无选中高亮
+.navbar.row .nav_item_outer.noLink:hover
+.navbar.side .nav_item_outer.noLink:hover
+.navbar.row .nav_item_outer.act_outer:hover
+.navbar.side .nav_item_outer.act_outer:hover
+.nav_item_outer.noLink
+  background #0000
+.nav_item_outer.noLink span
+  cursor default
+
 .navbar
   .width_in_info
     width 16px
@@ -116,7 +126,7 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
     margin-top $navbar_height*0.2
     height 60%
   .hr:hover
-    background var(--text-color-rf)
+    background var(--text-color-ro)
   a.side_nav_btn
     cursor pointer
     i
@@ -133,25 +143,21 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
   .search
     position relative
     .s_in
-      width 80px
       background #0000
       outline none
       height $navbar_height
       border 0
       font-size 16px
       transition .1s ease-in-out
-    .s_result:hover+.s_in
-    .s_in:focus
-    .s_in:hover
-      width 200px
+      width 100%
     .s_result
       position absolute
       top $navbar_height
       right 0
-      width 400px
+      width calc(100% - var(--block-padding)*2)
       background var(--body-color)
       box-shadow var(--b-shadow-lite)
-      border-radius $border-radius
+      border-radius 0 0 $border-radius $border-radius
       padding $block-padding
       display none
       white-space pre-wrap
@@ -159,7 +165,8 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
         text-align center
       .s_items
         overflow auto
-        max-height 50vh
+        --times-height $navbar_height + $block-padding * 2 + $block-margin
+        max-height calc(100vh - var(--times-height))
         .item
           color var(--text-color-r)
           display block
@@ -176,18 +183,6 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
     .s_in:focus+.s_result
     .s_in:hover+.s_result
       display block
-.navbar.row .nav_item_outer.flexbox:hover
-.navbar.side .nav_item_outer.flexbox:hover
-.navbar.row .nav_item_outer.hr:hover
-.navbar.side .nav_item_outer.hr:hover
-.nav_item_outer.noLink:hover
-.navbar.row .nav_item_outer.act_outer:hover
-.navbar.side .nav_item_outer.act_outer:hover
-  background none
-.nav_item_outer.noLink
-  background none
-.nav_item_outer.noLink span
-  cursor default
 
 .navbar.row
   .nav_sub_menu
@@ -216,12 +211,20 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
     display flex
     align-items center
     padding 0 16px
+  .nav_item_outer.hr:hover
+    background var(--text-color-ro)
   .nav_item_outer:hover
     background var(--main-color-bgh)
     .nav_sub_menu
       display block
     .ho_rotate_90
       transform: rotate(90deg)
+  .navbar_inner.search
+    display none
+  .navbar_inner.search.show
+    display block
+  .navbar_inner.search.show~*
+    display none
 
 // 手机端侧边栏
 a.nav_menu_cover

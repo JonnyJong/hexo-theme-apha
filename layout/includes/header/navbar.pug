@@ -94,7 +94,7 @@ mixin items(item, limit)
             span=item.content
     //- 弹性空间
     when 'flexbox'
-      .nav_item_outer.flexbox
+      .nav_item_outer.flexbox.noLink
     //- 分隔线
     when 'hr'
       .nav_item_outer.hr
@@ -141,20 +141,31 @@ mixin items(item, limit)
       +act_statistics(item)
     //- 搜索
     when "search"
-      .nav_item_outer
-        case item.style
-          when "button"
-            .fakeA(onClick='document.querySelector(".s_penal_bg").className="s_penal_bg show"')
+      case item.style
+        when "button"
+          .nav_item_outer
+            .fakeA(onClick='document.querySelector(".s_penal_bg").className="s_penal_bg show";document.querySelector(".s_penal_bg .s_in").focus();')
               .nav_item_inner
                 i(class=icon_search)
                 span=_p("global.search")
-          when "input"
+        when "input"
+          .nav_item_outer.flexbox
             .nav_item_inner.search
               input.s_in(type="text" onclick="if(s_db==null&&s_db_load==true){s_db_load=false;s_msg(this,'load');initializeSDB(this);s_db_load=true;}this.oninput=function(){search(this)}" placeholder=_p("global.search_placeholder"))
               .s_result
+        when "navbar"
+          .nav_item_outer
+            .fakeA(onClick='document.querySelector(".navbar_inner.search").className="navbar_inner search show";document.querySelector(".navbar_inner.search .s_in").focus();')
+              .nav_item_inner
+                i(class=icon_search)
+                span=_p("global.search")
 
 if theme.navbar.pc_nav_items || theme.navbar.mbl_nav_items
   nav(class="navbar row"+(theme.navbar.pc_nav_items?"":" pcNone")+(theme.navbar.mbl_nav_items?"":" mblNone"))
+    if searchBar
+      .navbar_inner.search
+        input.s_in(type="text" onclick="if(s_db==null&&s_db_load==true){s_db_load=false;s_msg(this,'load');initializeSDB(this);s_db_load=true;}this.oninput=function(){search(this)}" placeholder=_p("global.search_placeholder"))
+        .s_result
     if theme.navbar.pc_nav_items
       .navbar_inner.pc
         each item in theme.navbar.pc_nav_items

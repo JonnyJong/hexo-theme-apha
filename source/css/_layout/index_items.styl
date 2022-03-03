@@ -40,9 +40,9 @@
       width calc(50% - var(--block-margin)/2)
       display flex
       position relative
-      color var(--text-color)
+      color #eee
       min-height 120px
-      background var(--bg-contrast)
+      background #111e
       flex-direction column
       border-radius $border-radius
       overflow hidden
@@ -68,16 +68,17 @@
           font-size 18px
         .tags
           a
-            color var(--text-color)
+            color #eee
             display inline-block
-            border 1px var(--text-color) solid
+            border 1px #eee solid
             border-radius $border-radius
             padding 2px 4px
             margin 2px 4px
             transition .1s
+            line-height 18px
           a:hover
-            color var(--text-color-r)
-            background var(--text-color)
+            color #111
+            background #eee
       img
         width 100%
         height 100%
@@ -87,6 +88,7 @@
         $index_item_r_saturate = hexo-config('index_items.recommend_img_saturate')?convert(hexo-config('index_items.recommend_img_saturate')):120%
         $index_item_r_blur = hexo-config('index_items.recommend_img_blur')?convert(hexo-config('index_items.recommend_img_blur')):5px
         filter saturate($index_item_r_saturate) blur($index_item_r_blur)
+        transform scale(1.1)
     .post:hover
       box-shadow var(--b-shadow-m)
       .bar
@@ -97,35 +99,28 @@
       display flex
       gap $block-margin
       flex-wrap wrap
+      justify-content center
     .tag
       display inline-block
-      width calc(20% - var(--block-margin)/5*4)
       position relative
       background #8882
       border-radius $border-radius
       overflow hidden
       transition .2s
-      @media screen and (max-width: 800px)
-        width calc(25% - var(--block-margin)/4*3)
-      @media screen and (max-width: 600px)
-        width calc(33.3% - var(--block-margin)/3*2)
-      @media screen and (max-width: 400px)
-        width calc(50% - var(--block-margin)/2)
-      @media screen and (max-width: 300px)
-        width 100%
       .tag_info
         position relative
         z-index 1
-        min-height 32px
         display flex
         color var(--text-color-r)
         align-items center
-        padding 0 8px
+        padding 8px
         gap 8px
         transition .2s
         i.go_to
           flex 1
           text-align right
+          margin-left 16px
+          transition .2s
       img
         width 100%
         height 100%
@@ -137,10 +132,11 @@
       box-shadow var(--b-shadow-lite)
       background var(--bg-contrast)
       .tag_info
-        padding 0 16px
+        padding 8px 16px
         color var(--text-color)
         i.go_to
           animation index_item_go_to ease .5s .2s infinite
+          margin-left 0px
   .item.categories
     .categories
       display flex
@@ -148,30 +144,24 @@
       flex-wrap wrap
     .cate
       display block
-      width calc(25% - var(--block-margin) / 4 * 3)
       position relative
-      height 64px
       border-radius $border-radius
-      overflow hidden
       background #8882
       transition .2s
-      @media screen and (max-width: 800px)
-        width calc(50% - var(--block-margin)/2)
-      @media screen and (max-width: 500px)
-        width 100%
       .cate_info
         position relative
         z-index 1
         color var(--text-color-r)
-        height 100%
         display flex
         align-items center
         gap 8px
-        padding 0 8px
+        padding 16px 8px
         transition .2s
         i.go_to
           flex 1
           text-align right
+          margin-left 16px
+          transition .2s
       img
         width 100%
         height 100%
@@ -183,16 +173,16 @@
       box-shadow var(--b-shadow-lite)
       background var(--bg-contrast)
       .cate_info
-        padding 0 16px
+        padding 16px
         color var(--text-color)
         i.go_to
           animation index_item_go_to ease .5s .2s infinite
+          margin-left 0px
   .item.say
     display flex
     align-items center
     gap 16px
     .contents
-      min-height 21px
       position relative
       .content
         opacity 0

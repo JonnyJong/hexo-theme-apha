@@ -19,6 +19,7 @@
 //- 需要计算的变量
 - let ifSidebar = false
 - let ifQbtn = false
+- let searchBar = false
 
 //- 颜色模式
 - var color_scheme = theme.color_mode=="dark" ? theme.color_mode : "light" //- no-preference light dark
@@ -33,6 +34,7 @@ html(lang=config.language prefers-color-scheme=color_scheme)
     if (theme.sidebar.enable) && (theme.sidebar.items)
       +isAnySideBarItem()
     +isAnyQbtn()
+    +NavbarIf()
     //- 基本信息
     meta(charset='UTF-8')
     title= pageTitle
@@ -49,7 +51,7 @@ html(lang=config.language prefers-color-scheme=color_scheme)
     link(rel='preload', href=theme.CDN.fontawesome, as="style", onload="this.rel='stylesheet'")
     //- 需要提前执行的 js
     include ./head_js.pug
-  body(where=what_is_this_page)
+  body(where=what_is_this_page onmousedown="MousedownEvent(event)")
     include ./var.pug
     include ./search.pug
     include ./skipToContentButtom.pug

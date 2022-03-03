@@ -203,15 +203,15 @@ index_posts:
   # 一行展示多篇文章（整数）
   more_post_item_in_line: 
   more_post_item_in_line_on_mobile: 
+  # 文章块最小高度（单位：px）
+  post_item_min_height: 
 
   # 封面位置（both、left、right。当 post_item_style 为 1 时有效）
   cover_position: 
 
   # 封面高度（单位：px 或 max-content。默认：240px。当 post_item_style 为 2 时有效）
   cover_default_height:
-
-  # 文章块最小高度（单位：px。当 post_item_style 为 3 时有效）
-  post_item_min_height: 
+  
   # 信息样式（false、gradient、block；无、渐变、块状。当 post_item_style 为 3 时有效）
   incard_info_bg: 
   # block 背景样式

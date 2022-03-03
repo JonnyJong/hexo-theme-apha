@@ -28,6 +28,19 @@
           margin-right 8px
         .other_info
           margin-top 20px
+          line-height 20px
+          .page_tag
+            line-height 18px
+            padding 2px 4px
+            border 1px solid #eee
+            border-radius $border-radius
+            display inline-block
+            transition .1s
+            margin 2px 4px
+          .page_tag:hover
+            border 1px solid var(--main-color)
+            background var(--main-color)
+            color #eee
       .page_cover
         object-fit cover
         height 100%
@@ -784,6 +797,7 @@ p code
   border solid 4px var(--main-color-bgh)
   background var(--bg-color)
   border-radius $border-radius
+  line-height 1.2
   .post_title
     font-size 23px
     font-weight bold

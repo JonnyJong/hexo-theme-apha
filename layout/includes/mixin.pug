@@ -55,9 +55,22 @@ mixin page_info(page, type, other_info)
                 else
                   i(class=icon_tag)
                 each tag in page.tags.data
-                  a.page_tag.marginR(href=url_for(tag.path))=tag.name
+                  a.page_tag(href=url_for(tag.path))=tag.name
         if page.cover
           img.page_cover(src=page.cover alt="page_cover")
+
+mixin IfSearchbar(item)
+  if item.type=='search'&&item.style=='navbar'
+    - searchBar = true
+
+mixin NavbarIf()
+  each item in theme.navbar.pc_nav_items
+    +IfSearchbar(item)
+  each item in theme.navbar.mbl_nav_items
+    +IfSearchbar(item)
+  each item in theme.navbar.side_nav_items
+    +IfSearchbar(item)
+
 
 mixin isAnySideBarItem()
   each item in theme.sidebar.items

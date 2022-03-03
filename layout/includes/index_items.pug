@@ -57,9 +57,7 @@ if theme.index_items.enable && theme.index_items.items
                     .tag_info
                       if tag.icon
                         i(class=tag.icon)
-                      span.name=tag.name
-                      if (tag.show_count==undefined?item.show_count:tag.show_count)
-                        span.count=(' - '+site.tags.findOne({name: tag.name}).length)
+                      span.name=tag.name+((tag.show_count==undefined?item.show_count:tag.show_count)?(' - '+site.tags.findOne({name: tag.name}).length):'')
                       i(class=icon_go_to+" go_to")
                     if tag.img
                       img(src=url_for(tag.img) alt=tag.name)

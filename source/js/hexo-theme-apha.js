@@ -164,7 +164,6 @@ function s_msg(e,type) {
 var saysCount = 0;
 var saysItem, saysTimeout;
 function says() {
-  console.log(saysCount);
   if (!saysItem) {
     saysTimeout=parseInt(document.querySelector(".index_items .item.say .contents").getAttribute("speed"));
     saysItem=document.querySelectorAll(".index_items .item.say .contents .content");
@@ -180,6 +179,15 @@ function says() {
       saysCount=0;
     }
   }, 200);
+}
+
+var searchBar;
+
+// 点击事件
+function MousedownEvent(e) {
+  if (config.searchBar&&!(e.target==searchBar||searchBar.contains(e.target))) {
+    searchBar.querySelector(".navbar_inner.search").classList.remove('show');
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -451,5 +459,6 @@ document.addEventListener('DOMContentLoaded', function () {
   config.fooRt && runtimeFooter();
   config.tocSmJ && config.ifToc && (tocObj.length != 0) && tocjump();
   saysInit();
+  config.searchBar && (searchBar=document.querySelector('.navbar.row'));
 
 })
