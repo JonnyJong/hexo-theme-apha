@@ -40,7 +40,7 @@
           .page_tag:hover
             border 1px solid var(--main-color)
             background var(--main-color)
-            color #eee
+            color var(--text-color-on-main)
       .page_cover
         object-fit cover
         height 100%
@@ -357,6 +357,7 @@ article
     max-width 100%
     margin 4px auto 4px
     display block
+    max-height hexo-config('page.img_max_height') ? convert(hexo-config('page.img_max_height')) : 80vh
 
   // 图片描述
   .img_des

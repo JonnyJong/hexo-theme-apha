@@ -91,7 +91,7 @@ mixin search(subItem)
           span=_p("global.search")
     when "input"
       .search_penal
-        input.s_in(type="text" onclick="if(s_db==null&&s_db_load==true){s_db_load=false;s_msg(this,'load');initializeSDB(this);s_db_load=true;}this.oninput=function(){search(this)}" placeholder=_p("global.search_placeholder"))
+        input.s_in(type="text" onclick="if(s_db==null&&s_db_load==true){s_db_load=false;s_msg(this,'load');initializeSDB(this);s_db_load=true;}" oninput='search(this)' placeholder=_p("global.search_placeholder"))
         .s_result
 mixin item(subItems)
   each subItem in subItems

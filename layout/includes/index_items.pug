@@ -70,9 +70,7 @@ if theme.index_items.enable && theme.index_items.items
                     .cate_info
                       if cate.icon
                         i(class=cate.icon)
-                      span.name=cate.name
-                      if (cate.show_count==undefined?item.show_count:cate.show_count)
-                        span.count=(' - '+site.categories.findOne({name: cate.name}).length)
+                      span.name=cate.name+((cate.show_count==undefined?item.show_count:cate.show_count)?(' - '+site.categories.findOne({name: cate.name}).length):'')
                       i(class=icon_go_to+" go_to")
                     if cate.img
                       img(src=url_for(cate.img) alt=cate.name)
@@ -80,6 +78,7 @@ if theme.index_items.enable && theme.index_items.items
             .item.say
               if item.icon
                 i(class=item.icon)
-                .contents(speed=item.speed?item.speed*1000:5000)
-                  each c in item.contents
-                    span.content=c
+                .contentBox
+                  .contents(speed=item.speed?item.speed*1000:5000)
+                    each c in item.contents
+                      .content=c

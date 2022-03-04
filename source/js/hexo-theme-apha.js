@@ -125,6 +125,7 @@ function initializeSDB(e) {
     if(require.status == 200){
       s_db = JSON.parse(require.responseText);
       s_msg(e,"remove");
+      search(e);
       return;
     }else{
       s_db_load=true;
@@ -170,10 +171,10 @@ function says() {
   }
   setTimeout(says, saysTimeout);
 
-  document.querySelector(".index_items .item.say .contents .content.in")?document.querySelector(".index_items .item.say .contents .content.in").className='content out':''
-
+  !(document.querySelector(".index_items .item.say .contentBox").style.height)?document.querySelector(".index_items .item.say .contentBox").style.height=(saysItem[saysCount].offsetHeight+4)+'px':'';
   setTimeout(() => {
-    saysItem[saysCount].className='content in'
+    document.querySelector(".index_items .item.say .contentBox").style.height=(saysItem[saysCount].offsetHeight)+'px';
+    document.querySelector(".index_items .item.say .contents").style.transform='translateY('+(saysItem[saysCount].offsetTop)*-1+'px)';
     saysCount++;
     if (saysCount==saysItem.length) {
       saysCount=0;

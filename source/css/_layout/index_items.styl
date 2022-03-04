@@ -148,6 +148,7 @@
       border-radius $border-radius
       background #8882
       transition .2s
+      overflow hidden
       .cate_info
         position relative
         z-index 1
@@ -182,13 +183,15 @@
     display flex
     align-items center
     gap 16px
-    .contents
+    .contentBox
+      overflow hidden
       position relative
+      height 20px
+      transition .2s
+    .contents
+      display flex
+      flex-direction column
+      transition .2s
       .content
-        opacity 0
-        font-size 0
-        position relative
-      .content.in
-        font-size 15px
-        opacity 1
-        animation index_item_says_in ease .2s
+        line-height 20px
+        margin 2px 0

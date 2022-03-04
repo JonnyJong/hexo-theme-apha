@@ -278,6 +278,8 @@ page:
   paragraph_title_readability: false
   # 将 H2 显示为 H1，以此类推，用于优化 SEO 后便于阅读（未完成）
   after_seo_paraTitleReadly: false
+  # 图片限高（默认 80vh）
+  img_max_height:
 
   # 复制按钮
   copy_button: false
