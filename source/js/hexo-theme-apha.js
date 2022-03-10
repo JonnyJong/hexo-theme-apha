@@ -191,6 +191,61 @@ function MousedownEvent(e) {
   }
 }
 
+
+// 图册
+function gallery() {
+  document.querySelectorAll(".post_gallery").forEach(gallery => {
+    // 准备元素和尺寸
+    let galleryWidth = gallery.offsetWidth; // 框宽度
+    let imgs = gallery.querySelectorAll("img"); //img 元素数组
+    let imgSize = []; // 原始尺寸数组
+    // 获取原始尺寸
+    imgs.forEach(img => {
+      let size = {};
+      // 因 padding 故加 2
+      size["width"]=img.naturalWidth + 2;
+      size["height"]=img.naturalHeight + 2;
+      imgSize.push(size);
+    })
+
+    // 开始计算合适的尺寸
+    for (let index = 0; index < imgs.length; ) {
+      // 计算其中一种数量情况
+      calc:for (let amount = index; amount < imgs.length; amount++) {
+        
+        // 计算实际宽高比
+        let realWidthRatio = []; // 宽高比数组
+        let totalWidthRatio = 0; // 宽度基数
+        for (let count = index; count <= amount; count++) {
+          let realRatio = imgSize[count].width/imgSize[count].height;
+          realWidthRatio.push(realRatio);
+          totalWidthRatio+=realRatio;
+        }
+        // 使宽高比总和为一，这样宽高比就变成了站的总宽度的比
+        for (let count = 0; count < realWidthRatio.length; count++) {
+          realWidthRatio[count] = realWidthRatio[count]/totalWidthRatio;
+        }
+        
+        // 实际高度（占宽比*目标宽度*原始高度/原始宽度）
+        let realHeight = galleryWidth*realWidthRatio[0]*imgSize[index].height/imgSize[index].width
+        // 判断实际高度是否在范围内（若已经排除其他可能，则直接设置）
+        if ((index+1 == imgs.length)) {
+          imgs[index].style.height='100%';
+          index = amount + 1; // 使下次从下一个开始计数，非常重要，删去会导致死循环
+          break calc;
+        }else if (realHeight<=300) { //使用限制最小在宽度只容许一个图片的情况下会出现循环
+          // 若符合，设置每一个元素的宽高
+          for (let count = index; count <= amount; count++) {
+            imgs[count].style.height=realHeight+'px';
+          }
+          index = amount + 1; // 使下次从下一个开始计数，非常重要，删去会导致死循环
+          break calc;
+        }
+      }
+    }
+  })
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 
   //时间间隔
@@ -240,6 +295,15 @@ document.addEventListener('DOMContentLoaded', function () {
     config.ifToc && (tocObj.length != 0) && tocFready();
     config.ifQuickBtn && qBtnAutoHide();
   }
+
+  // resize 事件
+  var doRunOnresize = false;
+  window.onresize = function(){
+    clearTimeout(doRunOnresize);
+    doRunOnresize = setTimeout(function(){
+      document.querySelector(".post_gallery")!=null && gallery();
+    }, 1000);
+  };
   
   // 导航栏自动收起
   function navFold() {
@@ -461,5 +525,7 @@ document.addEventListener('DOMContentLoaded', function () {
   config.tocSmJ && config.ifToc && (tocObj.length != 0) && tocjump();
   saysInit();
   config.searchBar && (searchBar=document.querySelector('.navbar.row'));
+
+  gallery();
 
 })

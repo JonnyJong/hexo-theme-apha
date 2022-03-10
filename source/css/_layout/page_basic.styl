@@ -390,12 +390,13 @@ article
   .post_gallery
     position relative
     width 100%
-    columns 200px auto
-    column-gap 8px
+    line-height 0
     img
-      margin 8px 0
-    img:first-child
-      margin-top 0
+      display inline-block
+      margin 0
+      padding 1px
+      max-height max-content
+      box-sizing border-box
 
   // 插件标签
   // 提示块

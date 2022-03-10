@@ -130,6 +130,11 @@ navbar:
   # 自动收起
   auto_folding: false
 
+  # 字体大小（默认 16px）
+  font_size:
+  # site 字体大小（默认 20px）
+  site_font_size:
+
   # 元素间距（默认 0px）
   item_distance: 
   # 元素内横向间距（默认 8px）
@@ -138,17 +143,39 @@ navbar:
   # 二级菜单圆角（默认 6px）
   sub_menu_border_radius:
 
+  # hover 高亮样式
+  # background：背景颜色变化
+  # color：字体颜色变化
+  # block：块
+  # line：线
+  hover_highlight_style:
 
-  # 手机端菜单位置（left、right；默认 left）
+  # 当前页面高亮样式
+  # background：背景颜色变化
+  # color：字体颜色变化
+  # block：块
+  # line：线
+  now_highlight_style:
+
+
+  # 侧边导航栏开启按钮大小（默认 18px）
+  side_btn_size: 
+
+  # 侧边导航栏位置（left、right；默认 left）
   mbl_menu: 
-  # 手机端菜单宽度（单位：px vw，默认自动）
+  # 侧边导航栏宽度（单位：px vw，默认自动）
   mbl_outer_width: 
-  # 手机端菜单按钮高度
+  # 侧边导航栏按钮高度
   mbl_item_height:
-  # 手机端菜单水平内间距（默认 8px）
+  # 侧边导航栏水平内间距（默认 8px）
   mbl_horizontal_padding:
-  # 手机端菜单纵向内间距（默认 10px）
+  # 侧边导航栏纵向内间距（默认 10px）
   mbl_vertical_padding:
+
+  # 侧边导航栏字体大小（默认 16px）
+  side_font_size:
+  # 侧边导航栏 site 字体大小（默认 20px）
+  side_site_font_size:
 
 # =============================================================
 # 侧边栏
