@@ -115,6 +115,7 @@ if hexo-config('index_posts.more_post_item_in_line')
       if hexo-config('index_posts.description.show_on_hover')
         line-height 0px
         transition .2s ease
+        opacity 0
       else
         line-height 24px
     i
@@ -143,3 +144,4 @@ if hexo-config('index_posts.more_post_item_in_line')
   if hexo-config('index_posts.description.show_on_hover')
     .post_description
       line-height 24px
+      opacity 1

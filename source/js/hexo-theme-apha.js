@@ -52,83 +52,175 @@ function tabs(e,c) {
 }
 
 // 搜索功能
-var s_db = null;
-var s_db_load = true;
-var s_ing = true;
-var s_r;
-var s_c;
-var s_hit=false;
-var s_tmpSpace;
-function search(e) {
-  if (s_db==null&&s_db_load==true) {
-    s_db_load=false;
+var searchDb = null; // 搜索数据库
+var searchDb_load = true; // 未在加载数据库
+var isNotSearching = true; // 当前未在搜索
+var searchResult; // 搜索结果（文章）
+var searchResult_cate; // 分类
+var searchResult_tag; // 标签
+var s_c; // 未知，待移除
+var ifHit=false; // 找到结果
+var searchTemp; // 搜索临时空间
+var searchKeywords = [] // 搜索关键词
+var searchTags = []
+function searchX(e) {
+  // 若未加载数据库且未在加载
+  if (searchDb==null&&searchDb_load==true) {
+    searchDb_load=false;
     s_msg(e,"load");
     initializeSDB(e);
-    s_db_load=true;
+    searchDb_load=true;
   }
-  if (s_db!=null&&s_ing==true&&e.value.length>0) {
-    s_ing=false;
-    s_r=document.createElement("div");
-    s_r.className="s_items";
-    s_db.forEach(s_n => {
-      s_hit=false;
-      if (s_n.title!=undefined&&s_n.title.indexOf(e.value)>-1) {s_hit=true;}
-      if (!s_hit&&s_n.content!=undefined&&s_n.content.indexOf(e.value)>-1) {s_hit=true;}
-      if (!s_hit&&s_n.tag!=undefined) {s_n.tags.forEach(tag => {(tag.indexOf(e.value)>-1)?s_hit=true:"";});}
-      if (!s_hit&&s_n.categories!=undefined) {s_n.categories.forEach(cat => {(cat.indexOf(e.value)>-1)?s_hit=true:"";});}
-      if (s_hit) {
+  // 当数据库存在、之前的搜索已经完成、输入值不为空
+  if (searchDb!=null&&isNotSearching==true&&e.value.length>0) {
+    // 初始化关键词（区分、去除空字符串、去除重复）
+    searchKeywords = e.value.split(' ').filter(function (keyword,index,arr) {
+      return keyword && keyword.trim() && arr.indexOf(keyword)==index
+    });
+    // 当数组不为空则执行搜索
+    if (searchKeywords.length) {
+      searchResult = '';
+      searchResult_cate = '';
+      searchResult_tag = '';
+      searchTags = []
+      // 遍历每个文章
+      searchDb.forEach(post => {
+        let content = post.content // 取出文本（用于高亮）
+        let title = post.title // 取出标题（用于高亮）
+        let cate = post.categories?post.categories:[] // 取出归类
+        let tags = post.tags?post.tags:[] // 去除标签
+        let contentStart = -1;
+        let contentEnd = -1;
+        let postHit = false; // 找到目标文章
+        let hitContent = false; // 在内容中找到
+
+        // 匹配
+        searchKeywords.forEach(keyword => {
+
+          // 文章内容
+          if (content.indexOf(keyword)>-1) {
+            postHit = true;
+            hitContent = true;
+            // 确定截取头尾
+            if ( contentStart==-1 || contentStart>content.indexOf(keyword) ) {
+              contentStart = content.indexOf(keyword)
+            }else if ( contentEnd==-1 || contentEnd<(content.indexOf(keyword)+keyword.length) ){
+              contentEnd = content.indexOf(keyword)+keyword.length
+            }
+          }
+          // 文章标题
+          if (title.indexOf(keyword)>-1) {
+            postHit = true;
+          }
+          // 文章归类
+          if (cate.length) {
+            cate.forEach(c => {
+              if (c.indexOf(keyword)>-1) {
+                postHit=true;
+                
+              }
+            });
+          }
+          // 文章归档
+          if (tags.length) {
+            tags.forEach(t => {
+              if (c.indexOf(keyword)>-1) {
+                postHit=true;
+                searchTags.push(c);
+              }
+            })
+          }
+        });
+
+        // 如果找到
+        if (postHit) {
+          if (hitContent) {
+            // 截取
+            (contentStart-10<0) ? contentStart = 0 : contentStart-=10
+            (contentEnd+100>content.length) ? contentStart = content.length : contentStart+=100
+            content = content.substring(contentStart, contentEnd)
+          }
+        }
+      });
+    }
+  }
+}
+
+// 旧版搜索
+function search(e) {
+  // 若未加载数据库且未在加载
+  if (searchDb==null&&searchDb_load==true) {
+    searchDb_load=false;
+    s_msg(e,"load");
+    initializeSDB(e);
+    searchDb_load=true;
+  }
+  // 当数据库存在、之前的搜索已经完成、输入值不为空
+  if (searchDb!=null&&isNotSearching==true&&e.value.length>0) {
+    isNotSearching=false;
+    searchResult=document.createElement("div");
+    searchResult.className="s_items";
+    searchDb.forEach(searchItem => {
+      ifHit=false;
+      if (searchItem.title!=undefined&&searchItem.title.indexOf(e.value)>-1) {ifHit=true;}
+      if (!ifHit&&searchItem.content!=undefined&&searchItem.content.indexOf(e.value)>-1) {ifHit=true;}
+      if (!ifHit&&searchItem.tag!=undefined) {searchItem.tags.forEach(tag => {(tag.indexOf(e.value)>-1)?ifHit=true:"";});}
+      if (!ifHit&&searchItem.categories!=undefined) {searchItem.categories.forEach(cat => {(cat.indexOf(e.value)>-1)?ifHit=true:"";});}
+      if (ifHit) {
         const item = document.createElement("a");
         item.className = "item";
-        item.setAttribute("href",s_n.url)
-        item.innerHTML='<div class="title">'+(s_n.title!=undefined?s_n.title:config.s_notitle)+'</div>';
-        item.innerHTML += ((s_n.content!=undefined&&s_n.content!="")?'<div class="content">'+s_n.content.replace(/<[^>]+>/g, "").slice(0,100)+'</div>':'');
-        if ((s_n.categories!=undefined&&s_n.categories.length!=0)||(s_n.tags!=undefined&&s_n.tags.length!=0)) {
-          s_tmpSpace="";
-          s_tmpSpace+='<div class="more_info">';
-          if (s_n.tags!=undefined&&s_n.tags.length!=0) {
-            s_tmpSpace+=(s_n.tags.length==1?'<i class="'+config.icon_tag+'"></i>':'<i class="'+config.icon_tags+'"></i>');
-            s_n.tags.forEach(tag => {
-              s_tmpSpace+='<span class="tag">'+tag+' </span>';
+        item.setAttribute("href",searchItem.url)
+        item.innerHTML='<div class="title">'+(searchItem.title!=undefined?searchItem.title:config.searchItemotitle)+'</div>';
+        item.innerHTML += ((searchItem.content!=undefined&&searchItem.content!="")?'<div class="content">'+searchItem.content.replace(/<[^>]+>/g, "").slice(0,100)+'</div>':'');
+        if ((searchItem.categories!=undefined&&searchItem.categories.length!=0)||(searchItem.tags!=undefined&&searchItem.tags.length!=0)) {
+          searchTemp="";
+          searchTemp+='<div class="more_info">';
+          if (searchItem.tags!=undefined&&searchItem.tags.length!=0) {
+            searchTemp+=(searchItem.tags.length==1?'<i class="'+config.icon_tag+'"></i>':'<i class="'+config.icon_tags+'"></i>');
+            searchItem.tags.forEach(tag => {
+              searchTemp+='<span class="tag">'+tag+' </span>';
             });
           }
-          if ((s_n.categories!=undefined&&s_n.categories.length!=0)||(s_n.tags!=undefined&&s_n.tags.length!=0)) {s_tmpSpace+='<div class="line_warp_h"></div>'}
-          if (s_n.categories!=undefined&&s_n.categories.length!=0) {
-            s_tmpSpace+='<i class="'+config.icon_archive+'"></i>';
-            s_n.categories.forEach(cat => {
-              s_tmpSpace+='<span class="category">'+cat+' </span>';
+          if ((searchItem.categories!=undefined&&searchItem.categories.length!=0)||(searchItem.tags!=undefined&&searchItem.tags.length!=0)) {searchTemp+='<div class="line_warp_h"></div>'}
+          if (searchItem.categories!=undefined&&searchItem.categories.length!=0) {
+            searchTemp+='<i class="'+config.icon_archive+'"></i>';
+            searchItem.categories.forEach(cat => {
+              searchTemp+='<span class="category">'+cat+' </span>';
             });
           }
-          item.innerHTML+=s_tmpSpace+'</div>';
+          item.innerHTML+=searchTemp+'</div>';
         }
-        s_r.appendChild(item);
+        searchResult.appendChild(item);
       }
     });
-    if (s_r.childElementCount==0) {
+    // 当没有搜索到时
+    if (searchResult.childElementCount==0) {
       (e.nextSibling.querySelector(".s_items")!=null)?e.nextSibling.querySelector(".s_items").remove():"";
       s_msg(e,"nothing");
     }else{
       s_msg(e,"remove");
       (e.nextSibling.querySelector(".s_items")!=null)?e.nextSibling.querySelector(".s_items").remove():"";
-      e.nextSibling.appendChild(s_r);
+      e.nextSibling.appendChild(searchResult);
     }
-    s_ing=true;
+    isNotSearching=true; // 恢复到空闲状态
+  // 当输入为空时
   }else if (e.value.length==0) {
     (e.nextSibling.querySelector(".s_items")!=null)?e.nextSibling.querySelector(".s_items").remove():"";
   }
 }
-// 初始化 json
+// 初始化搜索数据库
 function initializeSDB(e) {
   var require = new XMLHttpRequest();
-  require.open("get",config.s_db_href);
+  require.open("get",config.searchDbHref);
   require.send(null);
   require.onload = function(){
     if(require.status == 200){
-      s_db = JSON.parse(require.responseText);
+      searchDb = JSON.parse(require.responseText);
       s_msg(e,"remove");
       search(e);
       return;
     }else{
-      s_db_load=true;
+      searchDb_load=true;
       s_msg(e,"failed");
       console.error("搜索数据库加载失败！Search DB failed to load!\n错误代码/code: "+require.status);
     }
