@@ -49,6 +49,19 @@ i.close:hover
   .s_msg
     margin-top $block-margin
     text-align center
+  .tag_results
+    display flex
+    margin 8px 0
+    .tag
+      color var(--text-color-r)
+      padding 8px
+      border-radius $border-radius
+      border 1px solid
+      transition .1s
+    .tag:hover
+      border 1px solid var(--bg-color)
+      background var(--bg-color)
+      color var(--text-color-r)
   .s_items
     .item
       color var(--text-color-r)
@@ -56,9 +69,14 @@ i.close:hover
       border-radius $border-radius
       padding $block-padding
       transition .1s
+      .highlight
+        background var(--main-color)
       .title
         transition .1s
         font-size 20px
+      .tags
+      .cates
+        display flex
     .item:hover
       background var(--bg-color)
       box-shadow var(--b-shadow-lite)

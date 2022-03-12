@@ -56,14 +56,14 @@ var searchDb = null; // 搜索数据库
 var searchDb_load = true; // 未在加载数据库
 var isNotSearching = true; // 当前未在搜索
 var searchResult; // 搜索结果（文章）
-var searchResult_cate; // 分类
+// var searchResult_cate; // 分类
 var searchResult_tag; // 标签
 var s_c; // 未知，待移除
-var ifHit=false; // 找到结果
-var searchTemp; // 搜索临时空间
+// var ifHit=false; // 找到结果
+// var searchTemp; // 搜索临时空间
 var searchKeywords = [] // 搜索关键词
 var searchTags = []
-function searchX(e) {
+function search(e) {
   // 若未加载数据库且未在加载
   if (searchDb==null&&searchDb_load==true) {
     searchDb_load=false;
@@ -80,74 +80,178 @@ function searchX(e) {
     // 当数组不为空则执行搜索
     if (searchKeywords.length) {
       searchResult = '';
-      searchResult_cate = '';
+      // searchResult_cate = '';
       searchResult_tag = '';
       searchTags = []
       // 遍历每个文章
       searchDb.forEach(post => {
-        let content = post.content // 取出文本（用于高亮）
-        let title = post.title // 取出标题（用于高亮）
-        let cate = post.categories?post.categories:[] // 取出归类
-        let tags = post.tags?post.tags:[] // 去除标签
-        let contentStart = -1;
-        let contentEnd = -1;
-        let postHit = false; // 找到目标文章
-        let hitContent = false; // 在内容中找到
+        let content = post.content.replace(/\n/g, ' ') // 取出文本（用于高亮）
+        let title = post.title?post.title:config.post_notitle // 取出标题（用于高亮）
+        let cates = post.categories?post.categories:[] // 取出归类
+        let tags = post.tags?post.tags:[] // 取出标签
+
+        let contentStart = -1; // 内容截取开头
+        let contentEnd = -1; // 内容截取结尾
+
+        let hitContent = 0; // 在内容中找到
+        let hitTitle = 0; // 在标题中找到
+        let hitTags = 0; // 在标签中找到
+        let hitCate = 0; // 在归类中找到
 
         // 匹配
         searchKeywords.forEach(keyword => {
 
           // 文章内容
           if (content.indexOf(keyword)>-1) {
-            postHit = true;
-            hitContent = true;
+            hitContent===0 ? hitContent = true : ''
             // 确定截取头尾
             if ( contentStart==-1 || contentStart>content.indexOf(keyword) ) {
               contentStart = content.indexOf(keyword)
-            }else if ( contentEnd==-1 || contentEnd<(content.indexOf(keyword)+keyword.length) ){
+            }
+            if ( contentEnd==-1 || contentEnd<(content.indexOf(keyword)+keyword.length) ){
               contentEnd = content.indexOf(keyword)+keyword.length
             }
+          }else{
+            hitContent = false
           }
+
           // 文章标题
           if (title.indexOf(keyword)>-1) {
-            postHit = true;
+            hitTitle===0 ? hitTitle = true : ''
+          }else{
+            hitTitle = false
           }
+
           // 文章归类
-          if (cate.length) {
-            cate.forEach(c => {
+          if (cates.length) {
+            let ifHit = false
+            cates.forEach(c => {
               if (c.indexOf(keyword)>-1) {
-                postHit=true;
-                
+                ifHit = true;
               }
             });
+            if (ifHit) {
+              hitCate===0 ? hitCate = true : ''
+            }else{
+              hitCate = false
+            }
           }
-          // 文章归档
+
+          // 文章标签
           if (tags.length) {
+            let ifHit = false
             tags.forEach(t => {
-              if (c.indexOf(keyword)>-1) {
-                postHit=true;
-                searchTags.push(c);
+              if (t.indexOf(keyword)>-1) {
+                ifHit = true;
+                searchTags.push(t);
               }
             })
+            if (ifHit) {
+              hitTags===0 ? hitTags = true : ''
+            }else{
+              hitTags = false
+            }
           }
         });
 
         // 如果找到
-        if (postHit) {
-          if (hitContent) {
-            // 截取
-            (contentStart-10<0) ? contentStart = 0 : contentStart-=10
-            (contentEnd+100>content.length) ? contentStart = content.length : contentStart+=100
-            content = content.substring(contentStart, contentEnd)
+        if (hitContent||hitTitle||hitCate||hitTags) {
+          ifHit = true
+          // 截取文章内容
+          if (contentStart==-1) {
+            contentStart=0
+          }else{
+            contentStart-=10
           }
+          if (contentEnd==-1) {
+            contentEnd=300
+          }else{
+            contentEnd+=300
+          }
+          content = content.substring(contentStart, contentEnd)
+
+          // 高亮
+          searchKeywords.forEach(keyword => {
+            let reg = new RegExp(keyword, 'g')
+            content = content.replace(reg, '<span class="highlight">'+keyword+'</span>')
+            title = title.replace(reg, '<span class="highlight">'+keyword+'</span>')
+            if (hitCate) {
+              cates.forEach(c => {
+                c = c.replace(reg, '<span class="highlight">'+keyword+'</span>')
+              })
+            }
+            if (hitTags) {
+              tags.forEach(t => {
+                t = t.replace(reg, '<span class="highlight">'+keyword+'</span>')
+              })
+            }
+          });
+
+          // 创建元素
+          let element = '<a class="item" href="'+post.url+'"><div class="title">'+title+'</div><div class="content">'+content+'</div>'
+          if (tags.length) {
+            if (tags.length>1) {
+              element+='<div class="tags"><i class="'+config.icon_tags+'"></i>'
+            }else{
+              element+='<div class="tags"><i class="'+config.icon_tag+'"></i>'
+            }
+            tags.forEach(t => {
+              element+='<div class="tag">'+t+'</div>'
+            })
+            element+='</div>'
+          }
+          if (cates.length) {
+            element+='<div class="cates"><i class="'+config.icon_categorie+'"></i>'
+            cates.forEach(c => {
+              element+='<div class="cate">'+c+'</div>'
+            })
+            element+='</div>'
+          }
+          element+='</a>'
+          searchResult+=element
         }
       });
+      // 当有搜索结果时
+      if (searchResult!=''||searchTags.length) {
+        s_msg(e,"remove");
+        (e.nextSibling.querySelector(".s_items")!=null)?e.nextSibling.querySelector(".s_items").remove():"";
+        (e.nextSibling.querySelector(".tag_results")!=null)?e.nextSibling.querySelector(".tag_results").remove():"";
+        if (searchTags.length) {
+          // 清理重复的标签
+          searchTags = searchTags.filter(function (tag,index,arr) {
+            return tag && tag.trim() && arr.indexOf(tag)==index
+          });
+          searchTags.forEach(tag => {
+            searchResult_tag += '<a class="tag" href="'+config.link_root+config.link_tag_dir+'/'+tag+'"><i class="'+config.icon_tag+'"></i>'+tag+'</a>'
+          });
+          const inject = document.createElement("div")
+          inject.className="tag_results"
+          inject.innerHTML=searchResult_tag
+          e.nextSibling.appendChild(inject);
+        }
+        if (searchResult) {
+          const inject = document.createElement("div")
+          inject.className="s_items"
+          inject.innerHTML=searchResult
+          e.nextSibling.appendChild(inject);
+        }
+      }else{
+        // 当没有搜索结果时
+        (e.nextSibling.querySelector(".s_items")!=null)?e.nextSibling.querySelector(".s_items").remove():"";
+        (e.nextSibling.querySelector(".tag_results")!=null)?e.nextSibling.querySelector(".tag_results").remove():"";
+        s_msg(e,"nothing");
+      }
     }
+  // 当输入框为空时清理结果区域
+  }else if(searchDb!=null&&isNotSearching==true&&e.value.length==0){
+    (e.nextSibling.querySelector(".s_items")!=null)?e.nextSibling.querySelector(".s_items").remove():"";
+    (e.nextSibling.querySelector(".tag_results")!=null)?e.nextSibling.querySelector(".tag_results").remove():"";
+    s_msg(e,"remove");
   }
 }
 
 // 旧版搜索
-function search(e) {
+function searchO(e) {
   // 若未加载数据库且未在加载
   if (searchDb==null&&searchDb_load==true) {
     searchDb_load=false;
