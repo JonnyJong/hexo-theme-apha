@@ -56,18 +56,14 @@ var searchDb = null; // 搜索数据库
 var searchDb_load = true; // 未在加载数据库
 var isNotSearching = true; // 当前未在搜索
 var searchResult; // 搜索结果（文章）
-// var searchResult_cate; // 分类
 var searchResult_tag; // 标签
-var s_c; // 未知，待移除
-// var ifHit=false; // 找到结果
-// var searchTemp; // 搜索临时空间
 var searchKeywords = [] // 搜索关键词
 var searchTags = []
 function search(e) {
   // 若未加载数据库且未在加载
   if (searchDb==null&&searchDb_load==true) {
     searchDb_load=false;
-    s_msg(e,"load");
+    searchMsg(e,"load");
     initializeSDB(e);
     searchDb_load=true;
   }
@@ -85,7 +81,7 @@ function search(e) {
       searchTags = []
       // 遍历每个文章
       searchDb.forEach(post => {
-        let content = post.content.replace(/\n/g, ' ') // 取出文本（用于高亮）
+        let content = post.content.replace(/\n/g, ' ').replace(/<[^>]+>/g, '') // 取出文本（用于高亮）
         let title = post.title?post.title:config.post_notitle // 取出标题（用于高亮）
         let cates = post.categories?post.categories:[] // 取出归类
         let tags = post.tags?post.tags:[] // 取出标签
@@ -168,6 +164,9 @@ function search(e) {
           }else{
             contentEnd+=300
           }
+          if (contentEnd - contentStart > 400) {
+            contentEnd = contentStart + 400
+          }
           content = content.substring(contentStart, contentEnd)
 
           // 高亮
@@ -203,7 +202,7 @@ function search(e) {
           if (cates.length) {
             element+='<div class="cates"><i class="'+config.icon_categorie+'"></i>'
             cates.forEach(c => {
-              element+='<div class="cate">'+c+'</div>'
+              element+=c+'/'
             })
             element+='</div>'
           }
@@ -213,8 +212,8 @@ function search(e) {
       });
       // 当有搜索结果时
       if (searchResult!=''||searchTags.length) {
-        s_msg(e,"remove");
-        (e.nextSibling.querySelector(".s_items")!=null)?e.nextSibling.querySelector(".s_items").remove():"";
+        searchMsg(e,"remove");
+        (e.nextSibling.querySelector(".searchItems")!=null)?e.nextSibling.querySelector(".searchItems").remove():"";
         (e.nextSibling.querySelector(".tag_results")!=null)?e.nextSibling.querySelector(".tag_results").remove():"";
         if (searchTags.length) {
           // 清理重复的标签
@@ -231,85 +230,22 @@ function search(e) {
         }
         if (searchResult) {
           const inject = document.createElement("div")
-          inject.className="s_items"
+          inject.className="searchItems"
           inject.innerHTML=searchResult
           e.nextSibling.appendChild(inject);
         }
       }else{
         // 当没有搜索结果时
-        (e.nextSibling.querySelector(".s_items")!=null)?e.nextSibling.querySelector(".s_items").remove():"";
+        (e.nextSibling.querySelector(".searchItems")!=null)?e.nextSibling.querySelector(".searchItems").remove():"";
         (e.nextSibling.querySelector(".tag_results")!=null)?e.nextSibling.querySelector(".tag_results").remove():"";
-        s_msg(e,"nothing");
+        searchMsg(e,"nothing");
       }
     }
   // 当输入框为空时清理结果区域
   }else if(searchDb!=null&&isNotSearching==true&&e.value.length==0){
-    (e.nextSibling.querySelector(".s_items")!=null)?e.nextSibling.querySelector(".s_items").remove():"";
+    (e.nextSibling.querySelector(".searchItems")!=null)?e.nextSibling.querySelector(".searchItems").remove():"";
     (e.nextSibling.querySelector(".tag_results")!=null)?e.nextSibling.querySelector(".tag_results").remove():"";
-    s_msg(e,"remove");
-  }
-}
-
-// 旧版搜索
-function searchO(e) {
-  // 若未加载数据库且未在加载
-  if (searchDb==null&&searchDb_load==true) {
-    searchDb_load=false;
-    s_msg(e,"load");
-    initializeSDB(e);
-    searchDb_load=true;
-  }
-  // 当数据库存在、之前的搜索已经完成、输入值不为空
-  if (searchDb!=null&&isNotSearching==true&&e.value.length>0) {
-    isNotSearching=false;
-    searchResult=document.createElement("div");
-    searchResult.className="s_items";
-    searchDb.forEach(searchItem => {
-      ifHit=false;
-      if (searchItem.title!=undefined&&searchItem.title.indexOf(e.value)>-1) {ifHit=true;}
-      if (!ifHit&&searchItem.content!=undefined&&searchItem.content.indexOf(e.value)>-1) {ifHit=true;}
-      if (!ifHit&&searchItem.tag!=undefined) {searchItem.tags.forEach(tag => {(tag.indexOf(e.value)>-1)?ifHit=true:"";});}
-      if (!ifHit&&searchItem.categories!=undefined) {searchItem.categories.forEach(cat => {(cat.indexOf(e.value)>-1)?ifHit=true:"";});}
-      if (ifHit) {
-        const item = document.createElement("a");
-        item.className = "item";
-        item.setAttribute("href",searchItem.url)
-        item.innerHTML='<div class="title">'+(searchItem.title!=undefined?searchItem.title:config.searchItemotitle)+'</div>';
-        item.innerHTML += ((searchItem.content!=undefined&&searchItem.content!="")?'<div class="content">'+searchItem.content.replace(/<[^>]+>/g, "").slice(0,100)+'</div>':'');
-        if ((searchItem.categories!=undefined&&searchItem.categories.length!=0)||(searchItem.tags!=undefined&&searchItem.tags.length!=0)) {
-          searchTemp="";
-          searchTemp+='<div class="more_info">';
-          if (searchItem.tags!=undefined&&searchItem.tags.length!=0) {
-            searchTemp+=(searchItem.tags.length==1?'<i class="'+config.icon_tag+'"></i>':'<i class="'+config.icon_tags+'"></i>');
-            searchItem.tags.forEach(tag => {
-              searchTemp+='<span class="tag">'+tag+' </span>';
-            });
-          }
-          if ((searchItem.categories!=undefined&&searchItem.categories.length!=0)||(searchItem.tags!=undefined&&searchItem.tags.length!=0)) {searchTemp+='<div class="line_warp_h"></div>'}
-          if (searchItem.categories!=undefined&&searchItem.categories.length!=0) {
-            searchTemp+='<i class="'+config.icon_archive+'"></i>';
-            searchItem.categories.forEach(cat => {
-              searchTemp+='<span class="category">'+cat+' </span>';
-            });
-          }
-          item.innerHTML+=searchTemp+'</div>';
-        }
-        searchResult.appendChild(item);
-      }
-    });
-    // 当没有搜索到时
-    if (searchResult.childElementCount==0) {
-      (e.nextSibling.querySelector(".s_items")!=null)?e.nextSibling.querySelector(".s_items").remove():"";
-      s_msg(e,"nothing");
-    }else{
-      s_msg(e,"remove");
-      (e.nextSibling.querySelector(".s_items")!=null)?e.nextSibling.querySelector(".s_items").remove():"";
-      e.nextSibling.appendChild(searchResult);
-    }
-    isNotSearching=true; // 恢复到空闲状态
-  // 当输入为空时
-  }else if (e.value.length==0) {
-    (e.nextSibling.querySelector(".s_items")!=null)?e.nextSibling.querySelector(".s_items").remove():"";
+    searchMsg(e,"remove");
   }
 }
 // 初始化搜索数据库
@@ -320,40 +256,40 @@ function initializeSDB(e) {
   require.onload = function(){
     if(require.status == 200){
       searchDb = JSON.parse(require.responseText);
-      s_msg(e,"remove");
+      searchMsg(e,"remove");
       search(e);
       return;
     }else{
       searchDb_load=true;
-      s_msg(e,"failed");
+      searchMsg(e,"failed");
       console.error("搜索数据库加载失败！Search DB failed to load!\n错误代码/code: "+require.status);
     }
   }
 }
 // 搜索消息
-function s_msg(e,type) {
+function searchMsg(e,type) {
   var text;
   switch (type) {
     case "load":
-      text = config.s_msg_load
+      text = config.searchMsg_load
       break;
     case "failed":
-      text = config.s_msg_failed
+      text = config.searchMsg_failed
       break;
     case "nothing":
-      text = config.s_msg_nothing
+      text = config.searchMsg_nothing
       break;
     case "remove":
-      e.nextSibling.querySelector(".s_msg")!=null?e.nextSibling.querySelector(".s_msg").remove():"";
+      e.nextSibling.querySelector(".searchMsg")!=null?e.nextSibling.querySelector(".searchMsg").remove():"";
       break;
   }
-  if (e.nextSibling.querySelector(".s_msg")==null) {
+  if (e.nextSibling.querySelector(".searchMsg")==null) {
     const inject = document.createElement("div");
     inject.textContent = text;
-    inject.className = "s_msg";
+    inject.className = "searchMsg";
     e.nextSibling.appendChild(inject);
   }else{
-    e.nextSibling.querySelector(".s_msg").innerText=text;
+    e.nextSibling.querySelector(".searchMsg").innerText=text;
   }
 }
 

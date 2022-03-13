@@ -86,13 +86,13 @@ mixin search(subItem)
   case subItem.style
     when "button"
       .button
-        .search(onClick='document.querySelector(".s_penal_bg").className="s_penal_bg show";document.querySelector(".s_penal_bg .s_in").focus();')
+        .search(onClick='document.querySelector(".searchPenalBg").className="searchPenalBg show";document.querySelector(".searchPenalBg .searchInput").focus();')
           i(class=icon_search)
           span=_p("global.search")
     when "input"
       .search_penal
-        input.s_in(type="text" onclick="if(s_db==null&&s_db_load==true){s_db_load=false;s_msg(this,'load');initializeSDB(this);s_db_load=true;}" oninput='search(this)' placeholder=_p("global.search_placeholder"))
-        .s_result
+        input.searchInput(type="text" onclick="if(s_db==null&&s_db_load==true){s_db_load=false;searchMsg(this,'load');initializeSDB(this);s_db_load=true;}" oninput='search(this)' placeholder=_p("global.search_placeholder"))
+        .searchResult
 mixin item(subItems)
   each subItem in subItems
     case subItem.type

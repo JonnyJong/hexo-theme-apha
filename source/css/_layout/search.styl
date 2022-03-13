@@ -1,13 +1,13 @@
-.s_penal_bg
+.searchPenalBg
   position fixed
   height 100vh
   width 100vw
   background #0008
   z-index 101
   display none
-.s_penal_bg.show
+.searchPenalBg.show
   display block
-.s_close
+.closeSearch
   position absolute
   height 100vh
   width 100vw
@@ -21,7 +21,7 @@ i.close
   transition .1s
 i.close:hover
   background var(--main-color-bgh)
-.s_penal
+.searchPenal
   margin $block-margin auto
   width 600px
   background var(--bg-color)
@@ -31,54 +31,57 @@ i.close:hover
   max-width 80vw
   if ($global-blur!=0)
     backdrop-filter blur($global-blur)
-  .s_in
-    width 100%
-    height 30px
-    background #0000
-    border 0
-    border-bottom 4px solid var(--main-color-bgh)
+.searchInput
+  width 100%
+  height 30px
+  background #0000
+  border 0
+  border-bottom 4px solid var(--main-color-bgh)
+  transition .1s
+.searchInput:focus
+  border-bottom 4px solid var(--main-color)
+  outline none
+.searchResult
+  width 100%
+  --max-height-m $block-margin*2 + $block-padding*2 + 70px
+  max-height calc(100vh - var(--max-height-m))
+  overflow auto
+.searchMsg
+  margin-top $block-margin
+  text-align center
+.tag_results
+  display flex
+  margin 8px 0
+  gap 8px
+  .tag
+    color var(--text-color-r)
+    padding 8px
+    border-radius $border-radius
+    border 1px solid
     transition .1s
-  .s_in:focus
-    border-bottom 4px solid var(--main-color)
-    outline none
-  .s_result
-    width 100%
-    --max-height-m $block-margin*2 + $block-padding*2 + 70px
-    max-height calc(100vh - var(--max-height-m))
-    overflow auto
-  .s_msg
-    margin-top $block-margin
-    text-align center
-  .tag_results
-    display flex
-    margin 8px 0
-    .tag
-      color var(--text-color-r)
-      padding 8px
-      border-radius $border-radius
-      border 1px solid
+  .tag:hover
+    border 1px solid var(--bg-color)
+    background var(--bg-color)
+    color var(--text-color-r)
+.searchItems
+  .item
+    color var(--text-color-r)
+    display block
+    border-radius $border-radius
+    padding $block-padding
+    transition .1s
+    .highlight
+      background var(--main-color)
+      color var(--text-color-on-main)
+    .title
       transition .1s
-    .tag:hover
-      border 1px solid var(--bg-color)
-      background var(--bg-color)
-      color var(--text-color-r)
-  .s_items
-    .item
-      color var(--text-color-r)
-      display block
-      border-radius $border-radius
-      padding $block-padding
-      transition .1s
-      .highlight
-        background var(--main-color)
-      .title
-        transition .1s
-        font-size 20px
-      .tags
-      .cates
-        display flex
-    .item:hover
-      background var(--bg-color)
-      box-shadow var(--b-shadow-lite)
-      .title
-        color var(--main-color)
+      font-size 20px
+    .tags
+      display flex
+      flex-wrap warp
+      gap 8px
+  .item:hover
+    background var(--bg-color)
+    box-shadow var(--b-shadow-lite)
+    .title
+      color var(--main-color)

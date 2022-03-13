@@ -144,18 +144,18 @@ mixin items(item, limit)
       case item.style
         when "button"
           .nav_item_outer
-            .fakeA(onClick='document.querySelector(".s_penal_bg").className="s_penal_bg show";document.querySelector(".s_penal_bg .s_in").focus();  if(s_db==null&&s_db_load==true){s_db_load=false;s_msg(document.querySelector(".s_penal_bg .s_in"),"load");initializeSDB(document.querySelector(".s_penal_bg .s_in"));s_db_load=true;}')
+            .fakeA(onClick='document.querySelector(".searchPenalBg").className="searchPenalBg show";document.querySelector(".searchPenalBg .searchInput").focus();  if(s_db==null&&s_db_load==true){s_db_load=false;searchMsg(document.querySelector(".searchPenalBg .searchInput"),"load");initializeSDB(document.querySelector(".searchPenalBg .searchInput"));s_db_load=true;}')
               .nav_item_inner
                 i(class=icon_search)
                 span=_p("global.search")
         when "input"
           .nav_item_outer.flexbox
             .nav_item_inner.search
-              input.s_in(type="text" onclick="if(s_db==null&&s_db_load==true){s_db_load=false;s_msg(this,'load');initializeSDB(this);s_db_load=true;}this.oninput=function(){search(this)}" placeholder=_p("global.search_placeholder"))
-              .s_result
+              input.searchInput(type="text" onclick="if(s_db==null&&s_db_load==true){s_db_load=false;searchMsg(this,'load');initializeSDB(this);s_db_load=true;}this.oninput=function(){search(this)}" placeholder=_p("global.search_placeholder"))
+              .searchResult
         when "navbar"
           .nav_item_outer
-            .fakeA(onClick='document.querySelector(".navbar_inner.search").className="navbar_inner search show";document.querySelector(".navbar_inner.search .s_in").focus();')
+            .fakeA(onClick='document.querySelector(".navbar_inner.search").className="navbar_inner search show";document.querySelector(".navbar_inner.search .searchInput").focus();')
               .nav_item_inner
                 i(class=icon_search)
                 span=_p("global.search")
@@ -165,8 +165,8 @@ if theme.navbar.pc_nav_items || theme.navbar.mbl_nav_items
     if searchBar
       .navbar_inner.search
         i(class='close '+icon_close onclick="this.parentNode.className='navbar_inner search'")
-        input.s_in(type="text" onclick="if(s_db==null&&s_db_load==true){s_db_load=false;s_msg(this,'load');initializeSDB(this);s_db_load=true;}" oninput='search(this)' placeholder=_p("global.search_placeholder"))
-        .s_result
+        input.searchInput(type="text" onclick="if(s_db==null&&s_db_load==true){s_db_load=false;searchMsg(this,'load');initializeSDB(this);s_db_load=true;}" oninput='search(this)' placeholder=_p("global.search_placeholder"))
+        .searchResult
     if theme.navbar.pc_nav_items
       .navbar_inner.pc
         each item in theme.navbar.pc_nav_items

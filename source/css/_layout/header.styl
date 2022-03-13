@@ -142,7 +142,7 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
     background var(--main-color-bgh)
   .search
     position relative
-    .s_in
+    .searchInput
       background #0000
       outline none
       height $navbar_height
@@ -150,7 +150,7 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
       font-size 16px
       transition .1s ease-in-out
       width 100%
-    .s_result
+    .searchResult
       position absolute
       top $navbar_height
       right 0
@@ -161,12 +161,10 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
       padding $block-padding
       display none
       white-space pre-wrap
-      .s_msg
+      .searchMsg
         text-align center
-      .s_items
-        overflow auto
-        --times-height $navbar_height + $block-padding * 2 + $block-margin
-        max-height calc(100vh - var(--times-height))
+        margin 0
+      .searchItems
         .item
           color var(--text-color-r)
           display block
@@ -179,9 +177,9 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
         .item:hover
           background var(--bg-color)
           box-shadow var(--b-shadow-lite)
-    .s_result:hover
-    .s_in:focus+.s_result
-    .s_in:hover+.s_result
+    .searchResult:hover
+    .searchInput:focus+.searchResult
+    .searchInput:hover+.searchResult
       display block
 
 .navbar.row

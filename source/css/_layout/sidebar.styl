@@ -170,25 +170,25 @@
       overflow overlay
     .search_penal
       margin-top 8px
-      .s_in
+      .searchInput
         width 100%
         height 30px
         background #0000
         border 0
         border-bottom 4px solid var(--main-color-bgh)
         transition .1s
-      .s_in:focus
+      .searchInput:focus
         border-bottom 4px solid var(--main-color)
         outline none
-      .s_result
+      .searchResult
         width 100%
         --max-height-m $block-margin*2 + $block-padding*2 + 352px
         max-height calc(100vh - var(--max-height-m))
         overflow auto
-      .s_msg
+      .searchMsg
         margin-top $block-margin
         text-align center
-      .s_items
+      .searchItems
         .item
           color var(--text-color-r)
           display block
