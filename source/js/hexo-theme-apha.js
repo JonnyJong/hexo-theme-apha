@@ -321,6 +321,57 @@ function MousedownEvent(e) {
   if (config.searchBar&&!(e.target==searchBar||searchBar.contains(e.target))) {
     searchBar.querySelector(".navbar_inner.search").classList.remove('show');
   }
+  if (config.image_zoom&&document.querySelector('article').contains(e.target)&&e.target.tagName=='IMG'&&!e.target.classList.contains('dontZoom')) {
+    imageZoom(e.target)
+  }
+  if (config.image_zoom&&e.target.className=='imageZoom'){
+    document.querySelector('.imageZoom .image').style.cssText=document.querySelector('.imageZoom .image').getAttribute('ori')
+    document.querySelector('.imageZoom').classList.add('out')
+    document.body.classList.remove('fullscreen')
+    setTimeout(() => {
+      document.querySelector('.imageZoom').remove()
+    }, 500);
+  }
+}
+
+// 图片放大
+function imageZoom(e){
+  // 计算在屏幕上的位置和大小
+  let top = e.offsetTop;
+  let left = e.offsetLeft;
+  let height = e.offsetHeight;
+  let width = e.offsetWidth;
+  let pare = e.offsetParent;
+  let useHeight = height>= width
+  while (pare != null) {
+    top += pare.offsetTop;
+    left += pare.offsetLeft;
+    pare = pare.offsetParent;
+  }
+  top = top - window.pageYOffset;
+  // 创建元素
+  let inject = document.createElement('div')
+  inject.className='imageZoom'
+  let innerHTML = '<img class="image" alt="'+(e.getAttribute('alt')?e.getAttribute('alt'):'iamge')+'" src="'+e.getAttribute('src')+'" '
+  if (useHeight) {
+    innerHTML += 'style="top:'+top+'px;left:'+left+'px;height:'+height+'px;transform:translate(0%, 0%)" ori="top:'+top+'px;left:'+left+'px;height:'+height+'px;transform:translate(0%, 0%)"></img>'
+  }else{
+    innerHTML += 'style="top:'+top+'px;left:'+left+'px;width:'+width+'px;transform:translate(0%, 0%)" ori="top:'+top+'px;left:'+left+'px;width:'+width+'px;transform:translate(0%, 0%)"></img>'
+  }
+  innerHTML += (e.getAttribute('title')?('<div class="imageTitle">'+e.getAttribute('title')+'</div>'):'')
+  inject.innerHTML = innerHTML;
+  document.body.appendChild(inject);
+  document.body.classList.add('fullscreen')
+  // 动画
+  setTimeout(() => {
+    let box = document.querySelector('.imageZoom')
+    let img = document.querySelector('.imageZoom .image')
+    if (useHeight) {
+      img.style.cssText='top:'+(box.offsetHeight/2)+'px;left:'+(box.offsetWidth/2)+'px;transform:translate(-50%, -50%);height:'+box.offsetHeight/5*4+'px;'
+    }else{
+      img.style.cssText='top:'+(box.offsetHeight/2)+'px;left:'+(box.offsetWidth/2)+'px;transform:translate(-50%, -50%);width:'+box.offsetWidth/5*4+'px;'
+    }
+  }, 100);
 }
 
 

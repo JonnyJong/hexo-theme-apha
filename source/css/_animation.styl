@@ -29,10 +29,10 @@
 @keyframes nav_sub_menu
   0%
     opacity: 0
-    transform: translate(-50%, -10px)
+    transform: translate(-50%, -10%) scaleY(0.8)
   100%
     opacity: 1
-    transform: translate(-50%, 0)
+    transform: translate(-50%, 0) scaleY(1)
 
 // 导航栏
 @keyframes navbar_hide
@@ -70,3 +70,9 @@
     transform translate(0, 0)
   50%
     transform translate(4px, 0)
+// 图片放大背景
+@keyframes imageZoom_bg
+  0%
+    background #0000
+  100%
+    background #0008

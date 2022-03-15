@@ -263,7 +263,7 @@ index_posts:
   description:
     # 类型【false、description、excerpt、content、auto；关闭、描述、概要、选取文章内容、自动（优先级：描述 > 概要 > 文章内容）】
     type: false
-    # 悬停时显示（未完成）
+    # 悬停时显示
     show_on_hover: 
     # 无概要、描述时显示（当 type 为 description 或 excerpt 时有效）
     default_description:
@@ -354,6 +354,9 @@ page:
   # 按钮圆角（默认：全局圆角）
   bottom_border_radius:
 
+  # 图片点击放大
+  image_zoom:
+
 # 友链样式
 link:
   # 头像圆角（round、square、auto；圆、方形、自动）
@@ -377,12 +380,14 @@ footer:
   # 组件（未配置）
   items:
 
-  # 背景（未配置）
+  # 背景
   background:
     # 颜色
     # auto：自动，根据当前颜色模式选择黑色或白色
     # main：主题色
     color:
+    # 顶部线
+    border_top:
 
 # =============================================================
 # 评论系统（未配置）
@@ -552,6 +557,10 @@ differentiate_css:
 # 在开启 CSS 分块的基础上进一步拆分 CSS
 # 当需要时在 Front-matter 中启用
 load_css_ineed:
+# CSS 添加兼容头
+# 使 CSS 在旧版浏览器有更好的兼容
+# CSS 文件大小会增加 40% 到 60%（54.18% 112KB 66.1KB）
+vendor_prefix:
 # JS 分块（同上，但当前 JS 量少，暂无必要）（未配置）
 
 # 图片懒加载（未配置）

@@ -701,12 +701,14 @@ article
   // 按钮
   .t_button
     display inline-block
-    border 2px solid var(--obj-main)
     padding 12px
     color var(--text-color-r)
     border-radius hexo-config('page.bottom_border_radius')?convert(hexo-config('page.bottom_border_radius')):$border-radius
-    transition .2s
     margin 8px 4px
+    box-sizing border-box
+    position relative
+    transform translateY(0px)
+    transition .2s
     i
       margin-right 4px
   .t_button.center
@@ -718,9 +720,37 @@ article
     margin-left auto
     width max-content
   .t_button:hover
-    color #eee
     text-decoration none
+    transform translateY(-2px)
+    box-shadow var(--b-shadow-lite)
+  .t_button::after
+    content ''
+    height 100%
+    width 100%
+    position absolute
+    top 0
+    left 0
+    border-radius hexo-config('page.bottom_border_radius')?convert(hexo-config('page.bottom_border_radius')):$border-radius
+    background var(--body-color)
+    z-index -1
+  .t_button::before
+    content ''
+    position absolute
+    width 100%
+    bottom 0
+    height 100%
     background var(--obj-main)
+    left 0
+    border-radius hexo-config('page.bottom_border_radius')?convert(hexo-config('page.bottom_border_radius')):$border-radius
+    z-index -2
+    transform translateY(2px)
+    transition .2s
+  .t_button:hover::before
+    transform translateY(4px)
+  .t_button:active
+    transform translateY(2px)
+  .t_button:active::before
+    transform translateY(0px)
 
   // 插件基本颜色
   .red
@@ -813,3 +843,25 @@ p code
     .info
       display inline-block
       margin 0 8px 8px 0
+
+// 图片缩放
+.imageZoom
+  position fixed
+  width 100%
+  height 100%
+  background #0008
+  z-index 1000
+  transition .5s
+  animation imageZoom_bg .5s
+  .image
+    position absolute
+    max-width 100%
+    max-height 100%
+    top 50%
+    left 50%
+    width 
+    transform translate(-50%, -50%)
+    transition .5s  cubic-bezier(.8,0,.2,1)
+    object-fit contain
+.imageZoom.out
+  background #0000

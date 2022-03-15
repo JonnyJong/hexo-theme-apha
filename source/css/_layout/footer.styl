@@ -1,11 +1,15 @@
 footer
   padding $block-padding
   text-align center
-  background-color var(--main-color)
-  --footer-double-block-padding $block-padding*2
-  width calc(100% - var(--footer-double-block-padding))
-  height max-content
   line-height 1.2
-
-footer a
-  color var(--text-color-r)
+  if hexo-config('footer.background.color') == 'main'
+    background-color var(--main-color)
+  else if hexo-config('footer.background.color') == 'auto'
+    background-color var(--bg-color)
+  else if hexo-config('footer.background.color')
+    background convert(hexo-config('footer.background.color'))
+  if hexo-config('footer.background.border_top')
+    box-sizing border-box
+    border-top 1px solid var(--text-color-ro)
+  a
+    color var(--text-color-r)
