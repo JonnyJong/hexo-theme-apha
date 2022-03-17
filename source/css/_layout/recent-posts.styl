@@ -32,6 +32,8 @@ if hexo-config('index_posts.more_post_item_in_line')
   transition all 0.5s
   background var(--bg-color)
   position relative
+  if $block-border != 'none'
+    border $block-border
   .post_cover
     overflow hidden
     if hexo-config('index_posts.post_item_style')==1

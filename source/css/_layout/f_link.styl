@@ -38,7 +38,7 @@
       margin-top 8px
       margin-right 8px
       a
-        display block
+        display flex
         width 280px
         min-height 90px
         height max-content
@@ -46,7 +46,6 @@
         transition .1s
         border 2px solid var(--main-color)
         .item_avatar
-          display inline-block
           height 70px
           width 70px
           margin 10px
@@ -55,8 +54,6 @@
           else if hexo-config('link.avatar_radius') == "auto"
             border-radius $border-radius
         .item_info
-          display inline-block
-          vertical-align top
           color var(--text-color-r)
           .item_name
             font-size 22px
@@ -70,6 +67,7 @@
             transition .1s
       a:hover
         background var(--main-color-bgh)
+        text-decoration none
         img.item_avatar
           animation f_link_img .5s ease-in-out
         .item_name

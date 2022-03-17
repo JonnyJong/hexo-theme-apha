@@ -183,6 +183,8 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
       display block
 
 .navbar.row
+  if $block-border != 'none'
+    border $block-border
   .nav_sub_menu
     position absolute
     display none
@@ -195,6 +197,8 @@ $banner_height = hexo-config('index_banner_height') ? convert(hexo-config('index
     animation nav_sub_menu .2s ease
     border-radius hexo-config('navbar.sub_menu_border_radius') ? convert(hexo-config('navbar.sub_menu_border_radius')) : 6px
     overflow hidden
+    if $block-border != 'none'
+      border $block-border
   .nav_sub_item
     width 100%
     min-width max-content

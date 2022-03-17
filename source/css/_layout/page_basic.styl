@@ -10,6 +10,8 @@
     backdrop-filter: saturate($global-saturate) blur($global-blur)
     border-radius $border-radius
     transition .2s
+    if $block-border != 'none'
+      border $block-border
     .page_info
       width 100%
       height max-content
@@ -149,6 +151,13 @@ article
   p
     line-height 20px
     margin 6px 0
+
+  // 列表
+  ol li,
+  ul li
+    margin 8px 0
+  ul li::marker
+    font-size 24px
 
   // 当鼠标移动到链接上时
   a:hover
@@ -406,16 +415,39 @@ article
     display flex
     width 100%
     background var(--obj-bg)
-    border-left solid 6px var(--obj-main)
     align-items center
     box-shadow var(--b-shadow-lite)
+    position relative
     margin-block-start 14px
     margin-block-end 14px
     if hexo-config('page.blocktip_radius')
       border-radius convert(hexo-config('page.blocktip_radius'))
+    if hexo-config('page.blocktip_style') == 3
+      border-left solid 32px var(--obj-main)
+    else if hexo-config('page.blocktip_style') != 2
+      border-left solid 6px var(--obj-main)
   .blocktip>i
-    padding 12px 0 12px 14px
-    color var(--obj-main)
+    if hexo-config('page.blocktip_style') == 2
+      color var(--text-color)
+      position absolute
+      height 24px
+      width 24px
+      border-radius 100%
+      background var(--obj-main)
+      display flex
+      justify-content center
+      align-items center
+      top -10px
+      left -12px
+    else if hexo-config('page.blocktip_style') == 3
+      color var(--text-color)
+      position absolute
+      left -32px
+      width 32px
+      text-align center
+    else
+      padding 12px 0 12px 14px
+      color var(--obj-main)
   .blocktip>.content
     flex 1
     padding 0 14px
@@ -525,12 +557,15 @@ article
     overflow hidden
     img
       width 60px
+      height 60px
+      object-fit contain
       margin 0
     .info
       display flex
       align-items center
       flex-direction column
       gap 8px
+      flex 1
       .i_title
         font-size 16px
         font-weight bold
@@ -669,6 +704,8 @@ article
         transition .1s
         text-align center
         position relative
+        flex auto
+        white-space nowrap
         i
           margin-right 4px
       .tab:hover
@@ -709,39 +746,35 @@ article
     position relative
     transform translateY(0px)
     transition .2s
+    max-width 100%
+    width max-content
     i
       margin-right 4px
   .t_button.center
     display block
     margin 8px auto
-    width max-content
   .t_button.right
     display block
     margin-left auto
-    width max-content
   .t_button:hover
     text-decoration none
     transform translateY(-2px)
     box-shadow var(--b-shadow-lite)
   .t_button::after
+  .t_button::before
     content ''
     height 100%
     width 100%
     position absolute
-    top 0
-    left 0
     border-radius hexo-config('page.bottom_border_radius')?convert(hexo-config('page.bottom_border_radius')):$border-radius
+    left 0
+  .t_button::after
+    top 0
     background var(--body-color)
     z-index -1
   .t_button::before
-    content ''
-    position absolute
-    width 100%
     bottom 0
-    height 100%
     background var(--obj-main)
-    left 0
-    border-radius hexo-config('page.bottom_border_radius')?convert(hexo-config('page.bottom_border_radius')):$border-radius
     z-index -2
     transform translateY(2px)
     transition .2s
@@ -863,5 +896,14 @@ p code
     transform translate(-50%, -50%)
     transition .5s  cubic-bezier(.8,0,.2,1)
     object-fit contain
+  .imageTitle
+    position fixed
+    left 50%
+    bottom 5vh
+    transform translate(-50%, 0)
+    opacity 1
+    transition .1s
 .imageZoom.out
   background #0000
+  .imageTitle
+    opacity 0

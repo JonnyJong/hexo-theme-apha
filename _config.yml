@@ -349,6 +349,8 @@ page:
   # 点击目录平滑转跳（将目录的链接替换为 onclick 事件）（未配置）
   click_toc_smooth_jump: false
 
+  # 提示块样式（默认 1，1 ~ 3）
+  blocktip_style: 
   # 提示块圆角（推荐值：留空、0~10px）
   blocktip_radius:
   # 按钮圆角（默认：全局圆角）
@@ -521,6 +523,8 @@ global-saturate:
 max-width: 
 # 最小边界（当屏幕宽度小于最大宽度时，默认 16px）
 min_margin:
+# 模块边框（使用 css border 语法）
+global-border:
 
 # =============================================================
 # 转跳到内容按钮（进入页面后按下 Tab，将会在屏幕顶部出现此按钮）

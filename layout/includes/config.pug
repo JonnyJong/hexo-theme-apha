@@ -35,7 +35,7 @@ script.
     post_notitle: "!{_p('post_item.notitle')}",
     link_root: "!{config.root}",
     link_tag_dir: "!{config.tag_dir}",
-    image_zoom: "!{page.image_zoom}",
+    image_zoom: !{page.image_zoom?true:false},
   }
   config.fdVal?(config.fdVal=parseInt(config.fdVal)):""
 

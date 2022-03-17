@@ -9,6 +9,8 @@
     transition all 0.5s
     margin-top $block-margin
     padding $block-padding
+    if $block-border != 'none'
+      border $block-border
     .item_info
       padding-bottom 8px
       font-size 16px
