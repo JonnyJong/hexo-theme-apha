@@ -429,134 +429,104 @@ function gallery() {
   })
 }
 
-document.addEventListener('DOMContentLoaded', function () {
 
-  //时间间隔
-  function diffTime(inputTime, type) {
-    const inputTimeAf = new Date(inputTime).getTime();
-    const curDate = new Date().getTime();
 
-    var diff = curDate- inputTimeAf;
+/**
+ * 主方法
+ */
+ const $ = (function(){
+  console.log(' %c  Apha ' + ' %c  v'+config.version+' build '+config.build+'  ', 'color: #eee; background: #111; padding:8px 0;', 'background: #eee; padding:8px 0; color: #111; ')
 
-    var days=Math.floor(diff/86400000);
-    var lvH=diff%86400000;
+  /**
+   * 变量
+   */
+  // 文章段落、文章段落据顶部距离、目录组件、目录窗口、目录处理忙碌
+  var paragraph, paragraphOffsetTop = new Array(), tocObj, tocWindow, tocBusy = false
+  // 滚动事件
+  var doRunOnscroll = true
+  // 上次滚动位置、横向导航栏
+  var saveOffset, rowNavbar
 
-    var h=Math.floor(lvH/3600000);
-    var lvMin=lvH%3600000;
+  /**
+   * 辅助方法
+   */
+  // 时间处理（间隔）
+  function TimeProgress(inputTime, type) {
+    const inputTimeAf = new Date(inputTime).getTime()
+    const curDate = new Date().getTime()
 
-    var min=Math.floor(lvMin/60000);
+    var diff = curDate- inputTimeAf
+
+    var days=Math.floor(diff/86400000)
+    var lvH=diff%86400000
+
+    var h=Math.floor(lvH/3600000)
+    var lvMin=lvH%3600000
+
+    var min=Math.floor(lvMin/60000)
     var lvS=lvMin%60000;
 
-    var s=Math.round(lvS/1000);
+    var s=Math.round(lvS/1000)
 
     switch (type) {
       case 1:
-        return ((days==0) ? "" : days+" "+config.lang_days+" ") + ((h==0) ? "" : h+" "+config.lang_hours+" ") + ((min==0) ? "" : min+" "+config.lang_mins+" ") + ((s==0) ? "" : s+" "+config.lang_s);
+        return ((days==0) ? "" : days+" "+config.lang_days+" ") + ((h==0) ? "" : h+" "+config.lang_hours+" ") + ((min==0) ? "" : min+" "+config.lang_mins+" ") + ((s==0) ? "" : s+" "+config.lang_s)
       case 2:
-        return ((days==0) ? "" : days+" "+config.lang_days+" ");
+        return ((days==0) ? "" : days+" "+config.lang_days+" ")
       case 3:
         return ((days!=0) ? days+" "+config.lang_days_b : ((h!=0) ? h+" "+config.lang_hours_b : ((min!=0) ? min+" "+config.lang_mins_b : s+" "+config.lang_s_b)))
       default:
-        return;
-    }
-    
-  }
-
-  // 滚动事件
-  var doRunOnscroll = true;
-  window.onscroll = function(e){
-    if (!doRunOnscroll) {return;}
-    doRunOnscroll = false;
-    setTimeout(() => {
-      runOnscroll();
-      doRunOnscroll = true;
-    }, 100);
-  }
-  // 执行事件
-  function runOnscroll() {
-    config.navFold && navFold();
-    config.ifToc && (tocObj.length != 0) && tocFready();
-    config.ifQuickBtn && qBtnAutoHide();
-  }
-
-  // resize 事件
-  var doRunOnresize = false;
-  window.onresize = function(){
-    clearTimeout(doRunOnresize);
-    doRunOnresize = setTimeout(function(){
-      document.querySelector(".post_gallery")!=null && gallery();
-    }, 1000);
-  };
-  
-  // 导航栏自动收起
-  function navFold() {
-    if ((saveOffset - window.pageYOffset) < -4) {
-      rowNavbar.classList.add("hide")
-    } else if ((saveOffset - window.pageYOffset) > 4) {
-      rowNavbar.classList.remove("hide")
-    }
-    saveOffset = window.pageYOffset;
-  }
-  var saveOffset = window.pageYOffset;
-  var rowNavbar = document.querySelector("nav.navbar.row");
-
-  // 最后更新日期
-  function updateTime() {
-    const lastTime = document.getElementById("last_update");
-    if (lastTime) {
-      const lastValue = new Date(lastTime.getAttribute("last_update_value")).getTime();
-      lastTime.innerHTML = diffTime(lastValue, 3);
+        return
     }
   }
-
-  // 运行时长
-  function runtime() {
-    // setTimeout(runtime, 1000);
-    const runtimes = document.getElementById("runtime");
-    if (runtimes) {
-      const beginTime = new Date(runtimes.getAttribute("beginTime")).getTime();
-      runtimes.innerHTML = diffTime(beginTime, 2);
-    }
-  }
-
-  // 图片描述
-  function imgDes() {
-    document.querySelectorAll("main img").forEach(item => {
-      const title = item.getAttribute("title");
-      if (title != null) {
-        const inject = document.createElement("div");
-        inject.textContent = title;
-        inject.className = "img_des";
-        item.parentNode.insertBefore(inject, item.nextSibling);
+  // 目录点击
+  function TocOnlick (link){
+    let count = 0
+    paragraph.forEach(e => {
+      if (e == document.querySelector(link)) {
+        window.scroll({ top: paragraphOffsetTop[count]-90, behavior: 'smooth' })
       }
-    });
+      count++
+    })
+    history.pushState({},document.title,window.location.origin+window.location.pathname+link)
   }
 
-  // 归档页面
-  function archive(){
-    var t = document.querySelectorAll("main .tag-list-link");
-    var tC = document.querySelectorAll("main .tag-list-count");
-    var tL = t.length - 1;
-    var c = document.querySelectorAll("main .category-list-link");
-    var cC = document.querySelectorAll("main .category-list-count");
-    var cL = c.length - 1;
-    var a = document.querySelectorAll("main .archive-list-link");
-    var aC = document.querySelectorAll("main .archive-list-count");
-    var aL = a.length - 1;
-
-    for (; tL >= 0; tL--) {
-      t[tL].innerText += " - " + tC[tL].innerText;
-      tC[tL].remove();
+  /**
+   * 功能
+   */
+  // 最后更新时间
+  function UpdateTime() {
+    const lastTime = document.getElementById("last_update")
+    if (lastTime) {
+      const lastValue = new Date(lastTime.getAttribute("last_update_value")).getTime()
+      lastTime.innerHTML = TimeProgress(lastValue, 3)
     }
-    for (; cL >= 0; cL--) {
-      c[cL].innerText += " - " + cC[cL].innerText;
-      cC[cL].remove();
+  }
+  // 运行时长
+  function Runtime(){
+    const runtimes = document.getElementById("runtime")
+    if (runtimes) {
+      const beginTime = new Date(runtimes.getAttribute("beginTime")).getTime()
+      runtimes.innerHTML = TimeProgress(beginTime, 2)
     }
-    for (; aL >= 0; aL--) {
-      a[aL].innerText += " - " + aC[aL].innerText;
-      aC[aL].remove();
-    }
-
+  }
+  // 图片描述
+  // 该方法将要废弃并转变为预处理方法 ******
+  function ImageExcerpt() {
+    document.querySelectorAll("main img").forEach(item => {
+      const title = item.getAttribute("title")
+      if (title != null) {
+        const inject = document.createElement("div")
+        inject.textContent = title
+        inject.className = "img_des"
+        item.parentNode.insertBefore(inject, item.nextSibling)
+      }
+    })
+  }
+  // 归档
+  // 该方法将要废弃并转变为预处理方法 ******
+  // 已转变为预处理，现保留此方法以便后续测试
+  function Archive() {
     var sC = document.querySelectorAll(".sidebar_items .category-list-link");
     var sCC = document.querySelectorAll(".sidebar_items .category-list-count");
     var sCL = sC.length - 1;
@@ -569,9 +539,8 @@ document.addEventListener('DOMContentLoaded', function () {
       sCC[sCL].remove();
     }
   }
-
-  // 运行时间 页脚
-  function sinceTo() {
+  // 运行年份
+  function SinceTo(){
     const s = document.getElementById("sinceTo");
     const sY = parseInt(s.getAttribute("since"));
     const nY = new Date().getFullYear();
@@ -581,14 +550,8 @@ document.addEventListener('DOMContentLoaded', function () {
       s.innerHTML = sY + " - " + nY
     }
   }
-  function runtimeFooter() {
-      setTimeout(runtimeFooter, 1000);
-      const s = document.getElementById("runtimeFooter");
-      const sT = new Date(s.getAttribute("begin")).getTime();
-      s.innerHTML = diffTime(sT, 1);
-  }
-
-  // 代码块相关
+  // 代码块
+  // 该方法将要废弃并转变为预处理方法 ******
   function copyBtn(item){
     const injectBtn = document.createElement("i");
     const head = item.querySelectorAll("figcaption")[0]
@@ -634,81 +597,127 @@ document.addEventListener('DOMContentLoaded', function () {
       (config.fdVal&&config.fdVal>=0) && autoFold(item);
     });
   }
-
-  // 侧栏
-  // 清理空白的块
-  function cleanSidebar() {
-    document.querySelectorAll(".sidebar_items .item").forEach(item => {
-      if (!(item.childElementCount - item.querySelectorAll(".item_info").length)) {
-        item.remove();
-      }
-    });
+  // 持续计算运行时长
+  // 该方法可能需要转换为 辅助方法，以提高拓展性和可复用性
+  function RuntimeFooter() {
+    setTimeout(RuntimeFooter, 1000)
+    const s = document.getElementById("runtimeFooter")
+    const sT = new Date(s.getAttribute("begin")).getTime()
+    s.innerHTML = TimeProgress(sT, 1)
+    
   }
   // 目录
-  function tocFready(){
+  function Toc() {
+    if (tocBusy) {return}
+    tocBusy = true
     // 准备
-    mTiTop = [];
-    mainTitle.forEach(item => {
-      let fTop = item.offsetTop;
-      let binElm = item.offsetParent;
-      while (binElm != null) {
-        fTop += binElm.offsetTop;
-        binElm = binElm.offsetParent;
+    // 可能需要减少计算高度的频率
+    paragraphOffsetTop = []
+    paragraph.forEach(item => {
+      let finalOffsetTop = item.offsetTop
+      let binElement = item.offsetParent
+      while (binElement != null) {
+        finalOffsetTop += binElement.offsetTop
+        binElement = binElement.offsetParent
       }
-      mTiTop.push(fTop)
-    });
+      paragraphOffsetTop.push(finalOffsetTop)
+    })
     // 执行
-    let c = tocObj.length;
-    let cR = c;
-    while (cR > 0) {
-      cR--;
-      tocObj[cR].className = "toc-link";
+    let count = tocObj.length
+    let countReal = count
+    while (countReal > 0) {
+      countReal--
+      tocObj[countReal].className = "toc-link"
     }
-    while (c > 0) {
-      c--;
-      if ((mTiTop[c] - window.pageYOffset) < 100) {
-        break;
+    while (count > 0) {
+      count--
+      if ((paragraphOffsetTop[count] - window.pageYOffset) < 100) {
+        break
       }
     }
-    tocObj[c].className = "toc-link active";
-    tocWindow.scroll({ top: tocObj[c].offsetTop-150, behavior: 'smooth' });
+    tocObj[count].className = "toc-link active"
+    tocWindow.scroll({ top: tocObj[count].offsetTop-150, behavior: 'smooth' })
+    tocBusy = false
   }
-  function tocjump(){
-    tocObj.forEach(item => {
-      item.setAttribute("onclick", "tagJump('" + decodeURI(item.getAttribute("href")) + "');");
-      item.removeAttribute("href")
-    });
+  // says
+  function SaysInit() {
+    if (document.querySelector(".index_items .item.say .contents")!=null) {
+      says();
+    }
   }
-  var mainTitle = document.querySelectorAll("article h1,article h2,article h3,article h4,article h5,article h6");
-  var mTiTop = new Array();
-  var tocObj = document.querySelectorAll(".sidebar_items .toc-link");
-  var tocWindow = document.querySelector(".sidebar_items .toc");
-
   // 自动隐藏快捷按钮
   function qBtnAutoHide(){
     window.pageYOffset>300?(document.querySelector(".quick_btn").classList.add("show")):""
     window.pageYOffset<=300?(document.querySelector(".quick_btn").classList.remove("show")):""
   }
-
-  // 运行 says
-  function saysInit() {
-    if (document.querySelector(".index_items .item.say .contents")!=null) {
-      says();
+  // 导航栏
+  function NavFold() {
+    if ((saveOffset - window.pageYOffset) < -4) {
+      rowNavbar.classList.add("hide")
+    } else if ((saveOffset - window.pageYOffset) > 4) {
+      rowNavbar.classList.remove("hide")
     }
+    saveOffset = window.pageYOffset;
+  }
+  /**
+   * 滚动
+   */
+  function runOnscroll() {
+    config.navFold && NavFold()
+    config.ifToc && tocObj.length>0 && Toc()
+    config.ifQuickBtn && qBtnAutoHide()
   }
 
-  cleanSidebar();
-  updateTime();
-  runtime();
-  config.imgDesc && imgDes();
-  archive();
-  config.fooSt && sinceTo();
-  figure();
-  config.fooRt && runtimeFooter();
-  config.tocSmJ && config.ifToc && (tocObj.length != 0) && tocjump();
-  saysInit();
-  config.searchBar && (searchBar=document.querySelector('.navbar.row'));
+  /**
+   * 初始化
+   */
+  function Init() {
+    // 目录
+    paragraph = document.querySelectorAll("article h1,article h2,article h3,article h4,article h5,article h6")
+    tocObj = document.querySelectorAll(".sidebar_items .toc-link")
+    tocWindow = document.querySelector(".sidebar_items .toc")
+    // 导航栏
+    saveOffset = window.pageYOffset
+    rowNavbar = document.querySelector("nav.navbar.row")
 
-  gallery();
+    UpdateTime()
+    Runtime()
+    config.imgDesc && ImageExcerpt()
+    config.fooSt && SinceTo()
+    figure()
+    config.fooRt && RuntimeFooter()
+    SaysInit()
+    config.searchBar && (searchBar=document.querySelector('.navbar.row'))
+    gallery()
+    config.ifToc && tocObj.length>0 && Toc()
 
+    window.addEventListener('scroll', ()=>{
+      if (!doRunOnscroll) {return}
+      doRunOnscroll = false
+      setTimeout(() => {
+        runOnscroll()
+        doRunOnscroll = true
+      }, 100)
+    })
+
+    var doRunOnresize = false
+    window.addEventListener('resize', ()=>{
+      clearTimeout(doRunOnresize)
+      doRunOnresize = setTimeout(function(){
+        document.querySelector(".post_gallery")!=null && gallery()
+      }, 1000);
+
+    })
+  }
+
+  return{
+    Init: function(){return Init()},
+    TocOnlick: function(link){return TocOnlick(link)}
+  }
+  
+})()
+
+document.addEventListener('DOMContentLoaded', function () {
+  // 初始化
+  $.Init()
 })

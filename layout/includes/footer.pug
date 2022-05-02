@@ -3,7 +3,7 @@ footer
     p
       span="© " + config.author + " "
       if theme.footer.since
-        span#sinceTo(since=theme.footer.since)
+        span#sinceTo(since=theme.footer.since)=TimeProgress('since',theme.footer.since)
   if theme.footer.runtime
     p
       span="本站已运行 "

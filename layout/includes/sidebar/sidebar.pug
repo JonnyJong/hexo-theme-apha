@@ -30,7 +30,8 @@ mixin tags(subItem)
 mixin categories(subItem)
   - var f_depth = subItem.depth ? subItem.depth : 1
   - var f_show_count = subItem.show_count ? subItem.show_count : true
-  .categoriesList!= list_categories({ depth: 1, show_count: f_show_count })
+  //- .categoriesList!= list_categories({ depth: 1, show_count: f_show_count })
+  .categoriesList!= CategoryProgress(list_categories({ depth: 1, show_count: f_show_count }))
 
 mixin num_of_articles()
   .info
@@ -79,8 +80,13 @@ mixin side_toc(subItem)
   - let show_in_post = subItem.post ? subItem.post : true
   - let show_in_page = subItem.page ? subItem.page : false
   - let show_count = subItem.list_number ? subItem.list_number : true
-  if (page.toc == undefined | page.toc == true) && (((is_post()) && show_in_post) || ((is_page()) && show_in_page))
-    != toc(page.content,{list_number: show_count})
+  //- if (page.toc == undefined | page.toc == true) && (((is_post()) && show_in_post) || ((is_page()) && show_in_page))
+  //- if (page.toc != undefined ? page.toc : ( is_post() && show_in_post) ||  (is_page() && show_in_page )) && TocChecker(toc(page.content))
+  if (page.toc != undefined ? page.toc : ( is_post() && show_in_post) ||  (is_page() && show_in_page ))
+    if theme.page.click_toc_smooth_jump
+      != TocProgress(toc(page.content,{list_number: show_count}))
+    else
+      != toc(page.content,{list_number: show_count})
 
 mixin search(subItem)
   case subItem.style
@@ -169,10 +175,16 @@ mixin pageFilter(item, sticky)
     - isStickyItems = true
 
 each item in theme.sidebar.items
-  if item.items
+  if item.items.length == 1 && item.items[0].type == 'toc'
+    if TocChecker(toc(page.content))
+      +pageFilter(item, false)
+  else if item.items
     +pageFilter(item, false)
 if isStickyItems
   .sticky_items
     each item in theme.sidebar.items
-      if item.items
+      if item.items.length == 1 && item.items[0].type == 'toc'
+        if TocChecker(toc(page.content))
+          +pageFilter(item, true)
+      else if item.items
         +pageFilter(item, true)

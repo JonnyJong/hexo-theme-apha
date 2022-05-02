@@ -580,6 +580,18 @@ pwa:
 # 数据库路径（若修改了 search.template 请同步修改，默认使用“/search.json”）
 search_db_href:
 
+# 检测禁用脚本
+# <noscript>
+# 0：关闭
+# 1：提示
+# 2：阻止浏览网站
+
+# 检测 IE
+# navigator.appVersion.indexOf("Trident")
+# 0：关闭
+# 1：提示
+# 2：阻止浏览网站
+
 # =============================================================
 # 第三方
 third_party:

@@ -37,7 +37,6 @@ mixin page_info(page, type, other_info)
               if theme.page.wordcount
                 i(class=icon_wordcount)
                 span=_p('post_item.wordcount_before') + wordcount(page.content) + _p('post_item.wordcount_after')
-                span.marginR#busuanzi_value_page_pv
               if theme.page.min2read
                 i(class=icon_min2read)
                 span=_p('post_item.min2read_before') + min2read(page.content) + _p('post_item.min2read_after')

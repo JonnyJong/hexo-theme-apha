@@ -36,6 +36,8 @@ script.
     link_root: "!{config.root}",
     link_tag_dir: "!{config.tag_dir}",
     image_zoom: !{page.image_zoom?true:false},
+    version: "!{configVersion()}",
+    build: "!{configBuild()}",
   }
   config.fdVal?(config.fdVal=parseInt(config.fdVal)):""
 
