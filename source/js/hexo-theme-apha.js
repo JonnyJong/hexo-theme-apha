@@ -314,7 +314,7 @@ function says() {
   }, 200);
 }
 
-var searchBar;
+var searchBar 
 
 // 点击事件
 function MousedownEvent(e) {
@@ -374,62 +374,253 @@ function imageZoom(e){
   }, 100);
 }
 
-
-// 图册
-function gallery() {
-  document.querySelectorAll(".post_gallery").forEach(gallery => {
-    // 准备元素和尺寸
-    let galleryWidth = gallery.offsetWidth; // 框宽度
-    let imgs = gallery.querySelectorAll("img"); //img 元素数组
-    let imgSize = []; // 原始尺寸数组
-    // 获取原始尺寸
-    imgs.forEach(img => {
-      let size = {};
-      // 因 padding 故加 2
-      size["width"]=img.naturalWidth + 2;
-      size["height"]=img.naturalHeight + 2;
-      imgSize.push(size);
-    })
-
-    // 开始计算合适的尺寸
-    for (let index = 0; index < imgs.length; ) {
-      // 计算其中一种数量情况
-      calc:for (let amount = index; amount < imgs.length; amount++) {
-        
-        // 计算实际宽高比
-        let realWidthRatio = []; // 宽高比数组
-        let totalWidthRatio = 0; // 宽度基数
-        for (let count = index; count <= amount; count++) {
-          let realRatio = imgSize[count].width/imgSize[count].height;
-          realWidthRatio.push(realRatio);
-          totalWidthRatio+=realRatio;
-        }
-        // 使宽高比总和为一，这样宽高比就变成了站的总宽度的比
-        for (let count = 0; count < realWidthRatio.length; count++) {
-          realWidthRatio[count] = realWidthRatio[count]/totalWidthRatio;
-        }
-        
-        // 实际高度（占宽比*目标宽度*原始高度/原始宽度）
-        let realHeight = galleryWidth*realWidthRatio[0]*imgSize[index].height/imgSize[index].width
-        // 判断实际高度是否在范围内（若已经排除其他可能，则直接设置）
-        if ((index+1 == imgs.length)) {
-          imgs[index].style.height='100%';
-          index = amount + 1; // 使下次从下一个开始计数，非常重要，删去会导致死循环
-          break calc;
-        }else if (realHeight<=300) { //使用限制最小在宽度只容许一个图片的情况下会出现循环
-          // 若符合，设置每一个元素的宽高
-          for (let count = index; count <= amount; count++) {
-            imgs[count].style.height=realHeight+'px';
-          }
-          index = amount + 1; // 使下次从下一个开始计数，非常重要，删去会导致死循环
-          break calc;
+/**
+ * 搜索功能
+ */
+ const $Search = (function() {
+  var data = null
+  var initializing = false
+  var busy = false
+  var element_input = null
+  var element_result = null
+  var searchKeywords
+  var searchResult
+  var searchResult_tag
+  var searchTags
+  function Initialize(){
+    if (!data) {
+      initializing = true
+      Msg("loading")
+      let require = new XMLHttpRequest()
+      require.open("get",config.searchDbHref)
+      require.send(null)
+      require.onload = function(){
+        if(require.status == 200){
+          data = JSON.parse(require.responseText)
+          Msg("remove")
+          Search()
+          initializing = false
+          return
+        }else{
+          initializing = false
+          Msg("load_failed")
+          console.error("搜索数据库加载失败！Search DB failed to load!\n错误代码/code: "+require.status)
         }
       }
     }
-  })
-}
+  }
+  function Search() {
+    // 若未加载数据库且未在加载
+    if (data==null&&initializing==false) {
+      Initialize()
+    }
+    // 当数据库存在、之前的搜索已经完成、输入值不为空
+    if (data!=null&&busy==false&&element_input.value.length>0) {
+      // 初始化关键词（区分、去除空字符串、去除重复）
+      searchKeywords = element_input.value.split(' ').filter(function (keyword,index,arr) {
+        return keyword && keyword.trim() && arr.indexOf(keyword)==index
+      });
+      // 当数组不为空则执行搜索
+      if (searchKeywords.length) {
+        searchResult = '';
+        // searchResult_cate = '';
+        searchResult_tag = '';
+        searchTags = []
+        // 遍历每个文章
+        data.forEach(post => {
+          let content = post.content.replace(/\n/g, ' ').replace(/<[^>]+>/g, '') // 取出文本（用于高亮）
+          let title = post.title?post.title:'无标题' // 取出标题（用于高亮）
+          let cates = post.categories?post.categories:[] // 取出归类
+          let tags = post.tags?post.tags:[] // 取出标签
 
+          let contentStart = -1; // 内容截取开头
+          let contentEnd = -1; // 内容截取结尾
 
+          let hitContent = 0; // 在内容中找到
+          let hitTitle = 0; // 在标题中找到
+          let hitTags = 0; // 在标签中找到
+          let hitCate = 0; // 在归类中找到
+
+          // 匹配
+          searchKeywords.forEach(keyword => {
+
+            // 文章内容
+            if (content.indexOf(keyword)>-1) {
+              hitContent===0 ? hitContent = true : ''
+              // 确定截取头尾
+              if ( contentStart==-1 || contentStart>content.indexOf(keyword) ) {
+                contentStart = content.indexOf(keyword)
+              }
+              if ( contentEnd==-1 || contentEnd<(content.indexOf(keyword)+keyword.length) ){
+                contentEnd = content.indexOf(keyword)+keyword.length
+              }
+            }else{
+              hitContent = false
+            }
+
+            // 文章标题
+            if (title.indexOf(keyword)>-1) {
+              hitTitle===0 ? hitTitle = true : ''
+            }else{
+              hitTitle = false
+            }
+
+            // 文章归类
+            if (cates.length) {
+              let ifHit = false
+              cates.forEach(c => {
+                if (c.indexOf(keyword)>-1) {
+                  ifHit = true;
+                }
+              });
+              if (ifHit) {
+                hitCate===0 ? hitCate = true : ''
+              }else{
+                hitCate = false
+              }
+            }
+
+            // 文章标签
+            if (tags.length) {
+              let ifHit = false
+              tags.forEach(t => {
+                if (t.indexOf(keyword)>-1) {
+                  ifHit = true;
+                  searchTags.push(t);
+                }
+              })
+              if (ifHit) {
+                hitTags===0 ? hitTags = true : ''
+              }else{
+                hitTags = false
+              }
+            }
+          });
+
+          // 如果找到
+          if (hitContent||hitTitle||hitCate||hitTags) {
+            ifHit = true
+            // 截取文章内容
+            if (contentStart==-1) {
+              contentStart=0
+            }else{
+              contentStart-=10
+            }
+            if (contentEnd==-1) {
+              contentEnd=300
+            }else{
+              contentEnd+=300
+            }
+            if (contentEnd - contentStart > 400) {
+              contentEnd = contentStart + 400
+            }
+            content = content.substring(contentStart, contentEnd)
+
+            // 高亮
+            searchKeywords.forEach(keyword => {
+              let reg = new RegExp(keyword, 'g')
+              content = content.replace(reg, '<span class="highlight">'+keyword+'</span>')
+              title = title.replace(reg, '<span class="highlight">'+keyword+'</span>')
+              if (hitCate) {
+                cates.forEach(c => {
+                  c = c.replace(reg, '<span class="highlight">'+keyword+'</span>')
+                })
+              }
+              if (hitTags) {
+                tags.forEach(t => {
+                  t = t.replace(reg, '<span class="highlight">'+keyword+'</span>')
+                })
+              }
+            });
+
+            // 创建元素
+            let element = '<a class="item" href="'+post.url+'"><div class="title">'+title+'</div><div class="content">'+content+'</div>'
+            if (cates.length) {
+              element+='<div class="cates">'
+              cates.forEach(c => {
+                element+='<div class="cate">'+c+'</div>'
+              })
+              element+='</div>'
+            }
+            if (tags.length) {
+              element+='<div class="tags">'
+              tags.forEach(t => {
+                element+='<div class="tag"># '+t+'</div>'
+              })
+              element+='</div>'
+            }
+            element+='</a>'
+            searchResult+=element
+          }
+        });
+        // 当有搜索结果时
+        if (searchResult!=''||searchTags.length) {
+          Msg("remove")
+          if (searchTags.length) {
+            // 清理重复的标签
+            searchTags = searchTags.filter(function (tag,index,arr) {
+              return tag && tag.trim() && arr.indexOf(tag)==index
+            })
+            searchTags.forEach(tag => {
+              searchResult_tag += '<a class="tag" href="/tags/'+tag+'"># '+tag+'</a>'
+            })
+            const inject = document.createElement("div")
+            inject.className="tag_results"
+            inject.innerHTML=searchResult_tag
+            element_result.appendChild(inject)
+          }
+          if (searchResult) {
+            const inject = document.createElement("div")
+            inject.className="searchItems"
+            inject.innerHTML=searchResult
+            element_result.appendChild(inject)
+          }
+        }else{
+          // 当没有搜索结果时
+          Msg("no_result")
+        }
+      }
+    // 当输入框为空时清理结果区域
+    }else if(data!=null&&initializing==false&&element_input.value.length==0){
+      Msg("remove")
+    }
+  }
+  function InitializeElement(){
+    element_input = document.querySelector("body>.search input")
+    element_result = document.querySelector("body>.search .searchResult")
+  }
+  function Msg(type){
+    switch (type){
+      case "loading":
+        element_result.innerHTML = '<div class="msg">(。・ω・。)<br>正在载入搜索数据库</div>'
+        break
+      case "load_failed":
+        element_result.innerHTML = '<div class="msg">( X﹏X )<br>载入数据库失败</div>'
+        break
+      case "no_result":
+        element_result.innerHTML = '<div class="msg">( >_< )<br>找不到匹配的内容<br>请尝试减少或更换关键词</div>'
+        break
+      case "remove":
+        element_result.innerHTML = ''
+        break
+    }
+  }
+  return {
+    Initialize: function(){
+      if (!initializing) {
+        Initialize()
+      }else{
+        console.log('忙碌中：正在载入搜索数据库')
+      }
+    },
+    InitializeElement: function(){
+      InitializeElement()
+    },
+    Main: function(){
+      Search();
+    }
+  }
+})()
 
 /**
  * 主方法
@@ -509,19 +700,6 @@ function gallery() {
       const beginTime = new Date(runtimes.getAttribute("beginTime")).getTime()
       runtimes.innerHTML = TimeProgress(beginTime, 2)
     }
-  }
-  // 图片描述
-  // 该方法将要废弃并转变为预处理方法 ******
-  function ImageExcerpt() {
-    document.querySelectorAll("main img").forEach(item => {
-      const title = item.getAttribute("title")
-      if (title != null) {
-        const inject = document.createElement("div")
-        inject.textContent = title
-        inject.className = "img_des"
-        item.parentNode.insertBefore(inject, item.nextSibling)
-      }
-    })
   }
   // 归档
   // 该方法将要废弃并转变为预处理方法 ******
@@ -646,7 +824,7 @@ function gallery() {
     }
   }
   // 自动隐藏快捷按钮
-  function qBtnAutoHide(){
+  function QuickBtnAutoHide(){
     window.pageYOffset>300?(document.querySelector(".quick_btn").classList.add("show")):""
     window.pageYOffset<=300?(document.querySelector(".quick_btn").classList.remove("show")):""
   }
@@ -659,13 +837,67 @@ function gallery() {
     }
     saveOffset = window.pageYOffset;
   }
+  // 图册
+  function Gallery() {
+    document.querySelectorAll(".post_gallery").forEach(gallery => {
+      // 准备元素和尺寸
+      let galleryWidth = gallery.offsetWidth; // 框宽度
+      let imgs = gallery.querySelectorAll("img"); //img 元素数组
+      let imgSize = []; // 原始尺寸数组
+      // 获取原始尺寸
+      imgs.forEach(img => {
+        let size = {};
+        // 因 padding 故加 2
+        size["width"]=img.naturalWidth + 2;
+        size["height"]=img.naturalHeight + 2;
+        imgSize.push(size);
+      })
+
+      // 开始计算合适的尺寸
+      for (let index = 0; index < imgs.length; ) {
+        // 计算其中一种数量情况
+        calc:for (let amount = index; amount < imgs.length; amount++) {
+          
+          // 计算实际宽高比
+          let realWidthRatio = []; // 宽高比数组
+          let totalWidthRatio = 0; // 宽度基数
+          for (let count = index; count <= amount; count++) {
+            let realRatio = imgSize[count].width/imgSize[count].height;
+            realWidthRatio.push(realRatio);
+            totalWidthRatio+=realRatio;
+          }
+          // 使宽高比总和为一，这样宽高比就变成了站的总宽度的比
+          for (let count = 0; count < realWidthRatio.length; count++) {
+            realWidthRatio[count] = realWidthRatio[count]/totalWidthRatio;
+          }
+          
+          // 实际高度（占宽比*目标宽度*原始高度/原始宽度）
+          let realHeight = galleryWidth*realWidthRatio[0]*imgSize[index].height/imgSize[index].width
+          // 判断实际高度是否在范围内（若已经排除其他可能，则直接设置）
+          if ((index+1 == imgs.length)) {
+            imgs[index].style.height='100%';
+            index = amount + 1; // 使下次从下一个开始计数，非常重要，删去会导致死循环
+            break calc;
+          }else if (realHeight<=300) { //使用限制最小在宽度只容许一个图片的情况下会出现循环
+            // 若符合，设置每一个元素的宽高
+            for (let count = index; count <= amount; count++) {
+              imgs[count].style.height=realHeight+'px';
+            }
+            index = amount + 1; // 使下次从下一个开始计数，非常重要，删去会导致死循环
+            break calc;
+          }
+        }
+      }
+    })
+  }
+
   /**
    * 滚动
    */
   function runOnscroll() {
     config.navFold && NavFold()
     config.ifToc && tocObj.length>0 && Toc()
-    config.ifQuickBtn && qBtnAutoHide()
+    config.ifQuickBtn && QuickBtnAutoHide()
   }
 
   /**
@@ -682,15 +914,18 @@ function gallery() {
 
     UpdateTime()
     Runtime()
-    config.imgDesc && ImageExcerpt()
     config.fooSt && SinceTo()
     figure()
     config.fooRt && RuntimeFooter()
     SaysInit()
     config.searchBar && (searchBar=document.querySelector('.navbar.row'))
-    gallery()
+    Gallery()
     config.ifToc && tocObj.length>0 && Toc()
+    $Search.InitializeElement()
 
+    /**
+     * 滚动事件
+     */
     window.addEventListener('scroll', ()=>{
       if (!doRunOnscroll) {return}
       doRunOnscroll = false
@@ -700,13 +935,32 @@ function gallery() {
       }, 100)
     })
 
+    /**
+     * 调整大小事件
+     */
     var doRunOnresize = false
     window.addEventListener('resize', ()=>{
       clearTimeout(doRunOnresize)
       doRunOnresize = setTimeout(function(){
-        document.querySelector(".post_gallery")!=null && gallery()
-      }, 1000);
+        document.querySelector(".post_gallery")!=null && Gallery()
+      }, 1000)
+    })
 
+    /**
+     * 按钮事件
+     */
+    document.querySelectorAll('[data-btn]').forEach(button => {
+      button.addEventListener('click', ev => {
+        let e = ev.target
+        switch (e.getAttribute('data-btn')){
+          case 'search':
+            $Search.Initialize()
+            break
+          default:
+            console.warn('This button is not defined yet.\nbutton type: \n\t'+e.getAttribute('data-btn')+'\n button: ',e)
+            break
+        }
+      })
     })
   }
 

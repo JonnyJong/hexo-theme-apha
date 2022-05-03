@@ -324,6 +324,11 @@ page:
   full_highlight_color: 
 
   # 图片描述文字
+  # false：关闭
+  # title：仅 title
+  # alt：仅 alt
+  # title_alt：先 title 后 alt
+  # alt_title：先 alt 后 title
   img_desc: false
 
   # 版权信息
