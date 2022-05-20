@@ -161,12 +161,13 @@ navbar:
   backdrop_filter: blur(20px) saturate(180%)
   # 导航栏圆角（none、default、value；无、默认、数值。建议使用 px 而不是 %，使用 % 会导致变为椭圆）
   # 新增列表，用于自定义每一个角（或其他方式实现） *
-  border_radius:
+  border_radius: 4px
   # 背景 *
   # auto 自动（默认）
   # main 主题色 *
   # 特殊语法 light/dark（亮色、暗色模式颜色）*
   background:
+  # 阴影
 
   # 导航栏高度（默认 60px）
   height: 
@@ -196,12 +197,32 @@ navbar:
   # （开发注：比较，若高于则设置为 100%）
   item_height:
   # 元素间距（默认 0px）
-  item_distance: 
+  item_distance: 8px
   # 元素内边框（默认 8px）*
-  item_padding: 
+  item_padding: 2px
 
-  # 二级菜单圆角（默认 6px）
-  sub_menu_border_radius:
+  # 菜单类型设置
+  type_menu:
+    # 折叠图标
+    collapse_icon:
+
+    # 二级菜单背景
+    submenu_background:
+    # 二级菜单滤镜
+    submenu_filter:
+    # 二级菜单背景滤镜
+    submenu_backdrop_filter: blur(20px) saturate(180%)
+    # 二级菜单圆角
+    submenu_border_radius:
+    # 二级菜单阴影
+    submenu_shadow:
+
+    # 二级菜单内边框
+    submenu_padding: 6px
+    # 二级菜单元素间距
+    submenu_item_distance: 6px
+    # 二级菜单元素内边框
+    submenu_item_padding: 10px
 
   # hover 高亮样式
   # background：背景颜色变化

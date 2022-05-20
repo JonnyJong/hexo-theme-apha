@@ -1,16 +1,10 @@
 nav
   height hexo-config("navbar.height")?convert(hexo-config("navbar.height")):60px
-  background var(--bg-nav)
   width hexo-config("navbar.outer_width")?convert(hexo-config("navbar.outer_width")):100%
   max-width hexo-config("navbar.outer_max_width")?convert(hexo-config("navbar.outer_max_width")):100%
   position fixed
-  background #8888 //**
   if hexo-config("navbar.filter")
     filter convert(hexo-config("navbar.filter"))
-  if hexo-config("navbar.backdrop_filter")
-    backdrop-filter convert(hexo-config("navbar.backdrop_filter"))
-  if hexo-config("navbar.border_radius")
-    border-radius convert(hexo-config("navbar.border_radius"))
   if hexo-config("navbar.bottom")
     bottom convert(hexo-config("navbar.bottom"))
   else
@@ -25,6 +19,7 @@ nav
     right 0
   .pc
   .mobile
+    position relative
     width hexo-config("navbar.inner_width")?convert(hexo-config("navbar.inner_width")):100%
     max-width hexo-config("navbar.inner_max_width")?convert(hexo-config("navbar.inner_max_width")):100%
     display flex
@@ -32,6 +27,9 @@ nav
     height 100%
     if hexo-config("navbar.item_distance")
       gap convert(hexo-config("navbar.item_distance"))
+    if hexo-config("navbar.item_padding")
+      >*:not(.hr,.flexbox)
+        padding 0 convert(hexo-config("navbar.item_padding"))
   img
     // 图像限制
     if hexo-config("navbar.image_size_limit_type") == 'height'
@@ -96,20 +94,61 @@ nav
         gap 2px
   .menu
     position relative
+    height 100%
+    display flex
+    align-items center
     .menuHeader
       color var(--font-main)
       text-decoration none
       display flex
       align-items center
       gap 2px
+      height max-content
     .submenu
       pointer-events none
       position absolute
+      display flex
+      flex-direction column
+      width max-content
       opacity 0
-  .menu:hover
-    .submenu
+      top hexo-config("navbar.height")?convert(hexo-config("navbar.height"))-5px:55px //** 待定
+      transition .2s
+      if hexo-config("navbar.type_menu.submenu_filter")
+        filter convert(hexo-config("navbar.type_menu.submenu_filter"))
+      if hexo-config("navbar.type_menu.submenu_border_radius")
+        border-radius convert(hexo-config("navbar.type_menu.submenu_border_radius"))
+      if hexo-config("navbar.type_menu.submenu_padding")
+        padding 0 convert(hexo-config("navbar.type_menu.submenu_padding"))
+      if hexo-config("navbar.type_menu.submenu_item_distance")
+        gap convert(hexo-config("navbar.type_menu.submenu_item_distance"))
+      if hexo-config("navbar.type_menu.submenu_shadow")
+        box-shadow convert(hexo-config("navbar.type_menu.submenu_shadow"))
+      >*
+        position relative
+        if hexo-config("navbar.type_menu.submenu_item_padding")
+          padding convert(hexo-config("navbar.type_menu.submenu_item_padding"))
+    .submenu:before
+      content ''
+      position absolute
+      display block
+      width 100%
+      height 100%
+      top 0
+      left 0
+      // if hexo-config("navbar.type_menu.submenu_background")
+      background #fff8 //**
+      if hexo-config("navbar.type_menu.submenu_backdrop_filter")
+        backdrop-filter convert(hexo-config("navbar.type_menu.submenu_backdrop_filter"))
+      if hexo-config("navbar.type_menu.submenu_border_radius")
+        border-radius convert(hexo-config("navbar.type_menu.submenu_border_radius"))
+    // 暂定方法
+    >.menuHeader:hover
+      height 100% //** 待定
+    >.menuHeader:hover+.submenu
+    .submenu:hover
       pointer-events all
       opacity 1
+      top hexo-config("navbar.height")?convert(hexo-config("navbar.height")):60px //** 待定
   .rolling_switch
     display flex
     flex-direction column
@@ -145,3 +184,23 @@ nav
       opacity 0
     .hover
       opacity 1
+  .hr
+    height 60%
+    width 1px
+    background #888
+    if hexo-config("navbar.item_padding")
+      margin 0 convert(hexo-config("navbar.item_padding"))
+  .flexbox
+    flex auto
+nav:before
+  content ''
+  display block
+  position absolute
+  width 100%
+  height 100%
+  background var(--bg-nav)
+  background #eeee
+  if hexo-config("navbar.backdrop_filter")
+    backdrop-filter convert(hexo-config("navbar.backdrop_filter"))
+  if hexo-config("navbar.border_radius")
+    border-radius convert(hexo-config("navbar.border_radius"))
