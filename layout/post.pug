@@ -1,13 +1,7 @@
 extends includes/layout.pug
+
 block content
-  .main_column.page
-    main
-      +page_info(page,"page" , true)
-      article#main
-        != page.content
-        if page.photos != undefined
-          .post_gallery
-            each url in page.photos
-              img(src=url_for(url) alt="post gallery")
-        include includes/copyright.pug
-    include includes/page_switch.pug
+  article#post
+    h1= page.title
+    != page.content
+  #paginator!= paginator()

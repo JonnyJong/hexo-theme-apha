@@ -1,71 +1,9 @@
+
 if page.posts.length > 0
-  .recent-posts
-    each post in page.posts.data
+  #recent-posts
+    h1 Recent Posts
+    each post in page.posts.sort('date', -1).limit(10).toArray()
       .recent-post-item
-        - let if_cover = (post.cover && theme.index_posts.post_item_style!=0) ? '' : 'no_cover'
-          if post.cover && theme.index_posts.post_item_style!=0
-            a.post_cover(href=url_for(post.path))
-              img.post_cover(src=url_for(post.cover) alt=post.title)
-          .post_info(class=if_cover class=cover_type)
-            if post.link
-              a.post_title(href=url_for(post.link))
-                i(class=icon_link)
-                span=post.title ? post.title : _p('post_item.notitle')
-            else
-              a.post_title(href=url_for(post.path))= post.title ? post.title : _p('post_item.notitle')
-            p
-            if post.sticky>0
-              i(class=icon_pin style="color:#f33;")
-              span(style="color:#f33;")=_p('post_item.sticky')
-            if theme.index_posts.show_date
-              i(class=icon_date)
-              time(datetime=post.date.toJSON())= _p('post_item.date') + ' ' + date(post.date, date_format) + ' '
-            if theme.index_posts.show_updated
-              i(class=icon_updated)
-              time(datetime=post.updated.toJSON())= _p('post_item.updated') + ' ' + date(post.updated, date_format) + ' '
-            if theme.index_posts.wordcount
-              i(class=icon_wordcount)
-              span=_p('post_item.wordcount_before') + wordcount(post.content) + _p('post_item.wordcount_after')
-            if theme.index_posts.min2read
-              i(class=icon_min2read)
-              span=_p('post_item.min2read_before') + min2read(post.content) + _p('post_item.min2read_after')
-            if theme.index_posts.show_categories && (post.categories.data.length > 0)
-              .line_warp_h
-              i(class=icon_categorie)
-              each cate, count in post.categories.data
-                a.post_cate(href=url_for(cate.path))=cate.name
-                if (count < post.categories.data.length - 1)
-                  span='/'
-            if theme.index_posts.show_tags && (post.tags.data.length > 0)
-              .line_warp_h
-              if (post.tags.data.length > 1)
-                i(class=icon_tags)
-              else
-                i(class=icon_tag)
-              each tag in post.tags.data
-                a.post_tag(href=url_for(tag.path))=tag.name
-                span=' '
-            p
-            case theme.index_posts.description.type
-              when "description"
-                if post.description
-                  span.post_description=post.description
-                else
-                  span.post_description=theme.index_posts.description.default_description
-              when "excerpt"
-                if post.excerpt
-                  span.post_description=strip_html(post.excerpt)
-                else
-                  span.post_description=theme.index_posts.description.default_description
-              when "content"
-                if post.content
-                  span.post_description=truncate(strip_html(post.content), {length: theme.index_posts.description.max_length})
-              when "auto"
-                if post.description
-                  span.post_description=post.description
-                else if post.excerpt
-                  span.post_description=strip_html(post.excerpt)
-                else if post.content
-                  span.post_description=truncate(strip_html(post.content), {length: theme.index_posts.description.max_length})
-              default
-                - break
+        a(href=url_for(post.path))= post.title
+        if post.date
+          time(datetime=post.date.toJSON())= date(post.date, date_format)

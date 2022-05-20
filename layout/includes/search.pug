@@ -1,6 +1,0 @@
-.searchPenalBg
-  .closeSearch(onclick="this.parentNode.className='searchPenalBg'")
-  .searchPenal
-    i(class='close '+icon_close onclick="this.parentNode.parentNode.className='searchPenalBg'")
-    input.searchInput(type="text" onclick="if(searchDb==null&&searchDb_load==true){searchDb_load=false;searchMsg(this,'load');initializeSDB(this);searchDb_load=true;}" oninput='search(this)' placeholder=_p("global.search_placeholder"))
-    .searchResult

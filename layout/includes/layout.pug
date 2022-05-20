@@ -7,76 +7,31 @@
 - if (is_year()) pageTitle = _p('page_title.archive') + _p('page_title.colon') + page.month + '/' + page.year + ' | '
 - pageTitle += config.title + (config.subtitle ? ' | ' + config.subtitle : "")
 
-//- 位置
-- var what_is_this_page = 'page'
-- if (is_home()) what_is_this_page = 'home'
-- if (is_post()) what_is_this_page = 'post'
-
-//- 设置
-- var global_back_btn = theme.back_buttom
 - var user_scalable = theme.user_scalable ? "" : ", user-scalable=no"
-
-//- 需要计算的变量
-- let ifSidebar = false
-- let ifQbtn = false
-- let searchBar = false
-
-//- 颜色模式
-- var color_scheme = theme.color_mode=="dark" ? theme.color_mode : "light" //- no-preference light dark
 
 include ./mixin.pug
 
 doctype html
-//- html(lang=config.language color-mode=color_scheme)
-html(lang=config.language prefers-color-scheme=color_scheme)
+html(lang=config.language)
   head
-    //- 变量计算
-    if (theme.sidebar.enable) && (theme.sidebar.items)
-      +isAnySideBarItem()
-    +isAnyQbtn()
-    +NavbarIf()
-    //- 基本信息
+    //- 基本
     meta(charset='UTF-8')
     title= pageTitle
     link(rel="icon" href=theme.info.favicon)
     meta(name="viewport" content="width=device-width" + user_scalable)
     meta(name="description" content=page.description ? page.description : config.description)
-    if page.keywords
-      meta(name="keywords" content=page.keywords)
     //- main css
     link(rel='stylesheet', href=theme.CDN.mainCss)
-    //- 引入 js 设置
-    include ./config.pug
     //- 引用CDN
     link(rel='preload', href=theme.CDN.fontawesome, as="style", onload="this.rel='stylesheet'")
-    //- 需要提前执行的 js
-    include ./head_js.pug
-  body(where=what_is_this_page onmousedown="MousedownEvent(event)")
-    include ./var.pug
-    include ./search.pug
-    include ./skipToContentButtom.pug
-    include ./header/header.pug
-    //- .forTest(style="height:100px;width:100px;background:#0002;color:red;position:fixed;top:30vh;right:0;z-index:1000;cursor:pointer;user-select:none;" onclick="if(document.documentElement.getAttribute('prefers-color-scheme')=='dark'){document.documentElement.setAttribute('prefers-color-scheme','light');localStorage.setItem('color_mode', 'light');}else{document.documentElement.setAttribute('prefers-color-scheme','dark');localStorage.setItem('color_mode', 'dark')}")='实验模式：\n切换暗色、亮色模式'
-    #content-outer
-      #content-inner
+  body
+    include ./navbar.pug
+    main
+      .main
         if body
           div!= body
         else
           block content
-          if ifSidebar
-            .side_column
-              .sidebar_items
-                include ./sidebar/sidebar.pug
-    include ./footer.pug
-    if theme.quick_btn.enable && ifQbtn
-      include ./quick_btn/quick_btn.pug
-    if theme.background.type=="img"
-      if theme.background.img.bg_as_cover && page.cover
-        .bg(style="background-image:url("+page.cover+");")
-      else
-        .bg
+      .sidebar
     //- main JS
     script(type="text/javascript" src=theme.CDN.mainJs)
-    //- 引用CDN
-    if theme.third_party.busuanzi
-      script(async src=theme.CDN.busuanzi)

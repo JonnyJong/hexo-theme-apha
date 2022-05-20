@@ -1,0 +1,46 @@
+nav
+  height hexo-config("navbar.height")?convert(hexo-config("navbar.height")):60px
+  background var(--bg-nav)
+  width hexo-config("navbar.outer_width")?convert(hexo-config("navbar.outer_width")):100%
+  max-width hexo-config("navbar.outer_max_width")?convert(hexo-config("navbar.outer_max_width")):100%
+  position fixed
+  if hexo-config("navbar.filter")
+    filter convert(hexo-config("navbar.filter"))
+  if hexo-config("navbar.backdrop_filter")
+    backdrop-filter convert(hexo-config("navbar.backdrop_filter"))
+  if hexo-config("navbar.border_radius")
+    border-radius convert(hexo-config("navbar.border_radius"))
+  if hexo-config("navbar.bottom")
+    bottom convert(hexo-config("navbar.bottom"))
+  else
+    top hexo-config("navbar.top")?convert(hexo-config("navbar.top")):0
+  margin 0 auto
+  if hexo-config("navbar.position")=='left'
+    left 0
+  else if hexo-config("navbar.position")=='right'
+    right 0
+  else
+    left 0
+    right 0
+  .pc
+  .mobile
+    width hexo-config("navbar.inner_width")?convert(hexo-config("navbar.inner_width")):100%
+    max-width hexo-config("navbar.inner_max_width")?convert(hexo-config("navbar.inner_max_width")):100%
+    display flex
+    height 100%
+    if hexo-config("navbar.item_distance")
+      gap convert(hexo-config("navbar.item_distance"))
+  img
+    // 图像限制
+    if hexo-config("navbar.image_size_limit_type") == 'height'
+      height hexo-config("navbar.image_size")?convert(hexo-config("navbar.image_size")):60%
+    else
+      max-height hexo-config("navbar.image_size")?convert(hexo-config("navbar.image_size")):60%
+  .site
+    display flex
+    align-items center
+    gap 4px
+    color var(--font-main)
+    height 100%
+    font-size hexo-config("navbar.site_font_size")?convert(hexo-config("navbar.site_font_size")):18px
+    text-decoration none

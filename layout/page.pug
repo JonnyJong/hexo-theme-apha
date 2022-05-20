@@ -1,8 +1,7 @@
 extends includes/layout.pug
 
 block content
-  .main_column.page
-    main
-      +page_info(page, "page", false)
-      article#main
-        != page.content
+  article#page
+    h1= page.title
+    != page.content
+  #paginator!= paginator()

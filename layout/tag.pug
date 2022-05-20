@@ -1,29 +1,11 @@
 extends includes/layout.pug
 
 block content
-  - var tagsList = list_tags({ show_count: theme.tag.show_count })
-
-  .main_column.page
-    main
-      +page_info(page, "page", false)
-      article.archive#main
-
-        if is_tag(page.tag)
-
-          if global_back_btn
-            include includes/global_back_btn.pug
-
-          h1= ' ' + page.tag + (theme.tag.show_total ? (' - ' + (site.tags.findOne({name: page.tag}).length)) : '')
-          - page.posts.each(function(article){
-              +post_item(article)
-          - })
-          include includes/page_switch.pug
-
-        else
-
-          if !(theme.tag.after_content)
-            != page.content
-          include includes/archive/tag.pug
-          if theme.tag.after_content
-            != page.content
-
+  div#tag
+    h1= 'Tag: ' + page.tag
+    - page.posts.each(function(article){
+      a(href=url_for(article.path))= article.title
+      time(datetime=date_xml(article.date))= date(article.date)
+      br.clear
+    - })
+  #paginator!= paginator()

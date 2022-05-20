@@ -1,0 +1,363 @@
+//- 图像组件
+mixin NavItemImage(item)
+  if item.active || item.hover
+    img.normal(src=item.src)
+    if item.active
+      if item.active.transform_type
+        img.active(src=(item.active.src ? item.active.src : item.src) style='--duration:'+(item.active.transform_type.duration ? item.active.transform_type.duration : '.5s')+';')
+      else
+        img.active(src=(item.active.src ? item.active.src : item.src))
+    if item.hover
+      if item.hover.transform_type
+        img.hover(src=(item.hover.src ? item.hover.src : item.src) style='--duration:'+(item.hover.transform_type.duration ? item.hover.transform_type.duration : '.5s')+';')
+      else
+        img.hover(src=(item.hover.src ? item.hover.src : item.src))
+  else
+    img(src=item.src)
+//- 统计组件 信息
+mixin NavItemStatisticsInnerInfo(content)
+  if content.title || content.icon
+    .info
+      if content.icon
+        i(class=content.icon)
+      if content.title
+        .title=content.title
+//- 统计组件
+mixin NavItemStatisticsInner(content)
+  case content.type
+    when 'archive'
+      .value=site.posts.length
+      +NavItemStatisticsInnerInfo(content)
+    when 'category'
+      .value=(content.current ? StatisticsCategory(content.current) : site.tags.length)
+      +NavItemStatisticsInnerInfo(content)
+    when 'tag'
+      .value=(content.current ? StatisticsTag(content.current) : site.tags.length)
+      +NavItemStatisticsInnerInfo(content)
+//- 菜单组件
+mixin NavItemMenu(item)
+  if item.activity && CheckPage(item.activity.conditions)
+    if item.icon || item.activity.icon
+      i(class=(item.activity.icon ? item.activity.icon : item.icon))
+    if item.name || item.activity.name
+      .title=(item.activity.name ? item.activity.name : item.name)
+  else
+    if item.icon
+      i(class=item.icon)
+    if item.name
+      .title=item.name
+  if item.submenu
+    i.AFK
+    //- 此处需更换为全局的指示图标
+
+//- 组件处理
+mixin NavItemProgress(item)
+  case item.type
+    when 'site'
+      a.site(href=(item.href ? item.href : config.url + config.root))
+        if item.activity && CheckPage(item.activity.conditions)
+          if item.activity.favicon
+            img(src=item.activity.favicon alt=config.title)
+          else if item.favicon
+            img(src=item.favicon alt=config.title)
+          if item.activity.icon
+            i(class=item.activity.icon)
+          else if item.icon
+            i(class=item.icon)
+          .title=item.activity.title ? item.activity.title : (item.title ? item.title : config.title)
+        else
+          if item.favicon
+            img(src=item.favicon alt=config.title)
+          if item.icon
+            i(class=item.icon)
+          .title= item.title ? item.title : config.title
+    when 'text'
+      if item.href
+        a.text(href=item.href)!=`${item.content}`
+      else
+        .text!=`${item.content}`
+    when 'image'
+      if item.href
+        a.image(href=item.href)
+          +NavItemImage(item)
+      else
+        .image
+          +NavItemImage(item)
+    when 'statistics'
+      div(class='statistics'+(item.invert_typesetting?' invert':''))
+        each content in item.content
+          if content.href
+            a.item(href=content.href)
+              +NavItemStatisticsInner(content)
+          else
+            .item
+              +NavItemStatisticsInner(content)
+    when 'hr'
+      .hr
+    when 'flexbox'
+      .flexbox
+    when 'search'
+      case item.style
+        when 'button'
+          case item.click_event
+            when 'filling'
+              .searchButton.filling
+                //- 此处 input 需要根据之后的 bar 设置调整
+                input
+                if item.icon
+                  i(class=item.icon)
+                if item.title
+                  .title=item.title
+            default
+              .searchButton.pop_ups
+                if item.icon
+                  i(class=item.icon)
+                if item.title
+                  .title=item.title
+        when 'bar'
+          case item.click_event
+            when 'pop_ups'
+              .search.pop_ups
+                if item.icon
+                  i(class=item.icon)
+                if item.title
+                  .title=item.title
+            when 'filling'
+              .search.filling
+                //- 此处 input 需要根据之后的 bar 设置调整
+                input
+                if item.icon
+                  i(class=item.icon)
+                if item.title
+                  .title=item.title
+            default
+              .search
+                //- 此处 input 需要根据之后的 bar 设置调整
+                input
+                if item.icon
+                  i(class=item.icon)
+                if item.title
+                  .title=item.title
+    when 'menu'
+      .menu
+        if item.activity && CheckPage(item.activity.conditions)
+          if item.href || item.activity.href
+            a.menuHeader.activity(href=(item.activity.href ? item.activity.href : item.href))
+              +NavItemMenu(item)
+          else
+            .menuHeader.activity
+              +NavItemMenu(item)
+        else
+          if item.href
+            a.menuHeader(href=item.href)
+              +NavItemMenu(item)
+          else
+            .menuHeader
+              +NavItemMenu(item)
+        if item.submenu
+          each sub in item.submenu
+            if sub.activity && CheckPage(sub.activity.conditions)
+              if sub.href || sub.activity.href
+                a.menuHeader.activity(href=(sub.activity.href ? sub.activity.href : sub.href))
+                  +NavItemMenu(sub)
+              else
+                .menuHeader.activity
+                  +NavItemMenu(sub)
+            else
+              if sub.href
+                a.menuHeader(href=sub.href)
+                  +NavItemMenu(sub)
+              else
+                .menuHeader
+                  +NavItemMenu(sub)
+    when 'switch_sidebar'
+      .switch_sidebar
+    when 'rolling_switch'
+      - let style = ''
+      case item.style
+        when '1'
+          style = ' up_down'
+        when '2'
+          style = ' down_up'
+        when '3'
+          style = ' gradient'
+      div(class='rolling_switch'+style data-min-d=(item.min_distance ? item.min_distance : '100'))
+        .itemA
+          each subItem in item.itemA
+            if !subItem.generate_page || CheckPage(subItem.generate_page)
+              +NavItemProgress(subItem)
+        .itemB
+          each subItem in item.itemB
+            if !subItem.generate_page || CheckPage(subItem.generate_page)
+              +NavItemProgress(subItem)
+    when 'page_title'
+      if item.href
+        a.page_title(href=item.href)
+          if item.hover
+            .normal=(page.title ? page.title : '')
+            .hover=item.hover
+          else
+            =(page.title ? page.title : '')
+      else
+        .page_title
+          if item.hover
+            .normal=(page.title ? page.title : '')
+            .hover=item.hover
+          else
+            =(page.title ? page.title : '')
+    when 'button'
+      case item.function
+        when 'colormode'
+          if item.button_type == 'menu'
+            .buttonMenu.colormode
+              each sub in item.menu
+                case sub.type
+                  when 'OS'
+                    .os
+                      if sub.icon || sub.activity_icon
+                        .icon
+                          if sub.icon
+                            i(class=sub.icon)
+                          if sub.activity_icon
+                            i(class='activity '+sub.activity_icon)
+                  when 'auto'
+                    .auto
+                      if sub.icon || sub.activity_icon
+                        .icon
+                          if sub.icon
+                            i(class=sub.icon)
+                          if sub.activity_icon
+                            i(class='activity '+sub.activity_icon)
+                  when 'light'
+                    .light
+                      if sub.icon || sub.activity_icon
+                        .icon
+                          if sub.icon
+                            i(class=sub.icon)
+                          if sub.activity_icon
+                            i(class='activity '+sub.activity_icon)
+                  when 'dark'
+                    .dark
+                      if sub.icon || sub.activity_icon
+                        .icon
+                          if sub.icon
+                            i(class=sub.icon)
+                          if sub.activity_icon
+                            i(class='activity '+sub.activity_icon)
+          else
+            .button.colormode
+              .light
+                if item.switch.light_icon_hover || item.switch.light_icon_active
+                  if item.switch.light_icon
+                    i(class='normal '+item.switch.light_icon)
+                  if item.switch.light_icon_hover
+                    i(class='hover '+item.switch.light_icon_hover)
+                  if item.switch.light_icon_active
+                    i(class='active'+item.switch.light_icon_active)
+                else if item.switch.light_icon
+                  i(class=''+item.switch.light_icon)
+              .dark
+                if item.switch.dark_icon_hover || item.switch.dark_icon_active
+                  if item.switch.dark_icon
+                    i(class='normal '+item.switch.dark_icon)
+                  if item.switch.dark_icon_hover
+                    i(class='hover '+item.switch.dark_icon_hover)
+                  if item.switch.dark_icon_active
+                    i(class='active'+item.switch.dark_icon_active)
+                else if item.switch.dark_icon
+                  i(class=''+item.switch.dark_icon)
+    when 'author'
+      .author
+        if item.hover_panel
+          if item.href
+            a.authorHeader(href=item.href)
+              if item.avatar
+                img.avatar(src=item.avatar alt=config.author)
+              .name=(item.name ? item.name : config.author)
+          else
+            .authorHeader
+              if item.avatar
+                img.avatar(src=item.avatar alt=config.author)
+              .name=(item.name ? item.name : config.author)
+          - let panelStyle = ''
+          case item.hover_panel.style
+            when '2'
+              panelStyle = ' column'
+            when '3'
+              panelStyle = ' half_overlap'
+            when '4'
+              panelStyle = ' column half_overlap'
+            when '5'
+              panelStyle = ' overlap'
+            when '6'
+              panelStyle = ' column overlap'
+          div(class='authorPanel'+panelStyle)
+            .panelHeader
+              if item.hover_panel.background
+                img.headerBg(src=item.hover_panel.background)
+              .headerInfo
+                if item.avatar
+                  if item.active || item.hover
+                    img.avatar.normal(src=item.avatar alt=config.author)
+                    if item.hover
+                      img(class='avatar hover'+(item.hover.avatar_effect ? ' '+item.hover.avatar_effect : '') src=(item.hover.avatar ? item.hover.avatar : item.avatar) alt=config.author)
+                    if item.active
+                      img(class='avatar active'+(item.active.avatar_effect ? ' '+item.active.avatar_effect : '') src=(item.active.avatar ? item.active.avatar : item.avatar) alt=config.author)
+                  else
+                    img.avatar(src=item.avatar alt=config.author)
+                .name=(item.name ? item.name : config.author)
+                if item.hover_panel.description
+                  .description=item.hover_panel.description
+            if item.hover_panel.statistics
+              div(class='statistics'+(item.hover_panel.statistics.invert_typesetting?' invert':''))
+                each content in item.hover_panel.statistics.content
+                  if content.href
+                    a.item(href=content.href)
+                      +NavItemStatisticsInner(content)
+                  else
+                    .item
+                      +NavItemStatisticsInner(content)
+        else
+          if item.href
+            a.authorHeader(href=item.href)
+              if item.avatar
+                if item.active || item.hover
+                  img.avatar.normal(src=item.avatar alt=config.author)
+                  if item.hover
+                    img(class='avatar hover'+(item.hover.avatar_effect ? ' '+item.hover.avatar_effect : '') src=(item.hover.avatar ? item.hover.avatar : item.avatar) alt=config.author)
+                  if item.active
+                    img(class='avatar active'+(item.active.avatar_effect ? ' '+item.active.avatar_effect : '') src=(item.active.avatar ? item.active.avatar : item.avatar) alt=config.author)
+                else
+                  img.avatar(src=item.avatar alt=config.author)
+              .name=(item.name ? item.name : config.author)
+          else
+            .authorHeader
+              if item.avatar
+                if item.active || item.hover
+                  img.avatar.normal(src=item.avatar alt=config.author)
+                  if item.hover
+                    img(class='avatar hover'+(item.hover.avatar_effect ? ' '+item.hover.avatar_effect : '') src=(item.hover.avatar ? item.hover.avatar : item.avatar) alt=config.author)
+                  if item.active
+                    img(class='avatar active'+(item.active.avatar_effect ? ' '+item.active.avatar_effect : '') src=(item.active.avatar ? item.active.avatar : item.avatar) alt=config.author)
+                else
+                  img.avatar(src=item.avatar alt=config.author)
+              .name=(item.name ? item.name : config.author)
+
+//- nav
+if theme.navbar.pc_items||theme.navbar.mobile_items
+  nav
+    if theme.navbar.pc_items
+      .pc
+        each item in theme.navbar.pc_items
+          if !item.generate_page || CheckPage(item.generate_page)
+            +NavItemProgress(item)
+    if theme.navbar.mobile_items
+      .mobile
+        each item in theme.navbar.mobile_items
+          if !item.generate_page || CheckPage(item.generate_page)
+            +NavItemProgress(item)
+if theme.navbar.side_items
+  .sideNav
+    each item in theme.navbar.side_items
+      if !item.generate_page || CheckPage(item.generate_page)
+        +NavItemProgress(item)

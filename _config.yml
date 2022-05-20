@@ -85,60 +85,120 @@ tag:
 navbar:
   # 自定义组件（允许自由调整顺序）
   # PC 端导航栏组件
-  pc_nav_items:
+  pc_items:
+    - type: site
+      href: /
+      title: Apha
+      favicon: /favicon.ico
+      icon: fas fa-home
+    - type: text
+      href: /
+      content: hello
+    - type: image
+      src: /favicon.ico
+      active: 
+        src: /assets/wallpaper-2572384.jpg
+      hover: 
+        src: /assets/wallpaper-2311325.jpg
+        transform_type: 
+          duration: .1s
+    - type: statistics
+      content:
+        - type: archive
+          href: /archives/
+          title: 归档
+        - type: category
+          current: 
+            - Foo
+          title: Foo
+          icon: fa fa-archive
+        - type: tag
+      invert_typesetting: false
+    - type: hr
+    - type: flexbox
+    - type: search
+      style: button
+      icon: fa fa-search fa-fw
+    - type: menu
+      href: /link/
+      icon: fa fa-link
+    - type: menu
+      href: /about/
+      name: 关于
+    - type: menu
+      name: 文章
+      icon: fa fa-graduation-cap
+      submenu:
+        - name: 归档
+          href: /archives/
+        - name: 归类
+          href: /categories/
+        - name: 标签
+          href: /tags/
+    - type: switch_sidebar
+    - type: rolling_switch
+      itemA:
+        - type: text
+          content: 滚动……
+      itemB:
+        - type: page_title
+          hover: '返回顶部'
+    - type: 'button'
+      function: colormode
+      button_type: switch
+      switch:
+        light_icon: fa fa-sun-o
+        dark_icon: fa fa-moon-o
+    
   # 手机端导航栏组件
-  mbl_nav_items:
+  mobile_items:
   # 侧边导航栏组件
-  side_nav_items:
+  side_items:
   
-  # 不透明度（较低的背景模糊度建议使用较高的不透明度，较低的不透明度建议使用较高的背景模糊度。默认 0.8）
-  opacity: ''
-  # 背景模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿。设置 0 可关闭。）
-    # 一般情况下，Firefox 浏览器中 backdrop-filter 有限制
-  blur: 
-  # 背景饱和度（单位：%。基础值：100%。默认值：300%。推荐随模糊度增加而增加。）
-  saturate:
+  # 滤镜
+  filter:
+  # 背景滤镜（通常情况下，Firefox 中无作用）
+  backdrop_filter: blur(20px) saturate(180%)
   # 导航栏圆角（none、default、value；无、默认、数值。建议使用 px 而不是 %，使用 % 会导致变为椭圆）
+  # 新增列表，用于自定义每一个角（或其他方式实现） *
   border_radius:
-  # 背景
+  # 背景 *
+  # auto 自动（默认）
+  # main 主题色 *
+  # 特殊语法 light/dark（亮色、暗色模式颜色）*
   background:
-    # 颜色
-    # auto：默认值，自动，根据当前颜色模式选择黑色或白色
-    # main：主题色
-    # gradient：渐变
-    color:
-    # 渐变（默认根据当前颜色模式变化）
-    start_color:
-    end_color:
-    # 角度（单位 deg）
-    angle:
 
   # 导航栏高度（默认 60px）
   height: 
   # 导航栏外部宽度（默认 100%）
-  outer_width:
+  outer_width: 
   # 导航栏外部最大宽度 （默认 100%）
-  outer_max_width:
+  outer_max_width: 
   # 导航栏内部宽度 （默认 90%）
   inner_width: 
   # 导航栏内部最大宽度 （默认为页面主体最大宽度。推荐值：100%）
   inner_max_width: 
-  # 导航栏与顶部距离（top 和 bottom 建议只设置其中一个）
-  top: none
-  # 导航栏与底部距离
-  bottom: none
+  # 导航栏与顶部距离（默认 0）
+  top: 
+  # 导航栏与底部距离（默认 无，设置后将会覆盖 top）
+  bottom:  
   # 自动收起
   auto_folding: false
+  # 导航栏位置（left、center、right，默认 center）
+  position: 
 
-  # 字体大小（默认 16px）
+  # 字体大小（默认 16px）*
   font_size:
-  # site 字体大小（默认 20px）
+  # site 字体大小（默认 18px）
   site_font_size:
 
+  # 元素高度（不能高于导航栏高度） *
+  # （开发注：比较，若高于则设置为 100%）
+  item_height:
   # 元素间距（默认 0px）
   item_distance: 
-  # 元素内横向间距（默认 8px）
-  item_inside_distance: 
+  # 元素内边框（默认 8px）*
+  item_padding: 
 
   # 二级菜单圆角（默认 6px）
   sub_menu_border_radius:
@@ -176,6 +236,11 @@ navbar:
   side_font_size:
   # 侧边导航栏 site 字体大小（默认 20px）
   side_site_font_size:
+
+  # 图像尺寸（默认 60% 高度）
+  image_size:
+  # 图像尺寸限制方法（默认 max-height）
+  image_size_limit_type:
 
 # =============================================================
 # 侧边栏
@@ -546,6 +611,13 @@ no_select_unless_article: true
 # 文章禁用选中（未配置）*
 no_select_in_article: false
 
+# =============================================================
+# 鼠标样式
+
+# =============================================================
+# 右键菜单
+
+# =============================================================
 # 动画效果（未配置）
 # 0：没有动画
 # 1：最少的动画
@@ -553,6 +625,7 @@ no_select_in_article: false
 # 3：完整的动画
 animation:
 
+# =============================================================
 # 将必要的 CSS 写入 HTML（未配置）
 # 必要的 CSS 指布局和尺寸相关的 CSS
 # 用于优化加载速度，启用此项后会异步加载其余 CSS，每个 HTML 的尺寸会有所上升
@@ -572,6 +645,7 @@ load_css_ineed:
 vendor_prefix:
 # JS 分块（同上，但当前 JS 量少，暂无必要）（未配置）
 
+# =============================================================
 # 图片懒加载（未配置）
 lazyload:
 
@@ -581,10 +655,12 @@ pjax:
 # PWA
 pwa:
 
+# =============================================================
 # 搜索
 # 数据库路径（若修改了 search.template 请同步修改，默认使用“/search.json”）
 search_db_href:
 
+# =============================================================
 # 检测禁用脚本
 # <noscript>
 # 0：关闭
@@ -611,9 +687,9 @@ third_party:
 # =============================================================
 CDN:
   # 主要引入 Mainly introduced
-  mainCss: /css/hexo-theme-apha.css
-  mainJs: /js/hexo-theme-apha.js
+  mainCss: /css/main.css
+  mainJs: /js/main.js
 
-  fontawesome: https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css
+  fontawesome: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css
 
   busuanzi: //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js
