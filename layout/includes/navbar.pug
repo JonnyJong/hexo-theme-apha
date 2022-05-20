@@ -2,16 +2,16 @@
 mixin NavItemImage(item)
   if item.active || item.hover
     img.normal(src=item.src)
-    if item.active
-      if item.active.transform_type
-        img.active(src=(item.active.src ? item.active.src : item.src) style='--duration:'+(item.active.transform_type.duration ? item.active.transform_type.duration : '.5s')+';')
-      else
-        img.active(src=(item.active.src ? item.active.src : item.src))
     if item.hover
       if item.hover.transform_type
         img.hover(src=(item.hover.src ? item.hover.src : item.src) style='--duration:'+(item.hover.transform_type.duration ? item.hover.transform_type.duration : '.5s')+';')
       else
         img.hover(src=(item.hover.src ? item.hover.src : item.src))
+    if item.active
+      if item.active.transform_type
+        img.active(src=(item.active.src ? item.active.src : item.src) style='--duration:'+(item.active.transform_type.duration ? item.active.transform_type.duration : '.5s')+';')
+      else
+        img.active(src=(item.active.src ? item.active.src : item.src))
   else
     img(src=item.src)
 //- 统计组件 信息
@@ -155,21 +155,22 @@ mixin NavItemProgress(item)
             .menuHeader
               +NavItemMenu(item)
         if item.submenu
-          each sub in item.submenu
-            if sub.activity && CheckPage(sub.activity.conditions)
-              if sub.href || sub.activity.href
-                a.menuHeader.activity(href=(sub.activity.href ? sub.activity.href : sub.href))
-                  +NavItemMenu(sub)
+          .submenu
+            each sub in item.submenu
+              if sub.activity && CheckPage(sub.activity.conditions)
+                if sub.href || sub.activity.href
+                  a.menuHeader.activity(href=(sub.activity.href ? sub.activity.href : sub.href))
+                    +NavItemMenu(sub)
+                else
+                  .menuHeader.activity
+                    +NavItemMenu(sub)
               else
-                .menuHeader.activity
-                  +NavItemMenu(sub)
-            else
-              if sub.href
-                a.menuHeader(href=sub.href)
-                  +NavItemMenu(sub)
-              else
-                .menuHeader
-                  +NavItemMenu(sub)
+                if sub.href
+                  a.menuHeader(href=sub.href)
+                    +NavItemMenu(sub)
+                else
+                  .menuHeader
+                    +NavItemMenu(sub)
     when 'switch_sidebar'
       .switch_sidebar
     when 'rolling_switch'

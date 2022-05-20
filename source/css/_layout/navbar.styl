@@ -4,6 +4,7 @@ nav
   width hexo-config("navbar.outer_width")?convert(hexo-config("navbar.outer_width")):100%
   max-width hexo-config("navbar.outer_max_width")?convert(hexo-config("navbar.outer_max_width")):100%
   position fixed
+  background #8888 //**
   if hexo-config("navbar.filter")
     filter convert(hexo-config("navbar.filter"))
   if hexo-config("navbar.backdrop_filter")
@@ -27,6 +28,7 @@ nav
     width hexo-config("navbar.inner_width")?convert(hexo-config("navbar.inner_width")):100%
     max-width hexo-config("navbar.inner_max_width")?convert(hexo-config("navbar.inner_max_width")):100%
     display flex
+    align-items center
     height 100%
     if hexo-config("navbar.item_distance")
       gap convert(hexo-config("navbar.item_distance"))
@@ -44,3 +46,102 @@ nav
     height 100%
     font-size hexo-config("navbar.site_font_size")?convert(hexo-config("navbar.site_font_size")):18px
     text-decoration none
+  .image
+    height 100%
+    position relative
+    width max-content
+    >*
+      position relative
+      top 50%
+      transform translate(0,-50%)
+    .hover
+    .active
+      opacity 0
+      position absolute
+      pointer-events none
+      left 0
+      right 0
+      margin auto
+      transition var(--duration)
+  .image:hover
+    .normal
+      opacity 0
+    .hover
+      opacity 1
+  .image:active
+    .normal
+      opacity 0
+    .active
+      opacity 1
+  .text
+    color var(--font-main)
+    text-decoration none
+  .statistics
+    display flex
+    align-items center
+    gap 8px
+    .item
+      display flex
+      flex-direction column
+      align-items center
+      text-decoration none
+      .value
+        font-size 16px //**
+        color var(--font-main)
+      .info
+        font-size 14px //**
+        color #444 //**
+        display flex
+        align-items center
+        gap 2px
+  .menu
+    position relative
+    .menuHeader
+      color var(--font-main)
+      text-decoration none
+      display flex
+      align-items center
+      gap 2px
+    .submenu
+      pointer-events none
+      position absolute
+      opacity 0
+  .menu:hover
+    .submenu
+      pointer-events all
+      opacity 1
+  .rolling_switch
+    display flex
+    flex-direction column
+    align-items center
+    .itemA
+    .itemB
+      transform translate(0, 50%)
+      transition .1s
+    .itemB
+      opacity 0
+  // for test
+  .rolling_switch:hover
+    .itemA
+    .itemB
+      transform translate(0, -50%)
+    .itemA
+      opacity 0
+    .itemB
+      opacity 1
+  .page_title
+    position relative
+    min-width 8ch //*
+    .hover
+      opacity 0
+      position absolute
+      pointer-events none
+      top 0
+      left 0
+      right 0
+      margin auto
+  .page_title:hover
+    .normal
+      opacity 0
+    .hover
+      opacity 1
