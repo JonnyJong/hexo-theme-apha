@@ -185,15 +185,15 @@ navbar:
   # 背景滤镜（通常情况下，Firefox 中无作用）
   backdrop_filter: blur(20px) saturate(180%)
   # 导航栏圆角（none、default、value；无、默认、数值。建议使用 px 而不是 %，使用 % 会导致变为椭圆）
-  # 新增列表，用于自定义每一个角（或其他方式实现） *
-  border_radius: 4px
-  # 背景 *
-  # auto 自动（默认）
-  # main 主题色 *
-  # 特殊语法 light/dark（亮色、暗色模式颜色）*
-  background:
+  border_radius:
+  # 背景 （默认 自动）
+  # main 主色 
+  background: '#0000'
+  darkmode_background:
   # 阴影
+  shadow:
   # 边框
+  border:
 
   # 导航栏高度（默认 60px）
   height: 
@@ -208,16 +208,84 @@ navbar:
   # 导航栏与顶部距离（默认 0）
   top: 
   # 导航栏与底部距离（默认 无，设置后将会覆盖 top）
-  bottom:  
-  # 自动收起
-  auto_folding: false
+  bottom: 
   # 导航栏位置（left、center、right，默认 center）
   position: 
 
-  # 字体大小（默认 16px）*
-  font_size:
-  # site 字体大小（默认 18px）
-  site_font_size:
+  # 滚动事件
+  scroll_event:
+    # 最小生效距离（默认 200）
+    min_dist: 200
+
+    # 自动隐藏（向下滚动和达到距离时）
+    auto_hide: true
+
+    # （达到距离时）
+    height:
+    outer_width: calc(100vw - 50px)
+    outer_max_width:
+    inner_width:
+    inner_max_width:
+    background: 
+    darkmode_background:
+    filter:
+    backdrop_filter:
+    shadow:
+    border:
+    border_radius: 4px
+    top: 10px
+    bottom:
+
+    # （开发注：更多可通过自定义 CSS 实现，"min/up/down"）
+
+    # 滚动方向
+    # scroll_direction:
+    #   up:
+    #     enable: true
+    #     height:
+    #     outer_width:
+    #     outer_max_width:
+    #     inner_width:
+    #     inner_max_width:
+    #     background: main
+    #     darkmode_background:
+    #     filter:
+    #     backdrop_filter:
+    #     shadow:
+    #     border:
+    #     hide: true
+    #   down:
+    #     enable: true
+    #     height:
+    #     outer_width:
+    #     outer_max_width:
+    #     inner_width:
+    #     inner_max_width:
+    #     background: red
+    #     darkmode_background:
+    #     filter:
+    #     backdrop_filter:
+    #     shadow:
+    #     border:
+    #     hide: false
+    # # 滚动距离
+    # scroll_offset:
+    #   # 最小生效距离
+    #   min_dist: 200
+    #   height: 50px
+    #   outer_width:
+    #   outer_max_width:
+    #   inner_width:
+    #   inner_max_width:
+    #   background: blue
+    #   darkmode_background:
+    #   filter:
+    #   backdrop_filter:
+    #   shadow:
+    #   border:
+    #   hide: false
+    # transition: .2s
+
 
   # 元素高度（不能高于导航栏高度） *
   # （开发注：比较，若高于则设置为 100%）
@@ -227,9 +295,12 @@ navbar:
   # 元素内边框（默认 8px）*
   item_padding: 2px
 
+  # site 字体大小（默认 18px）
+  type_site_font_size:
+
   # 菜单类型设置
   type_menu:
-    # 折叠图标
+    # 折叠图标 *
     collapse_icon:
 
     # 二级菜单背景
@@ -253,6 +324,19 @@ navbar:
   
   # 作者信息类型设置
   type_author:
+    # 头像圆角
+    avatar_border_radius: 
+    # 头像边框
+    avatar_border: 
+    # 头像宽度（默认 36px）
+    avatar_width:
+    # 头像高度（默认 36px）
+    avatar_height:
+    # 名称字体大小（默认 16px）
+    name_font_size: 
+    # 名称字重（默认 normal）
+    name_font_weight: 
+
     # 面板背景 *
     panel_background:
     # 面板滤镜
@@ -270,18 +354,27 @@ navbar:
     panel_width:
     # 头图高度（默认 150px）
     background_height:
-    # 头像圆角
-    avatar_border_radius: 
-    # 头像边框
-    avatar_border: 
-    # 头像宽度（默认 48px）
-    avatar_width:
-    # 头像高度（默认 48px）
-    avatar_height:
-    # 名称字体大小（默认 16px）
-    name_font_size: 
-    # 名称字重（默认 bold）
-    name_font_weight: 
+    # 面板头像圆角
+    panel_avatar_border_radius: 
+    # 面板头像边框
+    panel_avatar_border: 
+    # 面板头像宽度（默认 48px）
+    panel_avatar_width:
+    # 面板头像高度（默认 48px）
+    panel_avatar_height:
+    # 面板名称字体大小（默认 16px）
+    panel_name_font_size: 
+    # 面板名称字重（默认 bold）
+    panel_name_font_weight: 
+  
+  # 统计类型设置
+  type_statistics:
+    # 值字体大小（默认 16px）
+    value_size:
+    value_color: #*
+    # 标题字体大小（默认 14px）
+    title_size:
+    title_color: #*
 
   # hover 高亮样式
   # background：背景颜色变化
@@ -296,10 +389,6 @@ navbar:
   # block：块
   # line：线
   now_highlight_style:
-
-
-  # 侧边导航栏开启按钮大小（默认 18px）
-  side_btn_size: 
 
   # 侧边导航栏位置（left、right；默认 left）
   mbl_menu: 
@@ -548,15 +637,27 @@ comment:
 # =============================================================
 # 全局
 
-# 主题色
-theme_color:
+# 颜色
+color:
+  # 主色（默认 #4CAF50）
   main: 
-  # 强调色（未配置）
-  focus: 
+  # 强调色（默认 主色）
+  accent: 
+  # 悬停强调色（默认 强调色）
+  hover:
+  # 点击强调色（默认 强调色）
+  active:
 
-  # 渐变（未配置）
-
-  # 彩虹色（未配置）
+  # 暗色模式配色（默认 同亮色模式）
+  darkmode_color:
+    # 主色
+    main: 
+    # 强调色
+    accent: 
+    # 悬停强调色
+    hover:
+    # 点击强调色
+    active:
 
   # 黑白（未完成）*
   black_and_white: false

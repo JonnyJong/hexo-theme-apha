@@ -292,7 +292,7 @@ mixin NavItemProgress(item)
               - panelStyle = ' overlap'
             when 6
               - panelStyle = ' column overlap'
-          div(class='authorPanel'+panelStyle+(item.hover_panel.position ? ' '+item.hover_panel.position : ''))
+          div(class='authorPanel'+panelStyle+(item.hover_panel.position ? ' '+item.hover_panel.position : '') ui-scroll-height)
             .panelHeader
               if item.hover_panel.background
                 img.headerBg(src=item.hover_panel.background)

@@ -20,6 +20,7 @@ html(lang=config.language)
     link(rel="icon" href=theme.info.favicon)
     meta(name="viewport" content="width=device-width" + user_scalable)
     meta(name="description" content=page.description ? page.description : config.description)
+    include ./config.pug
     //- main css
     link(rel='stylesheet', href=theme.CDN.mainCss)
     //- 引用CDN

@@ -1,4 +1,15 @@
+$color_main = hexo-config("color.main") ? convert(hexo-config("color.main")) : #4CAF50
+$color_accent = hexo-config("color.accent") ? convert(hexo-config("color.accent")) : $color_main
+$color_hover = hexo-config("color.hover") ? convert(hexo-config("color.hover")) : $color_accent
+$color_active = hexo-config("color.active") ? convert(hexo-config("color.active")) : $color_accent
+
 :root
   --bg-nav #fffe
 
   --font-main #000000de
+  --font-with-main dark($color_main)?#eee:#111
+
+  --color-main $color_main
+  --color-accent $color_accent
+  --color-hover $color_hover
+  --color-active $color_active
