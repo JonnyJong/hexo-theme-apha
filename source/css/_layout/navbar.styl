@@ -111,8 +111,10 @@ nav
       text-decoration none
       display flex
       align-items center
-      gap 2px
+      gap 4px
       height max-content
+      .arrow
+        transition .1s
     .submenu
       pointer-events none
       position absolute
@@ -122,6 +124,7 @@ nav
       opacity 0
       top 90%
       transition .2s
+      right 0
       if hexo-config("navbar.type_menu.submenu_filter")
         filter convert(hexo-config("navbar.type_menu.submenu_filter"))
       if hexo-config("navbar.type_menu.submenu_border_radius")
@@ -132,29 +135,39 @@ nav
         gap convert(hexo-config("navbar.type_menu.submenu_item_distance"))
       if hexo-config("navbar.type_menu.submenu_shadow")
         box-shadow convert(hexo-config("navbar.type_menu.submenu_shadow"))
+      if hexo-config("navbar.type_menu.submenu_border")
+        border convert(hexo-config("navbar.type_menu.submenu_border"))
       >*
         position relative
         if hexo-config("navbar.type_menu.submenu_item_padding")
           padding convert(hexo-config("navbar.type_menu.submenu_item_padding"))
-    .submenu:before
-      content ''
-      position absolute
-      display block
-      width 100%
-      height 100%
-      top 0
-      left 0
-      // if hexo-config("navbar.type_menu.submenu_background")
-      background #fff8 //**
-      if hexo-config("navbar.type_menu.submenu_backdrop_filter")
-        backdrop-filter convert(hexo-config("navbar.type_menu.submenu_backdrop_filter"))
-      if hexo-config("navbar.type_menu.submenu_border_radius")
-        border-radius convert(hexo-config("navbar.type_menu.submenu_border_radius"))
-  .menu:hover
-    .submenu
-      pointer-events all
-      opacity 1
-      top 100%
+      &.left
+        left 0
+      &.center
+        left 0
+        margin auto
+      &:before
+        content ''
+        position absolute
+        display block
+        width 100%
+        height 100%
+        top 0
+        left 0
+        // if hexo-config("navbar.type_menu.submenu_background")
+        background #fff8 //**
+        if hexo-config("navbar.type_menu.submenu_backdrop_filter")
+          backdrop-filter convert(hexo-config("navbar.type_menu.submenu_backdrop_filter"))
+        if hexo-config("navbar.type_menu.submenu_border_radius")
+          border-radius convert(hexo-config("navbar.type_menu.submenu_border_radius"))
+    &:hover
+      .menuHeader
+        .arrow
+          transform rotate(90deg)
+      .submenu
+        pointer-events all
+        opacity 1
+        top 100%
   .rolling_switch
     display flex
     flex-direction column
@@ -218,7 +231,7 @@ nav
       top 100%
       width hexo-config("navbar.type_author.panel_width") ? convert(hexo-config("navbar.type_author.panel_width")) : 350px
       max-width 100vw
-      background #fff1
+      background hexo-config("navbar.type_author.panel_background") ? convert(hexo-config("navbar.type_author.panel_background")) : #fff
       if hexo-config("navbar.type_author.panel_filter")
         filter convert(hexo-config("navbar.type_author.panel_filter"))
       if hexo-config("navbar.type_author.panel_backdrop_filter")
@@ -265,41 +278,42 @@ nav
         justify-content space-around
         flex-wrap wrap
         padding 0 16px 16px 16px
-    .authorPanel.center
-      transform translateX(50%)
-    .authorPanel.right
-      left 0
-    .authorPanel.column
-      .headerInfo
-        flex-direction column
-        .description
-          width auto
-          padding 0
-    .authorPanel.half_overlap
-      .headerBg
-        margin-bottom hexo-config("navbar.type_author.avatar_height") ? convert(hexo-config("navbar.type_author.avatar_height"))*-1 : -48px
-    .authorPanel.half_overlap:not(.column)
-      .headerInfo
-        align-items flex-start
-        .description
-          margin-top -20px
-    .authorPanel.overlap
-      .panelHeader
-        display flex
-        min-height hexo-config("navbar.type_author.background_height") ? convert(hexo-config("navbar.type_author.background_height")) : 150px
-        height max-content
-        position relative
-        align-items flex-end
-        .headerBg
-          position absolute
-          top 0
-          height 100%
-          max-height 100%
+      &.center
+        left 50%
+        transform translateX(-50%)
+      &.right
+        left 0
+      &.column
         .headerInfo
-          width 100%
+          flex-direction column
+          .description
+            width auto
+            padding 0
+      &.half_overlap
+        .headerBg
+          margin-bottom hexo-config("navbar.type_author.avatar_height") ? convert(hexo-config("navbar.type_author.avatar_height"))*-1 : -48px
+      &.half_overlap:not(.column)
+        .headerInfo
+          align-items flex-start
+          .description
+            margin-top -20px
+      &.overlap
+        .panelHeader
+          display flex
+          min-height hexo-config("navbar.type_author.background_height") ? convert(hexo-config("navbar.type_author.background_height")) : 150px
+          height max-content
           position relative
-      .statistics
-        padding 16px
+          align-items flex-end
+          .headerBg
+            position absolute
+            top 0
+            height 100%
+            max-height 100%
+          .headerInfo
+            width 100%
+            position relative
+        .statistics
+          padding 16px
   .author:hover .authorPanel
     pointer-events all
     opacity 1
@@ -324,155 +338,50 @@ nav
       border-radius convert(hexo-config("navbar.border_radius"))
     transition .2s
 
-// if hexo-config("navbar.scroll_event.scroll_direction.up.enable")
-//   nav.up
-//     if hexo-config("navbar.scroll_event.scroll_direction.up.height")
-//       height convert(hexo-config("navbar.scroll_event.scroll_direction.up.height"))
-//     if hexo-config("navbar.scroll_event.scroll_direction.up.outer_width")
-//       width convert(hexo-config("navbar.scroll_event.scroll_direction.up.outer_width"))
-//     if hexo-config("navbar.scroll_event.scroll_direction.up.outer_max_width")
-//       max-width convert(hexo-config("navbar.scroll_event.scroll_direction.up.outer_max_width"))
-//     if hexo-config("navbar.scroll_event.scroll_direction.up.filter")
-//       filter convert(hexo-config("navbar.scroll_event.scroll_direction.up.filter"))
-//     if hexo-config("navbar.scroll_event.scroll_direction.up.border")
-//       border convert(hexo-config("navbar.scroll_event.scroll_direction.up.border"))
-//     if hexo-config("navbar.scroll_event.scroll_direction.up.shadow")
-//       box-shadow convert(hexo-config("navbar.scroll_event.scroll_direction.up.shadow"))
-//     if hexo-config("navbar.scroll_event.scroll_direction.up.hide")
-//       if hexo-config("navbar.bottom")
-//         bottom hexo-config("navbar.height")?convert(hexo-config("navbar.height")):60px
-//       else
-//         top hexo-config("navbar.height")?convert(hexo-config("navbar.height"))*-1:-60px
-//     if hexo-config("navbar.scroll_event.scroll_direction.up.background") == 'main'
-//       color var(--font-with-main)
-//     .pc
-//     .mobile
-//       if hexo-config("navbar.scroll_event.scroll_direction.up.inner_width")
-//         width convert(hexo-config("navbar.scroll_event.scroll_direction.up.inner_width"))
-//       if hexo-config("navbar.scroll_event.scroll_direction.up.inner_max_width")
-//         max-width convert(hexo-config("navbar.scroll_event.scroll_direction.up.inner_max_width"))
-//   nav.up:before
-//     if hexo-config("navbar.scroll_event.scroll_direction.up.backdrop_filter")
-//       backdrop-filter convert(hexo-config("navbar.scroll_event.scroll_direction.up.backdrop_filter"))
-//     if hexo-config("navbar.scroll_event.scroll_direction.up.background") == 'main'
-//       background var(--color-main)
-//     else if hexo-config("navbar.scroll_event.scroll_direction.up.background")
-//       background convert(hexo-config("navbar.scroll_event.scroll_direction.up.background"))
-
-// if hexo-config("navbar.scroll_event.scroll_direction.down.enable")
-//   nav.down
-//     if hexo-config("navbar.scroll_event.scroll_direction.down.height")
-//       height convert(hexo-config("navbar.scroll_event.scroll_direction.down.height"))
-//     if hexo-config("navbar.scroll_event.scroll_direction.down.outer_width")
-//       width convert(hexo-config("navbar.scroll_event.scroll_direction.down.outer_width"))
-//     if hexo-config("navbar.scroll_event.scroll_direction.down.outer_max_width")
-//       max-width convert(hexo-config("navbar.scroll_event.scroll_direction.down.outer_max_width"))
-//     if hexo-config("navbar.scroll_event.scroll_direction.down.filter")
-//       filter convert(hexo-config("navbar.scroll_event.scroll_direction.down.filter"))
-//     if hexo-config("navbar.scroll_event.scroll_direction.down.border")
-//       border convert(hexo-config("navbar.scroll_event.scroll_direction.down.border"))
-//     if hexo-config("navbar.scroll_event.scroll_direction.down.shadow")
-//       box-shadow convert(hexo-config("navbar.scroll_event.scroll_direction.down.shadow"))
-//     if hexo-config("navbar.scroll_event.scroll_direction.down.hide")
-//       if hexo-config("navbar.bottom")
-//         bottom hexo-config("navbar.height")?convert(hexo-config("navbar.height")):60px
-//       else
-//         top hexo-config("navbar.height")?convert(hexo-config("navbar.height"))*-1:-60px
-//     if hexo-config("navbar.scroll_event.scroll_direction.down.background") == 'main'
-//       color var(--font-with-main)
-//     .pc
-//     .mobile
-//       if hexo-config("navbar.scroll_event.scroll_direction.down.inner_width")
-//         width convert(hexo-config("navbar.scroll_event.scroll_direction.down.inner_width"))
-//       if hexo-config("navbar.scroll_event.scroll_direction.down.inner_max_width")
-//         max-width convert(hexo-config("navbar.scroll_event.scroll_direction.down.inner_max_width"))
-//   nav.down:before
-//     if hexo-config("navbar.scroll_event.scroll_direction.down.backdrop_filter")
-//       backdrop-filter convert(hexo-config("navbar.scroll_event.scroll_direction.down.backdrop_filter"))
-//     if hexo-config("navbar.scroll_event.scroll_direction.down.background") == 'main'
-//       background var(--color-main)
-//     else if hexo-config("navbar.scroll_event.scroll_direction.down.background")
-//       background convert(hexo-config("navbar.scroll_event.scroll_direction.down.background"))
-
-// if hexo-config("navbar.scroll_event.scroll_offset.min_dist")
-//   nav.min
-//     if hexo-config("navbar.scroll_event.scroll_offset.height")
-//       height convert(hexo-config("navbar.scroll_event.scroll_offset.height"))
-//     if hexo-config("navbar.scroll_event.scroll_offset.outer_width")
-//       width convert(hexo-config("navbar.scroll_event.scroll_offset.outer_width"))
-//     if hexo-config("navbar.scroll_event.scroll_offset.outer_max_width")
-//       max-width convert(hexo-config("navbar.scroll_event.scroll_offset.outer_max_width"))
-//     if hexo-config("navbar.scroll_event.scroll_offset.filter")
-//       filter convert(hexo-config("navbar.scroll_event.scroll_offset.filter"))
-//     if hexo-config("navbar.scroll_event.scroll_offset.border")
-//       border convert(hexo-config("navbar.scroll_event.scroll_offset.border"))
-//     if hexo-config("navbar.scroll_event.scroll_offset.shadow")
-//       box-shadow convert(hexo-config("navbar.scroll_event.scroll_offset.shadow"))
-//     if hexo-config("navbar.scroll_event.scroll_offset.hide")
-//       if hexo-config("navbar.bottom")
-//         bottom hexo-config("navbar.height")?convert(hexo-config("navbar.height")):60px
-//       else
-//         top hexo-config("navbar.height")?convert(hexo-config("navbar.height"))*-1:-60px
-//     if hexo-config("navbar.scroll_event.scroll_offset.background") == 'main'
-//       color var(--font-with-main)
-//     .pc
-//     .mobile
-//       if hexo-config("navbar.scroll_event.scroll_offset.inner_width")
-//         width convert(hexo-config("navbar.scroll_event.scroll_offset.inner_width"))
-//       if hexo-config("navbar.scroll_event.scroll_offset.inner_max_width")
-//         max-width convert(hexo-config("navbar.scroll_event.scroll_offset.inner_max_width"))
-//   nav.min:before
-//     if hexo-config("navbar.scroll_event.scroll_offset.backdrop_filter")
-//       backdrop-filter convert(hexo-config("navbar.scroll_event.scroll_offset.backdrop_filter"))
-//     if hexo-config("navbar.scroll_event.scroll_offset.background") == 'main'
-//       background var(--color-main)
-//     else if hexo-config("navbar.scroll_event.scroll_offset.background")
-//       background convert(hexo-config("navbar.scroll_event.scroll_offset.background"))
-
-nav.min
-  if hexo-config("navbar.scroll_event.height")
-    height convert(hexo-config("navbar.scroll_event.height"))
-  if hexo-config("navbar.scroll_event.outer_width")
-    width convert(hexo-config("navbar.scroll_event.outer_width"))
-  if hexo-config("navbar.scroll_event.outer_max_width")
-    max-width convert(hexo-config("navbar.scroll_event.outer_max_width"))
-  if hexo-config("navbar.scroll_event.filter")
-    filter convert(hexo-config("navbar.scroll_event.filter"))
-  if hexo-config("navbar.scroll_event.shadow")
-    box-shadow convert(hexo-config("navbar.scroll_event.shadow"))
-  if hexo-config("navbar.scroll_event.border")
-    border convert(hexo-config("navbar.scroll_event.border"))
-  if hexo-config("navbar.scroll_event.border_radius")
-    border-radius convert(hexo-config("navbar.scroll_event.border_radius"))
-  if hexo-config("navbar.scroll_event.background") == 'main'
-    color var(--font-with-main)
-  if hexo-config("navbar.scroll_event.top")
-    top convert(hexo-config("navbar.scroll_event.top"))
-  if hexo-config("navbar.scroll_event.bottom")
-    bottom convert(hexo-config("navbar.scroll_event.bottom"))
-  &:before
-    if hexo-config("navbar.scroll_event.background") == 'main'
-      background var(--color-main)
-    else if hexo-config("navbar.scroll_event.background")
-      background convert(hexo-config("navbar.scroll_event.background"))
-    else
-      background var(--bg-nav)
-    if hexo-config("navbar.scroll_event.backdrop_filter")
-      backdrop-filter convert(hexo-config("navbar.scroll_event.backdrop_filter"))
+  &.min
+    if hexo-config("navbar.scroll_event.height")
+      height convert(hexo-config("navbar.scroll_event.height"))
+    if hexo-config("navbar.scroll_event.outer_width")
+      width convert(hexo-config("navbar.scroll_event.outer_width"))
+    if hexo-config("navbar.scroll_event.outer_max_width")
+      max-width convert(hexo-config("navbar.scroll_event.outer_max_width"))
+    if hexo-config("navbar.scroll_event.filter")
+      filter convert(hexo-config("navbar.scroll_event.filter"))
+    if hexo-config("navbar.scroll_event.shadow")
+      box-shadow convert(hexo-config("navbar.scroll_event.shadow"))
+    if hexo-config("navbar.scroll_event.border")
+      border convert(hexo-config("navbar.scroll_event.border"))
     if hexo-config("navbar.scroll_event.border_radius")
       border-radius convert(hexo-config("navbar.scroll_event.border_radius"))
+    if hexo-config("navbar.scroll_event.background") == 'main'
+      color var(--font-with-main)
+    if hexo-config("navbar.scroll_event.top")
+      top convert(hexo-config("navbar.scroll_event.top"))
+    if hexo-config("navbar.scroll_event.bottom")
+      bottom convert(hexo-config("navbar.scroll_event.bottom"))
+    &:before
+      if hexo-config("navbar.scroll_event.background") == 'main'
+        background var(--color-main)
+      else if hexo-config("navbar.scroll_event.background")
+        background convert(hexo-config("navbar.scroll_event.background"))
+      else
+        background var(--bg-nav)
+      if hexo-config("navbar.scroll_event.backdrop_filter")
+        backdrop-filter convert(hexo-config("navbar.scroll_event.backdrop_filter"))
+      if hexo-config("navbar.scroll_event.border_radius")
+        border-radius convert(hexo-config("navbar.scroll_event.border_radius"))
 
-nav.min.down
-  if hexo-config("navbar.scroll_event.auto_hide")
-    if hexo-config("navbar.bottom")
-      bottom hexo-config("navbar.height")?convert(hexo-config("navbar.height")):60px
-    else
-      top hexo-config("navbar.height")?convert(hexo-config("navbar.height"))*-1:-60px
-  .rolling_switch
-    .itemA
-    .itemB
-      transform translate(0, -50%)
-    .itemA
-      opacity 0
-    .itemB
-      opacity 1
+  &.min.down
+    if hexo-config("navbar.scroll_event.auto_hide")
+      if hexo-config("navbar.bottom")
+        bottom hexo-config("navbar.height")?convert(hexo-config("navbar.height")):60px
+      else
+        top hexo-config("navbar.height")?convert(hexo-config("navbar.height"))*-1:-60px
+    .rolling_switch
+      .itemA
+      .itemB
+        transform translate(0, -50%)
+      .itemA
+        opacity 0
+      .itemB
+        opacity 1

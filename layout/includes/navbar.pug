@@ -47,8 +47,7 @@ mixin NavItemMenu(item)
     if item.name
       .title=item.name
   if item.submenu
-    i.AFK
-    //- 此处需更换为全局的指示图标
+    i(class='arrow ' + (theme.navbar.type_menu.collapse_icon ? theme.navbar.type_menu.collapse_icon : 'fa fa-angle-right'))
 
 //- 组件处理
 mixin NavItemProgress(item)
@@ -73,9 +72,9 @@ mixin NavItemProgress(item)
           .title= item.title ? item.title : config.title
     when 'text'
       if item.href
-        a.text(href=item.href)!=`${item.content}`
+        a(class='text'+(item.class ? ' ' + item.class : '') href=item.href)!=`${item.content}`
       else
-        .text!=`${item.content}`
+        div(class='text'+(item.class ? ' ' + item.class : ''))!=`${item.content}`
     when 'image'
       if item.href
         a.image(href=item.href)
@@ -155,7 +154,7 @@ mixin NavItemProgress(item)
             .menuHeader
               +NavItemMenu(item)
         if item.submenu
-          .submenu
+          div(class='submenu' + (item.submenu_position ? ' '+item.submenu_position : ''))
             each sub in item.submenu
               if sub.activity && CheckPage(sub.activity.conditions)
                 if sub.href || sub.activity.href

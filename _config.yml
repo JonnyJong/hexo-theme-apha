@@ -292,8 +292,8 @@ navbar:
   item_height:
   # 元素间距（默认 0px）
   item_distance: 8px
-  # 元素内边框（默认 8px）*
-  item_padding: 2px
+  # 元素内边框
+  item_padding:
 
   # site 字体大小（默认 18px）
   type_site_font_size:
@@ -301,7 +301,7 @@ navbar:
   # 菜单类型设置
   type_menu:
     # 折叠图标 *
-    collapse_icon:
+    collapse_icon: 
 
     # 二级菜单背景
     submenu_background:
@@ -314,6 +314,7 @@ navbar:
     # 二级菜单阴影
     submenu_shadow:
     # 二级菜单边框
+    submenu_border:
 
     # 二级菜单内边框
     submenu_padding: 6px
@@ -337,8 +338,9 @@ navbar:
     # 名称字重（默认 normal）
     name_font_weight: 
 
-    # 面板背景 *
+    # 面板背景
     panel_background:
+    panel_darkmode_background:
     # 面板滤镜
     panel_filter:
     # 面板背景滤镜
