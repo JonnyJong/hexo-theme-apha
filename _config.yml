@@ -86,6 +86,8 @@ navbar:
   # 自定义组件（允许自由调整顺序）
   # PC 端导航栏组件
   pc_items:
+    - type: flexbox
+      weight: 1
     - type: site
       href: /
       title: Apha
@@ -116,6 +118,7 @@ navbar:
       invert_typesetting: false
     - type: hr
     - type: flexbox
+      weight: 3
     - type: search
       style: button
       icon: fa fa-search fa-fw
@@ -149,6 +152,28 @@ navbar:
       switch:
         light_icon: fa fa-sun-o
         dark_icon: fa fa-moon-o
+    - type: flexbox
+      weight: 3
+    - type: author
+      avatar: /favicon.ico
+      href: jonnys.top
+      hover_panel:
+        description: hello world
+        background: /assets/wallpaper-2572384.jpg
+        style: 5
+        statistics: 
+          content:
+            - type: archive
+              href: /archives/
+              title: 归档
+            - type: category
+              current: 
+                - Foo
+              title: Foo
+              icon: fa fa-archive
+            - type: tag
+    - type: flexbox
+      weight: 1
     
   # 手机端导航栏组件
   mobile_items:
@@ -168,6 +193,7 @@ navbar:
   # 特殊语法 light/dark（亮色、暗色模式颜色）*
   background:
   # 阴影
+  # 边框
 
   # 导航栏高度（默认 60px）
   height: 
@@ -216,6 +242,7 @@ navbar:
     submenu_border_radius:
     # 二级菜单阴影
     submenu_shadow:
+    # 二级菜单边框
 
     # 二级菜单内边框
     submenu_padding: 6px
@@ -223,6 +250,38 @@ navbar:
     submenu_item_distance: 6px
     # 二级菜单元素内边框
     submenu_item_padding: 10px
+  
+  # 作者信息类型设置
+  type_author:
+    # 面板背景 *
+    panel_background:
+    # 面板滤镜
+    panel_filter:
+    # 面板背景滤镜
+    panel_backdrop_filter: blur(5px)
+    # 面板边框
+    panel_border: 
+    # 面板阴影
+    panel_shadow: '0 2px 4px #0004'
+    # 面板圆角
+    panel_border_radius: 4px
+
+    # 面板宽度（默认 350px）
+    panel_width:
+    # 头图高度（默认 150px）
+    background_height:
+    # 头像圆角
+    avatar_border_radius: 
+    # 头像边框
+    avatar_border: 
+    # 头像宽度（默认 48px）
+    avatar_width:
+    # 头像高度（默认 48px）
+    avatar_height:
+    # 名称字体大小（默认 16px）
+    name_font_size: 
+    # 名称字重（默认 bold）
+    name_font_weight: 
 
   # hover 高亮样式
   # background：背景颜色变化

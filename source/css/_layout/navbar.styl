@@ -192,6 +192,112 @@ nav
       margin 0 convert(hexo-config("navbar.item_padding"))
   .flexbox
     flex auto
+  .author
+    position relative
+    .authorHeader
+      display flex
+      align-items center
+      gap 4px
+      color var(--font-main)
+      text-decoration none
+      img
+        height 36px //**
+    .authorPanel
+      position absolute
+      pointer-events none
+      opacity 0
+      right 0
+      width hexo-config("navbar.type_author.panel_width") ? convert(hexo-config("navbar.type_author.panel_width")) : 350px
+      max-width 100vw
+      background #fff1
+      if hexo-config("navbar.type_author.panel_filter")
+        filter convert(hexo-config("navbar.type_author.panel_filter"))
+      if hexo-config("navbar.type_author.panel_backdrop_filter")
+        backdrop-filter convert(hexo-config("navbar.type_author.panel_backdrop_filter"))
+      if hexo-config("navbar.type_author.panel_border")
+        border convert(hexo-config("navbar.type_author.panel_border"))
+      if hexo-config("navbar.type_author.panel_shadow")
+        box-shadow convert(hexo-config("navbar.type_author.panel_shadow"))
+      if hexo-config("navbar.type_author.panel_border_radius")
+        border-radius convert(hexo-config("navbar.type_author.panel_border_radius"))
+      overflow hidden
+      transition .2s ease-in-out
+      // dev ***
+      height 0px
+      width 330px
+      opacity .5
+      .panelHeader
+        .headerBg
+          height hexo-config("navbar.type_author.background_height") ? convert(hexo-config("navbar.type_author.background_height")) : 150px
+          width 100%
+          object-fit cover
+        .headerInfo
+          display flex
+          flex-wrap wrap
+          align-items center
+          gap 4px
+          padding 16px
+          .avatar
+            if hexo-config("navbar.type_author.avatar_border_radius")
+              border-radius convert(hexo-config("navbar.type_author.avatar_border_radius"))
+            if hexo-config("navbar.type_author.avatar_border")
+              border convert(hexo-config("navbar.type_author.avatar_border"))
+            height hexo-config("navbar.type_author.avatar_height") ? convert(hexo-config("navbar.type_author.avatar_height")) : 48px
+            width hexo-config("navbar.type_author.avatar_width") ? convert(hexo-config("navbar.type_author.avatar_width")) : 48px
+          .name
+            font-size hexo-config("navbar.type_author.name_font_size") ? convert(hexo-config("navbar.type_author.name_font_size")) : 16px
+            font-weight hexo-config("navbar.type_author.name_font_weight") ? convert(hexo-config("navbar.type_author.name_font_weight")) : bold
+            color var(--font-main)
+            text-decoration none
+          .description
+            width 100%
+            padding-left 48px + 4px
+      .statistics
+        justify-content space-around
+        flex-wrap wrap
+        padding 0 16px 16px 16px
+    .authorPanel.center
+      transform translateX(50%)
+    .authorPanel.right
+      left 0
+    .authorPanel.column
+      .headerInfo
+        flex-direction column
+        .description
+          width auto
+          padding 0
+    .authorPanel.half_overlap
+      .headerBg
+        margin-bottom hexo-config("navbar.type_author.avatar_height") ? convert(hexo-config("navbar.type_author.avatar_height"))*-1 : -48px
+    .authorPanel.half_overlap:not(.column)
+      .headerInfo
+        align-items flex-start
+        .description
+          margin-top -20px
+    .authorPanel.overlap
+      .panelHeader
+        display flex
+        min-height hexo-config("navbar.type_author.background_height") ? convert(hexo-config("navbar.type_author.background_height")) : 150px
+        height max-content
+        position relative
+        align-items flex-end
+        .headerBg
+          position absolute
+          top 0
+          height 100%
+          max-height 100%
+        .headerInfo
+          width 100%
+          position relative
+      .statistics
+        padding 16px
+    .authorHeader:hover+.authorPanel
+    .authorPanel:hover
+      pointer-events all
+      opacity 1
+      // dev ***
+      height 222px
+      width 350px
 nav:before
   content ''
   display block

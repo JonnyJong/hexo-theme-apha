@@ -95,7 +95,7 @@ mixin NavItemProgress(item)
     when 'hr'
       .hr
     when 'flexbox'
-      .flexbox
+      .flexbox(style=(item.weight ? 'flex:'+item.weight+';' : ''))
     when 'search'
       case item.style
         when 'button'
@@ -282,17 +282,17 @@ mixin NavItemProgress(item)
               .name=(item.name ? item.name : config.author)
           - let panelStyle = ''
           case item.hover_panel.style
-            when '2'
-              panelStyle = ' column'
-            when '3'
-              panelStyle = ' half_overlap'
-            when '4'
-              panelStyle = ' column half_overlap'
-            when '5'
-              panelStyle = ' overlap'
-            when '6'
-              panelStyle = ' column overlap'
-          div(class='authorPanel'+panelStyle)
+            when 2
+              - panelStyle = ' column'
+            when 3
+              - panelStyle = ' half_overlap'
+            when 4
+              - panelStyle = ' column half_overlap'
+            when 5
+              - panelStyle = ' overlap'
+            when 6
+              - panelStyle = ' column overlap'
+          div(class='authorPanel'+panelStyle+(item.hover_panel.position ? ' '+item.hover_panel.position : ''))
             .panelHeader
               if item.hover_panel.background
                 img.headerBg(src=item.hover_panel.background)
@@ -306,7 +306,10 @@ mixin NavItemProgress(item)
                       img(class='avatar active'+(item.active.avatar_effect ? ' '+item.active.avatar_effect : '') src=(item.active.avatar ? item.active.avatar : item.avatar) alt=config.author)
                   else
                     img.avatar(src=item.avatar alt=config.author)
-                .name=(item.name ? item.name : config.author)
+                if item.href
+                  a.name(href=item.href)=(item.name ? item.name : config.author)
+                else
+                  .name=(item.name ? item.name : config.author)
                 if item.hover_panel.description
                   .description=item.hover_panel.description
             if item.hover_panel.statistics
