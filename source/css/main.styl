@@ -9,6 +9,8 @@ if hexo-config('vendor_prefix')
 body
   margin 0
   color var(--font-main)
+  if hexo-config('navbar.pc_items') || hexo-config('navbar.mobile_items')
+    padding-top hexo-config("navbar.height")?convert(hexo-config("navbar.height")):60px
 
 @import '_animation'
 @import "_layout/*"

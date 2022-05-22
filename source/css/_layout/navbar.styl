@@ -359,6 +359,14 @@ nav
       top convert(hexo-config("navbar.scroll_event.top"))
     if hexo-config("navbar.scroll_event.bottom")
       bottom convert(hexo-config("navbar.scroll_event.bottom"))
+    .rolling_switch
+      .itemA
+      .itemB
+        transform translate(0, -50%)
+      .itemA
+        opacity 0
+      .itemB
+        opacity 1
     &:before
       if hexo-config("navbar.scroll_event.background") == 'main'
         background var(--color-main)
@@ -377,11 +385,3 @@ nav
         bottom hexo-config("navbar.height")?convert(hexo-config("navbar.height")):60px
       else
         top hexo-config("navbar.height")?convert(hexo-config("navbar.height"))*-1:-60px
-    .rolling_switch
-      .itemA
-      .itemB
-        transform translate(0, -50%)
-      .itemA
-        opacity 0
-      .itemB
-        opacity 1

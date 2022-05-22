@@ -1,0 +1,13 @@
+.posts
+  .post
+    if hexo-config("index_posts.style") == 2
+      background #0000
+    else
+      display flex
+      .cover
+        height hexo-config("index_posts.cover_min_height") ? convert(hexo-config("index_posts.cover_min_height")) : 200px
+        width hexo-config("index_posts.cover_min_height") ? convert(hexo-config("index_posts.cover_min_height"))+100px : 300px
+        img
+          height 100%
+          width 100%
+          object-fit cover

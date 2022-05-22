@@ -143,6 +143,8 @@ navbar:
       itemA:
         - type: text
           content: 滚动……
+          generate_page: 
+            - post
       itemB:
         - type: page_title
           hover: '返回顶部'
@@ -238,56 +240,7 @@ navbar:
 
     # （开发注：更多可通过自定义 CSS 实现，"min/up/down"）
 
-    # 滚动方向
-    # scroll_direction:
-    #   up:
-    #     enable: true
-    #     height:
-    #     outer_width:
-    #     outer_max_width:
-    #     inner_width:
-    #     inner_max_width:
-    #     background: main
-    #     darkmode_background:
-    #     filter:
-    #     backdrop_filter:
-    #     shadow:
-    #     border:
-    #     hide: true
-    #   down:
-    #     enable: true
-    #     height:
-    #     outer_width:
-    #     outer_max_width:
-    #     inner_width:
-    #     inner_max_width:
-    #     background: red
-    #     darkmode_background:
-    #     filter:
-    #     backdrop_filter:
-    #     shadow:
-    #     border:
-    #     hide: false
-    # # 滚动距离
-    # scroll_offset:
-    #   # 最小生效距离
-    #   min_dist: 200
-    #   height: 50px
-    #   outer_width:
-    #   outer_max_width:
-    #   inner_width:
-    #   inner_max_width:
-    #   background: blue
-    #   darkmode_background:
-    #   filter:
-    #   backdrop_filter:
-    #   shadow:
-    #   border:
-    #   hide: false
-    # transition: .2s
-
-
-  # 元素高度（不能高于导航栏高度） *
+  # 元素高度（不能高于导航栏高度）
   # （开发注：比较，若高于则设置为 100%）
   item_height:
   # 元素间距（默认 0px）
@@ -457,66 +410,148 @@ index_items:
 # =============================================================
 # 首页文章
 index_posts:
-  # 文章块展示样式
-  # 0：没有封面
-  # 1：封面在左侧或右侧
+  # 基本样式
+  # 1：封面在侧边（默认）
   # 2：封面在上方
-  # 3：文章信息重叠在封面上方
-  post_item_style: 0
-  # 一行展示多篇文章（整数）
-  more_post_item_in_line: 
-  more_post_item_in_line_on_mobile: 
-  # 文章块最小高度（单位：px）
-  post_item_min_height: 
+  # 3：封面与信息重叠
+  style:
+  # 封面位置（both/left/right 默认 both，当 style 为 1 时有效）
+  cover_position:
+  # 封面最小高度（默认 300px）
+  cover_min_height:
 
-  # 封面位置（both、left、right。当 post_item_style 为 1 时有效）
-  cover_position: 
+  # 默认封面（配置后若文章未设置封面，则在此处抽取）
+  default_covers:
 
-  # 封面高度（单位：px 或 max-content。默认：240px。当 post_item_style 为 2 时有效）
-  cover_default_height:
+  # 信息部件
+  info_items:
+    - type: sticky
+      name: 置顶
+      color: red
+    - type: title
+    - type: description
+    - type: categories
+    - type: tags
+    - type: updated
+    - type: date
+    - type: min2read
+    - type: wordcount
+
+  # 默认标题
+  default_title:
+
+  # 分类
+  categories:
+    limit:
+    style:
+  # 标签
+  tags:
+    limit:
+    style:
+  # 置顶样式
+  sticky_style:
+  # 创建时间样式
+  date_style:
+  # 更新时间样式
+  updated_style:
+  # 阅读时间样式
+  min2read_style:
+  # 字数样式
+  wordcount_style:
+
+  # 文本样式设置
+  style_text:
+    font_size:
+    font_weight:
+    margin:
+
+  # 纸片样式设置
+  style_chip:
+    padding:
+    font_size:
+    font_weight:
+    border_radius:
   
-  # 信息样式（false、gradient、block；无、渐变、块状。当 post_item_style 为 3 时有效）
-  incard_info_bg: 
-  # block 背景样式
-  incard_info_bg_block:
-    # 不透明度（默认 .2）
-    opacity: ''
-    # 背景模糊度（默认 10px）
-    blur: 
-    # 背景饱和度（单位：%。基础值：100%。推荐随模糊度增加而增加。）
-    saturate:
-    # 背景亮度（无单位。基础值：1）
-    brightness: 
-  # gradient 背景样式
-  incard_info_bg_gradient:
-    # 开始和结束颜色（色值必须用英文引号包括，例：'#2333'）
-    begin_color: ''
-    end_color: ''
-  # 文章信息字体颜色（当 post_item_style 为 3 时有效）
-  info_font_color: 
-  
-  # 文章概要、描述
+  # 描述
   description:
-    # 类型【false、description、excerpt、content、auto；关闭、描述、概要、选取文章内容、自动（优先级：描述 > 概要 > 文章内容）】
-    type: false
-    # 悬停时显示
-    show_on_hover: 
-    # 无概要、描述时显示（当 type 为 description 或 excerpt 时有效）
-    default_description:
-    # 最大长度（当 type 为 content 或 auto 时有效，推荐不大于500）
-    max_length: 300
-  # 字数统计
-  wordcount: false
-  # 阅读时长
-  min2read: 
-  # 显示创建日期
-  show_date: false
-  # 显示更新日期
-  show_updated: false
-  # 显示标签
-  show_tags: false
-  # 显示分类
-  show_categories: false
+    priority:
+      # - excerpt
+      - description
+      - content
+      - default
+    show_on_hover:
+    max_length_of_content:
+    defalut_description:
+    render_excerpt: # **
+
+  # 多列
+  # 1：默认，一列
+  # 2：至多两列
+  # 3：至多三列
+  columu:
+  columu_2_style:
+  columu_2_cover_position:
+  columu_2_cover_height:
+  columu_2_min_effective_width:
+  columu_3_style:
+  columu_3_cover_position:
+  columu_3_cover_height:
+  columu_3_min_effective_width:
+
+  # 背景
+  background:
+  # 滤镜
+  filter:
+  # 背景滤镜
+  backdrop_filter:
+  # 边框
+  border:
+  # 边框圆角
+  border_radius:
+  # 信息内边框
+  info_padding:
+  # 封面内边框
+  cover_padding:
+  # 阴影
+  shadow:
+  # 标题字体大小
+  title_font_size:
+  # 标题颜色
+  title_color:
+  # 标题字重
+  title_font_weight:
+  # 标题对齐（left/center/right，默认 left）
+  title_align:
+
+  hover:
+    background:
+    filter:
+    backdrop_filter:
+    border:
+    border_radius:
+    info_padding:
+    cover_padding:
+    shadow:
+    title_font_size:
+    title_color:
+    title_font_weight:
+    scale:
+  active:
+    background:
+    filter:
+    backdrop_filter:
+    border:
+    border_radius:
+    info_padding:
+    cover_padding:
+    shadow:
+    title_font_size:
+    title_color:
+    title_font_weight:
+    scale:
+
+  # 特殊排版（启用后部分选项无效）
+  special_style:
 
 # =============================================================
 # 页面样式

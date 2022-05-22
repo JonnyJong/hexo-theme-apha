@@ -1,0 +1,115 @@
+mixin PostListInfo(item, post)
+  - let priority = theme.index_posts.description.priority
+  - let limit = (theme.index_posts.description.max_length_of_content ? theme.index_posts.description.max_length_of_content : 100)
+  - let defaultContent = theme.index_posts.description.max_length_of_content ? theme.index_posts.description.max_length_of_content : ''
+  case item.type
+    when 'flexbox'
+      if item.flex
+        .flexbox(style='flex:'+item.flex+';')
+      else
+        .flexbox
+    when 'hr'
+      .hr
+    when 'title'
+      .title=(post.title ? post.title : theme.index_posts.default_title)
+    when 'description'
+      if theme.index_posts.description.priority
+      .description=PostDescription(post, priority, limit, defaultContent)
+    when 'group'
+      .group
+    when 'categories'
+      if post.categories.data.length > 0
+        .categories
+          if item.icon || item.name
+            .info
+              if item.icon
+                i(class=item.icon)
+              if item.name
+                .name=item.name
+          each cate, count in post.categories.data
+            if theme.index_posts.categories.limit
+              if count + 1 < theme.index_posts.categories.limit
+                a.category(href=url_for(cate.path))=cate.name
+            else
+              a.category(href=url_for(cate.path))=cate.name
+    when 'tags'
+      if post.tags.data.length > 0
+        .tags
+          if item.icon || item.name
+            .info
+              if item.icon
+                i(class=item.icon)
+              if item.name
+                .name=item.name
+          each tag, count in post.tags.data
+            if theme.index_posts.tags.limit
+              if count + 1 < theme.index_posts.tags.limit
+                a.tag(href=url_for(tag.path))=tag.name
+            else
+              a.tag(href=url_for(tag.path))=tag.name
+    when 'updated'
+      .updated
+        if item.icon || item.name
+          .info
+            if item.icon
+              i(class=item.icon)
+            if item.name
+              .name=item.name
+        time(datetime=post.updated.toJSON())= date(post.updated, date_format)
+    when 'date'
+      .date
+        if item.icon || item.name
+          .info
+            if item.icon
+              i(class=item.icon)
+            if item.name
+              .name=item.name
+        time(datetime=post.date.toJSON())= date(post.date, date_format)
+    when 'min2read'
+      .minutes
+        if item.icon || item.name
+          .info
+            if item.icon
+              i(class=item.icon)
+            if item.name
+              .name=item.name
+        .content= (item.content_before ? item.content_before : '') + min2read(post.content) + (item.content_after ? item.content_after : '')
+    when 'wordcount'
+      .wordcount
+        if item.icon || item.name
+          .info
+            if item.icon
+              i(class=item.icon)
+            if item.name
+              .name=item.name
+        .content= (item.content_before ? item.content_before : '') + wordcount(post.content) + (item.content_after ? item.content_after : '')
+    when 'sticky'
+      if post.sticky > 0
+        .sticky(style=(item.color ? 'color:'+item.color+';' : '') + (item.background ? 'background:'+item.background+';' : ''))
+          if item.icon || item.name
+            .info
+              if item.icon
+                i(class=item.icon)
+              if item.name
+                .name=item.name
+          if item.show_number
+            .content= (item.content_before ? item.content_before : '') + post.sticky + (item.content_after ? item.content_after : '')
+    when 'group'
+      each subitem in item.items
+        +PostListInfo(subitem, post)
+
+mixin PostList(posts)
+  if posts.length > 0
+    .posts
+      each post in posts
+        .post
+          if post.cover
+            .cover
+              img(src=post.cover alt=post.title)
+          else if theme.index_posts.default_covers
+            .cover
+              img(src=RandomImage(post.source) alt=post.title)
+          if theme.index_posts.info_items
+            .info
+              each item in theme.index_posts.info_items
+                +PostListInfo(item, post)
