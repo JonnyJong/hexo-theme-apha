@@ -1,13 +1,136 @@
 .posts
+  display flex
+  flex-direction column
+  gap 8px
   .post
-    if hexo-config("index_posts.style") == 2
-      background #0000
-    else
+    overflow hidden
+    position relative
+    border-radius 6px
+    color var(--font-main)
+    text-decoration none
+    // if hexo-config("index_posts.border_radius")
+    //   border-radius convert(hexo-config("index_posts.border_radius"))
+    // if hexo-config("index_posts.border")
+    //   border convert(hexo-config("index_posts.border"))
+    // if hexo-config("index_posts.filter")
+    //   filter convert(hexo-config("index_posts.filter"))
+    // if hexo-config("index_posts.shadow")
+    //   box-shadow convert(hexo-config("index_posts.shadow"))
+    // if hexo-config("index_posts.background") == 'main'
+    //   color var(--font-with-main)
+    // if hexo-config("index_posts.backdrop_filter")
+    //   backdrop-filter convert(hexo-config("index_posts.backdrop_filter"))
+    // if hexo-config("index_posts.background") == 'main'
+    //   background var(--color-main)
+    // else if hexo-config("index_posts.background")
+    //   background convert(hexo-config("index_posts.background"))
+    // else
+    //   background var(--bg-block)
+    background var(--bg-block)
+    // if hexo-config("index_posts.style") == 2
+    //   background #0000
+    // else
+    //   display flex
+    display flex
+    .cover
+      position relative
+      height hexo-config("index_posts.cover_min_height") ? convert(hexo-config("index_posts.cover_min_height")) : 200px
+      width hexo-config("index_posts.cover_min_height") ? convert(hexo-config("index_posts.cover_min_height"))+100px : 300px
+      if hexo-config("index_posts.cover_padding")
+        padding convert(hexo-config("index_posts.cover_padding"))
+      img
+        height 100%
+        width 100%
+        object-fit cover
+    >.info
+      padding 16px
+      position relative
       display flex
-      .cover
-        height hexo-config("index_posts.cover_min_height") ? convert(hexo-config("index_posts.cover_min_height")) : 200px
-        width hexo-config("index_posts.cover_min_height") ? convert(hexo-config("index_posts.cover_min_height"))+100px : 300px
-        img
-          height 100%
-          width 100%
-          object-fit cover
+      flex-direction column
+      justify-content center
+      if hexo-config("index_posts.info_padding")
+        padding convert(hexo-config("index_posts.info_padding"))
+      .title
+        if hexo-config("index_posts.title_align") == 'center'
+          text-align center
+        else if hexo-config("index_posts.title_align") == 'right'
+          text-align right
+        font-size hexo-config("index_posts.title_font_size") ? convert(hexo-config("index_posts.title_font_size")) : 20px
+        if hexo-config("index_posts.title_color")
+          color convert(hexo-config("index_posts.title_color"))
+        font-weight hexo-config("index_posts.title_font_weight") ? convert(hexo-config("index_posts.title_font_weight")) : bold
+      .group
+        display flex
+        align-items center
+      .sticky
+      .date
+      .updated
+      .minutes
+      .wordcount
+        if hexo-config("index_posts.info_style") == 'chip'
+          border-radius 6px
+          padding 2px 4px
+          border 1px solid
+          margin 2px
+        else
+          margin 2px
+      .categories
+        display flex
+        flex-wrap wrap
+        if hexo-config("index_posts.info_style") == 'chip'
+          margin 0 2px
+          .info
+            border 1px solid
+            border-right 0px
+            border-radius 6px 0 0 6px
+            padding 2px 4px
+            margin 2px 0
+          .category
+            padding 2px 4px
+            margin 2px 0
+            color var(--font-main)
+            border-top 1px solid
+            border-bottom 1px solid
+            text-decoration none
+            &:before
+              content '/'
+            &:last-child
+              border-radius 0 6px 6px 0
+              border-right 1px solid
+            &:hover
+              color var(--color-main)
+        else
+          .info
+          .category
+            padding 2px 4px
+            text-decoration none
+          .category
+            color var(--color-main)
+            &:hover
+              text-decoration 1px underline
+      .tags
+        display flex
+        flex-wrap wrap
+        if hexo-config("index_posts.info_style") == 'chip'
+          .info
+          .tag
+            border-radius 6px
+            padding 2px 4px
+            border 1px solid
+            margin 2px
+          .tag
+            color var(--color-main)
+            text-decoration none
+            &:hover
+              color var(--font-with-main)
+              background var(--color-main)
+              text-decoration none
+        else
+          .info
+          .tag
+            padding 2px 4px
+            text-decoration none
+          .tag
+            color var(--color-main)
+            &:hover
+              text-decoration 1px underline

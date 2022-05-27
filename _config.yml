@@ -190,7 +190,7 @@ navbar:
   border_radius:
   # 背景 （默认 自动）
   # main 主色 
-  background: '#0000'
+  background: 
   darkmode_background:
   # 阴影
   shadow:
@@ -216,29 +216,13 @@ navbar:
 
   # 滚动事件
   scroll_event:
-    # 最小生效距离（默认 200）
-    min_dist: 200
-
     # 自动隐藏（向下滚动和达到距离时）
     auto_hide: true
 
-    # （达到距离时）
-    height:
-    outer_width: calc(100vw - 50px)
-    outer_max_width:
-    inner_width:
-    inner_max_width:
-    background: 
-    darkmode_background:
-    filter:
-    backdrop_filter:
-    shadow:
-    border:
-    border_radius: 4px
-    top: 10px
-    bottom:
-
-    # （开发注：更多可通过自定义 CSS 实现，"min/up/down"）
+    # 自动隐藏背景颜色 *
+    auto_hide_background: true
+    # 最小生效距离（默认 200）
+    min_dist: 200
 
   # 元素高度（不能高于导航栏高度）
   # （开发注：比较，若高于则设置为 100%）
@@ -425,17 +409,23 @@ index_posts:
 
   # 信息部件
   info_items:
-    - type: sticky
-      name: 置顶
-      color: red
-    - type: title
+    - type: group
+      items:
+      - type: sticky
+        name: 置顶
+        color: red
+      - type: title
     - type: description
     - type: categories
+      name: 分类
     - type: tags
-    - type: updated
-    - type: date
-    - type: min2read
-    - type: wordcount
+      name: 标签
+    - type: group
+      items:
+      - type: updated
+      - type: date
+      - type: min2read
+      - type: wordcount
 
   # 默认标题
   default_title:
@@ -443,29 +433,19 @@ index_posts:
   # 分类
   categories:
     limit:
-    style:
   # 标签
   tags:
     limit:
-    style:
-  # 置顶样式
-  sticky_style:
-  # 创建时间样式
-  date_style:
-  # 更新时间样式
-  updated_style:
-  # 阅读时间样式
-  min2read_style:
-  # 字数样式
-  wordcount_style:
+  # 信息样式
+  info_style:
 
-  # 文本样式设置
+  # 文本样式设置 *
   style_text:
     font_size:
     font_weight:
     margin:
 
-  # 纸片样式设置
+  # 纸片样式设置 *
   style_chip:
     padding:
     font_size:
@@ -488,17 +468,9 @@ index_posts:
   # 1：默认，一列
   # 2：至多两列
   # 3：至多三列
-  columu:
-  columu_2_style:
-  columu_2_cover_position:
-  columu_2_cover_height:
-  columu_2_min_effective_width:
-  columu_3_style:
-  columu_3_cover_position:
-  columu_3_cover_height:
-  columu_3_min_effective_width:
+  double_column:
 
-  # 背景
+  # 背景 *
   background:
   # 滤镜
   filter:
@@ -514,41 +486,14 @@ index_posts:
   cover_padding:
   # 阴影
   shadow:
-  # 标题字体大小
+  # 标题字体大小（默认 20px）
   title_font_size:
   # 标题颜色
   title_color:
-  # 标题字重
+  # 标题字重（默认 bold）
   title_font_weight:
   # 标题对齐（left/center/right，默认 left）
   title_align:
-
-  hover:
-    background:
-    filter:
-    backdrop_filter:
-    border:
-    border_radius:
-    info_padding:
-    cover_padding:
-    shadow:
-    title_font_size:
-    title_color:
-    title_font_weight:
-    scale:
-  active:
-    background:
-    filter:
-    backdrop_filter:
-    border:
-    border_radius:
-    info_padding:
-    cover_padding:
-    shadow:
-    title_font_size:
-    title_color:
-    title_font_weight:
-    scale:
 
   # 特殊排版（启用后部分选项无效）
   special_style:

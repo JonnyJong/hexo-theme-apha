@@ -3,6 +3,7 @@ nav
   width hexo-config("navbar.outer_width")?convert(hexo-config("navbar.outer_width")):100%
   max-width hexo-config("navbar.outer_max_width")?convert(hexo-config("navbar.outer_max_width")):100%
   position fixed
+  z-index 100
   if hexo-config("navbar.filter")
     filter convert(hexo-config("navbar.filter"))
   if hexo-config("navbar.bottom")
@@ -338,48 +339,7 @@ nav
       border-radius convert(hexo-config("navbar.border_radius"))
     transition .2s
 
-  &.min
-    if hexo-config("navbar.scroll_event.height")
-      height convert(hexo-config("navbar.scroll_event.height"))
-    if hexo-config("navbar.scroll_event.outer_width")
-      width convert(hexo-config("navbar.scroll_event.outer_width"))
-    if hexo-config("navbar.scroll_event.outer_max_width")
-      max-width convert(hexo-config("navbar.scroll_event.outer_max_width"))
-    if hexo-config("navbar.scroll_event.filter")
-      filter convert(hexo-config("navbar.scroll_event.filter"))
-    if hexo-config("navbar.scroll_event.shadow")
-      box-shadow convert(hexo-config("navbar.scroll_event.shadow"))
-    if hexo-config("navbar.scroll_event.border")
-      border convert(hexo-config("navbar.scroll_event.border"))
-    if hexo-config("navbar.scroll_event.border_radius")
-      border-radius convert(hexo-config("navbar.scroll_event.border_radius"))
-    if hexo-config("navbar.scroll_event.background") == 'main'
-      color var(--font-with-main)
-    if hexo-config("navbar.scroll_event.top")
-      top convert(hexo-config("navbar.scroll_event.top"))
-    if hexo-config("navbar.scroll_event.bottom")
-      bottom convert(hexo-config("navbar.scroll_event.bottom"))
-    .rolling_switch
-      .itemA
-      .itemB
-        transform translate(0, -50%)
-      .itemA
-        opacity 0
-      .itemB
-        opacity 1
-    &:before
-      if hexo-config("navbar.scroll_event.background") == 'main'
-        background var(--color-main)
-      else if hexo-config("navbar.scroll_event.background")
-        background convert(hexo-config("navbar.scroll_event.background"))
-      else
-        background var(--bg-nav)
-      if hexo-config("navbar.scroll_event.backdrop_filter")
-        backdrop-filter convert(hexo-config("navbar.scroll_event.backdrop_filter"))
-      if hexo-config("navbar.scroll_event.border_radius")
-        border-radius convert(hexo-config("navbar.scroll_event.border_radius"))
-
-  &.min.down
+  &.not-top.down
     if hexo-config("navbar.scroll_event.auto_hide")
       if hexo-config("navbar.bottom")
         bottom hexo-config("navbar.height")?convert(hexo-config("navbar.height")):60px

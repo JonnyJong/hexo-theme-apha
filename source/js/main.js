@@ -14,6 +14,11 @@ const $ = (()=>{
     }else{
       eNav.classList.remove('min')
     }
+    if (window.pageYOffset != 0) {
+      eNav.classList.add("not-top")
+    }else{
+      eNav.classList.remove("not-top")
+    }
     if ((lastScrollPosition - window.pageYOffset) < -4) {
       eNav.classList.add("down")
       eNav.classList.remove("up")

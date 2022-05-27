@@ -17,12 +17,16 @@ mixin PostListInfo(item, post)
       .description=PostDescription(post, priority, limit, defaultContent)
     when 'group'
       .group
+        each subitem in item.items
+          +PostListInfo(subitem, post)
     when 'categories'
       if post.categories.data.length > 0
         .categories
-          if item.icon || item.name
+          if item.icon || item.name || item.icon_of_single
             .info
-              if item.icon
+              if post.categories.data.length == 1 && item.icon_of_single
+                i(class=item.icon_of_single)
+              else if item.icon
                 i(class=item.icon)
               if item.name
                 .name=item.name
@@ -35,9 +39,11 @@ mixin PostListInfo(item, post)
     when 'tags'
       if post.tags.data.length > 0
         .tags
-          if item.icon || item.name
+          if item.icon || item.name || item.icon_of_single
             .info
-              if item.icon
+              if post.tags.data.length == 1 && item.icon_of_single
+                i(class=item.icon_of_single)
+              else if item.icon
                 i(class=item.icon)
               if item.name
                 .name=item.name
@@ -94,15 +100,12 @@ mixin PostListInfo(item, post)
                 .name=item.name
           if item.show_number
             .content= (item.content_before ? item.content_before : '') + post.sticky + (item.content_after ? item.content_after : '')
-    when 'group'
-      each subitem in item.items
-        +PostListInfo(subitem, post)
 
 mixin PostList(posts)
   if posts.length > 0
     .posts
       each post in posts
-        .post
+        a.post(href=url_for(post.path))
           if post.cover
             .cover
               img(src=post.cover alt=post.title)
@@ -110,6 +113,6 @@ mixin PostList(posts)
             .cover
               img(src=RandomImage(post.source) alt=post.title)
           if theme.index_posts.info_items
-            .info
+            object.info
               each item in theme.index_posts.info_items
                 +PostListInfo(item, post)
