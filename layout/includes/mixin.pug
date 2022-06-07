@@ -137,15 +137,15 @@ mixin PageInfoItem(items)
           i(class=icon_minutes)
           !=min2read(page.content)
       when 'categories'
-        .categories
-          .info
-            i(class=icon_categories)
-          if page.categories.data.length > 0
+        if page.categories.data.length > 0
+          .categories
+            .info
+              i(class=icon_categories)
             each cate in page.categories.data
               a.category(href=url_for(cate.path))=cate.name
       when 'tags'
-        .tags
-          if page.tags.data.length > 0
+        if page.tags.data.length > 0
+          .tags
             .info
               if page.tags.data.length == 1
                 i(class=icon_tag)

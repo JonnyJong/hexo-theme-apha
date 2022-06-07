@@ -1,0 +1,69 @@
+if hexo-config("page.info_style") == 'card'
+  main
+    .post-info
+      background var(--bg)
+      border-radius $radius
+      backdrop-filter var(--backdrop)
+      margin-bottom $margin
+      overflow hidden
+      if hexo-config("page.card.info_on_cover")
+        position relative
+        min-height hexo-config("page.card.cover_min_height") ? convert(hexo-config("page.card.cover_min_height")) : 300px
+        display flex
+        align-items flex-end
+        color var(--font-invert)
+      .cover
+        width 100%
+        if hexo-config("page.card.info_on_cover")
+          height 100%
+          position absolute
+        else
+          height hexo-config("page.card.cover_min_height") ? convert(hexo-config("page.card.cover_min_height")) : 300px
+        object-fit cover
+      >.info
+        padding $padding
+        position relative
+        display flex
+        gap 8px
+        flex-direction column
+        width 100%
+        if hexo-config("page.card.info_align") == 'center'
+          align-items center
+        else if hexo-config("page.card.info_align") == 'right'
+          align-items flex-end
+        post-info()
+else if hexo-config("page.info_style") == 'incard'
+  main article
+    .post-info
+      width convert('calc(100% + ' + $padding * 2 + ')')
+      margin ($padding * -1) 0 0 ($padding * -1)
+      overflow hidden
+      if hexo-config("page.card.info_on_cover")
+        position relative
+        min-height hexo-config("page.card.cover_min_height") ? convert(hexo-config("page.card.cover_min_height")) : 300px
+        display flex
+        align-items flex-end
+        color var(--font-invert)
+        border-radius $radius $radius 0 0
+      else
+        border-radius $radius
+      .cover
+        width 100%
+        if hexo-config("page.card.info_on_cover")
+          height 100%
+          position absolute
+        else
+          height hexo-config("page.card.cover_min_height") ? convert(hexo-config("page.card.cover_min_height")) : 300px
+        object-fit cover
+      >.info
+        padding $padding
+        position relative
+        display flex
+        gap 8px
+        flex-direction column
+        width 100%
+        if hexo-config("page.card.info_align") == 'center'
+          align-items center
+        else if hexo-config("page.card.info_align") == 'right'
+          align-items flex-end
+        post-info()

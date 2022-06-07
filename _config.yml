@@ -481,24 +481,17 @@ page:
     # 信息对齐（left、center、right，默认 center）
     info_align:
   
+  # 卡片
+  card:
+    # 封面最小高度（默认 300px）
+    cover_min_height:
+    # 信息在封面上（默认 false）
+    info_on_cover: 
+    # 信息对齐（left、center、right，默认 left）
+    info_align: 
+  
   # 组件样式（text/chip）
-  item_style: text
-
-  # # 信息样式（false、gradient、block；无、渐变、块状。）
-  # incard_info_bg: false
-  # # block 背景样式
-  # incard_info_bg_block:
-  #   # 不透明度（默认 .6）
-  #   opacity: ''
-  #   # 背景模糊度（默认 10px）
-  #   blur: 
-  #   # 背景饱和度（单位：%。基础值：100%。默认值：%。推荐随模糊度增加而增加。）
-  #   saturate:
-  # # gradient 背景样式
-  # incard_info_bg_gradient:
-  #   # 开始和结束颜色（色值必须用英文引号包括，例：'#2333'）
-  #   begin_color: ''
-  #   end_color: ''
+  item_style: chip
 
   # 段落标题易读性增强
   paragraph_title_readability: false
@@ -536,19 +529,6 @@ page:
   # CC：https://creativecommons.org/choose/
   lisence: CC, BY, NC, SA
   # lisence: CC, BY, NC, ND, SA
-
-  # 字数统计
-  wordcount: false
-  # 阅读时长
-  min2read: false
-  # 显示创建日期
-  show_date: false
-  # 显示更新日期
-  show_updated: false
-  # 显示标签
-  show_tags: false
-  # 显示分类
-  show_categories: false
 
   # 点击目录平滑转跳（将目录的链接替换为 onclick 事件）（未配置）
   click_toc_smooth_jump: false

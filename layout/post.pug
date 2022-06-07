@@ -1,6 +1,13 @@
 extends includes/layout.pug
 
 block content
+  if theme.page.info_style == 'card'
+    .post-info
+      +PageInfo()
   article#post
+    if theme.page.info_style == 'incard'
+      .post-info
+        +PageInfo()
     != page.content
-  #paginator!= paginator()
+  //- #paginator!= paginator()
+  include includes/paginator.pug
