@@ -3,4 +3,5 @@ extends includes/layout.pug
 block content
   //- include includes/recent-posts.pug
   +PostList(page.posts.data)
-  #paginator!= paginator()
+  //- #paginator!= paginator()
+  include includes/paginator.pug

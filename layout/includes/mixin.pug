@@ -1,3 +1,4 @@
+//- 文章信息
 mixin PostListInfo(item, post)
   - let priority = theme.index_posts.description.priority
   - let limit = (theme.index_posts.description.max_length_of_content ? theme.index_posts.description.max_length_of_content : 100)
@@ -54,23 +55,25 @@ mixin PostListInfo(item, post)
             else
               a.tag(href=url_for(tag.path))=tag.name
     when 'updated'
-      .updated
-        if item.icon || item.name
-          .info
-            if item.icon
-              i(class=item.icon)
-            if item.name
-              .name=item.name
-        time(datetime=post.updated.toJSON())= date(post.updated, date_format)
+      if post.updated
+        .updated
+          if item.icon || item.name
+            .info
+              if item.icon
+                i(class=item.icon)
+              if item.name
+                .name=item.name
+          time(datetime=post.updated.toJSON())= date(post.updated, date_format)
     when 'date'
-      .date
-        if item.icon || item.name
-          .info
-            if item.icon
-              i(class=item.icon)
-            if item.name
-              .name=item.name
-        time(datetime=post.date.toJSON())= date(post.date, date_format)
+      if post.date
+        .date
+          if item.icon || item.name
+            .info
+              if item.icon
+                i(class=item.icon)
+              if item.name
+                .name=item.name
+          time(datetime=post.date.toJSON())= date(post.date, date_format)
     when 'min2read'
       .minutes
         if item.icon || item.name
@@ -101,6 +104,7 @@ mixin PostListInfo(item, post)
           if item.show_number
             .content= (item.content_before ? item.content_before : '') + post.sticky + (item.content_after ? item.content_after : '')
 
+//- 文章列表
 mixin PostList(posts)
   if posts.length > 0
     .posts
@@ -118,9 +122,59 @@ mixin PostList(posts)
               each item in theme.index_posts.info_items
                 +PostListInfo(item, post)
 
+
+//- 社交链接
 mixin SocialLinks()
   if theme.info.social_link
     .social-links
       each item in theme.info.social_link
         a.item(href=item.href title=item.name)
           i(class=item.icon)
+
+
+//- 页面信息组件
+mixin PageInfoItem(items)
+  each item in items
+    case item.type
+      when 'title'
+        h1.title=page.title ? page.title : _p("post_item.notitle")
+      when 'group'
+        .group
+          +PageInfoItem(item.items)
+      when 'sticky'
+        if page.sticky > 0
+          .sticky='置顶'
+      when 'date'
+        if page.date
+          .date
+            time(datetime=page.date.toJSON())= date(page.date, date_format)
+      when 'updated'
+        if page.updated
+          .updated
+            time(datetime=page.updated.toJSON())= date(page.updated, date_format)
+      when 'wordcount'
+        .wordcount
+          !=wordcount(page.content)
+      when 'min2read'
+        .minutes
+          !=min2read(page.content)
+      when 'categories'
+        .categories
+          if page.categories.data.length > 0
+            each cate in page.categories.data
+              a.category(href=url_for(cate.path))=cate.name
+      when 'tags'
+        .tags
+          if page.tags.data.length > 0
+            each tag in page.tags.data
+              a.tag(href=url_for(tag.path))=tag.name
+      //- when 'readed'
+  
+//- 页面信息
+mixin PageInfo()
+  if page.cover
+    img.cover(src=page.cover alt=page.title)
+  else if theme.index_posts.default_covers
+    img.cover(src=RandomImage(page.source) alt=page.title)
+  .info
+    +PageInfoItem(theme.page.items)

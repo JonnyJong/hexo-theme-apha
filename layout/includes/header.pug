@@ -13,3 +13,6 @@ if is_home() && theme.index_banner.enable
         else if theme.index_banner.subtitle
           .subtitle=theme.index_banner.subtitle
         +SocialLinks()
+if is_post() && (theme.page.info_style == 'banner' || !theme.page.info_style)
+  header.post
+    +PageInfo()

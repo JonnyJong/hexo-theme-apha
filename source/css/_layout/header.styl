@@ -1,8 +1,8 @@
 header
+  margin-top hexo-config("navbar.height") ? convert(hexo-config("navbar.height")) * -1: -60px
   if hexo-config("index_banner.enable")
     &.index
       height hexo-config("index_banner.height") ? convert(hexo-config("index_banner.height")) : 100vh
-      margin-top hexo-config("navbar.height") ? convert(hexo-config("navbar.height")) * -1: -60px
       position relative
       if hexo-config("index_banner.background")
         background convert(hexo-config("index_banner.background"))
@@ -20,7 +20,8 @@ header
         color hexo-config("index_banner.font_color") ? convert(hexo-config("index_banner.font_color")) : var(--font-invert)
         text-shadow hexo-config("index_banner.font_shadow") ? convert(hexo-config("index_banner.font_shadow")) : 0 0 20px #000
         max-width $max_width
-        margin $min_margin auto
+        margin $margin auto
+        padding 0 $min_margin
         if hexo-config("index_banner.text_align")
           text-align convert(hexo-config("index_banner.text_align"))
         .title
@@ -45,3 +46,51 @@ header
             position relative
             text-decoration none
             color hexo-config("index_banner.font_color") ? convert(hexo-config("index_banner.font_color")) : var(--font-invert)
+  if hexo-config("page.info_style") == 'banner' || !hexo-config("page.info_style")
+    &.post
+      position relative
+      min-height hexo-config("page.banner.min_height") ? convert(hexo-config("page.banner.min_height")) : 400px
+      overflow hidden
+      display flex
+      flex-direction column
+      padding-top hexo-config("navbar.height") ? convert(hexo-config("navbar.height")) : 60px
+      if hexo-config("page.banner.info_position") == 'bottom'
+        justify-content flex-end
+      else if hexo-config("page.banner.info_position") != 'center'
+        justify-content center
+      .cover
+        position absolute
+        height 100%
+        width 100%
+        object-fit cover
+        top 0px
+      .info
+        position relative
+        display flex
+        gap 8px
+        flex-direction column
+        height 100%
+        padding $padding
+        if hexo-config("page.banner.info_align") == 'right'
+          align-items flex-end
+        else if hexo-config("page.banner.info_position") != 'center'
+          align-items center
+        color var(--font-invert)
+        .group
+          display flex
+          flex-wrap wrap
+          align-items center
+          gap 8px
+        .sticky
+          padding 4px 8px
+          background #F44336
+          border-radius $radius
+        .title
+          margin 0
+        .categories
+          .category:before
+            content '/'
+        .tags
+          display flex
+          flex-wrap wrap
+          gap 8px

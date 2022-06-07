@@ -457,21 +457,52 @@ index_posts:
 # =============================================================
 # 页面样式
 page:
-  # 信息样式（false、gradient、block；无、渐变、块状。）
-  incard_info_bg: false
-  # block 背景样式
-  incard_info_bg_block:
-    # 不透明度（默认 .6）
-    opacity: ''
-    # 背景模糊度（默认 10px）
-    blur: 
-    # 背景饱和度（单位：%。基础值：100%。默认值：%。推荐随模糊度增加而增加。）
-    saturate:
-  # gradient 背景样式
-  incard_info_bg_gradient:
-    # 开始和结束颜色（色值必须用英文引号包括，例：'#2333'）
-    begin_color: ''
-    end_color: ''
+  # 信息样式（banner、card、incard，默认 banner）
+  info_style:
+
+  # 组件
+  items:
+    - type: group
+      items:
+        - type: sticky
+        - type: title
+    - type: group
+      items:
+        - type: date
+        - type: updated
+        # - type: readed
+        - type: wordcount
+        - type: min2read
+    - type: categories
+    - type: tags
+
+  # 横幅
+  banner:
+    # 最小高度（默认 400px）
+    min_height:
+    # 信息位置（top、center、bottom，默认 center）
+    info_position:
+    # 信息对齐（left、center、right，默认 center）
+    info_align:
+  
+  # 组件样式（text/chip）
+  item_style:
+
+  # # 信息样式（false、gradient、block；无、渐变、块状。）
+  # incard_info_bg: false
+  # # block 背景样式
+  # incard_info_bg_block:
+  #   # 不透明度（默认 .6）
+  #   opacity: ''
+  #   # 背景模糊度（默认 10px）
+  #   blur: 
+  #   # 背景饱和度（单位：%。基础值：100%。默认值：%。推荐随模糊度增加而增加。）
+  #   saturate:
+  # # gradient 背景样式
+  # incard_info_bg_gradient:
+  #   # 开始和结束颜色（色值必须用英文引号包括，例：'#2333'）
+  #   begin_color: ''
+  #   end_color: ''
 
   # 段落标题易读性增强
   paragraph_title_readability: false
