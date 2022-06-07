@@ -126,8 +126,6 @@ nav
       top 90%
       transition .2s
       right 0
-      if hexo-config("navbar.type_menu.submenu_filter")
-        filter convert(hexo-config("navbar.type_menu.submenu_filter"))
       if hexo-config("navbar.type_menu.submenu_border_radius")
         border-radius convert(hexo-config("navbar.type_menu.submenu_border_radius"))
       if hexo-config("navbar.type_menu.submenu_padding")
@@ -233,8 +231,6 @@ nav
       width hexo-config("navbar.type_author.panel_width") ? convert(hexo-config("navbar.type_author.panel_width")) : 350px
       max-width 100vw
       background hexo-config("navbar.type_author.panel_background") ? convert(hexo-config("navbar.type_author.panel_background")) : #fff
-      if hexo-config("navbar.type_author.panel_filter")
-        filter convert(hexo-config("navbar.type_author.panel_filter"))
       if hexo-config("navbar.type_author.panel_backdrop_filter")
         backdrop-filter convert(hexo-config("navbar.type_author.panel_backdrop_filter"))
       if hexo-config("navbar.type_author.panel_border")

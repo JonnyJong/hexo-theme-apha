@@ -1,7 +1,20 @@
+$margin = hexo-config("block-margin") ? convert(hexo-config("block-margin")) : 10px
+$padding = hexo-config("block-padding") ? convert(hexo-config("block-padding")) : 20px
+$radius = hexo-config("border-radius") ? convert(hexo-config("border-radius")) : 10px
+$background_opacity = hexo-config("block-opacity") ? convert(hexo-config("block-opacity")) : .9
+$blur = hexo-config("block-blur") ? convert(hexo-config("block-blur")) : 10px
+$saturate = hexo-config("block-saturate") ? convert(hexo-config("block-saturate")) : 180%
+$max_width = hexo-config("max-width") ? convert(hexo-config("max-width")) : 1400px
+$min_margin = hexo-config("min_margin") ? convert(hexo-config("min_margin")) : 10px
+$block_border = hexo-config("block-border") ? convert(hexo-config("block-border")) : 0
+
 $color_main = hexo-config("color.main") ? convert(hexo-config("color.main")) : #4CAF50
 $color_accent = hexo-config("color.accent") ? convert(hexo-config("color.accent")) : $color_main
 $color_hover = hexo-config("color.hover") ? convert(hexo-config("color.hover")) : $color_accent
 $color_active = hexo-config("color.active") ? convert(hexo-config("color.active")) : $color_accent
+
+$color_block_background_light = rgba(#fff, $background_opacity)
+$color_block_background_dark = rgba(#000, $background_opacity)
 
 :root
   --bg-nav #fffe
@@ -9,8 +22,14 @@ $color_active = hexo-config("color.active") ? convert(hexo-config("color.active"
 
   --font-main #000000de
   --font-with-main dark($color_main)?#eee:#111
+  --font-with-accent dark($color_accent)?#eee:#111
+  --font-with-hover dark($color_hover)?#eee:#111
+  --font-with-active dark($color_active)?#eee:#111
 
   --color-main $color_main
   --color-accent $color_accent
   --color-hover $color_hover
   --color-active $color_active
+
+  --bg $color_block_background_light
+  --backdrop blur($blur) saturate($saturate)

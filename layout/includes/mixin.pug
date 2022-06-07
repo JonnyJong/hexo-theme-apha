@@ -11,10 +11,10 @@ mixin PostListInfo(item, post)
     when 'hr'
       .hr
     when 'title'
-      .title=(post.title ? post.title : theme.index_posts.default_title)
+      a.title(href=url_for(post.path))=(post.title ? post.title : (theme.index_posts.default_title ? theme.index_posts.default_title : _p("post_item.notitle")))
     when 'description'
       if theme.index_posts.description.priority
-      .description=PostDescription(post, priority, limit, defaultContent)
+      .description!=PostDescription(post)
     when 'group'
       .group
         each subitem in item.items
@@ -104,15 +104,16 @@ mixin PostListInfo(item, post)
 mixin PostList(posts)
   if posts.length > 0
     .posts
+      //- !=Checker(theme.index_posts.default_covers)
       each post in posts
-        a.post(href=url_for(post.path))
+        .post(class=((post.cover || theme.index_posts.default_covers) ? 'cover' : ''))
           if post.cover
-            .cover
+            a.cover(href=url_for(post.path))
               img(src=post.cover alt=post.title)
           else if theme.index_posts.default_covers
             .cover
               img(src=RandomImage(post.source) alt=post.title)
           if theme.index_posts.info_items
-            object.info
+            .info
               each item in theme.index_posts.info_items
                 +PostListInfo(item, post)

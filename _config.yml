@@ -1,9 +1,5 @@
 # 信息
 info:
-  # 首页大标题（false、default、value；关闭、默认、值。）
-  big_title: 
-  # 首页副标题（false、default、value；关闭、默认、值。）
-  subtitle: 
   # 站点图标
   favicon: 
   # 头像（默认使用站点图标）
@@ -51,7 +47,7 @@ archive:
   # 页面仅展示归档（开启后归档页的展示方式将改变，且 show 失效）（未配置）
   only_archive: 
   # 归档页展示（你可以将归档、归类、标签全部集中到这个页面来显示，你可以自定义展示顺序，最少需要展示一项）
-  show:
+  items:
     - archive
   # 显示数量
   show_count: false
@@ -182,8 +178,6 @@ navbar:
   # 侧边导航栏组件
   side_items:
   
-  # 滤镜
-  filter:
   # 背景滤镜（通常情况下，Firefox 中无作用）
   backdrop_filter: blur(20px) saturate(180%)
   # 导航栏圆角（none、default、value；无、默认、数值。建议使用 px 而不是 %，使用 % 会导致变为椭圆）
@@ -278,8 +272,6 @@ navbar:
     # 面板背景
     panel_background:
     panel_darkmode_background:
-    # 面板滤镜
-    panel_filter:
     # 面板背景滤镜
     panel_backdrop_filter: blur(5px)
     # 面板边框
@@ -398,9 +390,9 @@ index_posts:
   # 1：封面在侧边（默认）
   # 2：封面在上方
   # 3：封面与信息重叠
-  style:
-  # 封面位置（both/left/right 默认 both，当 style 为 1 时有效）
-  cover_position:
+  style: 
+  # 信息位置（both/left/right 默认 both，当 style 为 1 时有效）
+  info_position: 
   # 封面最小高度（默认 300px）
   cover_min_height:
 
@@ -436,21 +428,8 @@ index_posts:
   # 标签
   tags:
     limit:
-  # 信息样式
-  info_style:
-
-  # 文本样式设置 *
-  style_text:
-    font_size:
-    font_weight:
-    margin:
-
-  # 纸片样式设置 *
-  style_chip:
-    padding:
-    font_size:
-    font_weight:
-    border_radius:
+  # 信息样式（text/chip）
+  info_style: chip
   
   # 描述
   description:
@@ -462,40 +441,14 @@ index_posts:
     show_on_hover:
     max_length_of_content:
     defalut_description:
-    render_excerpt: # **
+    render_excerpt: true
 
-  # 多列
-  # 1：默认，一列
-  # 2：至多两列
-  # 3：至多三列
-  double_column:
-
-  # 背景 *
-  background:
-  # 滤镜
-  filter:
-  # 背景滤镜
-  backdrop_filter:
-  # 边框
-  border:
-  # 边框圆角
-  border_radius:
-  # 信息内边框
-  info_padding:
-  # 封面内边框
-  cover_padding:
-  # 阴影
-  shadow:
-  # 标题字体大小（默认 20px）
-  title_font_size:
-  # 标题颜色
-  title_color:
-  # 标题字重（默认 bold）
-  title_font_weight:
   # 标题对齐（left/center/right，默认 left）
   title_align:
+  # 封面内边框
+  cover_padding:
 
-  # 特殊排版（启用后部分选项无效）
+  # 特殊排版（启用后部分选项无效，包含多列……可以存在附加选项） *
   special_style:
 
 # =============================================================
@@ -622,13 +575,13 @@ comment:
 # 颜色
 color:
   # 主色（默认 #4CAF50）
-  main: 
+  main: '#4CAF50'
   # 强调色（默认 主色）
-  accent: 
+  accent: '#039BE5'
   # 悬停强调色（默认 强调色）
-  hover:
+  hover: '#673AB7'
   # 点击强调色（默认 强调色）
-  active:
+  active: '#F44336'
 
   # 暗色模式配色（默认 同亮色模式）
   darkmode_color:
@@ -728,16 +681,25 @@ background:
 
 
 # =============================================================
-# 主页横幅图像
-index_banner_img: 
-# 主页横幅高度（单位：px、vh）
-index_banner_height: 
-# 滚动视差
-index_banner_img_parallax: true
-# 主页大标题字体大小基数（默认 96px）
-index_big_title_font_size:
-# 主页副标题字体大小基数（默认 24px）
-index_subtitle_font_size:
+# 主页横幅
+index_banner:
+  enable: true
+  # 标题（false、default、value；关闭、默认、值。）
+  title: 
+  # 副标题（false、default、value；关闭、默认、值。）
+  subtitle:
+  # 图像
+  img:
+  # 背景
+  background:
+  # 高度（单位：px、vh）
+  height:
+  # 滚动视差
+  scroll_parallax:
+  # 标题字体大小（large、big、default）
+  title_font_size:
+  # 副标题字体大小（large、big、default）
+  subtitle_font_size:
 
 # =============================================================
 # 板块外边框（单位：px）
@@ -747,17 +709,17 @@ block-padding:
 # 模块圆角（单位：px）
 border-radius:
 # 模块背景不透明度（较低的背景模糊度建议使用较高的不透明度，较低的不透明度建议使用较高的背景模糊度）
-global-opacity: ''
+block-opacity: ''
 # 模块背景高斯模糊度（单位：px。建议不要使用过高的数值，这可能会导致卡顿。可设置为 0）
-global-blur: 0
+block-blur: 0
 # 模块背景饱和度（单位：%。基础值：100%。推荐随模糊度增加而增加。）
-global-saturate: 
+block-saturate: 
 # 最大宽度（单位：px。默认：1400px。建议大于 1000px，过小的值会导致排版错乱。设置 none 为不限制。）
 max-width: 
 # 最小边界（当屏幕宽度小于最大宽度时，默认 16px）
 min_margin:
 # 模块边框（使用 css border 语法）
-global-border:
+block-border:
 
 # =============================================================
 # 转跳到内容按钮（进入页面后按下 Tab，将会在屏幕顶部出现此按钮）
@@ -773,6 +735,9 @@ user_scalable: true
 no_select_unless_article: true
 # 文章禁用选中（未配置）*
 no_select_in_article: false
+
+# 链接下划线
+link_underline:
 
 # =============================================================
 # 鼠标样式
