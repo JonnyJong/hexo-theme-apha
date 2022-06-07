@@ -6,6 +6,9 @@ info:
   avatar: 
   # 社交链接
   social_link:
+    - icon: fa fa-github
+      name: Github
+      href: https://github.com/JonnyJong/
   # 建站时间
   site_begin: 
 
@@ -684,22 +687,35 @@ background:
 # 主页横幅
 index_banner:
   enable: true
-  # 标题（false、default、value；关闭、默认、值。）
+  # 标题（none、value；关闭、值。）
   title: 
-  # 副标题（false、default、value；关闭、默认、值。）
-  subtitle:
+  # 副标题（none、value；关闭、值。）
+  subtitle: Have a nice day!
+  # 第三方（一言……）*
   # 图像
-  img:
+  img: /assets/970.jpg
   # 背景
-  background:
-  # 高度（单位：px、vh）
-  height:
-  # 滚动视差
+  background: '#0008'
+  # 高度（默认：100vh，单位：px、vh，特殊示例：s("min(100vh, 500px)")）
+  height: 
+  # 滚动视差（0 ~ 1，默认 0）
   scroll_parallax:
   # 标题字体大小（large、big、default）
   title_font_size:
+  # 标题字重（默认 bold）
+  title_font_weight:
   # 副标题字体大小（large、big、default）
   subtitle_font_size:
+  # 副标题字重（默认 无）
+  subtitle_font_weight:
+  # 字体颜色（默认：根据颜色模式）
+  font_color: '#fff'
+  # 背景遮罩颜色
+  filter_color:
+  # 字体阴影
+  font_shadow:
+  # 文本对齐（left、center、right）
+  text_align: 
 
 # =============================================================
 # 板块外边框（单位：px）

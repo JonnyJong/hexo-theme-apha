@@ -17,14 +17,18 @@ body
 
 main
   max-width $max_width
-  margin auto $min_margin
+  margin $min_margin auto
 
 a
-  if hexo-config("index_posts.info_style")
+  if hexo-config("link_underline")
     text-decoration 1px underline
   else
     text-decoration none
-  text-decoration 1px underline
+  color var(--color-accent)
+  &:hover
+    color var(--color-hover)
+  &:active
+    color var(--color-active)
 
 @import '_animation'
 @import "_layout/*"

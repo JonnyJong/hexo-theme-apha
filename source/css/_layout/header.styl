@@ -2,3 +2,46 @@ header
   if hexo-config("index_banner.enable")
     &.index
       height hexo-config("index_banner.height") ? convert(hexo-config("index_banner.height")) : 100vh
+      margin-top hexo-config("navbar.height") ? convert(hexo-config("navbar.height")) * -1: -60px
+      position relative
+      if hexo-config("index_banner.background")
+        background convert(hexo-config("index_banner.background"))
+      .banner
+        position absolute
+        height 100%
+        width 100%
+        object-fit cover
+      .info
+        position relative
+        height 100%
+        display flex
+        flex-direction column
+        justify-content center
+        color hexo-config("index_banner.font_color") ? convert(hexo-config("index_banner.font_color")) : var(--font-invert)
+        text-shadow hexo-config("index_banner.font_shadow") ? convert(hexo-config("index_banner.font_shadow")) : 0 0 20px #000
+        max-width $max_width
+        margin $min_margin auto
+        if hexo-config("index_banner.text_align")
+          text-align convert(hexo-config("index_banner.text_align"))
+        .title
+          font-weight hexo-config("index_banner.title_font_weight") ? convert(hexo-config("index_banner.title_font_weight")) : bold
+          if hexo-config("index_banner.title_font_size") == 'large'
+            font-size 100px
+          else if hexo-config("index_banner.title_font_size") == 'big'
+            font-size 60px
+          else
+            font-size 40px
+        .subtitle
+          if hexo-config("index_banner.subtitle_font_weight")
+            font-weight convert(hexo-config("index_banner.subtitle_font_weight"))
+          if hexo-config("index_banner.subtitle_font_size") == 'large'
+            font-size 40px
+          else if hexo-config("index_banner.subtitle_font_size") == 'big'
+            font-size 20px
+        .social-links
+          display flex
+          flex-wrap wrap
+          .item
+            position relative
+            text-decoration none
+            color hexo-config("index_banner.font_color") ? convert(hexo-config("index_banner.font_color")) : var(--font-invert)

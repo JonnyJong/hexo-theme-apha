@@ -1,2 +1,15 @@
 if is_home() && theme.index_banner.enable
   header.index
+    if theme.index_banner.img
+      img.banner(src=theme.index_banner.img)
+    if Compare(theme.index_banner.title, null) || Compare(theme.index_banner.subtitle, null) || theme.index_banner.title || theme.index_banner.subtitle || theme.info.social_link
+      .info
+        if Compare(theme.index_banner.title, null)
+          .title=config.title
+        else if theme.index_banner.title
+          .title=theme.index_banner.title
+        if Compare(theme.index_banner.subtitle, null)
+          .subtitle=config.subtitle
+        else if theme.index_banner.subtitle
+          .subtitle=theme.index_banner.subtitle
+        +SocialLinks()

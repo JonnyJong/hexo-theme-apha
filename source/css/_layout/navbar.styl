@@ -1,7 +1,7 @@
 nav
-  height hexo-config("navbar.height")?convert(hexo-config("navbar.height")):60px
-  width hexo-config("navbar.outer_width")?convert(hexo-config("navbar.outer_width")):100%
-  max-width hexo-config("navbar.outer_max_width")?convert(hexo-config("navbar.outer_max_width")):100%
+  height hexo-config("navbar.height") ? convert(hexo-config("navbar.height")) : 60px
+  width hexo-config("navbar.outer_width") ? convert(hexo-config("navbar.outer_width")) : 100%
+  max-width hexo-config("navbar.outer_max_width") ? convert(hexo-config("navbar.outer_max_width")) : 100%
   position fixed
   z-index 100
   if hexo-config("navbar.filter")
@@ -9,7 +9,7 @@ nav
   if hexo-config("navbar.bottom")
     bottom convert(hexo-config("navbar.bottom"))
   else
-    top hexo-config("navbar.top")?convert(hexo-config("navbar.top")):0
+    top hexo-config("navbar.top") ? convert(hexo-config("navbar.top")) : 0
   margin 0 auto
   if hexo-config("navbar.position")=='left'
     left 0

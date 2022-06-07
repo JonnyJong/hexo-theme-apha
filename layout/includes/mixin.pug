@@ -117,3 +117,10 @@ mixin PostList(posts)
             .info
               each item in theme.index_posts.info_items
                 +PostListInfo(item, post)
+
+mixin SocialLinks()
+  if theme.info.social_link
+    .social-links
+      each item in theme.info.social_link
+        a.item(href=item.href title=item.name)
+          i(class=item.icon)
