@@ -407,14 +407,10 @@ index_posts:
     - type: group
       items:
       - type: sticky
-        name: 置顶
-        color: red
       - type: title
     - type: description
     - type: categories
-      name: 分类
     - type: tags
-      name: 标签
     - type: group
       items:
       - type: updated
@@ -486,7 +482,7 @@ page:
     info_align:
   
   # 组件样式（text/chip）
-  item_style:
+  item_style: text
 
   # # 信息样式（false、gradient、block；无、渐变、块状。）
   # incard_info_bg: false

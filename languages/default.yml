@@ -16,9 +16,12 @@ post_item:
   link_page: 友情链接
   wordcount_before: "共 "
   wordcount_after: " 字"
-  sticky: "置顶 "
+  sticky: "置顶"
   min2read_before: "大约 "
   min2read_after: " 分钟"
+  tag: 标签
+  tags: 标签
+  categories: 分类
 footer:
   frame: 框架
   theme: 主题

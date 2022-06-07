@@ -23,14 +23,9 @@ mixin PostListInfo(item, post)
     when 'categories'
       if post.categories.data.length > 0
         .categories
-          if item.icon || item.name || item.icon_of_single
-            .info
-              if post.categories.data.length == 1 && item.icon_of_single
-                i(class=item.icon_of_single)
-              else if item.icon
-                i(class=item.icon)
-              if item.name
-                .name=item.name
+          .info
+            i(class=icon_categories)
+            =_p("post_item.categories")
           each cate, count in post.categories.data
             if theme.index_posts.categories.limit
               if count + 1 < theme.index_posts.categories.limit
@@ -40,14 +35,13 @@ mixin PostListInfo(item, post)
     when 'tags'
       if post.tags.data.length > 0
         .tags
-          if item.icon || item.name || item.icon_of_single
-            .info
-              if post.tags.data.length == 1 && item.icon_of_single
-                i(class=item.icon_of_single)
-              else if item.icon
-                i(class=item.icon)
-              if item.name
-                .name=item.name
+          .info
+            if post.tags.data.length == 1
+              i(class=icon_tag)
+              =_p("post_item.tag")
+            else
+              i(class=icon_tags)
+              =_p("post_item.tags")
           each tag, count in post.tags.data
             if theme.index_posts.tags.limit
               if count + 1 < theme.index_posts.tags.limit
@@ -57,52 +51,30 @@ mixin PostListInfo(item, post)
     when 'updated'
       if post.updated
         .updated
-          if item.icon || item.name
-            .info
-              if item.icon
-                i(class=item.icon)
-              if item.name
-                .name=item.name
-          time(datetime=post.updated.toJSON())= date(post.updated, date_format)
+          i(class=icon_updated)
+          span.content
+            =_p("post_item.updated")
+            time(datetime=post.updated.toJSON())= date(post.updated, date_format)
     when 'date'
       if post.date
         .date
-          if item.icon || item.name
-            .info
-              if item.icon
-                i(class=item.icon)
-              if item.name
-                .name=item.name
-          time(datetime=post.date.toJSON())= date(post.date, date_format)
+          i(class=icon_date)
+          span.content
+            =_p("post_item.date")
+            time(datetime=post.date.toJSON())= date(post.date, date_format)
     when 'min2read'
       .minutes
-        if item.icon || item.name
-          .info
-            if item.icon
-              i(class=item.icon)
-            if item.name
-              .name=item.name
-        .content= (item.content_before ? item.content_before : '') + min2read(post.content) + (item.content_after ? item.content_after : '')
+        i(class=icon_minutes)
+        span.content= _p("post_item.min2read_before") + min2read(post.content) + _p("post_item.min2read_after")
     when 'wordcount'
       .wordcount
-        if item.icon || item.name
-          .info
-            if item.icon
-              i(class=item.icon)
-            if item.name
-              .name=item.name
-        .content= (item.content_before ? item.content_before : '') + wordcount(post.content) + (item.content_after ? item.content_after : '')
+        i(class=icon_wordcount)
+        span.content= _p("post_item.wordcount_before") + wordcount(post.content) + _p("post_item.wordcount_after")
     when 'sticky'
       if post.sticky > 0
-        .sticky(style=(item.color ? 'color:'+item.color+';' : '') + (item.background ? 'background:'+item.background+';' : ''))
-          if item.icon || item.name
-            .info
-              if item.icon
-                i(class=item.icon)
-              if item.name
-                .name=item.name
-          if item.show_number
-            .content= (item.content_before ? item.content_before : '') + post.sticky + (item.content_after ? item.content_after : '')
+        .sticky
+          i(class=icon_pin)
+          =_p("post_item.sticky")
 
 //- 文章列表
 mixin PostList(posts)
@@ -143,29 +115,42 @@ mixin PageInfoItem(items)
           +PageInfoItem(item.items)
       when 'sticky'
         if page.sticky > 0
-          .sticky='置顶'
+          .sticky
+            i(class=icon_pin)
+            =_p("post_item.sticky")
       when 'date'
         if page.date
           .date
+            i(class=icon_date)
             time(datetime=page.date.toJSON())= date(page.date, date_format)
       when 'updated'
         if page.updated
           .updated
+            i(class=icon_updated)
             time(datetime=page.updated.toJSON())= date(page.updated, date_format)
       when 'wordcount'
         .wordcount
+          i(class=icon_wordcount)
           !=wordcount(page.content)
       when 'min2read'
         .minutes
+          i(class=icon_minutes)
           !=min2read(page.content)
       when 'categories'
         .categories
+          .info
+            i(class=icon_categories)
           if page.categories.data.length > 0
             each cate in page.categories.data
               a.category(href=url_for(cate.path))=cate.name
       when 'tags'
         .tags
           if page.tags.data.length > 0
+            .info
+              if page.tags.data.length == 1
+                i(class=icon_tag)
+              else
+                i(class=icon_tags)
             each tag in page.tags.data
               a.tag(href=url_for(tag.path))=tag.name
       //- when 'readed'
