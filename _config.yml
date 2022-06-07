@@ -485,20 +485,26 @@ page:
   card:
     # 封面最小高度（默认 300px）
     cover_min_height:
-    # 信息在封面上（默认 false）
-    info_on_cover: 
+    # 信息在封面上
+    info_on_cover: false
     # 信息对齐（left、center、right，默认 left）
     info_align: 
   
   # 组件样式（text/chip）
-  item_style: chip
+  item_style: 
 
   # 段落标题易读性增强
-  paragraph_title_readability: false
-  # 将 H2 显示为 H1，以此类推，用于优化 SEO 后便于阅读（未完成）
+  paragraph_title_readability: true
+  # 将文章中的 H1 渲染为 H2，以此类推，用于优化在 Bing 上的 SEO（使页面中仅出现一个 H1，即标题）
+  title_seo_for_bing: false
+  # 将 H2 显示为 H1，以此类推，用于优化 SEO 后便于阅读
   after_seo_paraTitleReadly: false
   # 图片限高（默认 80vh）
   img_max_height:
+  # 图片限宽（默认 100%）
+  img_max_width: 
+  # 图像居中
+  img_centered: true
 
   # 复制按钮
   copy_button: false

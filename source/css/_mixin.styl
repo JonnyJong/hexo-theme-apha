@@ -10,7 +10,7 @@ post-info()
     .updated
     .wordcount
     .minutes
-    .tags i
+    .tags .info
     .categories .info
       color var(--font-main)
       padding 4px 8px
@@ -61,5 +61,7 @@ post-info()
   .title
     margin 0
     font-size 28px
+    &:before
+      content none
   .sticky
     color #F44336

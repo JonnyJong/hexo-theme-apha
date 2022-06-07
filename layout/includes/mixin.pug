@@ -122,25 +122,32 @@ mixin PageInfoItem(items)
         if page.date
           .date
             i(class=icon_date)
+            =_p("post_item.date")
             time(datetime=page.date.toJSON())= date(page.date, date_format)
       when 'updated'
         if page.updated
           .updated
             i(class=icon_updated)
+            =_p("post_item.updated")
             time(datetime=page.updated.toJSON())= date(page.updated, date_format)
       when 'wordcount'
         .wordcount
           i(class=icon_wordcount)
+          =_p("post_item.wordcount_before")
           !=wordcount(page.content)
+          =_p("post_item.wordcount_after")
       when 'min2read'
         .minutes
           i(class=icon_minutes)
+          =_p("post_item.min2read_before")
           !=min2read(page.content)
+          =_p("post_item.min2read_after")
       when 'categories'
         if page.categories.data.length > 0
           .categories
             .info
               i(class=icon_categories)
+              =_p("post_item.categories")
             each cate in page.categories.data
               a.category(href=url_for(cate.path))=cate.name
       when 'tags'
@@ -149,8 +156,10 @@ mixin PageInfoItem(items)
             .info
               if page.tags.data.length == 1
                 i(class=icon_tag)
+                =_p("post_item.tag")
               else
                 i(class=icon_tags)
+                =_p("post_item.tags")
             each tag in page.tags.data
               a.tag(href=url_for(tag.path))=tag.name
       //- when 'readed'
